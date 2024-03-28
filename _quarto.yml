@@ -172,7 +172,7 @@ knitr:
     message: false
     warning: false
     collapse: true
-    code-overflow: code-overflow
+    code-overflow: wrap
     fig-crop: false
     comment: "#>"
     R.options:
