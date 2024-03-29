@@ -126,7 +126,7 @@ format:
     code-overflow: wrap
     code-link: true
 
-    author-meta: "이광춘, 신종화"
+    author-meta: "이광춘"
     callout-appearance: simple
 
     # 마크다운 표 캡션 위치
