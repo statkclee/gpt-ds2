@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="이광춘, 신종화">
+<meta name="author" content="이광춘">
 <title>챗GPT 데이터 과학 - 28&nbsp; 챗GPT 환경 구축</title>
 <style>
 code{white-space: pre-wrap;}
@@ -418,6 +418,12 @@ ga('send', {
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item">
@@ -494,7 +500,7 @@ ga('send', {
 <p>가장 최신 파이썬 3.12 버전 대신 안정성이 검증된 파이썬 3.11 버전 <a href="https://www.python.org/downloads/release/python-3118/">다운로드</a> 웹사이트에서 운영체제에 맞게 설치한다. 설치 과정에서 <code>Add Python 3.11 to PATH</code> 옵션을 반드시 선택한다.</p>
 <div id="fig-install-python" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-install-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/gpt-python-install.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/gpt-python-install.jpg" class="img-fluid figure-img"></a>
+<a href="images/gpt-python-install.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/gpt-python-install.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-install-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;28.1: 파이썬 설치 과정
@@ -556,7 +562,7 @@ ga('send', {
 <span class="header-section-number">28.2</span> 감성분석 사례</h2>
 <p>앞서 구축한 파이썬 가상환경에서 음식점 리뷰에 대한 감성분석을 수행하는 사례를 살펴본다. 먼저 <code>transformers</code> 라이브러리 <code>pipeline</code>을 사용하여 텍스트 분류 모델을 로드하고, 한국어 문장을 입력으로 받아 다국어 버트(bert) 모형으로 감성 분석을 수행한다. 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"분위기도 좋았고 음식도 아주 훌륭했어."</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -579,7 +585,7 @@ ga('send', {
 <p>RStudio 부조종사는 RStudio IDE에 GitHub Copilot을 통합한 버전으로, RStudio 사용자가 RStudio IDE에서 Copilot을 사용할 수 있도록 지원한다. RStudio 부조종사는 RStudio IDE의 기능과 GitHub Copilot의 기능을 통합하여 RStudio 사용자가 더욱 효율적으로 코드를 작성하고 디버깅할 수 있도록 도와준다. RStudio 부조종사는 RStudio IDE의 사용성을 향상시키고 RStudio 사용자가 더욱 효율적으로 코드를 작성할 수 있도록 도와준다.</p>
 <div id="fig-rstudio-copilot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-copilot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/rstudio_copilot.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/rstudio_copilot.jpg" class="img-fluid figure-img"></a>
+<a href="images/rstudio_copilot.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/rstudio_copilot.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-copilot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;28.2: RStudio 부조종사 설정방법
@@ -607,7 +613,7 @@ ga('send', {
 <p><a href="https://platform.openai.com/signup">OpenAI 계정 생성</a> 웹사이트에서 계정을 생성한다.</p>
 <div id="fig-openai-signup" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-openai-signup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/openai_api_signup.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/openai_api_signup.jpg" class="quarto-figure quarto-figure-center figure-img" height="265"></a>
+<a href="images/openai_api_signup.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/openai_api_signup.jpg" class="quarto-figure quarto-figure-center figure-img" height="265"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-openai-signup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;28.3: OpenAI 계정 생성
@@ -618,7 +624,7 @@ ga('send', {
 <p><a href="https://platform.openai.com/account/api-keys">API keys</a> 웹사이트에서 API KEY를 발급받는다.</p>
 <div id="fig-apikey-creation" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-apikey-creation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/apikey_creation.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/apikey_creation.jpg" class="quarto-figure quarto-figure-center figure-img" height="265"></a>
+<a href="images/apikey_creation.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/apikey_creation.jpg" class="quarto-figure quarto-figure-center figure-img" height="265"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apikey-creation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;28.4: API 키 생성
@@ -632,7 +638,7 @@ ga('send', {
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>API키를 직접 파이썬 프로그램에 명시하고 결과를 확인한다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> <span class="st">"sk-xxxxxxxxxxxxxxxxxxxxxxxxxx"</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -666,7 +672,7 @@ ga('send', {
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <p><code>python-dotenv</code> 패키지를 사용하여 API KEY를 환경변수로 관리한다. <code>.env</code> 파일에 OpenAI 발급받은 API KEY를 저장하고 파이썬 프로그램에서 <code>.env</code> 파일을 읽어서 API KEY를 사용한다. 버전 관리 시스템에 <code>.env</code> 파일을 포함시키지 않도록 <code>.gitignore</code> 파일에 추가한다. 이와 같은 방식으로 API KEY를 관리하면 API KEY가 노출되는 것을 방지할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1166,7 +1172,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

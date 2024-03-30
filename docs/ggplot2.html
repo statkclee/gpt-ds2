@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="이광춘, 신종화">
+<meta name="author" content="이광춘">
 
-<title>챗GPT 데이터 과학 – 10&nbsp; 논문 품질 그래프 생성</title>
+<title>챗GPT 데이터 과학 - 10&nbsp; 논문 품질 그래프 생성</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -250,7 +250,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"download.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_data.csv\", \"gapminder_data.csv\") \ngapminder <- read.csv(\"gapminder_data.csv\", header=TRUE, stringsAsFactors = FALSE)\n\nlibrary(ggplot2)\nggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()","id":1},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter1","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp))","id":2},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter2","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()","id":3},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-year-scatter-challenge","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point()","id":4},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-year-scatter-challenge-solution","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()","id":5},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-year-scatter-challenge-solution","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +\n   geom_point()","id":6},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-line","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line()","id":7},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-line-point","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line() + geom_point()","id":8},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-line-point2","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_line(aes(color=continent)) + geom_point()","id":9},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-point-line-country-solution","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_point() + geom_line(aes(color=continent))","id":10},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +\n  geom_point()","id":11},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter-log10","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point(alpha = 0.5) + scale_x_log10()","id":12},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-lm-fit","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\")","id":13},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-lm-fit-size","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\", size=1.5)","id":14},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-lm-fit-size-color","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n geom_point(size=3, color=\"orange\") + scale_x_log10() +\n geom_smooth(method=\"lm\", size=1.5)","id":15},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-lm-fit-shape-color","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point(size=3, shape=17) + scale_x_log10() +\n  geom_smooth(method=\"lm\", size=1.5)","id":16},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-facet","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"starts.with <- substr(gapminder$country, start = 1, stop = 1)\naz.countries <- gapminder[starts.with %in% c(\"A\", \"Z\"), ]\nggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country)","id":17},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-facet-theme","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())","id":18},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-facet-theme-ggsave","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"lifeExp_plot <- ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())\n\nggsave(filename = \"results/lifeExp.png\", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = \"cm\")","id":19},{"options":{"fig-cap":"","context":"interactive","message":"true","fig-width":7,"label":"gapminder-facet-boxplot","comment":"","out-height":"","autorun":"false","read-only":"false","out-width":"700px","output":"true","dpi":72,"classes":"","results":"markup","fig-height":5,"warning":"true"},"code":"ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = continent)) +\n geom_boxplot() + facet_wrap(~year) +\n ylab(\"기대수명\") +\n theme(axis.title.x=element_blank(),\n       axis.text.x = element_blank(),\n       axis.ticks.x = element_blank())","id":20}];
+globalThis.qwebrCellDetails = [{"code":"download.file(\"https://raw.githubusercontent.com/bit2r/gpt-ds/main/data/gapminder_data.csv\", \"gapminder_data.csv\") \ngapminder <- read.csv(\"gapminder_data.csv\", header=TRUE, stringsAsFactors = FALSE)\n\nlibrary(ggplot2)\nggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()","id":1,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp))","id":2,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter1","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point()","id":3,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter2","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point()","id":4,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-year-scatter-challenge","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()","id":5,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-year-scatter-challenge-solution","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +\n   geom_point()","id":6,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-year-scatter-challenge-solution","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line()","id":7,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-line","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +\n  geom_line() + geom_point()","id":8,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-line-point","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_line(aes(color=continent)) + geom_point()","id":9,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-line-point2","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +\n  geom_point() + geom_line(aes(color=continent))","id":10,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-point-line-country-solution","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +\n  geom_point()","id":11,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point(alpha = 0.5) + scale_x_log10()","id":12,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"lifeExp-vs-gdpPercap-scatter-log10","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\")","id":13,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-lm-fit","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() + scale_x_log10() + geom_smooth(method=\"lm\", size=1.5)","id":14,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-lm-fit-size","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +\n geom_point(size=3, color=\"orange\") + scale_x_log10() +\n geom_smooth(method=\"lm\", size=1.5)","id":15,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-lm-fit-size-color","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point(size=3, shape=17) + scale_x_log10() +\n  geom_smooth(method=\"lm\", size=1.5)","id":16,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-lm-fit-shape-color","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"starts.with <- substr(gapminder$country, start = 1, stop = 1)\naz.countries <- gapminder[starts.with %in% c(\"A\", \"Z\"), ]\nggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country)","id":17,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-facet","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())","id":18,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-facet-theme","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"lifeExp_plot <- ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +\n  geom_line() + facet_wrap( ~ country) +\n  labs(\n    x = \"Year\",              # x 축 제목\n    y = \"Life expectancy\",   # y 축 제목\n    title = \"Figure 1\",      # 그래프 주제목\n    color = \"Continent\"      # 범례 제목\n  ) +\n  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())\n\nggsave(filename = \"results/lifeExp.png\", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = \"cm\")","id":19,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-facet-theme-ggsave","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}},{"code":"ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = continent)) +\n geom_boxplot() + facet_wrap(~year) +\n ylab(\"기대수명\") +\n theme(axis.title.x=element_blank(),\n       axis.text.x = element_blank(),\n       axis.ticks.x = element_blank())","id":20,"options":{"comment":"","fig-cap":"","dpi":72,"out-height":"","fig-width":7,"label":"gapminder-facet-boxplot","output":"true","warning":"true","out-width":"700px","context":"interactive","read-only":"false","fig-height":5,"classes":"","autorun":"false","results":"markup","message":"true"}}];
 
 </script>
 <script type="module">
@@ -1233,20 +1233,26 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -1262,38 +1268,20 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -1911,6 +1899,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1945,7 +1951,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

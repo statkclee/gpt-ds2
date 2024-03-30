@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 20&nbsp; 지도 공간정보</title>
+<meta name="author" content="이광춘">
+<title>챗GPT 데이터 과학 - 20&nbsp; 지도 공간정보</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -452,38 +452,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -563,7 +545,7 @@ window.Quarto = {
 <p>GIS에서 계층(레이어, Layer)별로 나눠 데이터를 표현하고, 이를 결합하여 공간정보 지도형태 산출물을 얻는다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보는 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합하여 작업한다. <a href="#fig-layers" class="quarto-xref">그림&nbsp;<span>20.1</span></a> 에 실제 세상이 벡터와 래스터 데이터로 표현하는 사례가 제시되어 있다.</p>
 <div id="fig-layers" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/gis_layers.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;20.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/"><img src="images/gis_layers.jpg" class="img-fluid figure-img"></a>
+<a href="images/gis_layers.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/gis_layers.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;20.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/
@@ -574,7 +556,7 @@ window.Quarto = {
 <p>GIS, 좌표계, 파일 형식, 계층(Layer), 교차분석 등 주요개념을 바탕으로 도구 진화과정을 살펴보자. 초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.</p>
 <p>2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식별로 서로 다른 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 파편화된 진화과정이 일어났다. 2020년대 넘어서면서 1990년대와 유사한 상황이 재현되었고, 이를 해결하고 새로운 전환점을 만들기 위해 <code>OpenEO</code>가 제시되며 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통한 공간정보 가치 창출이 용이해졌다. <span class="citation" data-cites="Pebesma2016">(Pebesma 기타 2016)</span></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="GIS 도구 진화과정"><img src="images/gis_evolution.jpg" class="img-fluid figure-img" alt="GIS 도구 진화과정"></a></p>
+<figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="GIS 도구 진화과정"><img src="images/gis_evolution.jpg" class="img-fluid figure-img" alt="GIS 도구 진화과정"></a></p>
 <figcaption>GIS 도구 진화과정</figcaption></figure>
 </div>
 </section><section id="gis-생태계" class="level2" data-number="20.2"><h2 data-number="20.2" class="anchored" data-anchor-id="gis-생태계">
@@ -583,7 +565,7 @@ window.Quarto = {
 <p>현재 직면한 문제를 해결하는데 과거 도구를 사용하는 것은 마치 철기시대에 석기시대 도구를 사용하는 것과 다름이 없다. 따라서, 데이터를 통해 가치를 만드는 데이터 과학자 입장에서 도구의 선택은 매우 중요할 수 밖에 없다.</p>
 <div id="fig-evolution" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/sf_deps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;20.2: sf 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성"><img src="images/sf_deps.png" class="img-fluid figure-img"></a>
+<a href="images/sf_deps.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/sf_deps.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;20.2: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성
@@ -637,7 +619,7 @@ window.Quarto = {
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="GIS 도구 활용 대한민국 시도별 인구수"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img" alt="GIS 도구 활용 대한민국 시도별 인구수"></a></p>
+<figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4" title="GIS 도구 활용 대한민국 시도별 인구수"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img" alt="GIS 도구 활용 대한민국 시도별 인구수"></a></p>
 <figcaption>GIS 도구 활용 대한민국 시도별 인구수</figcaption></figure>
 </div>
 </section><section id="마무리" class="level2" data-number="20.4"><h2 data-number="20.4" class="anchored" data-anchor-id="마무리">
@@ -645,6 +627,12 @@ window.Quarto = {
 <p>공간정보 개발자와 사용자가 개발하는 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위한 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되었다. IoT와 인공위성을 통해 엄청난 공간정보 데이터가 축적되고 있지만, GIS 도구가 꾸준히 발전하면서 이제 누구나 이러한 도구를 활용하여 공간정보 데이터를 통해 의미있는 산출물을 제작하고 도구도 개발할 수 있게 되었고, 다른 한편으로는 도구 없이 도구에 대한 이해없이 프롭테크를 논하는 것조차 의미없는 시대로 접어들고 있다.</p>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;20.1: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/</span>
+<span class="glightbox-desc lightbox-desc-2">GIS 도구 진화과정</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;20.2: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</span>
+<span class="glightbox-desc lightbox-desc-4">GIS 도구 활용 대한민국 시도별 인구수</span>
+</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-sds" class="csl-entry" role="listitem">
 Pebesma, Edzer, 와/과 Roger Bivand. 2023. <em><span>Spatial Data Science: With Applications in R</span></em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a>.
@@ -735,6 +723,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -769,7 +775,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1104,7 +1114,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

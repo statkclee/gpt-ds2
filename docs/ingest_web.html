@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="이광춘, 신종화">
-<title>챗GPT 데이터 과학 – 26&nbsp; 웹 데이터</title>
+<meta name="author" content="이광춘">
+<title>챗GPT 데이터 과학 - 26&nbsp; 웹 데이터</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -408,38 +408,20 @@ ga('send', {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prompt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">프롬프트 공학</span></span></a>
+  <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./langchain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">랭체인</span></span></a>
+  <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터 사이언스</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./llm_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">쿼토 파이썬 환경</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./local_llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">오라마 설치</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lang_gpt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">챗GPT 자연어</span></span></a>
+  <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -597,7 +579,7 @@ ga('send', {
 <p>제21대 국회의원 선거 당선인 명부 데이터를 엑셀 형태로 구하려면, <a href="https://www.nec.go.kr/site/nec/ex/bbs/List.do?cbIdx=1129">선관위 자료공간</a> 웹사이트 게시판을 통해 엑셀 파일을 다운로드할 수 있다.</p>
 <div id="fig-nec-excel" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/nec_excel.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="그림&nbsp;26.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일"><img src="images/nec_excel.jpeg" class="img-fluid figure-img"></a>
+<a href="images/nec_excel.jpeg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/nec_excel.jpeg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;26.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일
@@ -606,7 +588,7 @@ ga('send', {
 <p>다운로드 받은 엑셀 데이터를 가져오는 코드를 <a href="#lst-excel" class="quarto-xref">목록&nbsp;<span>26.1</span></a> 와 같이 작성할 수 있다. 먼저, <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>과 <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>를 통해 필요한 패키지를 로드한다. <code>nec_sheets &lt;- readxl::excel_sheets(...)</code>는 엑셀 파일의 시트 이름을 가져오는 코드로 엑셀 파일에서 가져올할 시트를 선택한다. <code>winner_raw &lt;- readxl::read_excel(...)</code>는 선택한 시트의 데이터를 읽어오는 코드로 당선인 명부 데이터를 R 환경으로 불러온다.</p>
 <p>이후, <code>winner_raw |&gt; count(소속정당명, name = "당선인수", sort = TRUE)</code>는 파이프 연산자(<code>|&gt;</code>)를 사용하여 데이터를 조작하여 정당별로 집계하고, 당선인 수를 계산한 후, 결과를 내림차순으로 정렬하여 당선인 수를 쉽게 파악할 수 있다. <code>janitor::adorn_totals(where = "row", name = "합계")</code>는 <code>janitor</code> 패키지 함수로, 집계 결과에 총합 행을 추가하여 전체 당선인 수를 확인할 수 있다.</p>
 <div class="cell">
-<div id="lst-excel" class="r cell-code listing quarto-float">
+<div id="lst-excel" class="r cell-code code-overflow-wrap listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure"><div aria-describedby="lst-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-excel"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -635,7 +617,7 @@ ga('send', {
 <p>공공데이터포털 <a href="https://www.data.go.kr/data/15000864/openapi.do">중앙선거관리위원회 당선인정보 API</a>를 활용하여 당선인 정보를 프로그래밍을 통해 직접 가져올 수 있다. 아래아한글로 작성된 당선인 정보 조회 서비스 API 명세서를 참고하여 Java, Javascript, C#, PHP, Curl, Objective-C, Python, Nodejs, R 언어로 예제 코드가 작성되어 있어 사용자가 편리하게 API를 활용할 수 있다.</p>
 <div id="fig-nec-api" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/nec_api.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="그림&nbsp;26.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서"><img src="images/nec_api.jpg" class="img-fluid figure-img"></a>
+<a href="images/nec_api.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/nec_api.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;26.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서
@@ -898,7 +880,7 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </div>
 <div id="fig-nec_selelium" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec_selelium-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/nec_selelium.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="그림&nbsp;26.4: 동적 웹 페이지 데이터 추출과정"><img src="images/nec_selelium.gif" class="img-fluid figure-img"></a>
+<a href="images/nec_selelium.gif" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/nec_selelium.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec_selelium-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;26.4: 동적 웹 페이지 데이터 추출과정
@@ -922,6 +904,11 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </div>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;26.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;26.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;26.4: 동적 웹 페이지 데이터 추출과정</span>
+</div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1001,6 +988,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1035,7 +1040,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1370,7 +1379,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false,"selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

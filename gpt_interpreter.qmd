@@ -1,0 +1,235 @@
+# 데이터프레임 분석
+
+OpenAI에서 플로그인으로 출시한 코드 인터프리터(code interpreter)는 
+자연어 질문이나 요청을 받아 코드를 작성하고 실행하는 데 초점을 맞춘 도구다. 
+파이썬으로 프로그래밍 관련 문제를 해결하거나, 특정 알고리즘을 구현하는 데 유용하다. 
+사용자는 자연어로 복잡한 코드를 작성하거나 디버깅하는 과정 없이도 원하는 
+코드를 작성하게 되고 결과도 직접 실행시켜 결과를 확인할 수 있다.
+
+반면, OpenAI에서 코드 인터프리터를 고급 데이터 분석(advanced data analytics)으로 
+명칭을 변경한 후에 출시한 도구는 더 복잡한 데이터 분석과 시각화 기능을 제공한다.
+코드 인터프리터가 실시간 코드 실행과 테스트에 초점을 맞춘 반면, 고급 데이터 분석은
+복잡한 데이터 분석과 시각화에 초점을 두어 인사이트와 의사결정 지원에 기능이 특화되어 있다.
+
+OpenAI에서 챗GPT에 플러그인 형태로 제공되던 코드 인터프리터와 고급 데이터 분석 기능은
+챗 인터페이스에 하나로 통합되어 입력 데이터 유형에 따라 자동으로 코드 인터프리터와 
+고급 데이터 분석 기능이 활성화되어 실행되는 것으로 변경되었다.
+
+
+## 광명시 인구현황 분석
+
+### 데이터 수집
+
+행정안전부 [주민등록 인구 및 세대현황](https://jumin.mois.go.kr/) 웹사이트에서 광명시 2023년 7월 기준 인구현황 데이터를 가져온다.
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+raw_data <- read_excel("data/202307_202307_연령별인구현황_월간.xlsx", skip =3) 
+
+raw_data |> 
+  janitor::clean_names(ascii = FALSE) |> 
+  select(1:10) |> 
+  head() |> 
+  gt::gt()
+```
+
+### 가공데이터
+
+```{r}
+library(tidyverse)
+
+pop_tbl <- 
+  read_rds("data/kwangmyung_pop.rds")
+
+pop_tbl |> 
+  head() |> 
+  gt::gt()
+```
+
+### 챗GPT 데이터 변환
+
+데이터를 가공한 후 챗GPT Code Interpreter 분석용으로 변환시켜 데이터를 전송한다.
+
+```{r}
+#| eval: false
+
+pop_tbl |> 
+  write_csv("data/kwangmyung_pop.csv")
+```
+
+
+![코드 인터프리터 광명시 인구분석 작업흐름](images/km_code_interpreter.png){#fig-km_code_interpreter}
+
+
+{{< downloadthis data/kwangmyung_pop.csv dname="kwangmyung_pop" label="광명시 인구" icon="download" type="info" >}}
+
+
+## 챗GPT Code Interpreter
+
+::: {.panel-tabset}
+
+### 데이터 불러오기
+
+![](images/km_code_interpreter_01.jpg)
+
+### 선그래프
+
+![](images/km_code_interpreter_02.jpg)
+
+### 남녀별
+
+![](images/km_code_interpreter_03.jpg)
+
+### 동별
+
+![](images/km_code_interpreter_04.jpg)
+
+### 유권자 비율
+
+![](images/km_code_interpreter_05.jpg)
+
+### 동별 유권자
+
+![](images/km_code_interpreter_06.jpg)
+
+### 동별 유권자(정렬)
+
+![](images/km_code_interpreter_07.jpg)
+
+### 동별 유권자(비율)
+
+![](images/km_code_interpreter_08.jpg)
+
+### 동별 유권자(비교)
+
+![](images/km_code_interpreter_09.jpg)
+
+### 노트북 내보내기
+
+![](images/km_code_interpreter_10.jpg)
+
+:::
+
+{{< downloadthis data/kwangmyung_population_analysis_v2.ipynb dname="kwangmyung_population_analysis_v2" label="주피터 노트북" icon="download" type="info" >}}
+
+## 마무리 작업
+
+### 연도별 인구수
+
+```{r}
+library(tidyverse)
+
+pop_tbl <- 
+  read_rds("data/kwangmyung_pop.rds")
+
+pop_tbl |> 
+  mutate(시점 = ymd(시점)) |> 
+  mutate(연도 = year(시점)) |> 
+  group_by(연도) |> 
+  summarise(인구수 = sum(인구수)) |> 
+  ggplot(aes(x=연도, y=인구수)) +
+    geom_line(color="skyblue", size=1.5) +
+    geom_point(color="blue", size=3) +
+    labs(title="광명시 인구수 변화", x="", y="인구수(명)",
+         caption = "데이터 출처: 행정안전부 주민등록 인구 및 세대현황") +
+    theme_minimal() +
+    scale_y_continuous(labels = scales::comma)
+```
+
+
+### 연도별 인구수
+
+```{r}
+library(tidyverse)
+
+pop_tbl <- 
+  read_rds("data/kwangmyung_pop.rds")
+
+pop_tbl |> 
+  mutate(시점 = ymd(시점)) |> 
+  mutate(연도 = year(시점)) |> 
+  group_by(연도) |> 
+  summarise(인구수 = sum(인구수)) |> 
+  ggplot(aes(x=연도, y=인구수)) +
+    geom_line(color="skyblue", size=1.5) +
+    geom_point(color="blue", size=3) +
+    labs(title="광명시 인구수 변화", x="", y="인구수(명)",
+         caption = "데이터 출처: 행정안전부 주민등록 인구 및 세대현황") +
+    theme_minimal() +
+    scale_y_continuous(labels = scales::comma)
+```
+
+### 동별 인구수
+
+```{r}
+
+pop_tbl |> 
+  mutate(시점 = ymd(시점)) |> 
+  mutate(연도 = year(시점)) |> 
+  group_by(연도, 행정동) |> 
+  summarise(인구수 = sum(인구수)) |> 
+  ggplot(aes(x=연도, y=인구수, color = 행정동, group=행정동)) +
+    geom_line(size=1.5) +
+    geom_point(color="blue", size=3) +
+    labs(title="광명시 동별 인구수 변화", x="", y="인구수(명)",
+         caption = "데이터 출처: 행정안전부 주민등록 인구 및 세대현황") +
+    theme_minimal() +
+    scale_y_continuous(labels = scales::comma)
+```
+
+### 유권자 비율
+
+```{r}
+pop_tbl |> 
+  mutate(시점 = ymd(시점)) |> 
+  mutate(연도 = year(시점)) |> 
+  mutate(유권자 = ifelse(나이 >=18, "유권자", "비유권자"),
+         유권자 = factor(유권자, levels = c("비유권자", '유권자'))) |> 
+  group_by(유권자) |> 
+  summarise(인구수 = sum(인구수)) |> 
+  ggplot(aes(x="", y=인구수, fill = 유권자)) +
+    geom_bar(width = 1, stat = "identity") +
+    coord_polar("y")  +
+    labs(title="광명시 유권자 비율",
+         caption = "데이터 출처: 행정안전부 주민등록 인구 및 세대현황",
+         fill = "구분") +
+    theme_minimal() +
+    scale_y_continuous(labels = scales::comma) +
+    scale_fill_manual(values = c(유권자 = "blue", 비유권자="red"))
+```
+
+### 내림차순 유권자수
+
+```{r}
+pop_tbl |> 
+  mutate(시점 = ymd(시점)) |> 
+  mutate(연도 = year(시점)) |> 
+  filter(연도 == max(연도)) |> 
+  mutate(유권자 = ifelse(나이 >=18, "유권자", "비유권자"),
+         유권자 = factor(유권자, levels = c("비유권자", '유권자'))) |> 
+  group_by(행정동, 유권자) |> 
+  summarise(인구수 = sum(인구수)) |> 
+  mutate(유권자비율 = 인구수/sum(인구수)) |> 
+  ungroup() |> 
+    
+  # pivot_wider(names_from = 유권자, values_from = 인구수) |> 
+  # mutate(유권자비율 = 유권자/(비유권자+유권자)) |> 
+  # arrange(desc(유권자비율))
+
+  # 시각화 -----------------
+  ggplot(aes(x=fct_reorder2(행정동, 유권자, 유권자비율), y=유권자비율, fill = 유권자)) +
+    geom_col() +
+    coord_flip() +
+    labs(title="광명시 동별 유권자 비율",
+         caption = "데이터 출처: 행정안전부 주민등록 인구 및 세대현황",
+         fill = "구분",
+         x = "") +
+    theme_minimal() +
+    scale_y_continuous(labels = scales::percent) +
+    scale_fill_manual(values = c(유권자 = "blue", 비유권자="red")) +
+    theme(legend.position = "top")
+```
+
+
