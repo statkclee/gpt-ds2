@@ -1,4 +1,4 @@
 species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year
-Chinstrap,Dream,49.7,195,3600,male,2008
-Chinstrap,Dream,49,210,3950,male,2008
-Chinstrap,Dream,51.3,193,3650,male,2007
+Chinstrap,Dream,46.2,187,3650,female,2008
+Chinstrap,Dream,51.4,201,3950,male,2009
+Chinstrap,Dream,58,181,3700,female,2007

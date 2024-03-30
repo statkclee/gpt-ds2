@@ -450,6 +450,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_rtutor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item">
@@ -812,17 +818,17 @@ class 아스키,가져오기 subgraphStyle
 <span></span>
 <span><span class="va">penguins_tbl</span></span>
 <span><span class="co">#&gt; # A tibble: 9 × 7</span></span>
-<span><span class="co">#&gt;   species   island bill_length_mm flipper_length_mm body_mass_g sex     year</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt;           &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Adelie    Biscoe           38.6               199        3750 female  2009</span></span>
-<span><span class="co">#&gt; 2 Adelie    Biscoe           40.5               180        3950 male    2007</span></span>
-<span><span class="co">#&gt; 3 Adelie    Dream            37                 185        3000 female  2007</span></span>
-<span><span class="co">#&gt; 4 Gentoo    Biscoe           54.3               231        5650 male    2008</span></span>
-<span><span class="co">#&gt; 5 Gentoo    Biscoe           59.6               230        6050 male    2007</span></span>
-<span><span class="co">#&gt; 6 Gentoo    Biscoe           44.5               214        4850 female  2009</span></span>
-<span><span class="co">#&gt; 7 Chinstrap Dream            49.3               203        4050 male    2009</span></span>
-<span><span class="co">#&gt; 8 Chinstrap Dream            46.1               178        3250 female  2007</span></span>
-<span><span class="co">#&gt; 9 Chinstrap Dream            50.8               210        4100 male    2009</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   species   island    bill_length_mm flipper_length_mm body_mass_g sex     year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt;              &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie    Dream               41.1               205        4300 male    2008</span></span>
+<span><span class="co">#&gt; 2 Adelie    Torgersen           40.2               176        3450 female  2009</span></span>
+<span><span class="co">#&gt; 3 Adelie    Biscoe              34.5               187        2900 female  2008</span></span>
+<span><span class="co">#&gt; 4 Gentoo    Biscoe              43.2               208        4450 female  2008</span></span>
+<span><span class="co">#&gt; 5 Gentoo    Biscoe              46.2               221        5300 male    2008</span></span>
+<span><span class="co">#&gt; 6 Gentoo    Biscoe              42.6               213        4950 female  2008</span></span>
+<span><span class="co">#&gt; 7 Chinstrap Dream               49.7               195        3600 male    2008</span></span>
+<span><span class="co">#&gt; 8 Chinstrap Dream               49                 210        3950 male    2008</span></span>
+<span><span class="co">#&gt; 9 Chinstrap Dream               51.3               193        3650 male    2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="다양한-파일형태" class="level2" data-number="25.5"><h2 data-number="25.5" class="anchored" data-anchor-id="다양한-파일형태">
 <span class="header-section-number">25.5</span> 다양한 파일형태</h2>
@@ -845,15 +851,15 @@ class 아스키,가져오기 subgraphStyle
 <span>    <span class="fu">write_delim</span><span class="op">(</span><span class="st">"data/file/nine_penguins.txt"</span>, delim <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>species	island	bill_length_mm	flipper_length_mm	body_mass_g	sex	year</span>
-<span id="cb8-2"><a href="#cb8-2"></a>Adelie	Dream	<span class="fl">41.1</span>	<span class="dv">205</span>	<span class="dv">4300</span>	male	<span class="dv">2008</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>Adelie	Torgersen	<span class="fl">40.2</span>	<span class="dv">176</span>	<span class="dv">3450</span>	female	<span class="dv">2009</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>Adelie	Biscoe	<span class="fl">34.5</span>	<span class="dv">187</span>	<span class="dv">2900</span>	female	<span class="dv">2008</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>Gentoo	Biscoe	<span class="fl">43.2</span>	<span class="dv">208</span>	<span class="dv">4450</span>	female	<span class="dv">2008</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>Gentoo	Biscoe	<span class="fl">46.2</span>	<span class="dv">221</span>	<span class="dv">5300</span>	male	<span class="dv">2008</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>Gentoo	Biscoe	<span class="fl">42.6</span>	<span class="dv">213</span>	<span class="dv">4950</span>	female	<span class="dv">2008</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>Chinstrap	Dream	<span class="fl">49.7</span>	<span class="dv">195</span>	<span class="dv">3600</span>	male	<span class="dv">2008</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>Chinstrap	Dream	<span class="dv">49</span>	<span class="dv">210</span>	<span class="dv">3950</span>	male	<span class="dv">2008</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>Chinstrap	Dream	<span class="fl">51.3</span>	<span class="dv">193</span>	<span class="dv">3650</span>	male	<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2"></a>Adelie	Dream	<span class="fl">39.5</span>	<span class="dv">178</span>	<span class="dv">3250</span>	female	<span class="dv">2007</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>Adelie	Torgersen	<span class="fl">40.9</span>	<span class="dv">191</span>	<span class="dv">3700</span>	female	<span class="dv">2008</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>Adelie	Torgersen	<span class="fl">41.5</span>	<span class="dv">195</span>	<span class="dv">4300</span>	male	<span class="dv">2009</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>Gentoo	Biscoe	<span class="fl">45.5</span>	<span class="dv">214</span>	<span class="dv">4650</span>	female	<span class="dv">2007</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>Gentoo	Biscoe	<span class="fl">43.3</span>	<span class="dv">208</span>	<span class="dv">4575</span>	female	<span class="dv">2009</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>Gentoo	Biscoe	<span class="fl">50.4</span>	<span class="dv">222</span>	<span class="dv">5750</span>	male	<span class="dv">2009</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>Chinstrap	Dream	<span class="fl">46.2</span>	<span class="dv">187</span>	<span class="dv">3650</span>	female	<span class="dv">2008</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>Chinstrap	Dream	<span class="fl">51.4</span>	<span class="dv">201</span>	<span class="dv">3950</span>	male	<span class="dv">2009</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>Chinstrap	Dream	<span class="dv">58</span>	<span class="dv">181</span>	<span class="dv">3700</span>	female	<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="csv-구분자" class="level4"><h4 class="anchored" data-anchor-id="csv-구분자">CSV 구분자</h4>
 <p>CSV(Comma-Separated Values) 파일은 콤마 구분자를 사용하여 데이터를 저장하는 형식으로 모든 운영체제에서 특별한 별도 프로그램없이 열어볼 수 있다는 장점이 있어 호환성에서 큰 장점이 있지만 파일에 많은 정보가 담기게 되면 파일크기가 커져서 저장공간을 많이 차지한다는 단점이 있다. <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> 함수를 사용하여 콤마 구분자 아스키 파일로 저장하는 방법과 <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_delim()</a></code> 함수를 사용하는 방법이 있다. 콤마 구분자 파일로 저장하는 동일한 기능을 수행하지만 함수명에서 차이가 난다.</p>
 <div class="cell">
@@ -861,15 +867,15 @@ class 아스키,가져오기 subgraphStyle
 <span>    <span class="fu">write_csv</span><span class="op">(</span><span class="st">"data/file/nine_penguins.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year</span>
-<span id="cb10-2"><a href="#cb10-2"></a>Adelie,Dream,<span class="fl">41.1</span>,<span class="dv">205</span>,<span class="dv">4300</span>,male,<span class="dv">2008</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>Adelie,Torgersen,<span class="fl">40.2</span>,<span class="dv">176</span>,<span class="dv">3450</span>,female,<span class="dv">2009</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>Adelie,Biscoe,<span class="fl">34.5</span>,<span class="dv">187</span>,<span class="dv">2900</span>,female,<span class="dv">2008</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>Gentoo,Biscoe,<span class="fl">43.2</span>,<span class="dv">208</span>,<span class="dv">4450</span>,female,<span class="dv">2008</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>Gentoo,Biscoe,<span class="fl">46.2</span>,<span class="dv">221</span>,<span class="dv">5300</span>,male,<span class="dv">2008</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a>Gentoo,Biscoe,<span class="fl">42.6</span>,<span class="dv">213</span>,<span class="dv">4950</span>,female,<span class="dv">2008</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>Chinstrap,Dream,<span class="fl">49.7</span>,<span class="dv">195</span>,<span class="dv">3600</span>,male,<span class="dv">2008</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>Chinstrap,Dream,<span class="dv">49</span>,<span class="dv">210</span>,<span class="dv">3950</span>,male,<span class="dv">2008</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>Chinstrap,Dream,<span class="fl">51.3</span>,<span class="dv">193</span>,<span class="dv">3650</span>,male,<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2"></a>Adelie,Dream,<span class="fl">39.5</span>,<span class="dv">178</span>,<span class="dv">3250</span>,female,<span class="dv">2007</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>Adelie,Torgersen,<span class="fl">40.9</span>,<span class="dv">191</span>,<span class="dv">3700</span>,female,<span class="dv">2008</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>Adelie,Torgersen,<span class="fl">41.5</span>,<span class="dv">195</span>,<span class="dv">4300</span>,male,<span class="dv">2009</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>Gentoo,Biscoe,<span class="fl">45.5</span>,<span class="dv">214</span>,<span class="dv">4650</span>,female,<span class="dv">2007</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>Gentoo,Biscoe,<span class="fl">43.3</span>,<span class="dv">208</span>,<span class="dv">4575</span>,female,<span class="dv">2009</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>Gentoo,Biscoe,<span class="fl">50.4</span>,<span class="dv">222</span>,<span class="dv">5750</span>,male,<span class="dv">2009</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>Chinstrap,Dream,<span class="fl">46.2</span>,<span class="dv">187</span>,<span class="dv">3650</span>,female,<span class="dv">2008</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>Chinstrap,Dream,<span class="fl">51.4</span>,<span class="dv">201</span>,<span class="dv">3950</span>,male,<span class="dv">2009</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>Chinstrap,Dream,<span class="dv">58</span>,<span class="dv">181</span>,<span class="dv">3700</span>,female,<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="고정길이-파일" class="level4"><h4 class="anchored" data-anchor-id="고정길이-파일">고정길이 파일</h4>
 <p>고정길이 아스키 파일(Fixed-width ASCII file, FWF)은 데이터 저장 및 교환을 위해 초기 컴퓨팅 시대에 개발되었다. 당시에는 데이터 저장 공간이 제한적이었기 때문에 고정길이 파일은 구분자를 사용하지 않고 데이터를 더 촘촘하게 저장할 수 있었고, 하드웨어와 소프트웨어도 고정 길이 레코드 처리에 최적화되어 있었다.</p>
 <p>현재까지도 고정길이 파일은 레거시 시스템과의 호환성, 데이터 무결성 유지, 데이터 밀도 향상, 대용량 데이터 처리 성능 개선 등의 이유로 명맥을 유지하고 있으며, 의료 및 금융 분야에서 고정길이 파일을 데이터 교환 표준으로 활용하기도 한다.</p>
@@ -1054,15 +1060,15 @@ style H fill:#c0c0c0,stroke:#333,stroke-width:2px
 <span><span class="co">#&gt; # A tibble: 9 × 7</span></span>
 <span><span class="co">#&gt;   species   island    bill_length_mm flipper_length_mm body_mass_g sex     year</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Adelie    Dream               41.1               205        4300 male    2008</span></span>
-<span><span class="co">#&gt; 2 Adelie    Torgersen           40.2               176        3450 female  2009</span></span>
-<span><span class="co">#&gt; 3 Adelie    Biscoe              34.5               187        2900 female  2008</span></span>
-<span><span class="co">#&gt; 4 Chinstrap Dream               49.7               195        3600 male    2008</span></span>
-<span><span class="co">#&gt; 5 Chinstrap Dream               49                 210        3950 male    2008</span></span>
-<span><span class="co">#&gt; 6 Chinstrap Dream               51.3               193        3650 male    2007</span></span>
-<span><span class="co">#&gt; 7 Gentoo    Biscoe              43.2               208        4450 female  2008</span></span>
-<span><span class="co">#&gt; 8 Gentoo    Biscoe              46.2               221        5300 male    2008</span></span>
-<span><span class="co">#&gt; 9 Gentoo    Biscoe              42.6               213        4950 female  2008</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 Adelie    Dream               39.5               178        3250 female  2007</span></span>
+<span><span class="co">#&gt; 2 Adelie    Torgersen           40.9               191        3700 female  2008</span></span>
+<span><span class="co">#&gt; 3 Adelie    Torgersen           41.5               195        4300 male    2009</span></span>
+<span><span class="co">#&gt; 4 Chinstrap Dream               46.2               187        3650 female  2008</span></span>
+<span><span class="co">#&gt; 5 Chinstrap Dream               51.4               201        3950 male    2009</span></span>
+<span><span class="co">#&gt; 6 Chinstrap Dream               58                 181        3700 female  2007</span></span>
+<span><span class="co">#&gt; 7 Gentoo    Biscoe              45.5               214        4650 female  2007</span></span>
+<span><span class="co">#&gt; 8 Gentoo    Biscoe              43.3               208        4575 female  2009</span></span>
+<span><span class="co">#&gt; 9 Gentoo    Biscoe              50.4               222        5750 male    2009</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1546,7 +1552,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

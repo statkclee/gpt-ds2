@@ -97,6 +97,7 @@ book:
         - gpt_python.qmd
         - gpt_prompt_ds.qmd
         - gpt_interpreter.qmd
+        - gpt_rtutor.qmd
         # - prompt.qmd
         # - langchain.qmd
         # - code_interpreter.qmd
