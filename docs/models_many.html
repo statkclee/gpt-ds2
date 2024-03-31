@@ -571,7 +571,7 @@ window.Quarto = {
 <p>데이터셋 <code>by_country</code>를 이용하여 각 나라별로 회귀 모델의 $ R^2 $ (결정 계수) 값을 기반으로 “적합국”과 “비적합국”을 분류하고, 그 결과를 시각화한다. $ R^2 $ 값이 큰 나라 5개와 작은 나라 5개를 추출하여 기대수명 변화를 그래프로 대조하여 국가별 차이를 명확히 한다.</p>
 <ol type="1">
 <li>
-<strong>최대 $ R^2 $ 값의 국가 추출</strong>:
+<strong>최대 <span class="math inline">\(R^2\)</span> 값의 국가 추출</strong>:
 <ul>
 <li>
 <code>by_country</code> 데이터셋에서 <code>rsquare</code> 값이 가장 큰 5개의 국가를 추출한다.</li>
@@ -579,7 +579,7 @@ window.Quarto = {
 </ul>
 </li>
 <li>
-<strong>최소 $ R^2 $ 값의 국가 추출</strong>:
+<strong>최소 <span class="math inline">\(R^2\)</span> 값의 국가 추출</strong>:
 <ul>
 <li>
 <code>by_country</code> 데이터셋에서 <code>rsquare</code> 값이 가장 작은 5개의 국가를 추출한다.</li>
@@ -740,16 +740,16 @@ window.Quarto = {
 <span><span class="co">#&gt; # A tibble: 60 × 7</span></span>
 <span><span class="co">#&gt;    splits             id     model_name model_number reg_formula  fit       RMSE</span></span>
 <span><span class="co">#&gt;    &lt;list&gt;             &lt;chr&gt;  &lt;chr&gt;             &lt;int&gt; &lt;named list&gt; &lt;named &gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.88</span></span>
-<span><span class="co">#&gt;  2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.70</span></span>
-<span><span class="co">#&gt;  3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.17</span></span>
-<span><span class="co">#&gt;  4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.25</span></span>
-<span><span class="co">#&gt;  5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.31</span></span>
-<span><span class="co">#&gt;  6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.01</span></span>
-<span><span class="co">#&gt;  7 &lt;split [1534/170]&gt; Fold07 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.56</span></span>
-<span><span class="co">#&gt;  8 &lt;split [1534/170]&gt; Fold08 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.83</span></span>
-<span><span class="co">#&gt;  9 &lt;split [1534/170]&gt; Fold09 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.35</span></span>
-<span><span class="co">#&gt; 10 &lt;split [1534/170]&gt; Fold10 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.66</span></span>
+<span><span class="co">#&gt;  1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.01</span></span>
+<span><span class="co">#&gt;  2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.28</span></span>
+<span><span class="co">#&gt;  3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.19</span></span>
+<span><span class="co">#&gt;  4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;    &lt;lm&gt;      3.20</span></span>
+<span><span class="co">#&gt;  5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.27</span></span>
+<span><span class="co">#&gt;  6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.29</span></span>
+<span><span class="co">#&gt;  7 &lt;split [1534/170]&gt; Fold07 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.64</span></span>
+<span><span class="co">#&gt;  8 &lt;split [1534/170]&gt; Fold08 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.86</span></span>
+<span><span class="co">#&gt;  9 &lt;split [1534/170]&gt; Fold09 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.70</span></span>
+<span><span class="co">#&gt; 10 &lt;split [1534/170]&gt; Fold10 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.18</span></span>
 <span><span class="co">#&gt; # ℹ 50 more rows</span></span>
 <span></span>
 <span><span class="co">## 시각화 -----</span></span>
@@ -797,7 +797,7 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit <span class="op">=</span> <span class="fu"><a href="https://furrr.futureverse.org/reference/future_map2.html">future_map2</a></span><span class="op">(</span><span class="va">reg_formula</span>, <span class="va">splits</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">.x</span>, data <span class="op">=</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span>, .progress<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 23.72 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 22.59 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1276,7 +1276,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
