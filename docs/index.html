@@ -86,6 +86,10 @@ ga('send', {
   'anonymizeIp': true,
 });
 </script>
+<meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -466,7 +470,7 @@ ga('send', {
     <div>
     <div class="quarto-title-meta-heading">공개</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024년 03월 30일</p>
+      <p class="date">2024년 03월 31일</p>
     </div>
   </div>
   
@@ -481,8 +485,61 @@ ga('send', {
 <p><a href="images/logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/logo.png" title="챗GPT 데이터 과학" class="quarto-cover-image img-fluid"></a></p>
 <section id="서문" class="level1 unnumbered">
 <h1 class="unnumbered">서문</h1>
+<p>데이터 과학은 21세기에서 가장 중요한 분야 중 하나로 자리 잡았다. 빅데이터로 상징되는 데이터의 폭발적인 증가와 함께 이를 분석하고 활용하는 능력이 그 어느 때보다 강조되고 있기 때문이다. 데이터 과학은 통계학, 컴퓨터 과학, 도메인 지식을 아우르는 융합 학문으로, 데이터로부터 깊은 통찰력을 이끌어내고, 의사결정을 지원하며, 새로운 가치를 창출하는 데 핵심적인 역할을 수행한다.</p>
+<p>최근에는 챗GPT로 대표되는 인공지능 기술이 비약적으로 발전하면서 데이터 과학 분야에도 새로운 변화의 바람이 불고 있다. 챗GPT는 방대한 데이터로 학습된 거대 언어 모델(LLM)로서, 데이터 과학과 관련된 개념을 설명하고 (비)정형 데이터 분석 모형개발 코드를 생성하는 데 탁월한 성능을 보여주고 있으며 발전은 계속되고 있다.</p>
+<p>하지만 챗GPT를 비롯한 AI 기술을 효과적으로 활용하기 위해서는 데이터 과학 분야에서 축적해온 기본 지식이 필수적이다. 본서 “챗GPT 데이터 과학”은 데이터 과학의 기초부터 심화 주제에 이르기까지 폭넓은 내용을 다루며, 챗GPT와 같은 AI 기술로 나아가는 데 필요한 토대를 제공하는 것을 목표로 집필되었다.</p>
+<p>이 책은 데이터 과학의 전 과정을 세밀하게 조명한다. 단순히 이론적인 면을 다루는 것을 넘어 데이터 가져오기, 데이터 정제 및 전처리, 탐색적 데이터 분석, 시각화, 모형개발, 커뮤니케이션 등의 주제를 망라한다. 독자들은 설치가 쉽고 가독성이 뛰어난 대표적인 데이터 과학 언어 <strong>R</strong>을 통해 데이터 가져오기, 조작, 시각화, 통계모형, 커뮤니케이션 활용법을 익히고 실습할 수 있다.</p>
+<p>이 책의 후반부에서는 데이터 과학 역량을 토대로 챗GPT 등 최신 AI 기술과의 융합을 모색한다. 특히 챗GPT를 활용하여 한국어를 R, 파이썬, SQL, 줄리아와 같은 프로그래밍 언어처럼 데이터 과학 분야에 적용하는 방법을 소개한다. 환경 설정, 프롬프트 작성, 데이터 분석 코드 생성, 데이터 시각화 등 구체적인 사례를 통해 데이터 과학과 AI 기술의 시너지 효과를 직접 경험할 수 있을 것이다.</p>
+<p>데이터 과학과 AI 기술의 융합이 가속화되는 시대에 본서는 이러한 변화의 흐름을 파악하고 대비하는 데 유용한 길잡이가 될 것이다. 데이터 과학의 기본기를 다지고 최신 AI 기술과의 조화를 도모하는 여정에 이 책이 든든한 동반자가 되기를 기대하며, 독자 여러분의 뜻깊은 배움의 여정을 진심으로 응원한다.</p>
 <section id="책의-구성" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="책의-구성">책의 구성</h2>
+<p>“챗GPT 데이터 과학”은 데이터 과학의 모든 단계를 아우르는 포괄적인 안내서로 데이터 과학 기초 개념부터 최신 인공지능 기술과 융합까지, 데이터 과학 프로젝트 전반에 걸쳐 필요한 지식과 기술을 체계적으로 정리하고 있다. 데이터 수집, 정제, 탐색, 시각화, 모형, 프로그래밍, 커뮤니케이션 등 데이터 과학의 핵심 영역을 깊이 있게 다루고 있으며, 특히 챗GPT로 대표되는 최신 AI 기술을 데이터 과학에 접목하는 방법도 소개한다.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-book-structure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-book-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-book-structure">graph TB
+    subgraph Software["&lt;strong&gt;좋은 소프트웨어 개발(사람) + 챗GPT(인공지능)&lt;/strong&gt;"]
+        subgraph 이해하기
+            모형 --&gt; 시각화
+            변환 --&gt; 모형
+            시각화 --&gt; 변환
+            
+        end
+    가져오기 --&gt; 깔끔화 --&gt; 이해하기
+    이해하기 --&gt; 의사소통
+
+    AI["챗GPT(LLM)"]
+
+    end
+    
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
+    
+    class 가져오기,깔끔화,변환,모형,시각화,의사소통 modern
+    class AI emphasize
+    class 이해하기 subgraphStyle
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-book-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 챗GPT 데이터 과학 구성
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>1부 “들어가며”에서는 데이터 과학의 기본 개념과 운영체제, 예제 데이터셋 등을 소개하며 독자들을 데이터 과학의 세계로 인도한다. 이 부분에서는 챗GPT 활용만 제외하고 데이터 과학의 기본 개념과 기술을 전체적으로 조망하는데 초점을 맞춘다.</p>
+<p>2부 “데이터 다루기”와 3부 “시각화”에서는 데이터프레임 조작, 탐색, 시각화 등 데이터 이해와 변환을 위한 핵심 기술을 다룬다. 데이터 과학의 중요한 축인 탐색적 데이터 분석에 대한 핵심적인 내용을 다루며, 데이터를 이해하고 변환하는 데 필요한 기본적인 기술을 배울 수 있다.</p>
+<p>4부 “모형”에서는 기계학습과 딥러링으로 가기 위해 교도부로 간단한 통계 모형을 통해 데이터 과학에서 갖는 모형의 위치와 역할에 대해 파악할 수 있다. 특히, 단순한 회귀모형이지만 2부에서 학습한 데이터 조작 기법과 결합하여 병렬처리를 통해 빠르게 모형을 개발하고 이를 통해 인사이트를 도출하는 방법을 통해 문제해결의 새로운 기술을 배울 수 있다.</p>
+<p>5부 “프로그래밍”은 함수, 분할-적용-병합 전략, 함수형 프로그래밍 등 데이터 과학에 필요한 프로그래밍 기법을 소개한다. 효율적이고 재사용 가능한 코드를 작성하는 방법을 배워, 데이터 과학 프로젝트 생산성을 높일 수 있다.</p>
+<p>6부 “커뮤니케이션”에서는 지도 시각화, 분석 보고서 작성, 쿼토 활용 등 분석 결과를 효과적으로 전달하고 공유하는 방법을 배운다. 데이터 과학자의 역할은 단순히 분석에 그치는 것이 아니라, 발견한 인사이트를 조직 내외부에 명확히 전달하는 것까지 포함된다.</p>
+<p>7부 “가져오기”는 데이터베이스, 파일, 웹, 상용 데이터 등 실문에서 접하는 다양한 데이터 소스를 연결하고 데이터를 수집하는 방법을 다룬다. 데이터 과학 프로젝트의 시작점인 데이터 수집 단계의 중요성과 다양한 접근 방식을 깊이 있게 탐구한다.</p>
+<p>마지막으로 8부 “챗GPT”에서는 챗GPT 환경 구축, 프롬프트 작성, 데이터 분석 자동화 등 최신 AI 기술을 데이터 과학에 접목하는 방법을 소개한다. 인공지능과의 협업을 통해 데이터 과학자의 역량을 강화하고, 분석 프로세스를 혁신하는 방안을 모색한다.</p>
+<p>“챗GPT 데이터 과학”은 데이터 과학의 전 과정을 체계적으로 정리하고, 최신 AI 기술과의 융합을 모색하는 포괄적인 가이드북이다. 이론과 실습을 균형 있게 다루어, 독자들은 데이터 과학 프로젝트를 수행하는 데 필요한 역량을 단계적으로 함양할 수 있을 것이다.</p>
 </section>
 <section id="감사의-글" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="감사의-글">감사의 글</h2>
@@ -493,7 +550,8 @@ ga('send', {
 </style>
 <p>이 책이 탄생할 수 있도록 도움을 주신 여러분께 깊은 감사의 마음을 표합니다.</p>
 <p>공익법인 한국 R 사용자회가 없었다면 데이터 과학분야 챗GPT 시리즈가 세상에 나오지 못했을 것입니다. 한국 R 사용자회의 유충현 회장님, 신종화 사무처장님, 홍성학 감사님, 올해부터 새롭게 공익법인 한국 R 사용자를 이끌어주실 형환희 회장님께 감사드립니다.</p>
-<p>또한 이 책은 2014년 처음 몸담게 된 소프트웨어 카펜트리 그렉 윌슨 박사님과 Python for Informatics 저자인 미시건 대학 찰스 세브란스 교수님을 비롯한 전세계 수많은 익명의 기여자들의 노력과 지원이 있었고, 서울 R 미트업에서 발표해주시고 참여해주신 수많은 분들이 격려와 영감을 주셨기에 가능했습니다.</p>
+<p>이 책은 2014년 처음 몸담게 된 소프트웨어 카펜트리의 그렉 윌슨 박사님과 “Python for Informatics”의 저자인 미시건 대학 찰스 세브란스 교수님을 비롯한 전 세계 수많은 익명의 기여자들의 노력과 지원 덕분에 가능했습니다. 또한 후원해 주신 나이스디앤알의 박정우 대표님, 남영민 본부장님과 서울 R 미트업에서 발표해 주시고 참여해 주신 수많은 분들의 격려와 영감도 큰 힘이 되었습니다.</p>
+<p>국내외 오픈소스 커뮤니티 활동 이전에 먼저 저에게 전산 통계를 가르쳐 주신 연세대 김철응 교수님을 비롯한 수많은 선생님들의 가르침 덕분에 이 책을 완성할 수 있었습니다. 아울러 다양한 형태의 공공데이터를 마음껏 누릴 수 있는 디지털 환경과 뉴질랜드에서 탄생한 R 언어가 유럽에서 통계 프로그래밍 언어로 자리 잡고 미국에서 꽃필 수 있도록 도와주신 R Core Team, R Foundation, Posit(구 RStudio) 및 수많은 개발자와 익명의 기여자분들께 감사의 말씀을 전합니다.</p>
 <p>이 책이 출간되는데 있어 이들 모든 분들의 도움 없이는 어려웠을 것입니다. 그동안의 관심과 지원에 깊은 감사를 드리며, 이 책이 데이터 과학의 발전과 독자들에게 도움이 될 수 있기를 바라는 마음으로 마무리하겠습니다.</p>
 <div class="flushright">
 <p>2024년 4월 속초 영금정</p>
@@ -976,7 +1034,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
