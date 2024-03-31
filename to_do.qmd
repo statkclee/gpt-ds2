@@ -147,4 +147,9 @@ virtualenv_install("d:/envs/gpt-ds", c("python-dotenv", "openai"))
 
 py$answer_question
 
+# 다운로드 --------------
+
+{{< downloadthis report/resume/gpt_resume_physics.qmd dname="gpt_resume_physics.qmd" label="물리학자 이력서" icon="download" type="info" >}}
+
+
 
