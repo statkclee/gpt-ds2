@@ -1,9 +1,0 @@
----
-title: "R 언어"
----
-
-About this site
-
-```{r}
-1 + 1
-```

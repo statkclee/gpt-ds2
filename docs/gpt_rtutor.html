@@ -235,13 +235,13 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+  <a href="./data_dplyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+  <a href="./data_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
   </div>
 </li>
@@ -502,7 +502,7 @@ ga('send', {
 <div id="fig-rtutor-screenshot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rtutor-screenshot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/gpt_rtutor.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/gpt_rtutor.jpg" class="img-fluid figure-img"></a>
+<a href="images/gpt_rtutor.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/gpt_rtutor.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rtutor-screenshot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;31.1: RTutor 실행화면
@@ -553,7 +553,7 @@ ga('send', {
 </div>
 <p><a href="https://github.com/Sinaptik-AI/pandas-ai">PandasAI</a> 예제 코드에 들어 있는 판다스 데이터프레임을 생성하고, <code>OpenAI</code>를 통해 자연어 질의를 수행하는 예제를 살펴보자.</p>
 <p><code>pandas</code>와 <code>pandasai</code>를 사용해 데이터를 처리하고 OpenAI <code>gpt-4</code> LLM으로 자연어를 파이썬 코드로 변경한 후 파이썬 코드를 실행하여 자연어 질의에 응답하는 방식으로 작성되었다. 먼저 필요한 라이브러리를 가졍고 <code>.env</code> 파일에서 OpenAI API 키를 로드한다. 이후 국가별 매출 데이터를 담은 데이터프레임을 만들고, OpenAI <code>gpt-4</code> 모델을 활용해 <code>SmartDataframe</code> 객체로 변환한다. 객체 chat 메소드를 사용해 “가장 매출이 많은 나라는? 한글로 번역해줘.”라는 질문에 대한 답변을 얻는다.</p>
-<div id="339e0b03" class="cell" data-execution_count="1">
+<div id="ea9c4fdd" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandasai <span class="im">import</span> SmartDataframe</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandasai.llm.openai <span class="im">import</span> OpenAI</span>
@@ -578,13 +578,13 @@ ga('send', {
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; '가장 매출이 많은 나라는 China입니다.'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>“x 축 국가로 두고 매출 막대형 차트 그리기” 라는 자연어 질의를 이해하고 matplotlib 라이브러리를 사용해 막대형 차트를 생성하고 결과를 이미지 파일로 저장시킨다.</p>
-<div id="3b8473ae" class="cell" data-execution_count="2">
+<div id="a12a8a60" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sdf.chat(<span class="st">'x 축 국가로 두고 매출 막대형 차트 그리기'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 'D:/tcs/gpt-ds/exports/charts/temp_chart.png'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="exports/charts/temp_chart.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="PandasAI는 막대그래프 실행결과"><img src="exports/charts/temp_chart.png" class="img-fluid figure-img" alt="PandasAI는 막대그래프 실행결과"></a></p>
+<p><a href="exports/charts/temp_chart.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="PandasAI는 막대그래프 실행결과"><img src="exports/charts/temp_chart.png" class="img-fluid figure-img" alt="PandasAI는 막대그래프 실행결과"></a></p>
 <figcaption><code>PandasAI는</code> 막대그래프 실행결과</figcaption>
 </figure>
 </div>
@@ -1071,7 +1071,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

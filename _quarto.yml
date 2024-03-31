@@ -54,8 +54,8 @@ book:
       chapters:
         - data_structure.qmd
         - dataframe.qmd
-        - dplyr.qmd
-        - tidyr.qmd
+        - data_dplyr.qmd
+        - data_tidyr.qmd
 
     - part: "**3부** 시각화"
       chapters:
@@ -98,20 +98,8 @@ book:
         - gpt_prompt_ds.qmd
         - gpt_interpreter.qmd
         - gpt_rtutor.qmd
-        # - prompt.qmd
-        # - langchain.qmd
-        # - code_interpreter.qmd
-
-        # - local_llm.qmd
-        # - lang_gpt.qmd
 
     - references.qmd
-
-    # - part: "**2부** 언어"
-    #   chapters:
-    #     - lang_r.qmd
-    #     - lang_py.qmd
-    #     - lang_sql.qmd
 
 # ---------------------------------- #
 

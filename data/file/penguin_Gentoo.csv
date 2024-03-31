@@ -1,4 +1,4 @@
 species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year
+Gentoo,Biscoe,43.6,217,4900,female,2008
+Gentoo,Biscoe,53.4,219,5500,male,2009
 Gentoo,Biscoe,45.5,214,4650,female,2007
-Gentoo,Biscoe,43.3,208,4575,female,2009
-Gentoo,Biscoe,50.4,222,5750,male,2009
