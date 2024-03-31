@@ -7,17 +7,66 @@ editor:
 ---
 
 
-# 사례: 시군 인구증가 {#sec-population-growth}
+# 사례: 시군구 소멸 {#sec-population-growth}
 
-통계청에서 제공하는 연도별 인구데이터를 바탕으로 2005년부터 2016년까지 인구변동 데이터를 바탕으로 시군별 인구변동에 대해 이해한다.
+통계청에서 제공하는 연도별 인구데이터를 바탕으로 2005년부터 2022년까지 인구변동 데이터를 바탕으로 시군별 인구변동에 대해 이해한다.
 
 [국가통계포털, KOSIS](http://kosis.kr/)에서 "통계표" 검색창에 "도시지역 인구현황(시군구)" 입력하게 되면 2005년부터 2016까지 시군구별 인구데이터를 받아올 수 있다. [직접 다운로드 링크](https://kosis.kr/statHtml/statHtml.do?orgId=460&tblId=TX_315_2009_H1001&vw_cd=MT_ZTITLE&list_id=315_31502_008&seqNo=&lang_mode=ko&language=kor&obj_var_id=&itm_id=&conn_path=MT_ZTITLE)
 
 ![국가통계포털에서 다운받은 전체기간 도시지역 인구현황(시군구) 데이터](images/kosis_excel.jpg){#fig-kosis-excel}
 
-## 인구변동이 많은 시군 {#r-population-by-sigun}
 
-### 데이터 가져오기 및 데이터 전처리 {#r-population-by-sigun-import}
+통계청 KOSIS에서 시군구별 인구데이터를 다운로드하고 전처리한다. 
+시군구 간 인구 편차가 큰 문제를 파악하고, 이를 해결하기 위해 티블 자료구조와 함수형 프로그래밍을 도입한다.
+시군구별로 선형회귀모형을 적용하고 broom 패키지를 사용하여 데이터와 모형 결과를 결합한다.
+급성장/역성장 시군구를 파악하기 위해 결정계수와 회귀계수를 기준으로 상위/하위 5개 시군구를 추출한다.
+마지막으로 급성장/역성장 시군구의 인구 변화를 시각화하여 결과를 분석한다.
+
+```{mermaid}
+graph LR
+   classDef emphasize fill:#f9d423,stroke:#333,stroke-width:2px;
+   classDef grayStyle fill:#f0f0f0,stroke:#333,stroke-width:2px;
+   
+   subgraph start["데이터 준비"]
+       A["통계청 시군구별<br>인구데이터"] --> B(데이터 전처리)
+       class A grayStyle
+       class B grayStyle
+   end
+   
+   start --> C
+   
+   subgraph problem["문제 해결"]
+       direction TB
+       C["시군구<br>인구편차"] --> E["티블 +<br>함수형<br>프로그래밍"]
+       E --> G["시군구별<br>선형회귀모형<br>broom 패키지"]
+       class E emphasize;
+       class C grayStyle
+       class G grayStyle
+   end
+   
+   subgraph 결과_분석 [결과 분석]
+       G --> I{"급성장/역성장<br>시군구 파악"}
+       I -->|"결정계수,<br>회귀계수"| J["상위 5개<br>시군구 추출"]
+       I -->|"결정계수,<br>회귀계수"| K["하위 5개<br>시군구 추출"]
+       class I grayStyle
+       class J grayStyle
+       class K grayStyle
+   end
+   
+   subgraph 시각화
+       J --> L["급/역 성장<br>시군구<br>인구 변화<br>시각화"]
+       K --> L
+       class L grayStyle
+   end
+   
+   style start fill:#f0f0f0,stroke:#333,stroke-width:2px
+   style problem fill:#f0f0f0,stroke:#333,stroke-width:2px
+   style 결과_분석 fill:#f0f0f0,stroke:#333,stroke-width:2px
+   style 시각화 fill:#f0f0f0,stroke:#333,stroke-width:2px
+```
+
+
+## 시군구 인구변동 {#r-population-by-sigun}
 
 인구변동이 많은 시군 통계 분석을 위해 필요한 팩키지를 불러 읽어온다.
 통계청 KOSIS에서 다운로드 받은 파일을 `data` 폴더 아래 저장하고 나서, 전처리 작업을 수행한다.
@@ -50,28 +99,26 @@ kor_tbl <- kor_raw %>%
   filter(시군구 != "소계") |> 
   filter(!시군구 %in% c("강원도", "경기도", "경상남도", "경상북도", "광주광역시", 
                      "대구광역시", "대전광역시", "부산광역시", "서울특별시", 
-                     "세종특별자치시", "울산광역시", "인천광역시", 
-                     "전라남도", "전라북도", "제주특별자치도", "충청남도", "충청북도")) |> 
+                     "세종특별자치시", "울산광역시", "인천광역시", "전라남도",
+                     "전라북도", "제주특별자치도", "충청남도", "충청북도")) |> 
   # 자료형 변환
   mutate(연도 = parse_number(연도),
          인구수 = parse_number(인구수)) |> 
   # 2005년 인구 데이터만 있음 -- 제거 
   filter(!시군구 %in% c("북제주군", "남제주군"))
 
-
 kor_tbl
 ```
 
-## 문제점 {#r-population-by-sigun-problem}
+## 문제 파악 {#r-population-by-sigun-problem}
 
 대한민국 시군구이 `r kor_tbl |> count(시도명, 시군구) |> nrow()` 이기 때문에 인구변동이 많은 시군을 추출하기 위해서 
 수도권 시군구는 백만명 근처이고 가장 작은 울릉군은 2016년 기준 10,001 명이라 편차가 매우 크다.
 따라서, 이를 시각화를 하게 되면 문제점이 한눈에 파악된다.
 
 ``` {r}
-#| label: r-population-growth-problem
-# 3. 시각화 ----------------
-## 3.1. 시군별 연도별 인구수 변화
+#| label: fig-population-growth-problem
+#| fig-cap: 전체 시군구 인구수 변화
 kor_tbl %>% 
   ggplot(aes(x=연도, y=인구수, color=시군구, group=시군구)) +
     geom_point() +
@@ -82,7 +129,7 @@ kor_tbl %>%
     labs(x="", y="인구수", title="시군 인구수 년도별 변화(2005 - 2022)")
 ```
 
-## FP 통한 문제해결 {#r-population-by-sigun-solution}
+## 문제해결 {#r-population-by-sigun-solution}
 
 이러한 문제점에 대해 가장 많이 활용되는 기법이 자료구조로 티블(tibble)을 도입하고,
 데이터 분석을 위한 방법으로 함수형 프로그래밍을 조합하는 것이다.
@@ -96,9 +143,8 @@ kor_tbl %>%
 그리고 나서 전체 시군별로 연도별 인구변화를 회귀분석으로 수행하여 수행결과를 `broom` 팩키지의
 `tidy`, `glance`, `augment` 함수를 활용하여 데이터와 모형분석결과를 결합시킨다.
 
-``` {r r-population-growth-list-column}
-# 4. 인구변화 심한 시군 추출 ----------------
-## 4.1. 데이터 
+``` {r}
+#| label: r-population-by-sigun-solution
 kor_sigun_tbl <- kor_tbl %>% 
   group_by(시도명, 시군구) %>% 
   nest()
@@ -126,13 +172,18 @@ kor_sigun_mod |>
   arrange(desc(결정계수))
 ```
 
-### 급성장 시군 - 결정계수($R^2$) {#r-population-by-sigun-solution-rsquare}
+### 급/역 성장 시군 {#r-population-by-sigun-solution-rsquare}
 
 회귀분석 결정계수($R^2$)기준 인구가 연도별로 높은 상관관계를 갖는 시군과 그렇지 않는 상위 하위 5개 시군을 뽑아 시각화 해보자.
 
-``` {r r-population-growth-by-sigun-viz}
-## 4.4. 고성장 및 정체 시군 추출
+회귀분석 결정계수($R^2$)기준이 아닌 회귀계수($\beta_1$)를 기준으로 상위 5개, 하위 5개 시군을 뽑아 
+연도별 인구변화를 시각화해보자.
 
+``` {r}
+#| label: fig-population-growth-visualization
+#| fig-cap: 급성장, 역성장 시군구 인구수 변화 시각화
+
+## 급성장, 역성장 시군구 추출
 positive_growth_sigun_tbl <- kor_sigun_mod %>% 
   filter(회귀계수 > 0) |> 
   top_n(5, 결정계수) %>% 
@@ -149,8 +200,7 @@ growth_sigun_tbl <- bind_rows(positive_growth_sigun_tbl, negative_growth_sigun_t
 
 negative_growth_sigun_tbl |> tail()
 
-## 4.5. 고성장 및 정체 시군 시각화
-
+## 급성장, 역성장 시군구 인구수 변화 시각화
 growth_sigun_tbl %>% 
   mutate(구분 = factor(구분)) %>% 
   mutate(연도 = make_date(year=연도)) %>% 
@@ -159,55 +209,13 @@ growth_sigun_tbl %>%
     geom_line() +
     theme_minimal() +
     scale_y_log10(labels=scales::comma) +
+    scale_x_date(date_labels = "%y") +
     theme(legend.position = "none") +
     facet_wrap(구분~시군구, nrow=2, scale="fixed") +
-    labs(x="", y="인구수", title="시군구 인구수 년도별 변화(2005 - 2022)") +
-    scale_x_date(date_labels = "%Y")
+    labs(x=NULL, 
+         y="인구수", 
+         title="시군구 인구수 년도별 변화(2005 - 2022)") +
+    scale_color_manual(values=c("역성장"="red", "급성장"="blue"))
 ```
 
-### 급성장 시군 - 회귀계수 {#r-population-by-sigun-solution-coefficent}
-
-회귀분석 결정계수($R^2$)기준이 아닌 회귀계수($\beta_1$)를 기준으로 상위 5개, 하위 5개 시군을 뽑아 
-연도별 인구변화를 시각화해보자.
-
-``` {r}
-#| eval: false
-#| label: r-population-growth-by-sigun-viz-coefficient
-
-# 5. 인구 증가 및 인구감소 ----------------
-kor_sigun_reg_df <- kor_sigun_tb %>% 
-  mutate(증감 = map(tidy, "estimate")) %>% 
-  unnest(증감) %>% 
-  filter(row_number() %% 2 == 0)
-
-top10_plus_sigun <- kor_sigun_tb %>% 
-  mutate(증감 = map(tidy, "estimate")) %>% 
-  unnest(증감) %>% 
-  filter(row_number() %% 2 == 0) %>% 
-  top_n(5, 증감) %>% 
-  pull(시군)
-
-top10_minus_sigun <-kor_sigun_tb %>% 
-  mutate(증감 = map(tidy, "estimate")) %>% 
-  unnest(증감) %>% 
-  filter(row_number() %% 2 == 0) %>% 
-  top_n(-5, 증감) %>% 
-  pull(시군)
-
-kor_lng_df %>% 
-  left_join(kor_sigun_reg_df, by="시군") %>% 
-  filter(시군 %in% c(top10_plus_sigun, top10_minus_sigun)) %>%
-  mutate(구분 = ifelse(시군 %in% top10_plus_sigun, "성장", "역성장"),
-         시군 = fct_reorder(시군, -증감)) %>% 
-  mutate(연도 = make_date(year=연도)) %>% 
-  ggplot(aes(x=연도, y=인구수, color=구분, group=구분)) +
-  geom_point() +
-  geom_line() +
-  theme_pubclean(base_family="NanumGothic") +
-  scale_y_continuous(labels=scales::comma) +
-  scale_x_date(date_labels = "%Y") +
-  theme(legend.position = "none") +
-  labs(x="", y="인구수", title="시군 인구수 년도별 변화(2005 - 2016)") +
-  facet_wrap(~시군, scale="free", nrow=2)
-```
 
