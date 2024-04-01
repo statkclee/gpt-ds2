@@ -6,12 +6,14 @@ editor:
     wrap: 72
 ---
 
-# 모형
+# 모형의 세계로
 
-모형개발의 목표는 정보를 잃지 않고 데이터셋을 간단히 요약하는 것이다.
-모형은 참 '신호'(즉, 관심 있는 현상으로 생성된 패턴)를 포착하고 '잡음'(즉, 관심 없는 임의 변동)을 구분하는 것으로 신호대비 잡음비를 최적화하는 것이다. 전통적으로 모형은 추론 혹은 가설이 사실인지 검증하고 확인하는데 중점을 둔다. 추정과 가설검정 작업은 복잡하지는 않지만 어렵다.
+모형 개발의 목표는 정보를 잃지 않고 데이터셋을 간단히 요약하는 것이다. 
+모형은 참 '신호'(즉, 관심 있는 현상으로 생성된 패턴)를 포착하고 '잡음'(즉, 관심 없는 임의 변동)을 구분하여 신호 대비 잡음비를 최적화한다. 
+전통적으로 모형은 추론 혹은 가설이 사실인지 검증하고 확인하는 데 중점을 둔다. 
+추정과 가설 검정 작업은 복잡하지는 않지만 어렵다.
 
-모형 제작의 목표는 진실을 찾는 것 보다는 유용하지만 단순한 근사치를 찾아내는 것이다.
+모형 제작의 목표는 진실을 찾는 것보다는 유용하지만 단순한 근사치를 찾아내는 것이다.
 
 :::{.callout-note}
 
@@ -19,56 +21,72 @@ editor:
 
 > 모든 모델은 틀렸지만, 어떤 모델은 유용하다. (All models are wrong, but some are useful.)
 
-자연과학과 사회과학에서 두가지 사례를 통해 조지 박스 박사의 모형에 대한 명언을 되새겨보자.
-지구의 움직임을 설명하기 위한 기본모형은 "평편한 지구" 모형으로, 지구의 실제 구조와 움직임을 정확히 반영하지 못했지만, 일상적인 생활에서 지구의 특성을 설명하기에는 충분했다. 경제학에서 사용되는 많은 모형은 단순화된 가정을 바탕으로 한다. 예를 들어, 모든 소비자와 생산자가 완벽한 정보를 가지고 있고 합리적으로 행동한다는 가정을 바탕으로 한 경제 모형은 현실 세계의 복잡한 상황을 반영하지 않지만, 복잡한 경제관계를 단순화시켜 기본적인 경제원리를 이해시키는데 도움이 된다.
+자연과학과 사회과학의 두 가지 사례를 통해 조지 박스 박사의 모형에 대한 명언을 되새겨보자. 
+지구의 움직임을 설명하기 위한 기본 모형은 "평평한 지구" 모형으로, 지구의 실제 구조와 움직임을 정확히 반영하지 못했지만, 일상적인 생활에서 지구의 특성을 설명하기에는 충분했다. 
+경제학에서 사용되는 많은 모형은 단순화된 가정을 바탕으로 한다. 
+예를 들어, 모든 소비자와 생산자가 완벽한 정보를 가지고 있고 합리적으로 행동한다는 가정을 바탕으로 한 경제 모형은 현실 세계의 복잡한 상황을 반영하지 않지만, 
+복잡한 경제 관계를 단순화시켜 기본적인 경제 원리를 이해시키는 데 도움이 된다.
 
 :::
 
 
 ## 회귀분석 
 
-회귀분석은 갤톤(Galton) 부모와 자식의 신장간의 관계를 회귀식으로 표현한 데이터셋이 유명하다. [@caffo2015advanced] [@histdata2023]
+회귀분석은 갤톤(Galton)의 부모와 자식의 신장 간의 관계를 회귀식으로 표현한 데이터셋[@caffo2015advanced] [@histdata2023]이 유명하다. 
 부모의 신장을 기초로 자녀의 신장을 예측하는 회귀식을 구하기 전에 산점도를 통해 관계를 살펴보면 다음과 같다. 
-성별에 대한 신장의 차이도 산점도를 통해 시각적으로 확인된다.
+
+먼저 dataframe 자료형을 `as_tibble()` 함수로 변환하고, 신장 단위를 인치에서 cm로 변환한다. 영어로 된 성별을 `ifelse` 함수로 남자와 여자로 변환한 후 `ggplot`으로 시각화한다. `geom_smooth()` 함수로 회귀직선을 추가한다.
 
 ``` {r}
-#| label: r-galton-hegith-scatterplot
+#| label: fig-galton-hegith-reg
+#| fig-cap: 산점도와 회귀직선
 library(tidyverse)
 library(HistData)
 data(GaltonFamilies)
 
-library(ggplot2)
-
 ## 1. 산점도 
 # 성별 색상으로 구분
-GaltonFamilies |> 
+galton_tbl <- GaltonFamilies |> 
+  as_tibble() |>
+  # 인치 --> cm
+  mutate(across(.cols = c(midparentHeight, childHeight), ~ . * 2.54)) |> 
+  mutate(gender = ifelse(gender == "male", "남자", "여자"))
+
+galton_tbl |> 
   ggplot(aes(midparentHeight, childHeight)) +
     geom_point(aes(colour=gender)) +
-    stat_smooth(method="lm") +
-    xlab("Average Height of the Parents (in inches)") +
-    ylab("Height of the Child (in inches)")
-
-# 다른 산점도로 성별 구분
-GaltonFamilies |> 
-  ggplot(aes(midparentHeight, childHeight, colours=gender)) +
-    geom_point(aes(colour=gender)) +
-    stat_smooth(method="lm") +
-    xlab("Average Height of the Parents (in inches)") +
-    ylab("Height of the Child (in inches)") +
-    facet_wrap(~gender)
-
-# 성별 상관없는 회귀직선
-GaltonFamilies |> 
-  ggplot(aes(midparentHeight, childHeight)) +
-    geom_point() +
-    stat_smooth(method="lm") +
-    xlab("Average Height of the Parents (in inches)") +
-    ylab("Height of the Child (in inches)")
+    geom_smooth(method="lm", se = FALSE, color = "black") +
+    labs(
+      x ="부모 평균키(단위: 센티미터)",
+      y = "자녀 신장(단위: 센티미터)",
+      color = "성별") +
+    scale_color_manual(values = c("남자" = "blue", "여자" = "red")) 
 ```
 
-선형대수로 회귀계수를 추정하는 문제를 풀면 다음과 같이 정의된다.
-한번 미분해서 $\nabla f(\beta ) = -2Xy + X^t X \beta =0$ 
-0으로 놓고 푼 값은 최소값이 되는데 이유는 $\beta$에 대해서 두번 미분하게 되면 $2 X^t X$ 로 양수가 되기 때문이다.
+동일한 `galton_tbl` 데이터를 사용하여 부모의 평균 키와 자녀의 신장 간의 관계를 성별로 시각화한다. 
+성별에 따라 점의 색상을 다르게 표시하고, 성별에 따른 별도의 선형 회귀선을 추가한다. x축과 y축의 레이블을 설정하고, 성별에 따라 점의 색상을 남자는 파란색, 여자는 붉은색으로 수동 설정한다.
+
+```{r}
+#| label: fig-galton-hegith-scatterplot
+#| fig-cap: 성별에 따른 산점도와 회귀직선
+galton_tbl |> 
+  ggplot(aes(midparentHeight, childHeight)) +
+    geom_point(aes(colour=gender)) +
+    geom_smooth(aes(group = gender, color = gender), 
+                method="lm", se = FALSE) +
+    labs(
+      x ="부모 평균키(단위: 센티미터)",
+      y = "자녀 신장(단위: 센티미터)",
+      color = "성별") +
+    scale_color_manual(values = c("남자" = "blue", "여자" = "red")) 
+```
+
+
+## 회귀계수 추정
+
+선형대수로 회귀계수를 추정하는 문제를 풀면 다음과 같이 정의된다. 
+한 번 미분해서 $\nabla f(\beta ) = -2Xy + X^t X \beta =0$ 이 되고,
+0으로 놓고 푼 값은 최솟값이 되는데, 그 이유는 $\beta$에 대해서 두 번 미분하게 되면 $2 X^t X$ 로 양수가 되기 때문이다.
 
 $$f(\beta ) = ||y - \beta X ||^2 = (y - \beta X)^t (y - \beta X) = y^t y - 2 y^t X^t \beta + \beta^t X^t X \beta$$
 
@@ -80,12 +98,8 @@ $$\beta = (X^t X)^{-1} X^t y $$
 
 ``` {r}
 #| label: r-galton-hegith-linear-algebra
-
-## 2. 회귀분석
-# 선형대수 수식으로 계산
-
-x <- GaltonFamilies$midparentHeight
-y <- GaltonFamilies$childHeight
+x <- galton_tbl$midparentHeight
+y <- galton_tbl$childHeight
 
 x <- cbind(1, x)
 
@@ -96,28 +110,46 @@ solve(t(x) %*% x) %*% t(x) %*% y
 
 ``` {r}
 #| label: r-galton-hegith-lm
-
-# lm 함수를 통해 계산
-
 lm(childHeight ~ midparentHeight, data=GaltonFamilies) %>% coef()
 ```
 
-## 가내수공업 모형개발
+## 통계모형 구축 과정
 
-데이터 과학 분야의 제품 개발 방식은 다양하다. 엔지니어링의 관점에서 볼 때, 전통적인 장인의 기술이 제자에게 계승되는 방식에서 시작하여, 포드의 대량 생산 방식을 거치고, **대량 맞춤생산(Mass Customization)** 방식으로 발전하여, 현재에는 기계 학습과 딥러닝이 통합된 혁신적인 개발 방식까지 다양한 방법론이 혼재되어 있다.
+데이터 과학 분야의 제품 개발 방식은 다양하다. 
+엔지니어링의 관점에서 볼 때, 전통적인 장인의 기술이 제자에게 계승되는 방식에서 시작하여, 포드의 대량 생산 방식을 거치고, 
+**대량 맞춤생산(Mass Customization)** 방식으로 발전하여, 현재에는 기계 학습과 딥러닝이 통합된 혁신적인 개발 방식까지 다양한 방법론이 혼재되어 있다.
 
-전통적인 가내수공업 방식은 개별 주문에 따라 제품을 최적화하여 만드는 방식이다. 이 방식에서는 인간의 경험과 지식이 중요한 역할을 하며, 고객의 특별한 요구사항을 충족하기 위해 맞춤형 모델을 개발한다. 이러한 방식을 간략히 살펴보면, 각 고객의 고유한 필요에 따라 제품이나 서비스를 특별히 설계하고 생산하는 것이 핵심이다.
+전통적인 가내수공업 방식은 개별 주문에 따라 제품을 최적화하여 만드는 방식이다. 
+이 방식에서는 인간의 경험과 지식이 중요한 역할을 하며, 고객의 특별한 요구사항을 충족하기 위해 맞춤형 모델을 개발한다. 
+이러한 방식을 간략히 살펴보면, 각 고객의 고유한 필요에 따라 제품이나 서비스를 특별히 설계하고 생산하는 것이 핵심이다.
 
+이번 장에서 전통적인 통계모형 제작하는 과정을 살펴보고 [-@sec-model-building]장에서 다른 방식의 
+모형개발과정을 살펴보자.
+
+데이터 준비 단계에서 모의시험 데이터를 생성한다. 
+독립변수 $x$는 1부터 100까지의 연속적인 수열이며, 종속변수 $y$는 $x^2$에 노이즈를 추가한 값으로 정의한다. 
+생성된 데이터는 `df`라는 데이터프레임에 저장하며, 데이터의 처음 몇 행을 출력하여 확인한다.
+
+탐색적 데이터 분석(EDA) 단계에서는 데이터의 기술통계량을 `psych` 패키지의 `describe` 함수를 활용하여 출력하고, 
+데이터 분포와 관계를 확인하기 위해 $x$와 $y$의 산점도로 시각화한다.
+
+모형 적합 단계에서는 먼저, 선형회귀 모델을 사용하여 $y$를 $x$로 예측한다. 
+적합된 선형 모형 결과를 출력하고, 적합된 모델과 잔차를 시각적으로 확인한다. 
+$y = \beta_0 + \beta_1 x + \beta_2 x^2$ 형태를 가진 2차 회귀 모형을 적합시킨다. 
+$x^2$ 항을 데이터프레임에 추가해서 2차 회귀 모델을 적합한 후, 결과를 출력하고, 적합된 모형과 잔차를 시각적으로 확인한다. 기본모형과 최종모형 사이 수많은 가설생성과 검증 절차가 진행되어 데이터를 가장 잘 설명하는 모형을 최종 선택하게 된다.
+
+::: panel-tabset
+### 데이터 확인
 
 ```{r}
-#| label: traditional-modeling
-
+#| label: fig-traditional-modeling-step1
+#| fig-cap: 데이터를 확인하는 단계
 ##========================================================
 ## 01. 데이터 준비
 ##========================================================
 ## 모의시험 데이터 생성
 
-x <- seq(1, 100,1)
+x <- seq(1, 100, 1)
 y <- x**2 + jitter(x, 1000)
 
 df <- tibble(x,y)
@@ -131,7 +163,13 @@ psych::describe(df)
 
 # 산점도
 plot(x, y)
+```
 
+### 기본 모형 적합
+
+```{r}
+#| label: fig-traditional-modeling-step2
+#| fig-cap: 기본 모형 적합 후 적합도 확인
 ##========================================================
 ## 03. 모형 적합
 ##========================================================
@@ -149,7 +187,13 @@ abline(lm.m, col='blue')
 # 잔차 
 plot(resid(lm.m))
 abline(h=0, type='3', col='blue')
+```
 
+### 최종모형
+
+```{r}
+#| label: fig-traditional-modeling-step3
+#| fig-cap: 최종모형과 적합도 검증
 #---------------------------------------------------------
 # 3.2. 비선형회귀 적합
 # 비선형회귀적합
@@ -167,14 +211,8 @@ plot(resid(nlm.m), cex=0.7)
 abline(h=0, type='3', col='blue')
 ```
 
-데이터 준비단계에서 모의시험 데이터를 생성한다. 독립변수 $x$는 1부터 100까지의 연속적인 수열이며, 종속변수 $y$는 $x^2$에 노이즈를 추가한 값으로 정의한다. 생성데이터는 `df`라는 데이터프레임에 저장하며, 데이터 처음 몇 행을 출력하여 확인한다.
+:::
 
-탐색적 데이터 분석 (EDA) 단계에서 데이터의 기술통계량을 `psych` 패키지 `describe` 함수를 활용하여 출력하고, 데이터 분포와 관계를 확인하기 위해 $x$와 $y$의 산점도로 시각화한다.
 
-모형 적합 단계에선 먼저, 선형회귀 모델을 사용하여 $y$를 $x$로 예측한다. 
-적합된 선형 모형 결과를 출력하고,
-적합된 모델과 잔차를 시각적으로 확인한다. 
-$y = \beta_0 + \beta_1 x + \beta_1 x^2$ 형태를 가진 2차 회귀 모형을 적합시킨다. 
-$x^2$ 항을 데이터프레임에 추가해서 2차 회귀 모델을 적합한 후, 결과를 출력하고, 적합된 모형과 잔차를 시각적으로 확인한다.
 
 

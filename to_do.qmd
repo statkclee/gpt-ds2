@@ -151,5 +151,10 @@ py$answer_question
 
 {{< downloadthis report/resume/gpt_resume_physics.qmd dname="gpt_resume_physics.qmd" label="물리학자 이력서" icon="download" type="info" >}}
 
+# 장 ----------
+
+[-@sec-model-building]장에서...
+
+
 
 
