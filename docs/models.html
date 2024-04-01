@@ -560,7 +560,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-galton-hegith-reg" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-galton-hegith-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-galton-hegith-reg-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="models_files/figure-html/fig-galton-hegith-reg-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-galton-hegith-reg-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="models_files/figure-html/fig-galton-hegith-reg-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galton-hegith-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.1: 산점도와 회귀직선
@@ -583,7 +583,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-galton-hegith-scatterplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-galton-hegith-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galton-hegith-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.2: 성별에 따른 산점도와 회귀직선
@@ -643,33 +643,33 @@ window.Quarto = {
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
-<span><span class="co">#&gt;       x       y</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1 -139.  </span></span>
-<span><span class="co">#&gt; 2     2  185.  </span></span>
-<span><span class="co">#&gt; 3     3   56.0 </span></span>
-<span><span class="co">#&gt; 4     4   -2.93</span></span>
-<span><span class="co">#&gt; 5     5   12.8 </span></span>
-<span><span class="co">#&gt; 6     6  -17.8</span></span>
+<span><span class="co">#&gt;       x      y</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1  -80.7</span></span>
+<span><span class="co">#&gt; 2     2 -118. </span></span>
+<span><span class="co">#&gt; 3     3  -69.6</span></span>
+<span><span class="co">#&gt; 4     4  -32.2</span></span>
+<span><span class="co">#&gt; 5     5  -78.0</span></span>
+<span><span class="co">#&gt; 6     6   52.0</span></span>
 <span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co">## 02. 탐색적 데이터 분석</span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co"># 통계량</span></span>
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   vars   n    mean      sd  median trimmed     mad     min      max    range</span></span>
-<span><span class="co">#&gt; x    1 100   50.50   29.01   50.50   50.50   37.06    1.00   100.00    99.00</span></span>
-<span><span class="co">#&gt; y    2 100 3454.92 3063.03 2679.15 3155.73 3340.84 -138.91 10232.13 10371.04</span></span>
-<span><span class="co">#&gt;   skew kurtosis    se</span></span>
-<span><span class="co">#&gt; x 0.00    -1.24   2.9</span></span>
-<span><span class="co">#&gt; y 0.62    -0.89 306.3</span></span>
+<span><span class="co">#&gt;   vars   n   mean      sd  median trimmed     mad     min      max    range</span></span>
+<span><span class="co">#&gt; x    1 100   50.5   29.01   50.50   50.50   37.06    1.00   100.00    99.00</span></span>
+<span><span class="co">#&gt; y    2 100 3436.1 3067.63 2588.11 3131.73 3198.97 -118.21 10154.37 10272.57</span></span>
+<span><span class="co">#&gt;   skew kurtosis     se</span></span>
+<span><span class="co">#&gt; x 0.00    -1.24   2.90</span></span>
+<span><span class="co">#&gt; y 0.63    -0.88 306.76</span></span>
 <span></span>
 <span><span class="co"># 산점도</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.3: 데이터를 확인하는 단계
@@ -694,18 +694,18 @@ window.Quarto = {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
 <span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
-<span><span class="co">#&gt; -942.8 -674.3 -165.3  599.3 1716.3 </span></span>
+<span><span class="co">#&gt; -983.3 -686.1 -240.3  529.3 1650.5 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -1708.285    154.766  -11.04   &lt;2e-16 ***</span></span>
-<span><span class="co">#&gt; x             102.242      2.661   38.43   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; (Intercept) -1734.004    155.387  -11.16   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; x             102.378      2.671   38.33   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 768 on 98 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9378, Adjusted R-squared:  0.9371 </span></span>
-<span><span class="co">#&gt; F-statistic:  1477 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 771.1 on 98 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9375, Adjusted R-squared:  0.9368 </span></span>
+<span><span class="co">#&gt; F-statistic:  1469 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -718,7 +718,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.4: 기본 모형 적합 후 적합도 확인
@@ -741,20 +741,20 @@ window.Quarto = {
 <span><span class="co">#&gt; lm(formula = y ~ x + x2, data = df)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
-<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span><span class="co">#&gt; -231.21 -100.22   16.49  106.52  182.57 </span></span>
+<span><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span><span class="co">#&gt; -218.502  -86.678   -9.507   96.216  204.679 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) 22.19457   36.83314   0.603    0.548    </span></span>
-<span><span class="co">#&gt; x            0.44866    1.68337   0.267    0.790    </span></span>
-<span><span class="co">#&gt; x2           1.00785    0.01615  62.413   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; (Intercept)  7.36227   33.43516   0.220    0.826    </span></span>
+<span><span class="co">#&gt; x           -0.05509    1.52808  -0.036    0.971    </span></span>
+<span><span class="co">#&gt; x2           1.01419    0.01466  69.189   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 120.3 on 97 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9985, Adjusted R-squared:  0.9985 </span></span>
-<span><span class="co">#&gt; F-statistic: 3.203e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 109.2 on 97 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9988, Adjusted R-squared:  0.9987 </span></span>
+<span><span class="co">#&gt; F-statistic: 3.899e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -766,7 +766,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.5: 최종모형과 적합도 검증
@@ -775,6 +775,21 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>predict</code>와 <code>forecast</code> 차이
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>predict</code>와 <code>forecast</code>는 둘 다 ’예측하다’라는 의미로 사용되지만, 차이는 명확하다. <code>predict</code>는 보다 확정적인 결과에 대한 예측에 초점을 맞추는 반면, <code>forecast</code>는 미래의 불확실한 사건에 대한 확률적인 추정에 중점을 둔다.</p>
+<p><code>predict</code>는 과학, 사회학, 심리학 등에서 사용되ㅕ 일반적으로 특정 사건이나 결과가 일어날 것이라고 말하는 데 사용된다. 예를 들어, 기계학습 모형이 특정 데이터를 바탕으로 결과를 ’예측(predict)’하는 경우가 대표적이다. 특정 조건이나 상황에서 특정 결과가 일어날 것이라고 하는, 비교적 구체적이고 확정적인 예측을 내포한다.</p>
+<p>반면, <code>forecast</code>는 주로 기상학, 경제학, 재무학 등에서 사용되며, 미래의 사건이나 조건에 대한 확률적인 추정을 의미한다. <code>forecast</code>는 불확실성과 확률적인 요소를 포함한 예측을 가리키며, 예를 들어 날씨 예보나 경제 성장률 예측 등에서 사용되기 때문에 특정 사건이 발생할 ’가능성’이나 ’확률’을 중시한다.</p>
 </div>
 </div>
 
@@ -1264,7 +1279,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
