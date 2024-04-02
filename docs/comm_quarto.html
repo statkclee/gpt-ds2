@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<title>챗GPT 데이터 과학 - 22&nbsp; 쿼토</title>
+<title>챗GPT 데이터 과학 - 20&nbsp; 쿼토</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -27,8 +27,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./comm_export.html" rel="next">
-<link href="./comm_knitr.html" rel="prev">
+<link href="./comm_knitr.html" rel="next">
+<link href="./functions_purrr.html" rel="prev">
 <link href="./images/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,6 +79,31 @@ ga('send', {
   hitType: 'pageview',
   'anonymizeIp': true,
 });
+</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
 </script>
 </head>
 <body class="nav-sidebar floating">
@@ -88,7 +113,7 @@ ga('send', {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_map.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_quarto.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_quarto.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -234,7 +259,7 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -252,7 +277,7 @@ ga('send', {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군 인구증가</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
   </div>
 </li>
       </ul>
@@ -303,8 +328,8 @@ ga('send', {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -315,14 +340,14 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
   </div>
 </li>
       </ul>
@@ -408,11 +433,15 @@ ga('send', {
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EC%B1%97gpt-%EC%BF%BC%ED%86%A0" id="toc-챗gpt-쿼토" class="nav-link active" data-scroll-target="#%EC%B1%97gpt-%EC%BF%BC%ED%86%A0"><span class="header-section-number">20.1</span> 챗GPT 쿼토</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/comm_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_map.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_quarto.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="r-db" class="quarto-section-identifier"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_quarto.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-quarto" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></h1>
 </div>
 
 
@@ -426,7 +455,59 @@ ga('send', {
   
 
 
-</header><div class="grid">
+</header><p> </p>
+<p>데이터를 기반으로 뭔가 유용한 것을 창출한 후에 이를 알리기 위해 커뮤니케이션 단계를 거치게 된다. 가장 흔히 사용하는 방식은 엑셀, 워드, 파워포인트와 같은 MS 오피스 제품을 활용하는 방식이다. 과거 SAS, SPSS, 미니탭 등 외산 통계 패키지로 데이터를 분석하고 유용한 모형 등을 찾아낸 후에 이를 커뮤니케이션하기 위해 MS 오피스 제품을 통해 커뮤니케이션을 하기도 했다. 하지만, 각각은 별개의 시스템으로 분리되어 있어 일일이 사람 손이 가는 번거로움이 많았다. 이를 해결하기 위한 방법은 하나의 도구 혹은 언어로 모든 작업을 처리하는 것이다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>우선 엑셀은 <code>tidyverse</code>로 대체가 되고, 워드는 R 마크다운을 거쳐 쿼토(Quarto), 파워포인트도 R 마크다운(<code>xaringan</code> 등)에서 진화한 <code>reveal.js</code> 기반 쿼토 슬라이드가 빠르게 자리를 잡아가고 있다.</p>
+<div id="fig-nightingale-office" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nightingale-office-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/nightingale_office.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/nightingale_office.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nightingale-office-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;20.1: 오피스 기반 커뮤니케이션 현재 상태점검
+</figcaption></figure>
+</div>
+<p>데이터 과학을 커뮤니케이션하는 방식은 다양한 방식이 존재하지만 직장상사뿐만 아니라 집단지성을 넘어 AI를 적극 도입하여 데이터 분석 역량을 고도화하는 데 동료 개발자 및 협업하시는 분들과 커뮤니케이션뿐만 아니라 불특정 다수를 대상으로 한 인터넷 공개와 공유를 통해 새로운 관계를 맺어가는 것도 그 중요성을 더해가고 있다.</p>
+<ul>
+<li>동료 개발자나 협업하시는 분: <code>.qmd</code> 파일</li>
+<li>직장상사
+<ul>
+<li>PDF 파일: <span class="math inline">\(\LaTeX\)</span>, <code>pandoc</code>, <code>quarto</code>
+</li>
+<li>파워포인트 슬라이드덱: <code>reveal.js</code> 기반 <code>quarto</code> 슬라이드</li>
+<li>대시보드: <code>flexdashboard</code> <span class="math inline">\(\rightarrow\)</span> <code>quarto</code> 대시보드</li>
+</ul>
+</li>
+<li>일반 공개
+<ul>
+<li>웹사이트: <code>distill</code> <span class="math inline">\(\rightarrow\)</span> <code>quarto</code> 웹사이트</li>
+<li>블로그: <code>blogdown</code> <span class="math inline">\(\rightarrow\)</span> <code>quarto</code> 블로그</li>
+<li>책: <code>bookdown</code> <span class="math inline">\(\rightarrow\)</span> <code>quarto</code> 책(book)</li>
+</ul>
+</li>
+<li>프로그래밍
+<ul>
+<li>과학기술: 줄리아</li>
+<li>웹 데이터 시각화: <code>observable JS</code>, <code>plotly</code>, <code>leaflet</code> 등</li>
+<li>데이터 과학: R</li>
+<li>기계학습과 딥러닝: 파이썬</li>
+<li>데이터베이스: SQL</li>
+<li>자동화: 유닉스 쉘</li>
+<li>버전제어와 협업: <code>git</code>, <code>github</code>, <code>gitlab</code>, <code>bitbucket</code> 등</li>
+</ul>
+</li>
+</ul>
+<p>데이터 과학 커뮤니케이션에서 동료 개발자나 협업하는 분들과 의사소통할 때는 <code>.qmd</code> 파일을 사용한다. 직장상사와 커뮤니케이션할 때는 PDF 파일, 파워포인트 슬라이드덱, 대시보드 등 다양한 방식을 활용하는데, PDF 파일은 <span class="math inline">\(\LaTeX\)</span>, <code>pandoc</code>, <code>quarto</code>를 사용하고, 파워포인트 슬라이드덱은 <code>reveal.js</code> 기반 <code>quarto</code>를, 대시보드는 <code>flexdashboard</code>를 지나 <code>quarto</code> 대시보드를 사용한다. 일반 공개를 위해서는 웹사이트, 블로그, 책 등의 형태로 공유하는데, 웹사이트는 <code>distill</code>을 지나 <code>quarto</code> 웹사이트를, 블로그는 <code>blogdown</code>을 지나 <code>quarto</code> 블로그를, 책은 <code>bookdown</code>을 지나 <code>quarto</code> 책(book)을 활용한다.</p>
+<div id="fig-quarto-communication" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-communication-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/nightingale_communication.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/nightingale_communication.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quarto-communication-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;20.2: 이해당사자 쿼토 커뮤니케이션
+</figcaption></figure>
+</div>
+<section id="챗gpt-쿼토" class="level2" data-number="20.1"><h2 data-number="20.1" class="anchored" data-anchor-id="챗gpt-쿼토">
+<span class="header-section-number">20.1</span> 챗GPT 쿼토</h2>
+<div class="grid">
 <div class="g-col-8">
 <p>쿼토를 사용하면 저자들은 코드, 문서 요소, 텍스트를 하나의 문서로 매끄럽게 통합할 수 있어데이터 분석 과정을 투명하고 재현 가능하게 공유할 수 있다.</p>
 <p>쿼토 문서는 마치 살아있는 것처럼 역동적이다. R, 파이썬, 줄리아, SQL, JS 코드를 수정하면 분석결과와 데이터 시각화가 자동으로 업데이트되고, 문장을 고치면 전체 문서의 흐름이 자연스럽게 되어 문서 작성이 한층 더 생생해지는 경험을 할 수 있고 무엇보다 문서의 외양보다 콘텐츠 자체 집중할 수 있다.</p>
@@ -435,7 +516,7 @@ ga('send', {
 </div>
 <div class="g-col-4">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/cover_quarto.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/cover_quarto.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="261"></a></p>
+<figure class="figure"><p><a href="images/cover_quarto.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/cover_quarto.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="261"></a></p>
 </figure>
 </div>
 </div>
@@ -456,8 +537,14 @@ ga('send', {
 </div>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;20.1: 오피스 기반 커뮤니케이션 현재 상태점검</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;20.2: 이해당사자 쿼토 커뮤니케이션</span>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p><a href="https://meghan.rbind.io/slides/rstudio/hall_rstudio_2021">Meghan Hall (June 15, 2021), “Extending R Markdown”, RStudio: R in Sports Analytics,</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -905,13 +992,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./comm_knitr.html" class="pagination-link" aria-label="데이터 분석 보고서">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span>
+      <a href="./functions_purrr.html" class="pagination-link" aria-label="함수형 프로그래밍">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./comm_export.html" class="pagination-link" aria-label="저장하기">
-        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./comm_knitr.html" class="pagination-link" aria-label="데이터 분석 보고서">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -922,12 +1009,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/comm_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/comm_quarto.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

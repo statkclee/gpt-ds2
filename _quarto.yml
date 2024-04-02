@@ -79,10 +79,10 @@ book:
 
     - part: "**6부** 커뮤니케이션"
       chapters:
-        - comm_map.qmd
-        - comm_knitr.qmd
         - comm_quarto.qmd
+        - comm_knitr.qmd
         - comm_export.qmd
+        - comm_map.qmd
 
     - part: "**7부** 가져오기"
       chapters:

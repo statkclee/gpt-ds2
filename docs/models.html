@@ -382,8 +382,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">지도 공간정보</span></span></a>
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -394,14 +394,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">저장하기</span></span></a>
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
   </div>
 </li>
       </ul>
@@ -645,24 +645,24 @@ window.Quarto = {
 <span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
 <span><span class="co">#&gt;       x      y</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1  -80.7</span></span>
-<span><span class="co">#&gt; 2     2 -118. </span></span>
-<span><span class="co">#&gt; 3     3  -69.6</span></span>
-<span><span class="co">#&gt; 4     4  -32.2</span></span>
-<span><span class="co">#&gt; 5     5  -78.0</span></span>
-<span><span class="co">#&gt; 6     6   52.0</span></span>
+<span><span class="co">#&gt; 1     1   94.4</span></span>
+<span><span class="co">#&gt; 2     2 -180. </span></span>
+<span><span class="co">#&gt; 3     3   64.8</span></span>
+<span><span class="co">#&gt; 4     4  146. </span></span>
+<span><span class="co">#&gt; 5     5 -154. </span></span>
+<span><span class="co">#&gt; 6     6  -42.2</span></span>
 <span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co">## 02. 탐색적 데이터 분석</span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co"># 통계량</span></span>
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   vars   n   mean      sd  median trimmed     mad     min      max    range</span></span>
-<span><span class="co">#&gt; x    1 100   50.5   29.01   50.50   50.50   37.06    1.00   100.00    99.00</span></span>
-<span><span class="co">#&gt; y    2 100 3436.1 3067.63 2588.11 3131.73 3198.97 -118.21 10154.37 10272.57</span></span>
+<span><span class="co">#&gt;   vars   n    mean      sd  median trimmed     mad     min      max   range</span></span>
+<span><span class="co">#&gt; x    1 100   50.50   29.01   50.50   50.50   37.06    1.00   100.00    99.0</span></span>
+<span><span class="co">#&gt; y    2 100 3435.24 3063.85 2611.75 3142.07 3367.84 -179.74 10299.46 10479.2</span></span>
 <span><span class="co">#&gt;   skew kurtosis     se</span></span>
 <span><span class="co">#&gt; x 0.00    -1.24   2.90</span></span>
-<span><span class="co">#&gt; y 0.63    -0.88 306.76</span></span>
+<span><span class="co">#&gt; y 0.61    -0.91 306.38</span></span>
 <span></span>
 <span><span class="co"># 산점도</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -694,18 +694,18 @@ window.Quarto = {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
 <span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
-<span><span class="co">#&gt; -983.3 -686.1 -240.3  529.3 1650.5 </span></span>
+<span><span class="co">#&gt; -948.8 -672.2 -232.1  595.3 1797.2 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -1734.004    155.387  -11.16   &lt;2e-16 ***</span></span>
-<span><span class="co">#&gt; x             102.378      2.671   38.33   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; (Intercept) -1734.203    152.594  -11.37   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; x             102.365      2.623   39.02   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 771.1 on 98 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9375, Adjusted R-squared:  0.9368 </span></span>
-<span><span class="co">#&gt; F-statistic:  1469 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 757.3 on 98 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9395, Adjusted R-squared:  0.9389 </span></span>
+<span><span class="co">#&gt; F-statistic:  1523 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -742,19 +742,19 @@ window.Quarto = {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
 <span><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
-<span><span class="co">#&gt; -218.502  -86.678   -9.507   96.216  204.679 </span></span>
+<span><span class="co">#&gt; -198.901  -88.343   -4.557   89.986  209.104 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept)  7.36227   33.43516   0.220    0.826    </span></span>
-<span><span class="co">#&gt; x           -0.05509    1.52808  -0.036    0.971    </span></span>
-<span><span class="co">#&gt; x2           1.01419    0.01466  69.189   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -25.94377   34.51201  -0.752    0.454    </span></span>
+<span><span class="co">#&gt; x             1.87931    1.57729   1.191    0.236    </span></span>
+<span><span class="co">#&gt; x2            0.99491    0.01513  65.756   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 109.2 on 97 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9988, Adjusted R-squared:  0.9987 </span></span>
-<span><span class="co">#&gt; F-statistic: 3.899e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 112.7 on 97 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9987, Adjusted R-squared:  0.9986 </span></span>
+<span><span class="co">#&gt; F-statistic: 3.651e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -1279,7 +1279,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

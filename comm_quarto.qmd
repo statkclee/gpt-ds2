@@ -10,7 +10,51 @@ editor:
 source("_common.R")
 ```
 
-# 쿼토 {#r-db}
+# 쿼토 {#sec-quarto}
+
+\index{커뮤니케이션} \index{MS 오피스} \index{tidyverse} \index{쿼토}
+
+데이터를 기반으로 뭔가 유용한 것을 창출한 후에 이를 알리기 위해 커뮤니케이션 단계를 거치게 된다.
+가장 흔히 사용하는 방식은 엑셀, 워드, 파워포인트와 같은 MS 오피스 제품을 활용하는 방식이다.
+과거 SAS, SPSS, 미니탭 등 외산 통계 패키지로 데이터를 분석하고 유용한 모형 등을 찾아낸 후에 이를 커뮤니케이션하기 위해 MS 오피스 제품을 통해 커뮤니케이션을 하기도 했다.
+하지만, 각각은 별개의 시스템으로 분리되어 있어 일일이 사람 손이 가는 번거로움이 많았다.
+이를 해결하기 위한 방법은 하나의 도구 혹은 언어로 모든 작업을 처리하는 것이다.
+[^tool-viz-2]
+
+[^tool-viz-2]: [Meghan Hall (June 15, 2021), "Extending R Markdown", RStudio: R in Sports Analytics,](https://meghan.rbind.io/slides/rstudio/hall_rstudio_2021)
+
+우선 엑셀은 `tidyverse`로 대체가 되고, 워드는 R 마크다운을 거쳐 쿼토(Quarto), 파워포인트도 R 마크다운(`xaringan` 등)에서 진화한 `reveal.js` 기반 쿼토 슬라이드가 빠르게 자리를 잡아가고 있다.
+
+![오피스 기반 커뮤니케이션 현재 상태점검](images/nightingale_office.png){#fig-nightingale-office}
+
+데이터 과학을 커뮤니케이션하는 방식은 다양한 방식이 존재하지만 직장상사뿐만 아니라 집단지성을 넘어 AI를 적극 도입하여 데이터 분석 역량을 고도화하는 데 동료 개발자 및 협업하시는 분들과 커뮤니케이션뿐만 아니라 불특정 다수를 대상으로 한 인터넷 공개와 공유를 통해 새로운 관계를 맺어가는 것도 그 중요성을 더해가고 있다.
+
+-   동료 개발자나 협업하시는 분: `.qmd` 파일
+-   직장상사
+    -   PDF 파일: {{< latex >}}, `pandoc`, `quarto` 
+    -   파워포인트 슬라이드덱: `reveal.js` 기반 `quarto` 슬라이드
+    -   대시보드: `flexdashboard` $\rightarrow$ `quarto` 대시보드
+-   일반 공개
+    -   웹사이트: `distill` $\rightarrow$ `quarto` 웹사이트
+    -   블로그: `blogdown` $\rightarrow$ `quarto` 블로그
+    -   책: `bookdown` $\rightarrow$ `quarto` 책(book)
+-   프로그래밍
+    -   과학기술: 줄리아
+    -   웹 데이터 시각화: `observable JS`, `plotly`, `leaflet` 등
+    -   데이터 과학: R
+    -   기계학습과 딥러닝: 파이썬
+    -   데이터베이스: SQL
+    -   자동화: 유닉스 쉘
+    -   버전제어와 협업: `git`, `github`, `gitlab`, `bitbucket` 등
+
+데이터 과학 커뮤니케이션에서 동료 개발자나 협업하는 분들과 의사소통할 때는 `.qmd` 파일을 사용한다.
+직장상사와 커뮤니케이션할 때는 PDF 파일, 파워포인트 슬라이드덱, 대시보드 등 다양한 방식을 활용하는데, PDF 파일은 {{< latex >}}, `pandoc`, `quarto`를 사용하고, 파워포인트 슬라이드덱은 `reveal.js` 기반 `quarto`를, 대시보드는 `flexdashboard`를 지나 `quarto` 대시보드를 사용한다.
+일반 공개를 위해서는 웹사이트, 블로그, 책 등의 형태로 공유하는데, 웹사이트는 `distill`을 지나 `quarto` 웹사이트를, 블로그는 `blogdown`을 지나 `quarto` 블로그를, 책은 `bookdown`을 지나 `quarto` 책(book)을 활용한다.
+
+![이해당사자 쿼토 커뮤니케이션](images/nightingale_communication.jpg){#fig-quarto-communication}
+
+
+## 챗GPT 쿼토
 
 ::: grid
 ::: g-col-8
