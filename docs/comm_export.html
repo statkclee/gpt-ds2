@@ -72,7 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -442,15 +445,21 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EA%B7%B8%EB%A6%BC-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0" id="toc-그림-저장하기" class="nav-link active" data-scroll-target="#%EA%B7%B8%EB%A6%BC-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0"><span class="header-section-number">22.1</span> 그림 저장하기</a></li>
+<li><a href="#%EA%B7%B8%EB%9E%98%ED%94%84-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0" id="toc-그래프-저장하기" class="nav-link active" data-scroll-target="#%EA%B7%B8%EB%9E%98%ED%94%84-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0"><span class="header-section-number">22.1</span> 그래프 저장하기</a></li>
   <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%ED%8C%8C%EC%9D%BC-%EC%A0%80%EC%9E%A5" id="toc-데이터를-파일-저장" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%ED%8C%8C%EC%9D%BC-%EC%A0%80%EC%9E%A5"><span class="header-section-number">22.2</span> 데이터를 파일 저장</a></li>
+  <li>
+<a href="#%EC%9B%B9-%EC%95%B1" id="toc-웹-앱" class="nav-link" data-scroll-target="#%EC%9B%B9-%EC%95%B1"><span class="header-section-number">22.3</span> 웹 앱</a>
+  <ul class="collapse">
+<li><a href="#dashboard-ui-wireframe" id="toc-dashboard-ui-wireframe" class="nav-link" data-scroll-target="#dashboard-ui-wireframe"><span class="header-section-number">22.3.1</span> UI 뼈대설계</a></li>
+  <li><a href="#dashboard-shiny" id="toc-dashboard-shiny" class="nav-link" data-scroll-target="#dashboard-shiny"><span class="header-section-number">22.3.2</span> shiny 구현</a></li>
+  <li><a href="#dashboard-ui-wireframe" id="toc-dashboard-ui-wireframe" class="nav-link" data-scroll-target="#dashboard-ui-wireframe"><span class="header-section-number">22.3.3</span> <code>shiny</code> 코드</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/comm_export.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_export.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span>
-</h1>
+<h1 class="title"><span id="sec-comm-export" class="quarto-section-identifier"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></h1>
 </div>
 
 
@@ -464,8 +473,8 @@ ga('send', {
   
 
 
-</header><section id="그림-저장하기" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="그림-저장하기">
-<span class="header-section-number">22.1</span> 그림 저장하기</h2>
+</header><section id="그래프-저장하기" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="그래프-저장하기">
+<span class="header-section-number">22.1</span> 그래프 저장하기</h2>
 <p><code>ggsave</code> 명령어를 사용해서, <code>ggplot2</code>에서 생성한 가장 최신 도식화 결과물을 저장하는 방법을 이미 살펴봤다. 다시 상기시키기 위해 명령어를 적어보면 다음과 같다:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># eval: false</span></span>
@@ -602,9 +611,141 @@ ga('send', {
 <span><span class="co"># cleaned-data 디렉터리를 삭제한다.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"cleaned-data"</span>, recursive<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section><section id="웹-앱" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="웹-앱">
+<span class="header-section-number">22.3</span> 웹 앱</h2>
+<p>데이터 과학 프로젝트의 마지막 단계는 결과를 공유하거나 사업적 목적을 위해 사용자에게 제공하는 것이다. R 마크다운/쿼토 보고서, 그래프, 데이터 파일 저장하는 것 외에도 웹 앱(shiny)을 만들어 사용자와 상호작용할 수 있다. 앞서 살펴본 펭귄 데이터에서 성별을 예측하는 통계 모형, 기계학습 모형을 개발한 후 웹앱을 제작하여 서비스 형태로 커뮤니케이션하는 것도 물론 가능하다.</p>
+<p>펭귄의 부리 길이, 부리 깊이, 물갈퀴 길이, 체중 등의 신체 특징을 입력받아 기계학습 모형에 넣어 성별과 성별확률을 추론하는 웹앱(Shiny)이다.</p>
+<section id="dashboard-ui-wireframe" class="level3" data-number="22.3.1"><h3 data-number="22.3.1" class="anchored" data-anchor-id="dashboard-ui-wireframe">
+<span class="header-section-number">22.3.1</span> UI 뼈대설계</h3>
+<p><a href="https://app.diagrams.net/">draw.io</a> 웹사이트에서 <code>wireframe</code> 템플릿을 활용하여 대쉬보드 UI 뼈대 설계(wireframe)를 작성한다. 성별 예측 모형 변수 4개가 입력값으로 들어가고, 출력값으로는 펭귄의 성별과 예측 모형이 예측한 성별을 어느 정도 지지하는지 확률값을 함께 출력하도록 화면설계를 한다.</p>
+<div id="fig-comm-wireframe" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-comm-wireframe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/comm_wireframe.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/comm_wireframe.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comm-wireframe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;22.1: 펭귄 성별예측 웹앱 UI 뼈대설계
+</figcaption></figure>
+</div>
+</section><section id="dashboard-shiny" class="level3" data-number="22.3.2"><h3 data-number="22.3.2" class="anchored" data-anchor-id="dashboard-shiny">
+<span class="header-section-number">22.3.2</span> shiny 구현</h3>
+<p><code>shinydashboard</code> UI를 앞서 정의한 wireframe에 맞춰 코딩한다. <code>shinydashboard</code> 레이아웃 문법에 맞춰 4개의 입력값을 받아 이를 제대로 전달되는지 확인하다. 본격적으로 예측모형과 연결시키지 않고 단순히 펭귄 성별과 성별예측확률은 난수를 생성하여 기본 기능을 확인한 후 개발을 단계적으로 진행하는 것을 추천한다.</p>
+<p><code>tidymodels</code>로 개발한 예측모형을 <code>shinydashboard</code>에 연결시키 위해서는 입력변수가 <code>reactive</code> 라는 특성을 갖기 때문에 이를 데이터프레임, 예측 모형 추론, 성별 예측과 성별 예측 확률에 연결시키는 점을 유념하여 개발한다.</p>
+<div id="fig-comm-shiny" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-comm-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/comm_shiny.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/comm_shiny.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comm-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;22.2: 펭귄 성별예측 웹앱
+</figcaption></figure>
+</div>
+</section><section id="dashboard-ui-wireframe" class="level3" data-number="22.3.3"><h3 data-number="22.3.3" class="anchored" data-anchor-id="dashboard-ui-wireframe">
+<span class="header-section-number">22.3.3</span> <code>shiny</code> 코드</h3>
+<p>UI에서 <code>fluidPage</code>를 사용하여 <code>sidebarPanel</code>과 <code>mainPanel</code>로 구성한다. <code>sidebarPanel</code>에는 펭귄 특징 입력을 위한 <code>sliderInput</code>이 있다. <code>mainPanel</code>에는 예측 결과와 입력값을 출력하는 <code>verbatimTextOutput</code>과 <code>textOutput</code>을 위치시킨다.</p>
+<p>서버에서 입력받은 펭귄 특징을 바탕으로 성별을 예측한다. <code>read_rds</code>로 미리 학습된 예측 모형을 불러온다. <code>reactive</code>을 사용하여 입력값에 따라 예측 데이터프레임과 예측 결과를 생성한다. 예측 결과와 확률, 입력값을 출력하기 위해 <code>renderPrint</code>, <code>renderText</code>를 사용한다. 최종적으로 <code>shinyApp</code> 함수로 UI와 Server를 결합하여 Shiny 앱을 생성한다.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">패키지</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">UI</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">서버</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">앱 실행</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb11" data-startfrom="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">library</span>(shinydashboard)</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">library</span>(tidymodels)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="sourceCode" id="cb12" data-startfrom="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 5;"><span id="cb12-6"><a href="#cb12-6"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">titlePanel</span>(<span class="st">"펭귄 성별 예측 앱"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb12-10"><a href="#cb12-10"></a>      <span class="fu">sliderInput</span>(<span class="st">'bill_length_mm'</span>, <span class="st">'부리 길이 (mm)'</span>,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>                  <span class="at">min=</span><span class="dv">32</span>, <span class="at">max=</span><span class="dv">50</span>, <span class="at">value=</span><span class="dv">43</span>, <span class="at">step=</span><span class="dv">1</span>),</span>
+<span id="cb12-12"><a href="#cb12-12"></a>      <span class="fu">sliderInput</span>(<span class="st">'bill_depth_mm'</span>, <span class="st">'부리 깊이 (mm)'</span>,</span>
+<span id="cb12-13"><a href="#cb12-13"></a>                  <span class="at">min=</span><span class="dv">13</span>, <span class="at">max=</span><span class="dv">22</span>, <span class="at">value=</span><span class="dv">17</span>, <span class="at">step=</span><span class="dv">1</span>),</span>
+<span id="cb12-14"><a href="#cb12-14"></a>      <span class="fu">sliderInput</span>(<span class="st">'flipper_length_mm'</span>, <span class="st">'물갈퀴 길이 (mm)'</span>,</span>
+<span id="cb12-15"><a href="#cb12-15"></a>                  <span class="at">min=</span><span class="dv">170</span>, <span class="at">max=</span><span class="dv">235</span>, <span class="at">value=</span><span class="dv">200</span>, <span class="at">step=</span><span class="dv">1</span>),</span>
+<span id="cb12-16"><a href="#cb12-16"></a>      <span class="fu">sliderInput</span>(<span class="st">'body_mass_g'</span>, <span class="st">'체중 (g)'</span>,</span>
+<span id="cb12-17"><a href="#cb12-17"></a>                  <span class="at">min=</span><span class="dv">2700</span>, <span class="at">max=</span><span class="dv">6300</span>, <span class="at">value=</span><span class="dv">4200</span>, <span class="at">step=</span><span class="dv">100</span>)</span>
+<span id="cb12-18"><a href="#cb12-18"></a>    ),</span>
+<span id="cb12-19"><a href="#cb12-19"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb12-20"><a href="#cb12-20"></a>      <span class="fu">h3</span>(<span class="st">"펭귄 성별 예측 결과"</span>),</span>
+<span id="cb12-21"><a href="#cb12-21"></a>      <span class="fu">h4</span>(<span class="st">"성별"</span>),</span>
+<span id="cb12-22"><a href="#cb12-22"></a>      <span class="fu">verbatimTextOutput</span>(<span class="st">"pred_sex"</span>),</span>
+<span id="cb12-23"><a href="#cb12-23"></a>      <span class="fu">h4</span>(<span class="st">"성별 확률"</span>),</span>
+<span id="cb12-24"><a href="#cb12-24"></a>      <span class="fu">textOutput</span>(<span class="st">"prob_sex"</span>),</span>
+<span id="cb12-25"><a href="#cb12-25"></a>      <span class="fu">h4</span>(<span class="st">"입력값"</span>),</span>
+<span id="cb12-26"><a href="#cb12-26"></a>      <span class="fu">textOutput</span>(<span class="st">"bill_length"</span>),</span>
+<span id="cb12-27"><a href="#cb12-27"></a>      <span class="fu">textOutput</span>(<span class="st">"bill_depth"</span>),</span>
+<span id="cb12-28"><a href="#cb12-28"></a>      <span class="fu">textOutput</span>(<span class="st">"flipper_length"</span>),</span>
+<span id="cb12-29"><a href="#cb12-29"></a>      <span class="fu">textOutput</span>(<span class="st">"body_mass"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30"></a>    )</span>
+<span id="cb12-31"><a href="#cb12-31"></a>  )</span>
+<span id="cb12-32"><a href="#cb12-32"></a>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="sourceCode" id="cb13" data-startfrom="34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 33;"><span id="cb13-34"><a href="#cb13-34"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb13-35"><a href="#cb13-35"></a></span>
+<span id="cb13-36"><a href="#cb13-36"></a>  penguin_predictvie_model <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="fu">str_glue</span>(<span class="st">"{here::here()}/code/penguin_app/penguin_predictvie_model.rds"</span>))</span>
+<span id="cb13-37"><a href="#cb13-37"></a></span>
+<span id="cb13-38"><a href="#cb13-38"></a>  penguin_df <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb13-39"><a href="#cb13-39"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb13-40"><a href="#cb13-40"></a>      <span class="st">"species"</span> <span class="ot">=</span> <span class="st">"Adelie"</span>,</span>
+<span id="cb13-41"><a href="#cb13-41"></a>      <span class="st">"bill_length_mm"</span> <span class="ot">=</span> input<span class="sc">$</span>bill_length_mm,</span>
+<span id="cb13-42"><a href="#cb13-42"></a>      <span class="st">"bill_depth_mm"</span> <span class="ot">=</span> input<span class="sc">$</span>bill_depth_mm,</span>
+<span id="cb13-43"><a href="#cb13-43"></a>      <span class="st">"flipper_length_mm"</span> <span class="ot">=</span> input<span class="sc">$</span>flipper_length_mm,</span>
+<span id="cb13-44"><a href="#cb13-44"></a>      <span class="st">"body_mass_g"</span> <span class="ot">=</span> input<span class="sc">$</span>body_mass_g</span>
+<span id="cb13-45"><a href="#cb13-45"></a>    )</span>
+<span id="cb13-46"><a href="#cb13-46"></a>  })</span>
+<span id="cb13-47"><a href="#cb13-47"></a></span>
+<span id="cb13-48"><a href="#cb13-48"></a>  pred_sex <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb13-49"><a href="#cb13-49"></a>    <span class="fu">predict</span>(penguin_predictvie_model, <span class="fu">penguin_df</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb13-50"><a href="#cb13-50"></a>      <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-51"><a href="#cb13-51"></a>      <span class="fu">as.character</span>()</span>
+<span id="cb13-52"><a href="#cb13-52"></a>  })</span>
+<span id="cb13-53"><a href="#cb13-53"></a></span>
+<span id="cb13-54"><a href="#cb13-54"></a>  prob_sex <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb13-55"><a href="#cb13-55"></a>    <span class="fu">predict</span>(penguin_predictvie_model, <span class="fu">penguin_df</span>(), <span class="at">type=</span><span class="st">"prob"</span>)[,<span class="dv">1</span>]</span>
+<span id="cb13-56"><a href="#cb13-56"></a>  })</span>
+<span id="cb13-57"><a href="#cb13-57"></a></span>
+<span id="cb13-58"><a href="#cb13-58"></a>  output<span class="sc">$</span>pred_sex <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({ <span class="fu">pred_sex</span>() })</span>
+<span id="cb13-59"><a href="#cb13-59"></a></span>
+<span id="cb13-60"><a href="#cb13-60"></a>  output<span class="sc">$</span>prob_sex <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb13-61"><a href="#cb13-61"></a>    <span class="fu">paste0</span>(<span class="st">"성별 확률: "</span>, <span class="fu">round</span>(<span class="fu">prob_sex</span>()<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>)</span>
+<span id="cb13-62"><a href="#cb13-62"></a>  })</span>
+<span id="cb13-63"><a href="#cb13-63"></a></span>
+<span id="cb13-64"><a href="#cb13-64"></a>  output<span class="sc">$</span>bill_length <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb13-65"><a href="#cb13-65"></a>    <span class="fu">paste0</span>(<span class="st">"부리 길이 (mm): "</span>, input<span class="sc">$</span>bill_length_mm)</span>
+<span id="cb13-66"><a href="#cb13-66"></a>  })</span>
+<span id="cb13-67"><a href="#cb13-67"></a></span>
+<span id="cb13-68"><a href="#cb13-68"></a>  output<span class="sc">$</span>bill_depth <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb13-69"><a href="#cb13-69"></a>    <span class="fu">paste0</span>(<span class="st">"부리 깊이 (mm): "</span>, input<span class="sc">$</span>bill_depth_mm)</span>
+<span id="cb13-70"><a href="#cb13-70"></a>  })</span>
+<span id="cb13-71"><a href="#cb13-71"></a></span>
+<span id="cb13-72"><a href="#cb13-72"></a>  output<span class="sc">$</span>flipper_length <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb13-73"><a href="#cb13-73"></a>    <span class="fu">paste0</span>(<span class="st">"물칼퀴 길이 (mm): "</span>, input<span class="sc">$</span>flipper_length_mm)</span>
+<span id="cb13-74"><a href="#cb13-74"></a>  })</span>
+<span id="cb13-75"><a href="#cb13-75"></a></span>
+<span id="cb13-76"><a href="#cb13-76"></a>  output<span class="sc">$</span>body_mass <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb13-77"><a href="#cb13-77"></a>    <span class="fu">paste0</span>(<span class="st">"체중 (g): "</span>, input<span class="sc">$</span>body_mass_g)</span>
+<span id="cb13-78"><a href="#cb13-78"></a>  })</span>
+<span id="cb13-79"><a href="#cb13-79"></a></span>
+<span id="cb13-80"><a href="#cb13-80"></a>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="sourceCode" id="cb14" data-startfrom="82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 81;"><span id="cb14-82"><a href="#cb14-82"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;22.1: 펭귄 성별예측 웹앱 UI 뼈대설계</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;22.2: 펭귄 성별예측 웹앱</span>
+</div>
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1074,7 +1215,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 </body></html>

@@ -1,6 +1,6 @@
-# 내보내기
+# 내보내기 {#sec-comm-export}
 
-## 그림 저장하기
+## 그래프 저장하기
 
 `ggsave` 명령어를 사용해서,
 `ggplot2`에서 생성한 가장 최신 도식화 결과물을 저장하는 방법을 이미 살펴봤다. 
@@ -167,3 +167,59 @@ write.table(
 # cleaned-data 디렉터리를 삭제한다.
 unlink("cleaned-data", recursive=TRUE)
 ```
+
+## 웹 앱
+
+데이터 과학 프로젝트의 마지막 단계는 결과를 공유하거나 사업적 목적을 위해 사용자에게 제공하는 것이다. R 마크다운/쿼토 보고서, 그래프, 데이터 파일 저장하는 것 외에도 웹 앱(shiny)을 만들어 사용자와 상호작용할 수 있다.
+앞서 살펴본 펭귄 데이터에서 성별을 예측하는 통계 모형, 기계학습 모형을 개발한 후 웹앱을 제작하여 서비스 형태로 커뮤니케이션하는 것도 물론 가능하다.
+
+펭귄의 부리 길이, 부리 깊이, 물갈퀴 길이, 체중 등의 신체 특징을 입력받아 기계학습 모형에 넣어 성별과 성별확률을 추론하는 웹앱(Shiny)이다.
+
+### UI 뼈대설계 {#dashboard-ui-wireframe}
+
+[draw.io](https://app.diagrams.net/) 웹사이트에서 `wireframe` 템플릿을 활용하여 대쉬보드 UI 뼈대 설계(wireframe)를 작성한다.
+성별 예측 모형 변수 4개가 입력값으로 들어가고, 출력값으로는 펭귄의 성별과 예측 모형이 예측한 성별을 어느 정도 지지하는지 확률값을 함께 출력하도록 화면설계를 한다.
+
+![펭귄 성별예측 웹앱 UI 뼈대설계](images/comm_wireframe.png){#fig-comm-wireframe}
+
+### shiny 구현 {#dashboard-shiny}
+
+`shinydashboard` UI를 앞서 정의한 wireframe에 맞춰 코딩한다. 
+`shinydashboard` 레이아웃 문법에 맞춰 4개의 입력값을 받아 이를 제대로 전달되는지 확인하다. 본격적으로 예측모형과 연결시키지 않고 단순히 펭귄 성별과 성별예측확률은 난수를 생성하여 기본 기능을 확인한 후 개발을 단계적으로 진행하는 것을 추천한다.
+
+`tidymodels`로 개발한 예측모형을 `shinydashboard`에 연결시키 위해서는 입력변수가 `reactive` 라는 특성을 갖기 때문에 이를 데이터프레임, 예측 모형 추론, 성별 예측과 성별 예측 확률에 연결시키는 점을 유념하여 개발한다.
+
+![펭귄 성별예측 웹앱](images/comm_shiny.jpg){#fig-comm-shiny}
+
+### `shiny` 코드 {#dashboard-ui-wireframe}
+
+UI에서 `fluidPage`를 사용하여 `sidebarPanel`과 `mainPanel`로 구성한다. 
+`sidebarPanel`에는 펭귄 특징 입력을 위한 `sliderInput`이 있다. 
+`mainPanel`에는 예측 결과와 입력값을 출력하는 `verbatimTextOutput`과 `textOutput`을 위치시킨다.
+
+서버에서 입력받은 펭귄 특징을 바탕으로 성별을 예측한다. `read_rds`로 미리 학습된 예측 모형을 불러온다. `reactive`을 사용하여 입력값에 따라 예측 데이터프레임과 예측 결과를 생성한다. 예측 결과와 확률, 입력값을 출력하기 위해 `renderPrint`, `renderText`를 사용한다.
+최종적으로 `shinyApp` 함수로 UI와 Server를 결합하여 Shiny 앱을 생성한다.
+
+::: panel-tabset
+### 패키지
+
+```{.r include="code/penguin_app/app.R" code-line-numbers="true" start-line=1 end-line=4}
+```
+
+### UI
+
+```{.r include="code/penguin_app/app.R" code-line-numbers="true"  start-line=6 end-line=32}
+```
+
+### 서버
+
+```{.r include="code/penguin_app/app.R" code-line-numbers="true"  start-line=34 end-line=80}
+```
+
+### 앱 실행
+
+```{.r include="code/penguin_app/app.R" code-line-numbers="true"  start-line=82 end-line=82}
+```
+
+
+:::

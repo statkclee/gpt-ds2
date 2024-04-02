@@ -1440,9 +1440,9 @@
   {
     "objectID": "comm_export.html",
     "href": "comm_export.html",
-    "title": "\n22  내보내기\n",
+    "title": "22  내보내기",
     "section": "",
-    "text": "22.1 그림 저장하기\nggsave 명령어를 사용해서, ggplot2에서 생성한 가장 최신 도식화 결과물을 저장하는 방법을 이미 살펴봤다. 다시 상기시키기 위해 명령어를 적어보면 다음과 같다:\n# eval: false\nggsave(\"My_most_recent_plot.pdf\")\nRStudio 내부에서 그림을 저장할 경우, ‘Plot’ 윈도우에서 ‘Export’ 버튼을 사용한다. 버튼을 클릭하면 .pdf, .png, .jpg 혹은 다른 이미지 형식으로 저장할지 선택 옵션이 제시된다.\n종종 ‘Plot’ 윈도우에 먼저 찍어보지 말고 도표를 저장하고 싶을 때도 있다. 아마도 여러 페이지에 걸친 PDF 문서를 생성하고 싶을 것이다. 예를 들어, 각각은 다른 도표로 말이다. 혹은 다수 파일에서 부분집합으로 데이터를 뽑아내고, 각 하위 데이터에 대해 도식화를 하고, 결과물을 도표로 저장하고자 한다. 하지만 각각에 대해 ‘Export’ 버튼을 클릭하려고 루프를 중단할 수는 없는 노릇이다.\n이런 경우 더 유연한 접근법을 사용할 수 있다. pdf 함수는 새로운 PDF 장치를 생성한다. pdf 함수에 여러 인자를 사용해서 크기와 해상도를 조절할 수 있다.\npdf(\"Life_Exp_vs_time.pdf\", width=12, height=4)\nggplot(data=gapminder, aes(x=year, y=lifeExp, colour=country)) +\n  geom_line() +\n  theme(legend.position = \"none\")\n\n# 그런 다음에는 반드시 PDF 장치를 끄는 것을 잊지 말아야 한다!\ndev.off()\n저장한 문서를 열어서 살펴본다.\njpeg, png 등의 명령어도 다양한 형식으로 문서를 저장하는 데 유사하게 사용할 수 있다.",
+    "text": "22.1 그래프 저장하기\nggsave 명령어를 사용해서, ggplot2에서 생성한 가장 최신 도식화 결과물을 저장하는 방법을 이미 살펴봤다. 다시 상기시키기 위해 명령어를 적어보면 다음과 같다:\n# eval: false\nggsave(\"My_most_recent_plot.pdf\")\nRStudio 내부에서 그림을 저장할 경우, ‘Plot’ 윈도우에서 ‘Export’ 버튼을 사용한다. 버튼을 클릭하면 .pdf, .png, .jpg 혹은 다른 이미지 형식으로 저장할지 선택 옵션이 제시된다.\n종종 ‘Plot’ 윈도우에 먼저 찍어보지 말고 도표를 저장하고 싶을 때도 있다. 아마도 여러 페이지에 걸친 PDF 문서를 생성하고 싶을 것이다. 예를 들어, 각각은 다른 도표로 말이다. 혹은 다수 파일에서 부분집합으로 데이터를 뽑아내고, 각 하위 데이터에 대해 도식화를 하고, 결과물을 도표로 저장하고자 한다. 하지만 각각에 대해 ‘Export’ 버튼을 클릭하려고 루프를 중단할 수는 없는 노릇이다.\n이런 경우 더 유연한 접근법을 사용할 수 있다. pdf 함수는 새로운 PDF 장치를 생성한다. pdf 함수에 여러 인자를 사용해서 크기와 해상도를 조절할 수 있다.\npdf(\"Life_Exp_vs_time.pdf\", width=12, height=4)\nggplot(data=gapminder, aes(x=year, y=lifeExp, colour=country)) +\n  geom_line() +\n  theme(legend.position = \"none\")\n\n# 그런 다음에는 반드시 PDF 장치를 끄는 것을 잊지 말아야 한다!\ndev.off()\n저장한 문서를 열어서 살펴본다.\njpeg, png 등의 명령어도 다양한 형식으로 문서를 저장하는 데 유사하게 사용할 수 있다.",
     "crumbs": [
       "**6부** 커뮤니케이션",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>내보내기</span>"
@@ -1451,7 +1451,7 @@
   {
     "objectID": "comm_export.html#그림-저장하기",
     "href": "comm_export.html#그림-저장하기",
-    "title": "\n22  내보내기\n",
+    "title": "22  내보내기",
     "section": "",
     "text": "도전과제\n\n\n\n\npdf 명령어를 다시 작성해서 PDF 파일에 두 번째 페이지를 생성한다. 각 창 패널에 대륙별로 데이터를 패싯 도표(힌트: facet_grid 사용)로 출력한다.\n\n\n\n\n\n\n\n해답\n\n\n\n\n\n\npdf(\"Life_Exp_vs_time.pdf\", width = 12, height = 4)\n\np &lt;- ggplot(data = gapminder, aes(x = year, y = lifeExp, colour = country)) +\n  geom_line() +\n  theme(legend.position = \"none\")\np\n\np + facet_grid(. ~continent)\n\ndev.off()",
     "crumbs": [
@@ -1462,7 +1462,7 @@
   {
     "objectID": "comm_export.html#데이터를-파일-저장",
     "href": "comm_export.html#데이터를-파일-저장",
-    "title": "\n22  내보내기\n",
+    "title": "22  내보내기",
     "section": "\n22.2 데이터를 파일 저장",
     "text": "22.2 데이터를 파일 저장\n어느 시점이 되면 R에서 데이터를 내보내서 파일에 저장하기도 한다. 이런 목적으로 write.table 함수를 사용하는데, 앞서 살펴본 read.table 함수와 매우 유사하다.\n데이터 정제 스크립트를 생성하자. gapminder 데이터에서 Australia 호주만 집중한다:\n\naust_subset &lt;- gapminder[gapminder$country == \"Australia\",]\n\nwrite.table(aust_subset,\n  file=\"cleaned-data/gapminder-aus.csv\",\n  sep=\",\"\n)\n\n쉘로 다시 전환해서 모든 것이 정상인지 데이터를 살펴본다.\n\n$ head cleaned-data/gapminder-aus.csv\n\n음… 엄밀하게 보면 원하는 바는 아니다. 이 모든 인용부호는 어디서 왔을까? 또한 행 번호도 보이는데 무의미하다.\n도움말 파일을 살펴보고 파일에 저장하는 방식을 변경해 본다.\n\n? write.table\n\n기본 설정으로 데이터를 파일에 저장할 때 R은 자동으로 인용부호로 문자 벡터를 감싼다. 행과 열 명칭도 파일에 저장한다.\n다음과 같이 고쳐본다:\n\nwrite.table(\n  gapminder[gapminder$country == \"Australia\",],\n  file=\"cleaned-data/gapminder-aus.csv\",\n  sep=\",\", quote=FALSE, row.names=FALSE\n)\n\n쉘 기술을 사용해서 다시 데이터를 살펴본다:\n\n$ head cleaned-data/gapminder-aus.csv\n\n훨씬 좋아 보인다!\n\n\n\n\n\n\n도전과제\n\n\n\n1990년 이후 수집된 데이터를 gapminder 데이터에서 부분집합으로 구성하는 데이터 정제 스크립트를 작성한다. 상기 스크립트를 사용해서 작업한 새로운 부분집합 데이터를 cleaned-data/ 디렉터리에 파일로 저장한다.\n\n\n\n\n\n\n해답\n\n\n\n\n\n\nwrite.table(\n   gapminder[gapminder$year &gt; 1990, ],\n   file = \"cleaned-data/gapminder-after1990.csv\",\n   sep = \",\", quote = FALSE, row.names = FALSE\n)\n\n\n\n\n\n\n\n# 수업 저장소에 이 디렉터리가 포함되는 것을 원치 않기 때문에,\n# cleaned-data 디렉터리를 삭제한다.\nunlink(\"cleaned-data\", recursive=TRUE)",
     "crumbs": [
@@ -1962,6 +1962,28 @@
     "text": "Abu-Mostafa, Yaser S, Malik Magdon-Ismail, and Hsuan-Tien Lin. 2012.\nLearning from Data. Vol. 4. AMLBook New York.\n\n\nBecker, Richard. 2018. The New s Language. CRC Press.\n\n\nBroman, Karl W., and Kara H. Woo. 2018. “Data Organization in\nSpreadsheets.” The American Statistician 72 (1): 2–10.\nhttps://doi.org/10.1080/00031305.2017.1375989.\n\n\nCaffo, Brian. 2015. Advanced Linear Models for Data Science.\nLeanpub.\n\n\nChambers, J. M., and T. J. Hastie. 1992. Statistical Models in\ns. London: Chapman & Hall.\n\n\nCoelho, Luis Pedro, and Willi Richert. 2015. Building Machine\nLearning Systems with Python. Packt Publishing Birmingham.\n\n\nFriendly, Michael. 2023. HistData: Data Sets from the History of\nStatistics and Data Visualization.\n\n\nGencay, I. 2023. “ChatGPT Guide for Data Scientists: Top 40 Most\nImportant Prompts.” Towards AI, April. https://pub.towardsai.net/chatgpt-guide-for-data-scientists-top-40-most-important-prompts-cdb911f3a427.\n\n\nHardie, Mary, and Swapan Saha. 2012. “Builders\nPerceptions of Lowest Cost Procurement and Its Impact on\nQuality.” Construction Economics and Building 9 (1):\n1–8. https://doi.org/10.5130/ajceb.v9i1.3009.\n\n\nOvando, Dan. 2018. “Data Wrangling and Model Fitting Using\nPurrr.” https://www.weirdfishes.blog/blog/practical-purrr/.\n\n\nPebesma, Edzer, and Roger Bivand. 2023. Spatial\nData Science: With Applications in R. Chapman; Hall/CRC. https://doi.org/10.1201/9780429459016.\n\n\nPebesma, Edzer, Wolfgang Wagner, Jan Verbesselt, Erwin Goor, Christian\nBriese, and Markus Neteler. 2016. “OpenEO: A GDAL for Earth\nObservation Analytics.” 2016. https://r-spatial.org/2016/11/29/openeo.html.\n\n\nWickham, Hadley. 2011. “The Split-Apply-Combine Strategy for Data\nAnalysis.” Journal of Statistical Software 40: 1–29.\n\n\n로슬링한스. 2019. 팩트풀니스: 우리가 세상을 오해하는 10가지 이유와\n세상이 생각보다 괜찮은 이유. Translated by 이창신. 1st ed. 김영사.\nhttps://product.kyobobook.co.kr/detail/S000000597791.\n\n\n이광춘. 2023. “공간정보의 역사 및 공간정보 처리기법.”\n프롭빅스(PROPBIX), no. 13 (September). http://www.kahps.org/.",
     "crumbs": [
       "참고문헌"
+    ]
+  },
+  {
+    "objectID": "comm_export.html#웹-앱",
+    "href": "comm_export.html#웹-앱",
+    "title": "22  내보내기",
+    "section": "\n22.3 웹 앱",
+    "text": "22.3 웹 앱\n데이터 과학 프로젝트의 마지막 단계는 결과를 공유하거나 사업적 목적을 위해 사용자에게 제공하는 것이다. R 마크다운/쿼토 보고서, 그래프, 데이터 파일 저장하는 것 외에도 웹 앱(shiny)을 만들어 사용자와 상호작용할 수 있다. 앞서 살펴본 펭귄 데이터에서 성별을 예측하는 통계 모형, 기계학습 모형을 개발한 후 웹앱을 제작하여 서비스 형태로 커뮤니케이션하는 것도 물론 가능하다.\n펭귄의 부리 길이, 부리 깊이, 물갈퀴 길이, 체중 등의 신체 특징을 입력받아 기계학습 모형에 넣어 성별과 성별확률을 추론하는 웹앱(Shiny)이다.\n\n22.3.1 UI 뼈대설계\ndraw.io 웹사이트에서 wireframe 템플릿을 활용하여 대쉬보드 UI 뼈대 설계(wireframe)를 작성한다. 성별 예측 모형 변수 4개가 입력값으로 들어가고, 출력값으로는 펭귄의 성별과 예측 모형이 예측한 성별을 어느 정도 지지하는지 확률값을 함께 출력하도록 화면설계를 한다.\n\n\n\n\n\n그림 22.1: 펭귄 성별예측 웹앱 UI 뼈대설계\n\n\n\n22.3.2 shiny 구현\nshinydashboard UI를 앞서 정의한 wireframe에 맞춰 코딩한다. shinydashboard 레이아웃 문법에 맞춰 4개의 입력값을 받아 이를 제대로 전달되는지 확인하다. 본격적으로 예측모형과 연결시키지 않고 단순히 펭귄 성별과 성별예측확률은 난수를 생성하여 기본 기능을 확인한 후 개발을 단계적으로 진행하는 것을 추천한다.\ntidymodels로 개발한 예측모형을 shinydashboard에 연결시키 위해서는 입력변수가 reactive 라는 특성을 갖기 때문에 이를 데이터프레임, 예측 모형 추론, 성별 예측과 성별 예측 확률에 연결시키는 점을 유념하여 개발한다.\n\n\n\n\n\n그림 22.2: 펭귄 성별예측 웹앱\n\n\n\n22.3.3 shiny 코드\nUI에서 fluidPage를 사용하여 sidebarPanel과 mainPanel로 구성한다. sidebarPanel에는 펭귄 특징 입력을 위한 sliderInput이 있다. mainPanel에는 예측 결과와 입력값을 출력하는 verbatimTextOutput과 textOutput을 위치시킨다.\n서버에서 입력받은 펭귄 특징을 바탕으로 성별을 예측한다. read_rds로 미리 학습된 예측 모형을 불러온다. reactive을 사용하여 입력값에 따라 예측 데이터프레임과 예측 결과를 생성한다. 예측 결과와 확률, 입력값을 출력하기 위해 renderPrint, renderText를 사용한다. 최종적으로 shinyApp 함수로 UI와 Server를 결합하여 Shiny 앱을 생성한다.\n\n\n패키지\nUI\n서버\n앱 실행\n\n\n\nlibrary(shiny)\nlibrary(tidyverse)\nlibrary(shinydashboard)\nlibrary(tidymodels)\n\n\nui &lt;- fluidPage(\n  titlePanel(\"펭귄 성별 예측 앱\"),\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput('bill_length_mm', '부리 길이 (mm)',\n                  min=32, max=50, value=43, step=1),\n      sliderInput('bill_depth_mm', '부리 깊이 (mm)',\n                  min=13, max=22, value=17, step=1),\n      sliderInput('flipper_length_mm', '물갈퀴 길이 (mm)',\n                  min=170, max=235, value=200, step=1),\n      sliderInput('body_mass_g', '체중 (g)',\n                  min=2700, max=6300, value=4200, step=100)\n    ),\n    mainPanel(\n      h3(\"펭귄 성별 예측 결과\"),\n      h4(\"성별\"),\n      verbatimTextOutput(\"pred_sex\"),\n      h4(\"성별 확률\"),\n      textOutput(\"prob_sex\"),\n      h4(\"입력값\"),\n      textOutput(\"bill_length\"),\n      textOutput(\"bill_depth\"),\n      textOutput(\"flipper_length\"),\n      textOutput(\"body_mass\")\n    )\n  )\n)\n\n\nserver &lt;- function(input, output, session) {\n\n  penguin_predictvie_model &lt;- read_rds(str_glue(\"{here::here()}/code/penguin_app/penguin_predictvie_model.rds\"))\n\n  penguin_df &lt;- reactive({\n    tibble(\n      \"species\" = \"Adelie\",\n      \"bill_length_mm\" = input$bill_length_mm,\n      \"bill_depth_mm\" = input$bill_depth_mm,\n      \"flipper_length_mm\" = input$flipper_length_mm,\n      \"body_mass_g\" = input$body_mass_g\n    )\n  })\n\n  pred_sex &lt;- reactive({\n    predict(penguin_predictvie_model, penguin_df()) %&gt;%\n      unlist() %&gt;%\n      as.character()\n  })\n\n  prob_sex &lt;- reactive({\n    predict(penguin_predictvie_model, penguin_df(), type=\"prob\")[,1]\n  })\n\n  output$pred_sex &lt;- renderPrint({ pred_sex() })\n\n  output$prob_sex &lt;- renderText({\n    paste0(\"성별 확률: \", round(prob_sex()*100, 2), \"%\")\n  })\n\n  output$bill_length &lt;- renderText({\n    paste0(\"부리 길이 (mm): \", input$bill_length_mm)\n  })\n\n  output$bill_depth &lt;- renderText({\n    paste0(\"부리 깊이 (mm): \", input$bill_depth_mm)\n  })\n\n  output$flipper_length &lt;- renderText({\n    paste0(\"물칼퀴 길이 (mm): \", input$flipper_length_mm)\n  })\n\n  output$body_mass &lt;- renderText({\n    paste0(\"체중 (g): \", input$body_mass_g)\n  })\n\n}\n\n\nshinyApp(ui, server)\n\n\n\n\n\n\n그림 22.1: 펭귄 성별예측 웹앱 UI 뼈대설계\n그림 22.2: 펭귄 성별예측 웹앱",
+    "crumbs": [
+      "**6부** 커뮤니케이션",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>내보내기</span>"
+    ]
+  },
+  {
+    "objectID": "comm_export.html#그래프-저장하기",
+    "href": "comm_export.html#그래프-저장하기",
+    "title": "22  내보내기",
+    "section": "",
+    "text": "도전과제\n\n\n\n\npdf 명령어를 다시 작성해서 PDF 파일에 두 번째 페이지를 생성한다. 각 창 패널에 대륙별로 데이터를 패싯 도표(힌트: facet_grid 사용)로 출력한다.\n\n\n\n\n\n\n\n해답\n\n\n\n\n\n\npdf(\"Life_Exp_vs_time.pdf\", width = 12, height = 4)\n\np &lt;- ggplot(data = gapminder, aes(x = year, y = lifeExp, colour = country)) +\n  geom_line() +\n  theme(legend.position = \"none\")\np\n\np + facet_grid(. ~continent)\n\ndev.off()",
+    "crumbs": [
+      "**6부** 커뮤니케이션",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>내보내기</span>"
     ]
   }
 ]
