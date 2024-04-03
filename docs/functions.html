@@ -521,7 +521,7 @@ window.Quarto = {
 <p>함수는 입력값(<code>x</code>)를 넣어 어떤 작업(<code>f</code>)을 수행한 결과를 반환(<code>y</code>) 과정으로 이해할 수 있는데, 인자로 다양한 값을 함수에 넣을 수 있고, 물론 함수가 뭔가 유용한 작업을 수행하기 위한 전제조건을 만족시키는지 확인하는 과정을 <code>assert</code> 개념을 넣어 확인하고 기술된 작업을 수행한 후에 출력값을 변환시키게 된다.</p>
 <div id="fig-function-concpet" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-concpet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/function_concept.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/function_concept.png" class="img-fluid figure-img"></a>
+<a href="images/function_concept.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/function_concept.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-concpet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;16.1: 데이터 과학 함수 개념
@@ -718,9 +718,8 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>중복은 의도를 숨기게 되고, 복사하여 붙여넣기 두번했다면 함수를 작성할 시점이 되었다. (Duplication hides the intent. If you have copied-and-pasted twice, it is time to write a function.)</li>
-</ul>
+<p><br></p>
+<p>중복은 의도를 숨기게 되고, 복사하여 붙여넣기 두번했다면 함수를 작성할 시점이 되었다. (Duplication hides the intent. If you have copied-and-pasted twice, it is time to write a function.)</p>
 </div>
 </div>
 </section><section id="convert-scripts-to-function" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="convert-scripts-to-function">
@@ -748,7 +747,7 @@ window.Quarto = {
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>함수 템플릿</li>
@@ -771,7 +770,7 @@ window.Quarto = {
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">draw_dice</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>함수명, 함수 인자 등 마무리</li>
@@ -784,13 +783,14 @@ window.Quarto = {
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">draw_dice</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 6 2 4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3 6 5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="funciton-component" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="funciton-component">
 <span class="header-section-number">16.5</span> 함수 구성요소</h2>
+<p>한걸음 더 들어가, 함수를 작성할 때는 인자의 유효성 검사, 함수 몸통에서 데이터 처리, 반환값 등 다양한 측면을 고려해야 한다. 특히 인자값 검사는 함수의 안정성과 효율성을 위해 중요하며, 그 중요성을 반영하여 다양한 도구가 소개되어 있다. 또한 반환값이 여러 개인 경우에는 적절한 방법으로 반환값을 처리해야 한다. 함수를 작성할 때는 이러한 요소들을 종합적으로 고려하여 효율적이고 안정적인 함수를 구현해야 한다.</p>
 <section id="function-component-argument" class="level3" data-number="16.5.1"><h3 data-number="16.5.1" class="anchored" data-anchor-id="function-component-argument">
 <span class="header-section-number">16.5.1</span> 인자</h3>
-<p>함수 구성요소 중 중요한 요소로 인자(argument)를 꼽을 수 있다. 인자는 크게 두가지로 나뉜다.</p>
+<p>함수 구성요소 중 중요한 요소로 인자를 꼽을 수 있다. 인자는 크게 두가지로 나뉜다.</p>
 <ul>
 <li>데이터 인자(data argumnets): 대다수 함수는 기본적으로 데이터에 대한 연산을 가정하고 있다. 따라서 데이터를 함수 인자로 지정하여 이를 함수몸통에서 처리하고 결과를 반환시키는 것은 당연한 귀결이다.</li>
 <li>동작방식 지정 인자(detail arguments): 함수가 동작하는 방식에 대해서 세부적으로 동작하는 방식에 대해서 지정할 필요가 있는데 이때 필요한 것이 동작방식 지정 인자가 된다.</li>
@@ -884,8 +884,8 @@ window.Quarto = {
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"총 관측점: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span>, <span class="st">"\n훈련: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">train</span><span class="op">)</span>, <span class="st">"\n시험: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 총 관측점:  333 </span></span>
-<span><span class="co">#&gt; 훈련:  266 </span></span>
-<span><span class="co">#&gt; 시험:  67</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 훈련:  257 </span></span>
+<span><span class="co">#&gt; 시험:  76</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>혹은, 회귀분석 결과를 <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> 함수로 결합시켜 리스트로 반환시킨다. 이런 경우 결과값이 하나가 아니더라도 추후 리스트 객체를 풀어 활용하는 것이 가능하다.</p>
 <div class="cell">
@@ -1602,7 +1602,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
