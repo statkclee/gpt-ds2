@@ -476,26 +476,26 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#r-%ED%95%A8%EC%88%98" id="toc-r-함수" class="nav-link" data-scroll-target="#r-%ED%95%A8%EC%88%98"><span class="header-section-number">16.2.1</span> R 함수</a></li>
   <li><a href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%95%A8%EC%88%98" id="toc-파이썬-함수" class="nav-link" data-scroll-target="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%95%A8%EC%88%98"><span class="header-section-number">16.2.2</span> 파이썬 함수</a></li>
+  <li><a href="#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C" id="toc-함수-호출" class="nav-link" data-scroll-target="#%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C"><span class="header-section-number">16.2.3</span> 함수 호출</a></li>
   </ul>
 </li>
-  <li>
-<a href="#convert-scripts-to-function" id="toc-convert-scripts-to-function" class="nav-link" data-scroll-target="#convert-scripts-to-function"><span class="header-section-number">16.3</span> 스크립트 → 함수</a>
-  <ul class="collapse">
-<li><a href="#writing-funciton-dice" id="toc-writing-funciton-dice" class="nav-link" data-scroll-target="#writing-funciton-dice"><span class="header-section-number">16.3.1</span> 주사위</a></li>
-  </ul>
-</li>
-  <li><a href="#why-write-function" id="toc-why-write-function" class="nav-link" data-scroll-target="#why-write-function"><span class="header-section-number">16.4</span> 왜 함수가 필요한가?</a></li>
+  <li><a href="#why-write-function" id="toc-why-write-function" class="nav-link" data-scroll-target="#why-write-function"><span class="header-section-number">16.3</span> 함수 작성시점</a></li>
+  <li><a href="#convert-scripts-to-function" id="toc-convert-scripts-to-function" class="nav-link" data-scroll-target="#convert-scripts-to-function"><span class="header-section-number">16.4</span> 스크립트 → 함수</a></li>
   <li>
 <a href="#funciton-component" id="toc-funciton-component" class="nav-link" data-scroll-target="#funciton-component"><span class="header-section-number">16.5</span> 함수 구성요소</a>
   <ul class="collapse">
-<li><a href="#function-component-argument" id="toc-function-component-argument" class="nav-link" data-scroll-target="#function-component-argument"><span class="header-section-number">16.5.1</span> 인자(argument)</a></li>
+<li><a href="#function-component-argument" id="toc-function-component-argument" class="nav-link" data-scroll-target="#function-component-argument"><span class="header-section-number">16.5.1</span> 인자</a></li>
   <li><a href="#function-component-argument-assert" id="toc-function-component-argument-assert" class="nav-link" data-scroll-target="#function-component-argument-assert"><span class="header-section-number">16.5.2</span> 인자값 확인 - <code>assert</code></a></li>
   <li><a href="#function-component-return" id="toc-function-component-return" class="nav-link" data-scroll-target="#function-component-return"><span class="header-section-number">16.5.3</span> 반환값 확인</a></li>
   </ul>
 </li>
-  <li><a href="#time-to-write-function" id="toc-time-to-write-function" class="nav-link" data-scroll-target="#time-to-write-function"><span class="header-section-number">16.6</span> 함수를 작성하는 시점</a></li>
-  <li><a href="#how-to-write-function" id="toc-how-to-write-function" class="nav-link" data-scroll-target="#how-to-write-function"><span class="header-section-number">16.7</span> 사례: <code>rescale</code> 함수</a></li>
-  <li><a href="#function-is-argument" id="toc-function-is-argument" class="nav-link" data-scroll-target="#function-is-argument"><span class="header-section-number">16.8</span> 사례: 요약통계 함수</a></li>
+  <li>
+<a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C">연습문제</a>
+  <ul class="collapse">
+<li><a href="#how-to-write-function" id="toc-how-to-write-function" class="nav-link" data-scroll-target="#how-to-write-function"><code>rescale</code> 함수</a></li>
+  <li><a href="#function-is-argument" id="toc-function-is-argument" class="nav-link" data-scroll-target="#function-is-argument">요약통계 함수</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/functions.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -519,32 +519,71 @@ window.Quarto = {
 </header><section id="all-about-function" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="all-about-function">
 <span class="header-section-number">16.1</span> 함수 기본 지식</h2>
 <p>함수는 입력값(<code>x</code>)를 넣어 어떤 작업(<code>f</code>)을 수행한 결과를 반환(<code>y</code>) 과정으로 이해할 수 있는데, 인자로 다양한 값을 함수에 넣을 수 있고, 물론 함수가 뭔가 유용한 작업을 수행하기 위한 전제조건을 만족시키는지 확인하는 과정을 <code>assert</code> 개념을 넣어 확인하고 기술된 작업을 수행한 후에 출력값을 변환시키게 된다.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/function_concept.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="데이터 과학 함수 개념"><img src="images/function_concept.png" class="img-fluid figure-img" alt="데이터 과학 함수 개념"></a></p>
-<figcaption>데이터 과학 함수 개념</figcaption></figure>
+<div id="fig-function-concpet" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-concpet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/function_concept.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/function_concept.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-concpet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;16.1: 데이터 과학 함수 개념
+</figcaption></figure>
 </div>
 </section><section id="how-to-use-function" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="how-to-use-function">
 <span class="header-section-number">16.2</span> 함수 사용법</h2>
 <p>본격적으로 함수를 작성하기 전에 먼저, 함수를 사용하는 방법을 익히는 것이 필요하다. 함수는 함수명, 인자(argument), 함수 몸통(body), 반환값(return value)으로 구성된다.<br>
-데이터 과학 대표 언어 R과 파이썬으로 4칙연산을 구현하는 함수를 작성하여 자세히 살펴보자.</p>
+데이터 과학 대표 언어 R과 파이썬으로 4칙 연산을 구현하는 함수를 작성하여 자세히 살펴보자.</p>
 <section id="r-함수" class="level3" data-number="16.2.1"><h3 data-number="16.2.1" class="anchored" data-anchor-id="r-함수">
 <span class="header-section-number">16.2.1</span> R 함수</h3>
+<p><code>roxygen2</code>는 R 패키지 개발에 널리 사용되는 문서화 도구로, 함수 코드 바로 위에 특수한 주석을 작성하여 함수의 파라미터, 반환값, 예제 등을 설명하는 방식으로 함수를 문서화하여 가독성도 높이고 오류가능성도 줄여 재사용성에 도움이 된다.</p>
 <ul>
 <li>함수명: 함수명을 먼저 적고 <code>&lt;-</code>, <code>function()</code>, <code>{</code>, <code>}</code> 순으로 R이 함수임을 알 수 있도록 전개한다.</li>
 <li>함수 인자: 함수에 넣을 인자를 정의하여 넣어 둔다.</li>
 <li>함수 몸통(body): 앞서 사칙연산처럼 함수가 수행해야 되는 작업을 기술한다.</li>
 <li>반환값(return): <code>return</code> 예약어로 함수작업결과 반환되는 값을 명시할 수도 있고, 그냥 놔두면 마지막 객체가 자동으로 반환된다.</li>
+<li>
+<code>roxygen2</code> 문법에 맞춰 함수 설명을 작성한다.
+<ul>
+<li>과거 <code>roxygen2</code> 문법에 맞춘 함수 문서화 작업은 품이 많이 가고 고단한 작업이였지만 챗GPT도 대표되는 AI 를 사용하면 쉽게 작업할 수 있다.</li>
+</ul>
+</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">basic_operation</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">first</span>, <span class="va">second</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">sum_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">+</span> <span class="va">second</span></span>
-<span>  <span class="va">minus_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">-</span> <span class="va">second</span></span>
-<span>  <span class="va">multiply_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">*</span> <span class="va">second</span></span>
-<span>  <span class="va">divide_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">/</span> <span class="va">second</span></span>
-<span>  </span>
-<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">sum_number</span>, <span class="va">minus_number</span>, <span class="va">multiply_number</span>, <span class="va">divide_number</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#' 두 숫자에 대한 기본 산술 연산 수행</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' 이 함수는 두 개의 숫자 인자를 받아 두 숫자의 합, 차, 곱, 몫을 포함하는 리스트를 반환합니다.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param first 첫 번째 숫자를 나타내는 숫자 값.</span></span>
+<span><span class="co">#' @param second 두 번째 숫자를 나타내는 숫자 값.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @return 다음 네 가지 요소가 포함된 리스트:</span></span>
+<span><span class="co">#' \itemize{</span></span>
+<span><span class="co">#'   \item sum_number: `first`와 `second`의 합.</span></span>
+<span><span class="co">#'   \item minus_number: `first`와 `second`의 차.</span></span>
+<span><span class="co">#'   \item multiply_number: `first`와 `second`의 곱.</span></span>
+<span><span class="co">#'   \item divide_number: `first`를 `second`로 나눈 몫.</span></span>
+<span><span class="co">#' }</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @examples</span></span>
+<span><span class="co">#' basic_operation(10, 5)</span></span>
+<span><span class="co">#' # [[1]]</span></span>
+<span><span class="co">#' # [1] 15</span></span>
+<span><span class="co">#' #</span></span>
+<span><span class="co">#' # [[2]]</span></span>
+<span><span class="co">#' # [1] 5</span></span>
+<span><span class="co">#' #</span></span>
+<span><span class="co">#' # [[3]]</span></span>
+<span><span class="co">#' # [1] 50</span></span>
+<span><span class="co">#' #</span></span>
+<span><span class="co">#' # [[4]]</span></span>
+<span><span class="co">#' # [1] 2</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="va">basic_operation</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">first</span>, <span class="va">second</span><span class="op">)</span> <span class="op">{</span></span>
+<span> <span class="va">sum_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">+</span> <span class="va">second</span></span>
+<span> <span class="va">minus_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">-</span> <span class="va">second</span></span>
+<span> <span class="va">multiply_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">*</span> <span class="va">second</span></span>
+<span> <span class="va">divide_number</span> <span class="op">&lt;-</span> <span class="va">first</span> <span class="op">/</span> <span class="va">second</span></span>
+<span> <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">sum_number</span>, <span class="va">minus_number</span>, <span class="va">multiply_number</span>, <span class="va">divide_number</span><span class="op">)</span></span>
+<span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">basic_operation</span><span class="op">(</span><span class="fl">7</span>, <span class="fl">3</span><span class="op">)</span></span>
@@ -562,6 +601,7 @@ window.Quarto = {
 </div>
 </section><section id="파이썬-함수" class="level3" data-number="16.2.2"><h3 data-number="16.2.2" class="anchored" data-anchor-id="파이썬-함수">
 <span class="header-section-number">16.2.2</span> 파이썬 함수</h3>
+<p>파이썬 함수는 함수명, 인자(argument), 함수 몸통(body), 반환값(return value)으로 구성된다. R 함수와 개념적으로 동일하지만 문법만 다르고 함수 설명은 <code>docstring</code>으로 작성된다. 물론 AI를 사용해서 함수 설명도 작성할 수 있다.</p>
 <ul>
 <li>함수 머리(header): <code>def</code>로 함수임을 선언하고, 함수명과 함수인자를 기술, 마지막을 <code>:</code>으로 마무리.</li>
 <li>함수 설명: docstring으로 ““” … ““” 으로 함수에 대한 도움말을 기술한다. 함수가 하는 역할, 매개변수, 반환되는 값, 예제 등을 넣어 개발자가 봤을 때 피로도가 없도록 작성한다.</li>
@@ -593,6 +633,8 @@ window.Quarto = {
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>basic_operation(<span class="dv">7</span>, <span class="dv">3</span>)    </span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10, 4, 21, 2.3333333333333335]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section><section id="함수-호출" class="level3" data-number="16.2.3"><h3 data-number="16.2.3" class="anchored" data-anchor-id="함수-호출">
+<span class="header-section-number">16.2.3</span> 함수 호출</h3>
 <p>다른 사람이 작성한 함수를 사용한다는 것은 좀더 엄밀한 의미로 함수를 <strong>호출(call)</strong>한다고 한다. 함수를 호출해서 다른 사람이 작성한 함수를 사용하기 위해서 먼저 함수명을 알아야 하고, 그 다음으로 함수에서 사용되는 인자(arugment)를 파악해서 올바르게 전달해야 원하는 결과를 얻을 수 있다.</p>
 <p>표준편차(<code>sd</code>)를 계산하는 <code>sd</code> 함수의 경우 전달되는 인자는 두개 <code>x</code>, <code>na.rm = FALSE</code>인데 이를 확인할 수 있는 명령어가 <code><a href="https://rdrr.io/r/base/args.html">args()</a></code> 함수다.</p>
 <div class="cell">
@@ -603,81 +645,16 @@ window.Quarto = {
 <p><code>x</code>는 <code><a href="https://rdrr.io/r/stats/sd.html">? sd</a></code> 명령어를 통해서 숫자 벡터를 전달해 주어야만 표준편차를 계산할 수 있다. 예를 들어, 데이터프레임(<code>penguins</code>)의 변수 하나(<code>bill_length_mm</code>)를 지정하여 전달하고 <code>na.rm = TRUE</code>도 명세하여 인자로 전달한다. 인자값이 기본디폴트 값으로 설정된 경우 타이핑을 줄일 수 있고, 결측값이 포함된 경우에 따라서 다른 인자를 넣어 전달하는 방식으로 함수를 사용한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
-<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">$</span><span class="va">bill_length_mm</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 5.459584</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="convert-scripts-to-function" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="convert-scripts-to-function">
-<span class="header-section-number">16.3</span> 스크립트 → 함수</h2>
-<p>함수를 작성하는 경우는 먼저 데이터를 가져와서 정제하고 EDA과정을 거치며 모형과 시각화 산출물을 제작하는 과정을 거친다. 그리고 나서 이런 작업이 몇번 반복하게 되면 함수작성을 고려하게 된다. 즉, 스크립트에서 함수로 변환하는 과정을 설명하면 다음과 같다.</p>
-<ol type="1">
-<li>R 함수 템플릿을 제작한다.
-<ul>
-<li>함수명 &lt;- function() { }</li>
-</ul>
-</li>
-<li>스크립트를 함수 몸통에 복사하여 붙인다.</li>
-<li>반복작업되는 인자를 찾아내 이를 인자로 넣어둔다.</li>
-<li>인자값과 연동되는 부분을 찾아 맞춰준다.</li>
-<li>함수명을 적절한 동사를 갖춘 이름으로 작명한다.</li>
-<li>
-<code>return</code>이 불필요하기 때문에 R 언어 특성을 반영하여 필요한 경우 제거한다.</li>
-</ol>
-<section id="writing-funciton-dice" class="level3" data-number="16.3.1"><h3 data-number="16.3.1" class="anchored" data-anchor-id="writing-funciton-dice">
-<span class="header-section-number">16.3.1</span> 주사위</h3>
-<p>먼저 주사위를 모사하여 보자. 즉, 주사위를 물리적으로 만드는 대신 주사위를 던진 것과 동일한 효과가 나타나도록 이를 구현해 본다.</p>
-<ol type="1">
-<li>주사위 던지는 스크립트</li>
-</ol>
-<p>먼저 주사위 눈을 1,2,3,4,5,6 숫자 벡터로 정의하고 나서 <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> 함수로 <code>size=1</code>을 지정한다. 즉, 주사위 눈 6개중 임의로 하나를 선택한다.</p>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>함수 템플릿</li>
-</ol>
-<p>“함수명 &lt;- function() { }”으로 구성되는 함수 템플릿을 작성한다.</p>
-<div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draw_dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  </span>
-<span><span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>함수 몸통으로 복사하여 붙여넣기</li>
-</ol>
-<p>함수 몸통내부에 <code>dice &lt;- c(1,2,3,4,5,6)</code>을 함수를 매번 호출할 때마다 실행시킬 필요는 없기 때문에 외부로 빼내고 실제 주사위 던지는 과정을 모사하는 코드만 복사하여 붙여넣는다.</p>
-<div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">draw_dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu">draw_dice</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="1">
-<li>함수명, 함수 인자 등 마무리</li>
-</ol>
-<p>함수명을 <code>draw_dice</code> 말고 다른 더 기억하기 좋고 짧고 간결한 형태로 필요한 경우 변경시키고, 인자도 없는 것에서 횟수를 지정할 수 있도록 변경시키고, 필요한 경우 <code>return</code> 함수를 지정하여 반환값을 명시적으로 적어 둔다.</p>
-<div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draw_dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">num_try</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">face</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="va">num_try</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span> <span class="co"># 불필요함.</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu">draw_dice</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2 3 4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section></section><section id="why-write-function" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="why-write-function">
-<span class="header-section-number">16.4</span> 왜 함수가 필요한가?</h2>
-<p>왜 함수가 필요한지를 데이터를 분석할 때 자주 나오는 변수 정규화 사례를 바탕으로 살펴보자. 데이터프레임에 담긴 변수의 측도가 상이하여 변수를 상대적으로 비교하기 위해 측도를 재조정하여 표준화할 필요가 있다. 변수에서 평균을 빼고 표준편차로 나누는 정규화도 있지만, 최대값에서 최소값을 빼서 분모에 두고 분자에 최소값을 빼서 나누면 모든 변수가 0–1 사이 값으로 척도가 조정된다.</p>
+</section></section><section id="why-write-function" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="why-write-function">
+<span class="header-section-number">16.3</span> 함수 작성시점</h2>
+<p>기본적으로 함수를 작성하는 이유는 반복적인 작업을 줄이기 위해서이다. 스크립트에 작성된 데이터 분석 코드는 다른 제3자가 작성한 함수를 사용하는 과정이다. 하지만, 제3자가 작성한 함수가 본인이 풀고 있는 문제에 맞지 않는 경우가 있다. 데이터를 다루면서 뭔가 불편하게 느껴지기 시작하면 함수 작성을 고려할 시점으로 누구나 자연스럽게 마주하는 일상적인 경험이다.</p>
+<p>왜 함수가 필요한지를 데이터를 분석할 때 자주 나오는 변수 정규화 사례를 바탕으로 살펴보자.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 데이터프레임에 담긴 변수의 측도가 상이하여 변수를 상대적으로 비교하기 위해 측도를 재조정하여 표준화할 필요가 있다. 변수에서 평균을 빼고 표준편차로 나누는 정규화도 있지만, 최대값에서 최소값을 빼서 분모에 두고 분자에 최소값을 빼서 나누면 모든 변수가 0–1 사이 값으로 척도가 조정된다.</p>
 <p><span class="math display">\[ f(x)_{\text{척도조정}} = \frac{x-min(x)}{max(x)-min(x)} \]</span></p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>,</span>
 <span>                         b<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span>,<span class="fl">50</span><span class="op">)</span>,</span>
 <span>                         c<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>,</span>
 <span>                         d<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -704,6 +681,33 @@ window.Quarto = {
 <li>1번 코드가 잘 동작하게 되면 다음 복사하여 붙여넣기 신공을 사용하여 다른 칼럼 작업을 확장해 나간다. <code>df$b</code>, <code>df$c</code>, <code>df$d</code>를 생성하게 된다.</li>
 <li>즉, 복사해서 붙여넣은 것을 변수명을 편집해서 <code>df$b</code>, <code>df$c</code>, <code>df$d</code> 변수를 순차적으로 생성해 낸다.</li>
 </ol>
+<p>중복을 제거하는 한 방법이 함수를 작성하는 것이고, 함수를 작성하게 되면 의도가 명확해진다. 함수명을 <code>rescale</code>로 붙이고 이를 실행하게 되면, 의도가 명확하게 드러나게 되고, 복사해서 붙여넣게 되면서 생겨나는 중복과 반복에 의한 실수를 줄일 수 있게 되고, 향후 코드를 갱신할 때도 도움이 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rescale</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">rng</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">rng</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">c</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">d</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>rescale()</code> 함수를 사용해서 복사하여 붙여넣는 중복을 크게 줄였으나, 여전히 함수명을 반복해서 복사하여 붙여넣기를 통해 코드를 작성했다. 함수형 프로그래밍을 사용하는 것으로 함수명을 반복적으로 사용하는 것조차도 피할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">rescale</span><span class="op">)</span></span>
+<span><span class="va">df</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span><span class="co">#&gt;       a     b     c     d</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  0     1    0.857  0.75</span></span>
+<span><span class="co">#&gt; 2  0.25  0.75 1      0.5 </span></span>
+<span><span class="co">#&gt; 3  0.5   0.5  0.714  1   </span></span>
+<span><span class="co">#&gt; 4  0.75  0.25 0      0.75</span></span>
+<span><span class="co">#&gt; 5  1     0    0.286  0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>함수를 사용하지 않고 복사하여 붙여넣기 방식으로 코드를 작성한 경우 의도하지 않은 실수가 있어 함수를 도입하여 작성한 코드와 결과가 다른 것이 존재한다. 코드를 읽어 찾아보거나 실행한 후 결과를 통해 버그를 찾아보는 것도 함수의 의미와 중요성을 파악하는데 도움이 된다.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -715,14 +719,77 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>중복은 의도를 숨기게 되고, 복사하여 붙여넣기 두번하면 함수를 작성할 시점이 되었다. (Duplication hides the intent. If you have copied-and-pasted twice, it is time to write a function.)</li>
+<li>중복은 의도를 숨기게 되고, 복사하여 붙여넣기 두번했다면 함수를 작성할 시점이 되었다. (Duplication hides the intent. If you have copied-and-pasted twice, it is time to write a function.)</li>
 </ul>
 </div>
+</div>
+</section><section id="convert-scripts-to-function" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="convert-scripts-to-function">
+<span class="header-section-number">16.4</span> 스크립트 → 함수</h2>
+<p>함수를 작성하는 경우는 먼저 데이터를 가져와서 정제하고 EDA과정을 거치며 모형과 시각화 산출물을 제작하는 과정을 거친다. 그리고 나서 이런 작업이 몇번 반복하게 되면 함수작성을 고려하게 된다. 즉, 스크립트에서 함수로 변환하는 과정을 설명하면 다음과 같다.</p>
+<ol type="1">
+<li>R 함수 템플릿을 제작한다.
+<ul>
+<li>함수명 &lt;- function() { }</li>
+</ul>
+</li>
+<li>스크립트를 함수 몸통에 복사하여 붙인다.</li>
+<li>반복작업되는 인자를 찾아내 이를 인자로 넣어둔다.</li>
+<li>인자값과 연동되는 부분을 찾아 맞춰준다.</li>
+<li>함수명을 적절한 동사를 갖춘 이름으로 작명한다.</li>
+<li>
+<code>return</code>이 불필요하기 때문에 R 언어 특성을 반영하여 필요한 경우 제거한다.</li>
+</ol>
+<p>주사위를 던져 나온 숫자를 구하는 함수를 작성해보자. 먼저 주사위를 모사하여 보자. 즉, 주사위를 물리적으로 만드는 대신 주사위를 던진 것과 동일한 효과가 나타나도록 이를 구현해 본다.</p>
+<ol type="1">
+<li>주사위 던지는 스크립트</li>
+</ol>
+<p>먼저 주사위 눈을 1,2,3,4,5,6 숫자 벡터로 정의하고 나서 <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> 함수로 <code>size=1</code>을 지정한다. 즉, 주사위 눈 6개중 임의로 하나를 선택한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>함수 템플릿</li>
+</ol>
+<p>“함수명 &lt;- function() { }”으로 구성되는 함수 템플릿을 작성한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draw_dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>함수 몸통으로 복사하여 붙여넣기</li>
+</ol>
+<p>함수 몸통내부에 <code>dice &lt;- c(1,2,3,4,5,6)</code>을 함수를 매번 호출할 때마다 실행시킬 필요는 없기 때문에 외부로 빼내고 실제 주사위 던지는 과정을 모사하는 코드만 복사하여 붙여넣는다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">draw_dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">draw_dice</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>함수명, 함수 인자 등 마무리</li>
+</ol>
+<p>함수명을 <code>draw_dice</code> 말고 다른 더 기억하기 좋고 짧고 간결한 형태로 필요한 경우 변경시키고, 인자도 없는 것에서 횟수를 지정할 수 있도록 변경시키고, 필요한 경우 <code>return</code> 함수를 지정하여 반환값을 명시적으로 적어 둔다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draw_dice</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">num_try</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">face</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dice</span>, size<span class="op">=</span><span class="va">num_try</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span> <span class="co"># 불필요함.</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">draw_dice</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 6 2 4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="funciton-component" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="funciton-component">
 <span class="header-section-number">16.5</span> 함수 구성요소</h2>
 <section id="function-component-argument" class="level3" data-number="16.5.1"><h3 data-number="16.5.1" class="anchored" data-anchor-id="function-component-argument">
-<span class="header-section-number">16.5.1</span> 인자(argument)</h3>
+<span class="header-section-number">16.5.1</span> 인자</h3>
 <p>함수 구성요소 중 중요한 요소로 인자(argument)를 꼽을 수 있다. 인자는 크게 두가지로 나뉜다.</p>
 <ul>
 <li>데이터 인자(data argumnets): 대다수 함수는 기본적으로 데이터에 대한 연산을 가정하고 있다. 따라서 데이터를 함수 인자로 지정하여 이를 함수몸통에서 처리하고 결과를 반환시키는 것은 당연한 귀결이다.</li>
@@ -730,7 +797,7 @@ window.Quarto = {
 </ul>
 <p>예를 들어 <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> 함수를 살펴보면 <code>x</code>가 데이터 인자가 되며, 기타 <code>alternative = c("two.sided", "less", "greater")</code>, <code>mu = 0</code>, <code>paired = FALSE</code>, <code>var.equal = FALSE</code>, <code>conf.level = 0.95</code>, <code>...</code>은 함수가 구체적으로 어떻게 동작하는지 명세한 인자값이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span> <span class="va">t.test</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span> <span class="va">t.test</span></span>
 <span></span>
 <span><span class="co">## Default S3 method:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -744,10 +811,10 @@ window.Quarto = {
 <p>인자값이 제대로 입력되어야 함수몸통에서 기술한 연산작업이 제대로 수행될 수 있다. 이를 위해서 <code>testthat</code>, <code>assertive</code>, <code>assertr</code>, <code>assertthat</code> 등 수많은 팩키지가 존재한다. <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code>, <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> 등 Base R 함수를 사용해도 문제는 없다.</p>
 <p>다음과 같이 입력값에 <code>NA</code>가 포함된 경우 벡터의 합계를 구하는 함수가 동작하지 않거나 아무 의미없는 값을 반환시키곤 한다. 그리고 앞서 인자값을 잘 제어하지 않게 되면 귀중한 컴퓨팅 자원을 낭비하기도 한다. 이를 방기하기 위해서 <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code>함수로 함수 몸통을 수호하는 보호자처럼 앞서 인자값의 적절성에 대해서 검정을 먼저 수행한다. 그리고 나서 사전 유효성 검사를 통과한 인자값에 대해서만 함수 몸통에 기술된 연산작업을 수행하고 결과값을 반환시킨다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org">testthat</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org">testthat</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">num_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">na_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="cn">NA</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">na_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="cn">NA_character_</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sum_numbers</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
@@ -766,17 +833,17 @@ window.Quarto = {
 <span><span class="fu">sum_numbers</span><span class="op">(</span><span class="va">na_vector</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in sum_numbers(na_vector): !any(is.na(vec)) is not TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>상기 코드의 문제점은 <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code> 함수가 잘못된 입력값에 대해서 문제가 무엇이고, 어떤 행동을 취해야 하는지 친절하지 않다는데 있다. 이를 <a href="https://cran.r-project.org/web/packages/assertive/"><code>assertive</code></a> 팩키지를 활용해서 극복하는 방안을 살펴보자. <code>asserive</code> 팩키지를 설치하면 R 함수 작성에 걸림돌이 될 수 있는 거의 모든 사전 점검작업을 수행할 수 있다는 것이 매력적이다. <code>install.packages("assertive")</code>를 실행하게 되면 함께 설치되는 팩키지는 다음과 같다.</p>
-<p>‘assertive.base’, ‘assertive.properties’, ‘assertive.types’, ‘assertive.numbers’, ‘assertive.strings’, ‘assertive.datetimes’, ‘assertive.files’, ‘assertive.sets’, ‘assertive.matrices’, ‘assertive.models’, ‘assertive.data’, ‘assertive.data.uk’, ‘assertive.data.us’, ‘assertive.reflection’, ‘assertive.code’</p>
+<p>상기 코드의 문제점은 <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code> 함수가 잘못된 입력값에 대해서 문제가 무엇이고, 어떤 행동을 취해야 하는지 친절하지 않다는 데 있다. 이를 <a href="https://cran.r-project.org/web/packages/assertive/"><code>assertive</code></a> 팩키지를 활용해서 극복하는 방안을 살펴보자. <code>asserive</code> 패키지를 설치하면 R 함수 작성에 걸림돌이 될 수 있는 거의 모든 사전 점검작업을 수행할 수 있다는 것이 매력적이다. <code>install.packages("assertive")</code>를 실행하게 되면 함께 설치되는 패키지는 다음과 같다.</p>
+<p><code>assertive.base</code>, <code>assertive.properties</code>, <code>assertive.types</code>, <code>assertive.numbers</code>, <code>assertive.strings</code>, <code>assertive.datetimes</code>, <code>assertive.files</code>, <code>assertive.sets</code>, <code>assertive.matrices</code>, <code>assertive.models</code>, <code>assertive.data</code>, <code>assertive.data.uk</code>, <code>assertive.data.us</code>, <code>assertive.reflection</code>, <code>assertive.code</code></p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bitbucket.org/richierocks/assertive">assertive</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bitbucket.org/richierocks/assertive">assertive</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sum_numbers_assertive</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/assertive.types/man/is_numeric.html">assert_is_numeric</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/assertive.base/man/Truth.html">assert_all_are_not_na</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>, silent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  </span>
-<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/assertive.base/man/Truth.html">assert_any_are_na</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"벡터 x는 NA 값이 있어요. 그래서 총합을 구하는게 의미가 없네요"</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">result</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"벡터에 NA 값이 있어서 총합을 구할 수 없습니다."</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span>  </span>
 <span>  <span class="va">total</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
@@ -784,12 +851,12 @@ window.Quarto = {
 <span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">total</span> <span class="op">&lt;-</span> <span class="va">total</span> <span class="op">+</span> <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
 <span>  <span class="op">}</span></span>
+<span>  </span>
 <span>  <span class="va">total</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="co"># sum_numbers_assertive(num_vector)</span></span>
 <span><span class="fu">sum_numbers_assertive</span><span class="op">(</span><span class="va">na_vector</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in if (assert_any_are_na(vec)) {: the condition has length &gt; 1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Error in sum_numbers_assertive(na_vector): 벡터에 NA 값이 있어서 총합을 구할 수 없습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="function-component-return" class="level3" data-number="16.5.3"><h3 data-number="16.5.3" class="anchored" data-anchor-id="function-component-return">
 <span class="header-section-number">16.5.3</span> 반환값 확인</h3>
@@ -797,7 +864,7 @@ window.Quarto = {
 <p>먼저 함수에서 반환되는 값이 하나가 아닌 경우 이를 담아내는 방법을 살펴보자. <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>로 감싸 이를 반환하는 경우가 많이 사용되었지만, 최근 <code>zeallot</code> 팩키지가 도입되어 함수 출력값을 받아내는데 간결하고 깔끔하게 작업할 수 있게 되었다. <a href="https://cran.r-project.org/web/packages/zeallot/vignettes/unpacking-assignment.html">zeallot vignette</a>에 다양한 사례가 나와 있다.</p>
 <p>예를 들어 단변량 회귀모형의 경우 <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> 함수로 회귀식을 적합시킨다. 그리고 나서 <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> 함수로 절편과 회귀계수를 추출할 때 <code>%&lt;-%</code> 연산자를 사용하게 되면 해당값을 벡터객체에 할당시킬 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nteetor/zeallot">zeallot</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">inter</span>, <span class="va">slope</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/zeallot/man/operator.html">%&lt;-%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span>
@@ -808,21 +875,21 @@ window.Quarto = {
 </div>
 <p><code>iris</code> 데이터셋을 훈련/시험 데이터셋으로 쪼갠다. 이를 위해서 일양균등분포에서 난수를 생성시켜 8:2 비율로 훈련/시험 데이터를 나눈다. 그리고 나서, <code>%&lt;-%</code> 연산자로 훈련/시험 데이터로 나누어 할당하는 것도 가능하다. 각 붓꽃마다 0~1 사이 난수를 생성하여 할당한다. 그리고 난수값이 0.2 이상이면 훈련, 그렇지 않으면 시험 데이터로 구분한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">iris_df</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_raw</span> <span class="op">&lt;-</span>  <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">penguin_df</span> <span class="op">&lt;-</span> <span class="va">penguins_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>runif <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>train_test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">runif</span> <span class="op">&gt;</span> <span class="fl">0.2</span>, <span class="st">"train"</span>, <span class="st">"test"</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test</span>, <span class="va">train</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/zeallot/man/operator.html">%&lt;-%</a></span>  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">iris_df</span>, <span class="va">iris_df</span><span class="op">$</span><span class="va">train_test</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test</span>, <span class="va">train</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/zeallot/man/operator.html">%&lt;-%</a></span>  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">penguin_df</span>, <span class="va">penguin_df</span><span class="op">$</span><span class="va">train_test</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"총 관측점: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, <span class="st">"\n훈련: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">train</span><span class="op">)</span>, <span class="st">"\n시험: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 총 관측점:  150 </span></span>
-<span><span class="co">#&gt; 훈련:  120 </span></span>
-<span><span class="co">#&gt; 시험:  30</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"총 관측점: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span>, <span class="st">"\n훈련: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">train</span><span class="op">)</span>, <span class="st">"\n시험: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 총 관측점:  333 </span></span>
+<span><span class="co">#&gt; 훈련:  266 </span></span>
+<span><span class="co">#&gt; 시험:  67</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>혹은, 회귀분석 결과를 <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> 함수로 결합시켜 리스트로 반환시킨다. 이런 경우 결과값이 하나가 아니더라도 추후 리스트 객체를 풀어 활용하는 것이 가능하다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_lm_statistics</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_lm_statistics</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">mtcars_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">df</span><span class="op">)</span></span>
 <span>  </span>
 <span>  <span class="va">intercept</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">mtcars_lm</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -845,35 +912,6 @@ window.Quarto = {
 <span><span class="co">#&gt;      cyl </span></span>
 <span><span class="co">#&gt; -2.87579</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="time-to-write-function" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="time-to-write-function">
-<span class="header-section-number">16.6</span> 함수를 작성하는 시점</h2>
-<p>복사해서 붙여넣는 것을 두번 하게 되면, 함수를 작성할 시점이다. 중복을 제거하는 한 방법이 함수를 작성하는 것이고, 함수를 작성하게 되면 의도가 명확해진다. 함수명을 <code>rescale</code>로 붙이고 이를 실행하게 되면, 의도가 명확하게 드러나게 되고, 복사해서 붙여넣게 되면서 생겨나는 중복과 반복에 의한 실수를 줄일 수 있게 되고, 향후 코드를 갱신할 때도 도움이 된다.</p>
-<div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rescale</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">rng</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>  <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">rng</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">rng</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">c</span><span class="op">)</span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">rescale</span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">d</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>rescale()</code> 함수를 사용해서 복사하여 붙여넣는 중복을 크게 줄였으나, 여전히 함수명을 반복해서 복사하여 붙여넣기를 통해 코드를 작성했다. 함수형 프로그래밍을 사용하는 것으로 함수명을 반복적으로 사용하는 것조차도 피할 수 있다.</p>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">rescale</span><span class="op">)</span></span>
-<span><span class="va">df</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span><span class="co">#&gt;       a     b     c     d</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1  0     1    0.857  0.75</span></span>
-<span><span class="co">#&gt; 2  0.25  0.75 1      0.5 </span></span>
-<span><span class="co">#&gt; 3  0.5   0.5  0.714  1   </span></span>
-<span><span class="co">#&gt; 4  0.75  0.25 0      0.75</span></span>
-<span><span class="co">#&gt; 5  1     0    0.286  0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>함수를 사용하지 않고 복사하여 붙여넣기 방식으로 코드를 작성한 경우 의도하지 않은 실수가 있어 함수를 도입하여 작성한 코드와 결과가 다른 것이 존재한다. 코드를 읽어 찾아보거나 실행한 후 결과를 통해 버그를 찾아보는 것도 함수의 의미와 중요성을 파악하는데 도움이 된다.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -912,8 +950,9 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-</section><section id="how-to-write-function" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="how-to-write-function">
-<span class="header-section-number">16.7</span> 사례: <code>rescale</code> 함수</h2>
+</section></section><section id="연습문제" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="연습문제">연습문제</h2>
+<section id="how-to-write-function" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="how-to-write-function">
+<code>rescale</code> 함수</h3>
 <p>함수를 작성할 경우 먼저 매우 단순한 문제에서 출발한다. 척도를 맞추는 상기 과정을 R 함수로 만드는 과정을 통해 앞서 학습한 사례를 실습해 보자.</p>
 <ol type="1">
 <li><p>입력값과 출력값을 정의한다. 즉, 입력값이 <code>c(1,2,3,4,5)</code> 으로 들어오면 출력값은 <code>0.00 0.25 0.50 0.75 1.00</code> 0–1 사이 값으로 나오는 것이 확인되어야 하고, 각 원소값도 출력벡터 원소값에 매칭이 되는지 확인한다.</p></li>
@@ -953,12 +992,11 @@ window.Quarto = {
 <span></span>
 <span><span class="fu">rescale</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="function-is-argument" class="level2" data-number="16.8"><h2 data-number="16.8" class="anchored" data-anchor-id="function-is-argument">
-<span class="header-section-number">16.8</span> 사례: 요약통계 함수</h2>
+</section><section id="function-is-argument" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="function-is-argument">요약통계 함수</h3>
 <p>데이터를 분석할 때 가장 먼저 수행하는 작업이 요약통계를 통해 데이터를 이해하는 것이다. 이미 훌륭한 요약통계 패키지와 함수가 있지만, 친숙한 개념을 함수로 다시 제작함으로써 함수에 대한 이해를 높일 수 있다.</p>
 <p>요약통계 기능을 먼저 구현한 다음에 중복 제거하여 요약통계 기능 함수를 제작해보자. 함수도 인자로 넣어 처리할 수 있다는 점이 처음에 이상할 수도 있지만, 함수를 인자로 처리할 경우 코드 중복을 상당히 줄일 수 있다. <span class="math inline">\(L_1\)</span>, <span class="math inline">\(L_2\)</span>, <span class="math inline">\(L_3\)</span> 값을 구하는 함수를 다음과 같이 작성하는 경우, 숫자 1,2,3 만 차이날 뿐 다른 부분은 동일하기 때문에 함수 코드에 중복이 심하게 관찰된다.</p>
 <ul>
-<li>1단계: 중복이 심한 함수, 기능 구현에 초점을 맞춤</li>
+<li>1단계: 중복이 심한 함수, 기능 구현에 초점을 맞춰 작성한다.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">^</span> <span class="fl">1</span></span>
@@ -984,7 +1022,7 @@ window.Quarto = {
 <p>여기서 요약통계함수 인자로 “데이터”(<code>df</code>)와 기초통계 요약 “함수”(<code>mean</code>, <code>sd</code> 등)도 함께 넘겨 요약통계함수를 간략하고 가독성 높게 작성할 수 있다.</p>
 <p>먼저, 특정 변수의 중위수, 평균, 표준편차를 계산하는 함수를 작성하는 경우를 가정해보자.</p>
 <ul>
-<li>1 단계: 각 기능을 구현하는 기능 구현에 초점을 맞춤</li>
+<li>1 단계: 각 기능을 구현하는 기능 구현에 초점을 맞춰 작성한다.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">col_median</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1012,7 +1050,7 @@ window.Quarto = {
 <span>  <span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>2 단계: <code>median</code>, <code>mean</code>, <code>sd</code>를 함수 인자 <code>fun</code> 으로 함수명을 통일.</li>
+<li>2 단계: <code>median</code>, <code>mean</code>, <code>sd</code>를 함수 인자 <code>fun</code> 으로 함수명을 통일한다.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">col_median</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1040,7 +1078,7 @@ window.Quarto = {
 <span>  <span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>3 단계: 함수 인자 <code>fun</code> 을 넣어 중복을 제거.</li>
+<li>3 단계: 함수 인자 <code>fun</code> 을 넣어 중복을 제거한다.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">col_median</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">fun</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1068,7 +1106,7 @@ window.Quarto = {
 <span>  <span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>4 단계: 함수를 인자로 갖는 요약통계 함수를 최종적으로 정리하고, 테스트 사례를 통해 검증.</li>
+<li>4 단계: 함수를 인자로 갖는 요약통계 함수를 최종적으로 정리하고, 테스트 사례를 통해 검증한다.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">col_summary</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">fun</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1089,9 +1127,12 @@ window.Quarto = {
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">데이터 과학 함수 개념</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;16.1: 데이터 과학 함수 개념</span>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>해들리 위컴이 함수에 대해 필요성과 중요성을 언급하며 제시한 사례를 가져왔다. 자세한 사항은 R for Data Science 2판 26장 함수를 참고한다.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1561,7 +1602,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -10,33 +10,64 @@ editor_options:
 
 함수는 입력값(`x`)를 넣어 어떤 작업(`f`)을 수행한 결과를 반환(`y`) 과정으로 이해할 수 있는데, 인자로 다양한 값을 함수에 넣을 수 있고, 물론 함수가 뭔가 유용한 작업을 수행하기 위한 전제조건을 만족시키는지 확인하는 과정을 `assert` 개념을 넣어 확인하고 기술된 작업을 수행한 후에 출력값을 변환시키게 된다.
 
-![데이터 과학 함수 개념](images/function_concept.png)
+![데이터 과학 함수 개념](images/function_concept.png){#fig-function-concpet}
 
 ## 함수 사용법 {#how-to-use-function}
 
 본격적으로 함수를 작성하기 전에 먼저, 함수를 사용하는 방법을 익히는 것이 필요하다.
 함수는 함수명, 인자(argument), 함수 몸통(body), 반환값(return value)으로 구성된다.  
-데이터 과학 대표 언어 R과 파이썬으로 4칙연산을 구현하는 함수를 작성하여 자세히 살펴보자.
+데이터 과학 대표 언어 R과 파이썬으로 4칙 연산을 구현하는 함수를 작성하여 자세히 살펴보자.
 
 ### R 함수
+
+`roxygen2`는 R 패키지 개발에 널리 사용되는 문서화 도구로, 함수 코드 바로 위에 특수한 주석을 작성하여 함수의 파라미터, 반환값, 예제 등을 설명하는 방식으로 함수를 문서화하여 가독성도 높이고 오류가능성도 줄여 재사용성에 도움이 된다.
 
 - 함수명: 함수명을 먼저 적고 `<-`, `function()`, `{`, `}` 순으로 R이 함수임을 알 수 있도록 전개한다.
 - 함수 인자: 함수에 넣을 인자를 정의하여 넣어 둔다.
 - 함수 몸통(body): 앞서 사칙연산처럼 함수가 수행해야 되는 작업을 기술한다.
 - 반환값(return): `return` 예약어로 함수작업결과 반환되는 값을 명시할 수도 있고, 그냥 놔두면 마지막 객체가 자동으로 반환된다.
+- `roxygen2` 문법에 맞춰 함수 설명을 작성한다.
+  - 과거 `roxygen2` 문법에 맞춘 함수 문서화 작업은 품이 많이 가고 고단한 작업이였지만 챗GPT도 대표되는 AI 를 사용하면 쉽게 작업할 수 있다.
 
 ```{r}
 #| label: r-function-explain
-
+#' 두 숫자에 대한 기본 산술 연산 수행
+#'
+#' 이 함수는 두 개의 숫자 인자를 받아 두 숫자의 합, 차, 곱, 몫을 포함하는 리스트를 반환합니다.
+#'
+#' @param first 첫 번째 숫자를 나타내는 숫자 값.
+#' @param second 두 번째 숫자를 나타내는 숫자 값.
+#'
+#' @return 다음 네 가지 요소가 포함된 리스트:
+#' \itemize{
+#'   \item sum_number: `first`와 `second`의 합.
+#'   \item minus_number: `first`와 `second`의 차.
+#'   \item multiply_number: `first`와 `second`의 곱.
+#'   \item divide_number: `first`를 `second`로 나눈 몫.
+#' }
+#'
+#' @examples
+#' basic_operation(10, 5)
+#' # [[1]]
+#' # [1] 15
+#' #
+#' # [[2]]
+#' # [1] 5
+#' #
+#' # [[3]]
+#' # [1] 50
+#' #
+#' # [[4]]
+#' # [1] 2
+#'
+#' @export
 basic_operation <- function(first, second) {
-  sum_number <- first + second
-  minus_number <- first - second
-  multiply_number <- first * second
-  divide_number <- first / second
-  
-  result <- list(sum_number, minus_number, multiply_number, divide_number)
-  
-  return(result)
+ sum_number <- first + second
+ minus_number <- first - second
+ multiply_number <- first * second
+ divide_number <- first / second
+ result <- list(sum_number, minus_number, multiply_number, divide_number)
+ return(result)
 }
 
 basic_operation(7, 3)
@@ -45,6 +76,8 @@ basic_operation(7, 3)
 
 ### 파이썬 함수
 
+파이썬 함수는 함수명, 인자(argument), 함수 몸통(body), 반환값(return value)으로 구성된다. R 함수와 개념적으로 동일하지만 문법만 다르고 함수 설명은 `docstring`으로 작성된다. 물론 AI를 사용해서 함수 설명도 작성할 수 있다.
+
 - 함수 머리(header): `def`로 함수임을 선언하고, 함수명과 함수인자를 기술, 마지막을 `:`으로 마무리.
 - 함수 설명: docstring으로 """ … """ 으로 함수에 대한 도움말을 기술한다. 함수가 하는 역할, 매개변수, 반환되는 값, 예제 등을 넣어 개발자가 봤을 때 피로도가 없도록 작성한다.
 - 함수 몸통(body): 앞서 사칙연산처럼 함수가 수행해야 되는 작업을 기술한다.
@@ -52,7 +85,6 @@ basic_operation(7, 3)
 
 ```{python}
 #| label: python-function-explain
-
 def basic_operation(first, second):
     """
     숫자 두개를 받아 사칙연산을 수행하는 함수.
@@ -77,6 +109,7 @@ def basic_operation(first, second):
 basic_operation(7, 3)    
 ```
 
+### 함수 호출
 
 다른 사람이 작성한 함수를 사용한다는 것은 좀더 엄밀한 의미로 함수를 **호출(call)**한다고 한다.
 함수를 호출해서 다른 사람이 작성한 함수를 사용하기 위해서 먼저 함수명을 알아야 하고, 그 다음으로 함수에서 사용되는 인자(arugment)를 파악해서 올바르게 전달해야 원하는 결과를 얻을 수 있다.
@@ -94,88 +127,25 @@ args(sd)
 ```{r}
 #| label: penguins-sd
 library(palmerpenguins)
-
 sd(penguins$bill_length_mm, na.rm = TRUE)
 ```
 
+## 함수 작성시점 {#why-write-function}
 
-## 스크립트 &rarr; 함수 {#convert-scripts-to-function}
+기본적으로 함수를 작성하는 이유는 반복적인 작업을 줄이기 위해서이다.
+스크립트에 작성된 데이터 분석 코드는 다른 제3자가 작성한 함수를 사용하는 과정이다.
+하지만, 제3자가 작성한 함수가 본인이 풀고 있는 문제에 맞지 않는 경우가 있다.
+데이터를 다루면서 뭔가 불편하게 느껴지기 시작하면 함수 작성을 고려할 시점으로 
+누구나 자연스럽게 마주하는 일상적인 경험이다.
 
-함수를 작성하는 경우는 먼저 데이터를 가져와서 정제하고 EDA과정을 거치며 모형과 시각화 산출물을 제작하는 과정을 거친다. 그리고 나서 이런 작업이 몇번 반복하게 되면 함수작성을 고려하게 된다. 즉, 스크립트에서 함수로 변환하는 과정을 설명하면 다음과 같다.
-
-1. R 함수 템플릿을 제작한다. 
-    - 함수명 <- function() { }
-1. 스크립트를 함수 몸통에 복사하여 붙인다.
-1. 반복작업되는 인자를 찾아내 이를 인자로 넣어둔다.
-1. 인자값과 연동되는 부분을 찾아 맞춰준다.
-1. 함수명을 적절한 동사를 갖춘 이름으로 작명한다.
-1. `return`이 불필요하기 때문에 R 언어 특성을 반영하여 필요한 경우 제거한다.
-
-
-### 주사위 {#writing-funciton-dice}
-
-먼저 주사위를 모사하여 보자. 즉, 주사위를 물리적으로 만드는 대신 주사위를 던진 것과 동일한 효과가 나타나도록 이를 구현해 본다.
-
-1. 주사위 던지는 스크립트
-
-먼저 주사위 눈을 1,2,3,4,5,6 숫자 벡터로 정의하고 나서 `sample()` 함수로 `size=1`을 지정한다. 즉, 주사위 눈 6개중 임의로 하나를 선택한다.
-
-```{r dice-draw}
-dice <- c(1,2,3,4,5,6)
-
-sample(dice, size=1)
-```
-
-2. 함수 템플릿
-
-"함수명 <- function() { }"으로 구성되는 함수 템플릿을 작성한다.
-
-```{r dice-draw-template}
-draw_dice <- function() {
-  
-}
-```
-
-3. 함수 몸통으로 복사하여 붙여넣기 
-
-함수 몸통내부에 `dice <- c(1,2,3,4,5,6)`을 함수를 매번 호출할 때마다 실행시킬 필요는 없기 때문에 외부로 빼내고 실제 주사위 던지는 과정을 모사하는 코드만 복사하여 붙여넣는다.
-
-```{r}
-#| label: dice-draw-paste
-
-dice <- c(1, 2, 3, 4, 5, 6)
-
-draw_dice <- function() {
-  sample(dice, size=1)
-}
-
-draw_dice()
-```
-
-4. 함수명, 함수 인자 등 마무리 
-
-함수명을 `draw_dice` 말고 다른 더 기억하기 좋고 짧고 간결한 형태로 필요한 경우 변경시키고, 인자도 없는 것에서 횟수를 지정할 수 있도록 변경시키고, 필요한 경우 `return` 함수를 지정하여 반환값을 명시적으로 적어 둔다.
-
-```{r dice-draw-return}
-draw_dice <- function(num_try) {
-  face <- sample(dice, size=num_try)
-  return(face) # 불필요함.
-}
-
-draw_dice(3)
-```
-
-
-
-## 왜 함수가 필요한가? {#why-write-function}
-
-왜 함수가 필요한지를 데이터를 분석할 때 자주 나오는 변수 정규화 사례를 바탕으로 살펴보자.
-\footnote{해들리 위컴이 함수에 대해 필요성과 중요성을 언급하며 제시한 사례를 가져왔다. 자세한 사항은 R for Data Science 2판 26장 함수를 참고한다.}
+왜 함수가 필요한지를 데이터를 분석할 때 자주 나오는 변수 정규화 사례를 바탕으로 살펴보자.[^why-function]
 데이터프레임에 담긴 변수의 측도가 상이하여 변수를 상대적으로 비교하기 위해 
 측도를 재조정하여 표준화할 필요가 있다. 
 변수에서 평균을 빼고 표준편차로 나누는 정규화도 있지만,
 최대값에서 최소값을 빼서 분모에 두고 분자에 최소값을 빼서 나누면 모든 변수가 
 0--1 사이 값으로 척도가 조정된다.
+
+[^why-function]: 해들리 위컴이 함수에 대해 필요성과 중요성을 언급하며 제시한 사례를 가져왔다. 자세한 사항은 R for Data Science 2판 26장 함수를 참고한다.
 
 $$ f(x)_{\text{척도조정}} = \frac{x-min(x)}{max(x)-min(x)} $$
 
@@ -204,17 +174,112 @@ df
 1. 1번 코드가 잘 동작하게 되면 다음 복사하여 붙여넣기 신공을 사용하여 다른 칼럼 작업을 확장해 나간다. `df$b`, `df$c`, `df$d`를 생성하게 된다.
 1. 즉, 복사해서 붙여넣은 것을 변수명을 편집해서 `df$b`, `df$c`, `df$d` 변수를 순차적으로 생성해 낸다.
 
+중복을 제거하는 한 방법이 함수를 작성하는 것이고, 함수를 작성하게 되면 의도가 명확해진다.
+함수명을 `rescale`로 붙이고 이를 실행하게 되면, 의도가 명확하게 드러나게 되고, 복사해서 붙여넣게 되면서 
+생겨나는 중복과 반복에 의한 실수를 줄일 수 있게 되고, 향후 코드를 갱신할 때도 도움이 된다.
+
+``` {r}
+rescale <- function(x){
+  rng <- range(x, na.rm = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
+
+df$a <- rescale(df$a)
+df$b <- rescale(df$b)
+df$c <- rescale(df$c)
+df$d <- rescale(df$d)
+```
+
+`rescale()` 함수를 사용해서 복사하여 붙여넣는 중복을 크게 줄였으나, 여전히 함수명을 반복해서 
+복사하여 붙여넣기를 통해 코드를 작성했다.
+함수형 프로그래밍을 사용하는 것으로 함수명을 반복적으로 사용하는 것조차도 피할 수 있다.
+
+``` {r fp-write-purrr}
+library(purrr)
+df <- map_df(df, rescale)
+df
+```
+
+함수를 사용하지 않고 복사하여 붙여넣기 방식으로 코드를 작성한 경우 의도하지 않은 실수가 있어 
+함수를 도입하여 작성한 코드와 결과가 다른 것이 존재한다. 
+코드를 읽어 찾아보거나 실행한 후 결과를 통해 버그를 찾아보는 것도 함수의 의미와 중요성을 파악하는데 도움이 된다.
+
 
 :::{.callout-note}
 ### 해들리 위캠 어록
 
-* 중복은 의도를 숨기게 되고, 복사하여 붙여넣기 두번하면 함수를 작성할 시점이 되었다. (Duplication hides the intent. If you have copied-and-pasted twice, it is time to write a function.)
+* 중복은 의도를 숨기게 되고, 복사하여 붙여넣기 두번했다면 함수를 작성할 시점이 되었다. (Duplication hides the intent. If you have copied-and-pasted twice, it is time to write a function.)
 
 :::
 
+
+## 스크립트 &rarr; 함수 {#convert-scripts-to-function}
+
+함수를 작성하는 경우는 먼저 데이터를 가져와서 정제하고 EDA과정을 거치며 모형과 시각화 산출물을 제작하는 과정을 거친다. 그리고 나서 이런 작업이 몇번 반복하게 되면 함수작성을 고려하게 된다. 즉, 스크립트에서 함수로 변환하는 과정을 설명하면 다음과 같다.
+
+1. R 함수 템플릿을 제작한다. 
+    - 함수명 <- function() { }
+1. 스크립트를 함수 몸통에 복사하여 붙인다.
+1. 반복작업되는 인자를 찾아내 이를 인자로 넣어둔다.
+1. 인자값과 연동되는 부분을 찾아 맞춰준다.
+1. 함수명을 적절한 동사를 갖춘 이름으로 작명한다.
+1. `return`이 불필요하기 때문에 R 언어 특성을 반영하여 필요한 경우 제거한다.
+
+주사위를 던져 나온 숫자를 구하는 함수를 작성해보자.
+먼저 주사위를 모사하여 보자. 즉, 주사위를 물리적으로 만드는 대신 주사위를 던진 것과 동일한 효과가 나타나도록 이를 구현해 본다.
+
+1. 주사위 던지는 스크립트
+
+먼저 주사위 눈을 1,2,3,4,5,6 숫자 벡터로 정의하고 나서 `sample()` 함수로 `size=1`을 지정한다. 즉, 주사위 눈 6개중 임의로 하나를 선택한다.
+
+```{r dice-draw}
+dice <- c(1,2,3,4,5,6)
+
+sample(dice, size=1)
+```
+
+2. 함수 템플릿
+
+"함수명 <- function() { }"으로 구성되는 함수 템플릿을 작성한다.
+
+```{r dice-draw-template}
+draw_dice <- function() {
+  
+}
+```
+
+3. 함수 몸통으로 복사하여 붙여넣기 
+
+함수 몸통내부에 `dice <- c(1,2,3,4,5,6)`을 함수를 매번 호출할 때마다 실행시킬 필요는 없기 때문에 외부로 빼내고 실제 주사위 던지는 과정을 모사하는 코드만 복사하여 붙여넣는다.
+
+```{r}
+#| label: dice-draw-paste
+dice <- c(1, 2, 3, 4, 5, 6)
+
+draw_dice <- function() {
+  sample(dice, size=1)
+}
+
+draw_dice()
+```
+
+4. 함수명, 함수 인자 등 마무리 
+
+함수명을 `draw_dice` 말고 다른 더 기억하기 좋고 짧고 간결한 형태로 필요한 경우 변경시키고, 인자도 없는 것에서 횟수를 지정할 수 있도록 변경시키고, 필요한 경우 `return` 함수를 지정하여 반환값을 명시적으로 적어 둔다.
+
+```{r dice-draw-return}
+draw_dice <- function(num_try) {
+  face <- sample(dice, size=num_try)
+  return(face) # 불필요함.
+}
+
+draw_dice(3)
+```
+
+
 ## 함수 구성요소 {#funciton-component}
 
-### 인자(argument) {#function-component-argument}
+### 인자 {#function-component-argument}
 
 함수 구성요소 중 중요한 요소로 인자(argument)를 꼽을 수 있다. 
 인자는 크게 두가지로 나뉜다.
@@ -245,11 +310,10 @@ t.test(x, y = NULL,
 ```{r}
 #| label: assert-that
 #| error: TRUE
-
 library(testthat)
 
 num_vector <- c(1,2,3,4, 5)
-na_vector <- c(1,2,3,NA, 5)
+na_vector <- c(1,2,3,NA_character_, 5)
 
 sum_numbers <- function(vec) {
   
@@ -267,22 +331,21 @@ sum_numbers(num_vector)
 sum_numbers(na_vector)
 ```
 
-상기 코드의 문제점은 `stopifnot()` 함수가 잘못된 입력값에 대해서 문제가 무엇이고, 어떤 행동을 취해야 하는지 친절하지 않다는데 있다. 이를 [`assertive`](https://cran.r-project.org/web/packages/assertive/) 팩키지를 활용해서 극복하는 방안을 살펴보자. `asserive` 팩키지를 설치하면 R 함수 작성에 걸림돌이 될 수 있는 거의 모든 사전 점검작업을 수행할 수 있다는 것이 매력적이다. `install.packages("assertive")`를 실행하게 되면 함께 설치되는 팩키지는 다음과 같다.
+상기 코드의 문제점은 `stopifnot()` 함수가 잘못된 입력값에 대해서 문제가 무엇이고, 어떤 행동을 취해야 하는지 친절하지 않다는 데 있다. 이를 [`assertive`](https://cran.r-project.org/web/packages/assertive/) 팩키지를 활용해서 극복하는 방안을 살펴보자. `asserive` 패키지를 설치하면 R 함수 작성에 걸림돌이 될 수 있는 거의 모든 사전 점검작업을 수행할 수 있다는 것이 매력적이다. `install.packages("assertive")`를 실행하게 되면 함께 설치되는 패키지는 다음과 같다.
 
-‘assertive.base’, ‘assertive.properties’, ‘assertive.types’, ‘assertive.numbers’, ‘assertive.strings’, ‘assertive.datetimes’, ‘assertive.files’, ‘assertive.sets’, ‘assertive.matrices’, ‘assertive.models’, ‘assertive.data’, ‘assertive.data.uk’, ‘assertive.data.us’, ‘assertive.reflection’, ‘assertive.code’
+`assertive.base`, `assertive.properties`, `assertive.types`, `assertive.numbers`, `assertive.strings`, `assertive.datetimes`, `assertive.files`, `assertive.sets`, `assertive.matrices`, `assertive.models`, `assertive.data`, `assertive.data.uk`, `assertive.data.us`, `assertive.reflection`, `assertive.code`
 
 ```{r}
 #| label: assertive-function
 #| error: TRUE
-
 library(assertive)
 
 sum_numbers_assertive <- function(vec) {
   
-  assert_is_numeric(vec)
+  result <- try(assert_all_are_not_na(vec), silent = TRUE)
   
-  if(assert_any_are_na(vec)) {
-      stop("벡터 x는 NA 값이 있어요. 그래서 총합을 구하는게 의미가 없네요")
+  if (inherits(result, "try-error")) {
+    stop("벡터에 NA 값이 있어서 총합을 구할 수 없습니다.")
   }
   
   total <- 0
@@ -290,13 +353,12 @@ sum_numbers_assertive <- function(vec) {
   for(i in 1:length(vec)) {
     total <- total + vec[i]
   }
+  
   total
 }
 
-# sum_numbers_assertive(num_vector)
 sum_numbers_assertive(na_vector)
 ```
-
 
 ### 반환값 확인 {#function-component-return}
 
@@ -320,15 +382,16 @@ cat("절편: ", inter, "\n기울기: ", slope)
 각 붓꽃마다 0~1 사이 난수를 생성하여 할당한다.
 그리고 난수값이 0.2  이상이면 훈련, 그렇지 않으면 시험 데이터로 구분한다.
 
-```{r return-value-zeallot}
-
-iris_df <- iris %>% 
+```{r}
+#| label: return-value-zeallot
+penguins_raw <-  palmerpenguins::penguins |> drop_na()
+penguin_df <- penguins_raw %>% 
   mutate(runif = runif(n())) %>% 
   mutate(train_test = ifelse(runif > 0.2, "train", "test")) 
 
-c(test, train) %<-%  split(iris_df, iris_df$train_test)
+c(test, train) %<-%  split(penguin_df, penguin_df$train_test)
 
-cat("총 관측점: ", nrow(iris), "\n훈련: ", nrow(train), "\n시험: ", nrow(test))
+cat("총 관측점: ", nrow(penguins_raw), "\n훈련: ", nrow(train), "\n시험: ", nrow(test))
 ```
 
 혹은, 회귀분석 결과를 `list()` 함수로 결합시켜 리스트로 반환시킨다.
@@ -353,40 +416,6 @@ mtcars_list <- get_lm_statistics(mtcars)
 mtcars_list
 ```
 
-
-## 함수를 작성하는 시점 {#time-to-write-function}
-
-복사해서 붙여넣는 것을 두번 하게 되면, 함수를 작성할 시점이다. 
-중복을 제거하는 한 방법이 함수를 작성하는 것이고, 함수를 작성하게 되면 의도가 명확해진다.
-함수명을 `rescale`로 붙이고 이를 실행하게 되면, 의도가 명확하게 드러나게 되고, 복사해서 붙여넣게 되면서 
-생겨나는 중복과 반복에 의한 실수를 줄일 수 있게 되고, 향후 코드를 갱신할 때도 도움이 된다.
-
-
-``` {r}
-rescale <- function(x){
-  rng <- range(x, na.rm = TRUE)
-  (x - rng[1]) / (rng[2] - rng[1])
-}
-
-df$a <- rescale(df$a)
-df$b <- rescale(df$b)
-df$c <- rescale(df$c)
-df$d <- rescale(df$d)
-```
-
-`rescale()` 함수를 사용해서 복사하여 붙여넣는 중복을 크게 줄였으나, 여전히 함수명을 반복해서 
-복사하여 붙여넣기를 통해 코드를 작성했다.
-함수형 프로그래밍을 사용하는 것으로 함수명을 반복적으로 사용하는 것조차도 피할 수 있다.
-
-``` {r fp-write-purrr}
-library(purrr)
-df <- map_df(df, rescale)
-df
-```
-
-함수를 사용하지 않고 복사하여 붙여넣기 방식으로 코드를 작성한 경우 의도하지 않은 실수가 있어 
-함수를 도입하여 작성한 코드와 결과가 다른 것이 존재한다. 
-코드를 읽어 찾아보거나 실행한 후 결과를 통해 버그를 찾아보는 것도 함수의 의미와 중요성을 파악하는데 도움이 된다.
 
 :::{.callout-note}
 ### 좋은 함수란?
@@ -415,8 +444,9 @@ df
 
 :::
 
+## 연습문제 {.unnumbered}
 
-## 사례: `rescale` 함수 {#how-to-write-function}
+### `rescale` 함수 {#how-to-write-function .unnumbered}
 
 함수를 작성할 경우 먼저 매우 단순한 문제에서 출발한다. 
 척도를 맞추는 상기 과정을 R 함수로 만드는 과정을 통해 앞서 학습한 사례를 실습해 보자.
@@ -469,7 +499,7 @@ rescale <- function(x){
 rescale(x)
 ```
 
-## 사례: 요약통계 함수  {#function-is-argument}
+### 요약통계 함수  {#function-is-argument .unnumbered}
 
 데이터를 분석할 때 가장 먼저 수행하는 작업이 요약통계를 통해 데이터를 이해하는 것이다. 
 이미 훌륭한 요약통계 패키지와 함수가 있지만, 친숙한 개념을 함수로 다시 제작함으로써 함수에 대한 이해를 높일 수 있다.
@@ -477,7 +507,7 @@ rescale(x)
 요약통계 기능을 먼저 구현한 다음에 중복 제거하여 요약통계 기능 함수를 제작해보자. 함수도 인자로 넣어 처리할 수 있다는 점이 처음에 이상할 수도 있지만, 함수를 인자로 처리할 경우 코드 중복을 상당히 줄일 수 있다.
 $L_1$, $L_2$, $L_3$ 값을 구하는 함수를 다음과 같이 작성하는 경우, 숫자 1,2,3 만 차이날 뿐 다른 부분은 동일하기 때문에 함수 코드에 중복이 심하게 관찰된다.
 
-* 1단계: 중복이 심한 함수, 기능 구현에 초점을 맞춤
+* 1단계: 중복이 심한 함수, 기능 구현에 초점을 맞춰 작성한다.
 
 ``` {r fp-dedup-01}
 f1 <- function(x) abs(x - mean(x)) ^ 1
@@ -505,7 +535,7 @@ f3 <- function(x, power) abs(x - mean(x)) ^ power
 
 먼저, 특정 변수의 중위수, 평균, 표준편차를 계산하는 함수를 작성하는 경우를 가정해보자.
 
-* 1 단계: 각 기능을 구현하는 기능 구현에 초점을 맞춤
+* 1 단계: 각 기능을 구현하는 기능 구현에 초점을 맞춰 작성한다.
 
 ``` {r}
 #| label: fp-functions-argument-ex01
@@ -535,7 +565,7 @@ col_sd <- function(df) {
   }
 ```
 
-* 2 단계: `median`, `mean`, `sd`를 함수 인자 `fun` 으로 함수명을 통일.
+* 2 단계: `median`, `mean`, `sd`를 함수 인자 `fun` 으로 함수명을 통일한다.
 
 ``` {r}
 #| label: fp-functions-argument-ex02
@@ -565,7 +595,7 @@ col_sd <- function(df) {
   }
 ```
 
-* 3 단계: 함수 인자 `fun` 을 넣어 중복을 제거.
+* 3 단계: 함수 인자 `fun` 을 넣어 중복을 제거한다.
 
 ``` {r}
 #| label: fp-functions-argument-ex03
@@ -595,7 +625,7 @@ col_sd <- function(df, fun) {
   }
 ```
 
-* 4 단계: 함수를 인자로 갖는 요약통계 함수를 최종적으로 정리하고, 테스트 사례를 통해 검증.
+* 4 단계: 함수를 인자로 갖는 요약통계 함수를 최종적으로 정리하고, 테스트 사례를 통해 검증한다.
 
 ``` {r}
 #| label: fp-functions-argument-ex04
