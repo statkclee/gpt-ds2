@@ -46,7 +46,6 @@ book:
     - part: "**1부** 들어가며"
       chapters:
         - intro.qmd
-        - intro_tidyverse.qmd
         - intro_whole_game.qmd
         - intro_penguins.qmd
 
