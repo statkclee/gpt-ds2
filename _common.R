@@ -26,6 +26,8 @@ library(showtext)
 
 extrafont::loadfonts(quiet = TRUE)
 
+font_add("NanumGothic", regular = "C:/Windows/Fonts/NanumGothic.ttf  ")
+
 showtext_auto(enable = TRUE)
 
 # 3. 코딩 -------------------------------------------------------------------
