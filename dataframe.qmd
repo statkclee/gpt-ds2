@@ -4,10 +4,10 @@ editor_options:
   chunk_output_type: console
 ---
 
-# 데이터프레임 탐색 {#dataframe}
+# 데이터프레임 탐색 {#sec-dataframe}
 
-[-@data-structure] 장에서 R의 모든 기본 자료형과 자료구조에 대한 여행을 마쳤다.
-데이터 과학에서 수행하는 모든 작업은 [-@data-structure] 장에서 소개한 도구를 조작하는 것이 된다.
+[-@sec-data-structure] 장에서 R의 모든 기본 자료형과 자료구조에 대한 여행을 마쳤다.
+데이터 과학에서 수행하는 모든 작업은 [-@sec-data-structure] 장에서 소개한 도구를 조작하는 것이 된다.
 하지만, 거의 대부분 데이터 과학 프로젝트에서 진정한 스타는 **데이터프레임(dataframe)**이다. 
 CSV 파일에 정보를 불러와서 생성시킨 테이블을 지칭한다. 
 이번 장에서 데이터프레임으로 작업하는 방법에 대해 좀 더 상세히 살펴볼 것이다.

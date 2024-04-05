@@ -487,7 +487,7 @@ ga('send', {
 <p><code>tidyverse</code>의 핵심적인 내용은 다양한 형태의 데이터를 가져와서 최종 산출물을 사람과 기계가 커뮤니케이션할 수 있는 형태로 제작하는 과정을 추상화한 것으로 이해할 수 있다. 시각화(Visualization)는 데이터에 대한 통찰력(insight)과 탄성, 놀라움을 줄 수 있지만, 확장성(Scalability) 측면에서는 한계가 명확히 존재하게 되는데 이는 사람이 작업 흐름 루프에 포함되기 때문이다. 반대로 모형(Model)은 자동화와 확장성에는 장점이 있지만, 주어진 모형 틀 안에서만 이뤄지기 때문에 통찰력, 놀라움, 탄성을 주지는 못하는 아쉬움이 있다. 따라서, <code>tidyverse</code>는 시각화와 모형을 통해 통찰력과 함께 자동화에 대한 부분도 충분히 반영한 체계적인 작업 흐름을 제시하고 있는데, 이를 관통하는 핵심적인 개념이 파이프(pipe)로 이미 이런 개념은 유닉스 파이프 연산자를 통해 검증되었다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="fig/maso_tidyverse.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Tidyverse 데이터 사이언스 작업흐름"><img src="fig/maso_tidyverse.png" class="class img-fluid figure-img" style="width:100.0%" alt="Tidyverse 데이터 사이언스 작업흐름"></a></p>
+<p><a href="fig/maso_tidyverse.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="Tidyverse 데이터 사이언스 작업흐름"><img src="fig/maso_tidyverse.png" class="class img-fluid figure-img" style="width:100.0%" alt="Tidyverse 데이터 사이언스 작업흐름"></a></p>
 <figcaption>Tidyverse 데이터 사이언스 작업흐름</figcaption>
 </figure>
 </div>
@@ -558,7 +558,7 @@ ga('send', {
 <p>정보량을 잃지 않으면서 빅데이터를 요약하는 방법과 병렬 처리 가능한 문제로 바꾸어서 하둡과 스파크(Hadoop and Spark) 클러스터를 생성하여 클라우드 컴퓨팅 자원을 활용하여 처리할 수 있는 방법을 고려할 경우 거의 99%의 빅데이터 문제를 처리할 수 있다. 빅데이터 문제를 소규모 분석방법으로 다루는 방법은 요약, 표본 추출, 부분집합 추출 등을 통해 많이 알려져 있지만, 병렬/분산 처리 방법은 클라우드 컴퓨팅을 많이 사용하는 개발자에게는 친숙하지만, 데이터 과학자에게는 아직도 새로운 기술로 받아들여지고 있다. 최근에 큰 문제를 작은 문제로 쪼개고 각 문제에 대해서 적절한 연산(예를 들어 요약통계량)을 취하고 이를 결합하는 <strong>분할-적용-병합(Split-Apply-Combine)</strong> 전략으로 소개되고 있다. <a href="https://statkclee.github.io/r-novice-gapminder/12-plyr-kr.html">재현 가능한 과학적 분석을 위한 R - “분할-적용-병합 전략”</a>에 나온 것처럼 각 그룹별로 쪼갠 후 각 그룹별로 평균을 내고 이를 조합한 사례가 전반적인 큰 그림을 그리는 데 도움이 될 수 있다. 여기서 평균을 사용했는데 요약 함수(summarize)뿐만 아니라, 윈도우 함수, 이를 일반화한 <code>do()</code> 함수로도 넓힐 수 있다. 이론적인 사항은 해드리 위컴의 2011년 Journal of Statistical Software에 실린 <a href="https://www.jstatsoft.org/article/view/v040i01/v40i01.pdf">“The Split-Apply-Combine Strategy for Data Analysis”</a>를 참조한다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="fig/split-apply-combine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="분할-적용-병합(Split-Apply-Combine) 전략"><img src="fig/split-apply-combine.png" class="class img-fluid figure-img" style="width:100.0%" alt="분할-적용-병합(Split-Apply-Combine) 전략"></a></p>
+<p><a href="fig/split-apply-combine.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="분할-적용-병합(Split-Apply-Combine) 전략"><img src="fig/split-apply-combine.png" class="class img-fluid figure-img" style="width:100.0%" alt="분할-적용-병합(Split-Apply-Combine) 전략"></a></p>
 <figcaption>분할-적용-병합(Split-Apply-Combine) 전략</figcaption>
 </figure>
 </div>
@@ -1060,7 +1060,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
