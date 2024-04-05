@@ -113,7 +113,8 @@ ga('send', {
   hitType: 'pageview',
   'anonymizeIp': true,
 });
-</script>
+</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="nav-sidebar floating">
 
@@ -445,18 +446,18 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#why-ggplot2" id="toc-why-ggplot2" class="nav-link active" data-scroll-target="#why-ggplot2"><span class="header-section-number">9.1</span> 그래프 문법의 존재이유</a></li>
+<li><a href="#why-ggplot2" id="toc-why-ggplot2" class="nav-link active" data-scroll-target="#why-ggplot2"><span class="header-section-number">9.1</span> 그래프 문법 역사</a></li>
   <li>
 <a href="#ggplot2-steps" id="toc-ggplot2-steps" class="nav-link" data-scroll-target="#ggplot2-steps"><span class="header-section-number">9.2</span> 그래프 문법</a>
   <ul class="collapse">
-<li><a href="#ggplot2-steps-data" id="toc-ggplot2-steps-data" class="nav-link" data-scroll-target="#ggplot2-steps-data"><span class="header-section-number">9.2.1</span> 데이터(Data)</a></li>
-  <li><a href="#ggplot2-steps-mapping" id="toc-ggplot2-steps-mapping" class="nav-link" data-scroll-target="#ggplot2-steps-mapping"><span class="header-section-number">9.2.2</span> 매핑(Mapping)</a></li>
-  <li><a href="#ggplot2-steps-statistics" id="toc-ggplot2-steps-statistics" class="nav-link" data-scroll-target="#ggplot2-steps-statistics"><span class="header-section-number">9.2.3</span> 통계량(statistics)</a></li>
-  <li><a href="#ggplot2-steps-scales" id="toc-ggplot2-steps-scales" class="nav-link" data-scroll-target="#ggplot2-steps-scales"><span class="header-section-number">9.2.4</span> 척도(scales)</a></li>
-  <li><a href="#ggplot2-steps-geometries" id="toc-ggplot2-steps-geometries" class="nav-link" data-scroll-target="#ggplot2-steps-geometries"><span class="header-section-number">9.2.5</span> 기하형상(geometries)</a></li>
-  <li><a href="#ggplot2-steps-facet" id="toc-ggplot2-steps-facet" class="nav-link" data-scroll-target="#ggplot2-steps-facet"><span class="header-section-number">9.2.6</span> 작은 창(facet)</a></li>
-  <li><a href="#ggplot2-steps-coordinate" id="toc-ggplot2-steps-coordinate" class="nav-link" data-scroll-target="#ggplot2-steps-coordinate"><span class="header-section-number">9.2.7</span> 좌표계(coordinate)</a></li>
-  <li><a href="#ggplot2-steps-theme" id="toc-ggplot2-steps-theme" class="nav-link" data-scroll-target="#ggplot2-steps-theme"><span class="header-section-number">9.2.8</span> 분위기 풍(theme)</a></li>
+<li><a href="#ggplot2-steps-data" id="toc-ggplot2-steps-data" class="nav-link" data-scroll-target="#ggplot2-steps-data"><span class="header-section-number">9.2.1</span> 데이터</a></li>
+  <li><a href="#ggplot2-steps-mapping" id="toc-ggplot2-steps-mapping" class="nav-link" data-scroll-target="#ggplot2-steps-mapping"><span class="header-section-number">9.2.2</span> 매핑</a></li>
+  <li><a href="#ggplot2-steps-statistics" id="toc-ggplot2-steps-statistics" class="nav-link" data-scroll-target="#ggplot2-steps-statistics"><span class="header-section-number">9.2.3</span> 통계량</a></li>
+  <li><a href="#ggplot2-steps-scales" id="toc-ggplot2-steps-scales" class="nav-link" data-scroll-target="#ggplot2-steps-scales"><span class="header-section-number">9.2.4</span> 척도</a></li>
+  <li><a href="#ggplot2-steps-geometries" id="toc-ggplot2-steps-geometries" class="nav-link" data-scroll-target="#ggplot2-steps-geometries"><span class="header-section-number">9.2.5</span> 기하형상</a></li>
+  <li><a href="#ggplot2-steps-facet" id="toc-ggplot2-steps-facet" class="nav-link" data-scroll-target="#ggplot2-steps-facet"><span class="header-section-number">9.2.6</span> 작은 창</a></li>
+  <li><a href="#ggplot2-steps-coordinate" id="toc-ggplot2-steps-coordinate" class="nav-link" data-scroll-target="#ggplot2-steps-coordinate"><span class="header-section-number">9.2.7</span> 좌표계</a></li>
+  <li><a href="#ggplot2-steps-theme" id="toc-ggplot2-steps-theme" class="nav-link" data-scroll-target="#ggplot2-steps-theme"><span class="header-section-number">9.2.8</span> 분위기 풍</a></li>
   </ul>
 </li>
   <li><a href="#ggplot2-steps-extension" id="toc-ggplot2-steps-extension" class="nav-link" data-scroll-target="#ggplot2-steps-extension"><span class="header-section-number">9.3</span> <code>ggplot</code> 확장</a></li>
@@ -478,106 +479,190 @@ ga('send', {
   
 
 
-</header><section id="why-ggplot2" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="why-ggplot2">
-<span class="header-section-number">9.1</span> 그래프 문법의 존재이유</h2>
-<p>Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 <strong>데이터 그래픽(data graphics)</strong>에 많은 영향을 주어 <code>ggplot2</code>, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면 각 그래픽 객체별로 따로 사용법을 익혀야만 되었다. 이것이 갖는 한계는 그래프 종류가 적은 경우 유용하지만 그래프 종류가 많아지면 매번 따로 사용법을 배워야되서 확장가능성이 무척 떨어지게 된다. 그래서, 이를 일반화한 무언가 필요한데 데이터 그래픽 객체를 분해해서 8개 계층으로 분해하여 조립하여 그래프를 제작하게 되면 앞선 문제를 일거에 해소할 수 있다. <strong>그래프 문법(grammar of graphics)</strong>을 통해 데이터를 가장 잘 표현할 수 있는 그래프를 생성할 수 있게 되었다.</p>
+</header><p>기존 베이스 R 그래픽(Base R Graphics)은 R 프로그래밍 언어에 기본 내장된 저수준 그래픽 함수들을 총칭한다. 화가가 캔버스에 그림을 그려나가는 과정과 비슷하게 사용자는 저수준 그랙픽 함수를 사용해서 데이터 시각화 그래픽을 제작해 나간다.</p>
+<p>베이스 R 그래픽에서 사용자가 직접 모든 그래프 각 요소를 개별적으로 지정하고 조정해야 한다. 예를 들어, 축, 레이블, 색상, 점의 크기 등을 모두 사용자가 직접 설정해야 하는데, 마치 화가가 캔버스에 선을 그리고, 색을 칠하고, 세부사항을 추가하는 것과 매우 유사하다.</p>
+<p>베이스 R 그래픽은 매우 유연하여 그래프의 모든 측면을 통제할 수 있다는 장점이 있지만, 이러한 유연성은 동시에 단점으로 작용한다. 그래프를 생성하는 과정이 복잡하고 시간이 많이 걸리고, 코드 가독성이 떨어질 뿐만 아니라, 그래프 스타일 일관성 유지에도 어려움이 따른다.</p>
+<p>베이스 R 그래픽 한계를 극복하기 위해 그래프 문법(Grammar of Graphics)에 기반한 <code>ggplot2</code>와 같은 고수준 패키지가 개발되었다. 그래프 문법을 따르는 <code>ggplot2</code> 그래픽 시스템을 사용하면 그래픽 요소들을 추상화하고 체계화하여 더 간단하고 직관적인 방식으로 그래프를 생성할 수 있다.</p>
+<section id="why-ggplot2" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="why-ggplot2">
+<span class="header-section-number">9.1</span> 그래프 문법 역사</h2>
+<p>릴랜드 윌킨스(Leland Wilkinson)의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 <strong>데이터 그래픽(data graphics)</strong>에 많은 영향을 주어 <code>ggplot2</code>, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다.</p>
+<p>“그래프 문법”은 R <code>ggplot2</code>, 타블로(Tableau)의 전신 폴라리스(Polaris), 베가-라이드(Vega-Lite)에 영감을 주었고, 데이터 시각화 분야 전반에 영향을 미쳤을 뿐만 아니라 자바스크립트 시각화 <code>D3.js</code> 발전에도 간접적인 영향을 주었다. 그래프 문법이 짧은 기간 데이터 시각화 분야에서 미친 관계를 <a href="#fig-ggplot-evolution" class="quarto-xref">그림&nbsp;<span>9.1</span></a> 에서 확인할 수 있다.</p>
+<p><code>ggplot2</code>는 정적 그래프를 생성하는데 주로 사용되지만, 추가 패키지(<code>plotly</code>, <code>gganimate</code> 등)를 사용하면 상호작용 인터랙티브 그래픽 기능도 추가할 수 있다. Vega-Lite는 상호작용 시각화를 위한 고급 문법을 제공하고, D3.js는 사용자 정의 상호작용 시각화를 구현하는데 장점이 있다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-ggplot-evolution" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-ggplot-evolution">graph TD
+   A[그래프 문법] --&gt;|영감| B[R ggplot2]
+   A --&gt;|영감| C[Polaris]
+   A --&gt;|영향| D[Vega-Lite]
+   E[자바스크립트] --&gt; F[D3.js]
+   A --&gt; I[데이터 시각화&lt;br&gt; 분야]
+   I --&gt;|영향| F
+   C --&gt;|선행| G[Tableau]
+   D --&gt;|고급 문법| H[상호작용 시각화]
+   F --&gt;|사용자 정의&lt;br&gt;시각화| H
+   B -.-&gt;|추가 패키지| H
+
+  subgraph ggplot2
+    B --&gt;|R 시각화| J[정적 그래프]
+  end
+
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
+    
+    class B,C,D,E,F,G,H,I,J modern
+    class A emphasize
+    class ggplot2 subgraphStyle
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;9.1: 그래프 문법 진화 과정
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>기존에는 다양한 그래픽 객체를 만들기 위해 그래프 종류별로 개별적인 사용법을 배워야 했다. 그래프 종류가 적을 때는 유용하지만, 그래프 종류가 많아질수록 매번 새로운 사용법을 익혀야 하므로 확장성이 크게 떨어지는 한계가 있었다.</p>
+<p>이러한 문제를 해결하기 위해서 데이터 그래픽 객체를 보다 일반화된 방식으로 다룰 수 있는 <strong>그래프 문법(grammar of graphics)</strong>이 도입되었다. 그래프 문법은 데이터 그래픽 객체를 8개 계층으로 분해하여 각 계층을 조립하는 방식으로 그래프를 생성한다.</p>
+<p>이러한 접근 방식을 취하게 되면, 그래프 종류에 관계없이 일관된 방법으로 그래프를 제작할 수 있다. 그래프 문법을 활용하면 데이터 특성에 맞는 최적의 그래프를 유연하게 생성할 수 있어 혁신적인 방법론이라고 할 수 있다.</p>
+<p>예를 들어, <a href="#fig-ggplot-why" class="quarto-xref">그림&nbsp;<span>9.2</span></a> 에 제시된 원그래프, 선그래프, 막대그래프, 산점도를 생성하는 코드를 보면, 각 그래프별로 입력값과 사용법이 다르다. 그러나 <code>ggplot2</code>를 사용하면 데이터와 그래프 계층을 분리하여 각 계층을 조립하는 방식으로 그래프를 생성할 수 있어 일관성을 유지하고 코드 재사용성을 높일 수 있다.</p>
 <div id="fig-ggplot-why" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-why-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot_why.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/ggplot_why.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-why-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.1: <code>ggplot</code>이 필요한 이유
+그림&nbsp;9.2: <code>ggplot</code>이 필요한 이유
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="ggplot2-steps">
 <span class="header-section-number">9.2</span> 그래프 문법</h2>
-<p>그래프 문법은 총 8가지 층으로 구성되어 있는데 이를 각 층별로 나눠보면 다음과 같다.</p>
+<p>그래프 문법은 데이터 시각화에 있어 중요한 구조를 제공하며, 총 8개의 다른 층으로 구성된다. 각 층은 데이터를 시각적으로 표현하는 과정에서 독특한 기능과 목적을 가지고 있다. 각 층별로 데이터 즉 데이터프레임과 에스테틱(aesthetics), 기하형상(geometries), 통계적 변환(statistical transformations), 척도(scales), 좌표계(coordinate systems), 포지셔닝(positioning), 작은 창(faceting) 및 테마(theming)와 같은 그래픽 요소 결합을 정의한다. 이렇게 각기 다른 층이 결합되어 데이터의 시각적 표현이 완성된다.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"></figure><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    subgraph A [데이터와 에스테틱]
+    AA[데이터프레임] --&gt;|매핑| AB[에스테틱]
+    end
+    subgraph B [핵심 구성요소]
+    AB --&gt; BA[기하형상]
+    AB --&gt; BB[통계적 변환]
+    AB --&gt; BC[척도]
+    end
+    subgraph C [레이아웃과 테마]
+    BA --&gt; CA[좌표 시스템]
+    BB --&gt; CA
+    BC --&gt; CA
+    CA --&gt; CB[포지셔닝]
+    CA --&gt; CC[작은 창]
+    CB --&gt; CD[테마]
+    CC --&gt; CD
+    end
+
+    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
+    classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
+    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
+    
+    class AA,AB,BA,BB,BC,CA,CB,CC,CD modern
+    class B emphasize
+    class A,B,C subgraphStyle
+</pre>
+</div>
+<p></p>
+</div>
+</div>
+</div>
 <section id="ggplot2-steps-data" class="level3" data-number="9.2.1"><h3 data-number="9.2.1" class="anchored" data-anchor-id="ggplot2-steps-data">
-<span class="header-section-number">9.2.1</span> 데이터(Data)</h3>
-<p>그래프 문법 <code>ggplot</code>에 데이터는 깔끔한 데이터(tidy data)를 가정한다. 이를 위해서 기존 <code>wide</code>형태 데이터는 key-value <code>long</code> 형태로 바뀌어 준비한다.</p>
+<span class="header-section-number">9.2.1</span> 데이터</h3>
+<p>그래프 문법 <code>ggplot</code>에 데이터는 깔끔한 데이터(tidy data)를 가정한다. 이를 위해서 기존 <code>wide</code>형태 데이터는 키값(key-value) <code>long</code> 형태로 바뀌어 준비한다.</p>
 <div id="fig-ggplot-tidy-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-tidy-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-data.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/ggplot-data.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1291"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-tidy-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.2: 깔끔한 데이터 <code>wide</code>, <code>long</code> 데이터
+그림&nbsp;9.3: 깔끔한 데이터 <code>wide</code>, <code>long</code> 데이터
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-mapping" class="level3" data-number="9.2.2"><h3 data-number="9.2.2" class="anchored" data-anchor-id="ggplot2-steps-mapping">
-<span class="header-section-number">9.2.2</span> 매핑(Mapping)</h3>
-<p>깔끔한 데이터가 준비되면 다음 단계로 칼럼에 해당되는 각 변수를 <code>aes()</code> 함수를 사용해서 <code>aes(x=x, y=y, color=z, ...)</code>와 같은 방식으로 데이터와 그래프를 매핑한다.</p>
+<span class="header-section-number">9.2.2</span> 매핑</h3>
+<p>깔끔한 데이터가 준비되면 다음 단계로 칼럼에 해당되는 각 변수를 <code>aes()</code> 함수를 사용해서 에스테틱(aesthetics) <code>aes(x=x, y=y, color=z, ...)</code>와 같은 방식으로 데이터프레임 변수를 축에 매핑한다.</p>
 <div id="fig-ggplot-mapping" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-mapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-mapping.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/ggplot-mapping.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1492"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-mapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.3: 데이터를 그래프에 매핑
+그림&nbsp;9.4: 데이터를 그래프에 매핑
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-statistics" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="ggplot2-steps-statistics">
-<span class="header-section-number">9.2.3</span> 통계량(statistics)</h3>
-<p>범주형 그래프를 시각화할 경우 빈도수를 통계량으로 계산해놔야 하고, 연속형 변수를 히스토그램으로 표현할 때도 마찬가지 방식으로 구간별 빈도수를 계산해놔야 하고, 특히 상자그림(boxplot)을 시각화할 경우 각 분위수는 물론이고 중위수도 및 interquantile도 계산해서 수염의 끝도 계산해놔야 제대로된 상자그림을 시각화할 수 있다.</p>
+<span class="header-section-number">9.2.3</span> 통계량</h3>
+<p>범주형 그래프를 시각화할 때는 빈도수를 통계량으로 활용해야 한다. 연속형 변수의 히스토그램을 그릴 때는 구간별 빈도수를 계산하는 것이 중요하다. 상자그림(boxplot)의 경우, 각 분위수와 중위수, 그리고 사분위수 범위를 포함하여 수염의 끝을 계산함으로써 정확한 상자그림을 시각화할 수 있다. 이러한 계산은 그래프의 정확성과 해석을 위해 필수적으로 거쳐야 되는 과정이다.</p>
 <div id="fig-ggplot-stat" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-stat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-stat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/ggplot-stat.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1206"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-stat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.4: 그래프별 기본설정 통계량
+그림&nbsp;9.5: 그래프별 기본설정 통계량
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-scales" class="level3" data-number="9.2.4"><h3 data-number="9.2.4" class="anchored" data-anchor-id="ggplot2-steps-scales">
-<span class="header-section-number">9.2.4</span> 척도(scales)</h3>
-<p>X축, Y축의 척도를 그래프에서 자동으로 인식하는데는 한계가 있어 이를 필요한 경우 적절한 형태로 설정한다. <code>scale_&lt;x, y, color, fill, ...&gt;_&lt;유형&gt;()</code> 구문을 갖는다. 예를 들어 Y축을 담당하는 변수가 로그척도(log)가 적합한 경우 이를 <code>scale_y_log10()</code>와 같이 변수를 특성을 반영한 척도를 설정한다. 변수가 날짜나 시간인 경우 <code>scale_x_date()</code>, <code>scale_x_datetime()</code>을 활용하여 적절한 형태로 설정한다.</p>
+<span class="header-section-number">9.2.4</span> 척도</h3>
+<p>그래프에서 X축과 Y축 척도를 자동으로 인식하는 데는 한계가 있으므로, 필요에 따라 적절한 형태로 설정하는 것이 중요하다. <code>scale_&lt;x, y, color, fill, ...&gt;_&lt;유형&gt;()</code> 형식의 구문을 사용합니다. 예를 들어, Y축 변수에 로그 척도가 적합한 경우 <code>scale_y_log10()</code> 함수를 사용하여 변수의 특성에 맞는 척도로 설정한다. 마찬가지로, 변수가 날짜나 시간일 경우 <code>scale_x_date()</code> 또는 <code>scale_x_datetime()</code> 함수를 활용해 적절하게 설정하게 된다.</p>
 <div id="fig-ggplot-scales" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-scales.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="images/ggplot-scales.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1238"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.5: <code>aes</code> 매핑된 축 척도지정
+그림&nbsp;9.6: <code>aes</code> 매핑된 축 척도지정
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-geometries" class="level3" data-number="9.2.5"><h3 data-number="9.2.5" class="anchored" data-anchor-id="ggplot2-steps-geometries">
-<span class="header-section-number">9.2.5</span> 기하형상(geometries)</h3>
-<p>예를 들어, 범주형 변수를 <code>aes()</code>로 지정하고 이를 적절한 그래프로 표현하기 위한 결정과정으로 <code>geom_*()</code> 방식으로 원그래프, 막대그래프, 점그래프 등으로 변수를 시각화객체로 지정한다.</p>
+<span class="header-section-number">9.2.5</span> 기하형상</h3>
+<p>기하형상(geometries)은 ggplot2에서 시각화의 핵심 요소 중 하나다. 예를 들어, 범주형 변수를 <code>aes()</code> 함수로 지정한 후 <code>geom_*()</code> 형식의 함수를 사용하여 이 변수를 다양한 그래프 형태로 표현한다. 원그래프, 막대그래프, 점그래프 등 다양한 시각화 객체를 선택하여 데이터를 명확하고 효과적으로 나타낼 수 있다.</p>
 <div id="fig-ggplot-geometries" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-geometries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-geometries.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="images/ggplot-geometries.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1319"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-geometries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.6: 기하형상 지정
+그림&nbsp;9.7: 기하형상 지정
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-facet" class="level3" data-number="9.2.6"><h3 data-number="9.2.6" class="anchored" data-anchor-id="ggplot2-steps-facet">
-<span class="header-section-number">9.2.6</span> 작은 창(facet)</h3>
-<p>원본 데이터를 그룹으로 쪼개 작은 창에 동일한 시각화 객체를 표현하는 방법으로 다차원 데이터를 차원별로 나눠 볼 수 있다. 중요한 점은 각 작은 창이 동일한 유형의 그래프라는 점이 중요하다.</p>
+<span class="header-section-number">9.2.6</span> 작은 창</h3>
+<p>작은 창(faceting)은 <code>ggplot2</code>에서 다차원 데이터를 다루는 효과적인 방법이다. 이를 통해 원본 데이터를 그룹으로 나눠 각 그룹을 작은 창에 동일한 형태의 시각화 객체로 표현한다. 중요한 것은 모든 작은 창에서 동일한 유형의 그래프를 사용한다는 점으로 이런 일관성은 데이터를 비교 분석하는 데 도움이 된다.</p>
 <div id="fig-ggplot-facet" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-facet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-facet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="images/ggplot-facet.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1481"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-facet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.7: 그룹으로 쪼갠 작은 창(facet)
+그림&nbsp;9.8: 그룹으로 쪼갠 작은 창(facet)
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-coordinate" class="level3" data-number="9.2.7"><h3 data-number="9.2.7" class="anchored" data-anchor-id="ggplot2-steps-coordinate">
-<span class="header-section-number">9.2.7</span> 좌표계(coordinate)</h3>
-<p>깔끔한 데이터를 그래프에 매칭하여 시각화한 후에 경우에 따라서 좌표계를 변경할 경우가 있다. <code>coord_fixed()</code>, <code>coord_polar()</code>, <code>coord_flip()</code> 등을 사용해서 특정 영역 확대, 데카르트 좌표계에서 극좌표계, X-Y 축 변경 등의 작업을 수행할 수 있다.</p>
+<span class="header-section-number">9.2.7</span> 좌표계</h3>
+<p>좌표계(coordinate)는 <code>ggplot2</code>에서 데이터 시각화 후반 처리 단계에 해당한다. 깔끔한 데이터를 그래프에 매칭하고 시각화한 후, 상황에 따라 좌표계를 변경하는 것이 필요할 수 있다. <code>coord_fixed()</code>, <code>coord_polar()</code>, <code>coord_flip()</code> 등의 함수를 통해 특정 영역을 확대하거나, 데카르트 좌표계에서 극좌표계로 변경하고, X축과 Y축을 뒤집는 등의 작업을 수행할 수 있다. 좌표계 변경을 통해 데이터를 다양한 관점에서 보여줄 수 있게 하여 분석의 깊이를 더하고 커뮤니케이션 효과도 높이게 된다.</p>
 <div id="fig-ggplot-coordinate" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-coordinate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-coordinate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="images/ggplot-coordinate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="982"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-coordinate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.8: 좌표계 변환
+그림&nbsp;9.9: 좌표계 변환
 </figcaption></figure>
 </div>
 </section><section id="ggplot2-steps-theme" class="level3" data-number="9.2.8"><h3 data-number="9.2.8" class="anchored" data-anchor-id="ggplot2-steps-theme">
-<span class="header-section-number">9.2.8</span> 분위기 풍(theme)</h3>
-<p>분위기 풍(theme)은 앞선 깔끔한 데이터를 시각화 객체로 변환시키는 과정과 아무런 연관이 없다. 대신 외양을 보기좋게 하는 역할을 수행한다. 즉, 시각화에 알맞는 색상 팔레트를 적용시키고, 글꼴을 바꾸는 작업이 여기에 해당된다.</p>
+<span class="header-section-number">9.2.8</span> 분위기 풍</h3>
+<p>테마, 분위기 풍(theme)은 <code>ggplot2</code>에서 그래프 외양을 다듬는 중요한 단계다. 이 단계는 데이터 시각화 과정과 직접적인 연관이 없으며, 대신 그래프 외형적인 부분을 개선하는 역할을 한다. 여기서는 적절한 색상 팔레트를 적용하고 글꼴을 변경하는 등의 작업이 수행한다. 이러한 조정 작업은 그래프의 전반적인 미적 품질을 향상시켜 결과물의 이해도와 시각적 매력을 증가시키는 중요한 역할을 한다.</p>
 <div id="fig-ggplot-theme" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-theme.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="images/ggplot-theme.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1080"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-theme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.9: <code>tufte</code> 분위기 풍(theme)
+그림&nbsp;9.10: <code>tufte</code> 분위기 풍(theme)
 </figcaption></figure>
 </div>
 <div class="cell">
@@ -602,28 +687,28 @@ ga('send', {
 </div>
 </section></section><section id="ggplot2-steps-extension" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="ggplot2-steps-extension">
 <span class="header-section-number">9.3</span> <code>ggplot</code> 확장</h2>
-<p>기본 <code>ggplot</code> 그래프 객체를 갖게 되면 2개 이상의 그래프를 합치거나 배열을 달리하고, 강조를 하고 주석(annotation)을 달고 애니메이션과 인터랙티브 기능을 추가하여 확장시킬 수 있다.</p>
+<p><code>ggplot</code> 확장은 기본 <code>ggplot</code> 그래프 객체를 더욱 다양하게 활용하는 것을 의미한다. 한 번에 2개 이상의 그래프를 합치거나, 다른 방식으로 배열하고, 특정 부분을 강조하거나 주석을 추가하는 것이 가능하다. 또한 애니메이션과 인터랙티브 기능을 통해 보다 동적이고 상호작용이 가능한 시각화를 만들 수 있다. <code>patchwork</code>, <code>gganimate</code>, <code>plotly</code>, <code>ggrepel</code>, <code>gghighlight</code> 등의 패키지를 활용하여 <code>ggplot</code> 그래프를 확장할 수 있다.</p>
 <div id="fig-ggplot-extension" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-extension-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/ggplot-extension.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="images/ggplot-extension.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="743"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-extension-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;9.10: <code>ggplot2</code> 패키지 확장
+그림&nbsp;9.11: <code>ggplot2</code> 패키지 확장
 </figcaption></figure>
 </div>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;9.1: <code>ggplot</code>이 필요한 이유</span>
-<span class="glightbox-desc lightbox-desc-2">그림&nbsp;9.2: 깔끔한 데이터 <code>wide</code>, <code>long</code> 데이터</span>
-<span class="glightbox-desc lightbox-desc-3">그림&nbsp;9.3: 데이터를 그래프에 매핑</span>
-<span class="glightbox-desc lightbox-desc-4">그림&nbsp;9.4: 그래프별 기본설정 통계량</span>
-<span class="glightbox-desc lightbox-desc-5">그림&nbsp;9.5: <code>aes</code> 매핑된 축 척도지정</span>
-<span class="glightbox-desc lightbox-desc-6">그림&nbsp;9.6: 기하형상 지정</span>
-<span class="glightbox-desc lightbox-desc-7">그림&nbsp;9.7: 그룹으로 쪼갠 작은 창(facet)</span>
-<span class="glightbox-desc lightbox-desc-8">그림&nbsp;9.8: 좌표계 변환</span>
-<span class="glightbox-desc lightbox-desc-9">그림&nbsp;9.9: <code>tufte</code> 분위기 풍(theme)</span>
-<span class="glightbox-desc lightbox-desc-11">그림&nbsp;9.10: <code>ggplot2</code> 패키지 확장</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;9.2: <code>ggplot</code>이 필요한 이유</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;9.3: 깔끔한 데이터 <code>wide</code>, <code>long</code> 데이터</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;9.4: 데이터를 그래프에 매핑</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;9.5: 그래프별 기본설정 통계량</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;9.6: <code>aes</code> 매핑된 축 척도지정</span>
+<span class="glightbox-desc lightbox-desc-6">그림&nbsp;9.7: 기하형상 지정</span>
+<span class="glightbox-desc lightbox-desc-7">그림&nbsp;9.8: 그룹으로 쪼갠 작은 창(facet)</span>
+<span class="glightbox-desc lightbox-desc-8">그림&nbsp;9.9: 좌표계 변환</span>
+<span class="glightbox-desc lightbox-desc-9">그림&nbsp;9.10: <code>tufte</code> 분위기 풍(theme)</span>
+<span class="glightbox-desc lightbox-desc-11">그림&nbsp;9.11: <code>ggplot2</code> 패키지 확장</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1095,7 +1180,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
