@@ -1,7 +1,7 @@
 # 논문 품질 그래프 생성
 
 데이터를 시각화하는 것은 변수 간 다양한 관계를 신속하게 탐색하는 가장 좋은 방법 중 하나이다.
-R에는 세 가지 주요 그래프 시스템이 있다. R 시각화 시스템에 대해서는 논문 품질 그래프 생성을 마무리하고 [-@sec-viz-R-system] 절에서 별도 자세한 소개가 되어 있다.
+R에는 세 가지 주요 그래프 시스템이 있다. R 시각화 시스템에 대해서는 논문 품질 그래프 생성을 마무리하고 [-@sec-viz-R-system] 절에서 별도로 자세히 소개되어 있다.
 
 - [기본 그래프 시스템][base]
 - [lattice][lattice] 패키지
@@ -11,7 +11,7 @@ R에는 세 가지 주요 그래프 시스템이 있다. R 시각화 시스템�
 [lattice]: http://www.statmethods.net/advgraphs/trellis.html
 [ggplot2]: http://www.statmethods.net/advgraphs/ggplot2.html
 
-`ggplot2` 패키지를 도구로 사용하게 되는데 출판 품질의 그래프를 생성하는 데 가장 효과적이기 때문이다. `ggplot2`는 그래픽 문법(grammar of graphics)에 기반을 두고 있다. 
+`ggplot2` 패키지를 도구로 사용하게 되는데, 이는 출판 품질의 그래프를 생성하는 데 가장 효과적이기 때문이다. `ggplot2`는 그래픽 문법(grammar of graphics)에 기반을 두고 있다. 
 즉, 모든 그래프는 동일한 구성요소 집합으로 표현된다: **데이터**셋, **좌표 시스템**, 데이터 점에 대한 시각적 표현인 **geoms** 집합.
 
 `ggplot2`를 이해하는 핵심은 그래프를 계층으로 생각하는 것이다. 
@@ -37,7 +37,7 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
 여기서는 **x**와 **y** 위치를 설정했다. 
 `ggplot`에게 `gapminder` 데이터프레임의 "gdpPercap" 열을 **x** 축에, "lifeExp" 열을 **y** 축에 표현하도록 지시한 것이다. 
 `aes`에 열 이름을 명시적으로 전달하지 않았다는 점에 주목하자(예: x = gapminder[, "gdpPercap"]). 
-이것이 가능한 이유는`ggplot`이 **데이터**에 주어진 열 이름을 인식할 만큼 똑똑하기 때문이다!
+이것이 가능한 이유는 `ggplot`이 **데이터**에 주어진 열 이름을 인식할 만큼 똑똑하기 때문이다!
 
 `ggplot` 함수를 호출한다고 해서 그래프가 바로 그려지는 것은 아니다:
 
@@ -150,7 +150,7 @@ ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
 지금까지 (**색상**같은) aesthetic 를 데이터의 변수로 *매핑(mapping)*해서 사용하는 법을 살펴봤다.
 예를 들어, `geom_line(aes(color=continent))`을 사용하면, ggplot에서 자동으로 각 대륙별로 다른 색상을 입힌다.
 그런데, 모든 선을 파란색으로 바꾸고자 하면 어떨까?  `geom_line(aes(color="blue"))` 명령어가 동작해야 된다고 생각하지만,
-사실은 그렇지 않다.특정 변수에 대한 매핑을 생성하지 않았기 대문에,
+사실은 그렇지 않다. 특정 변수에 대한 매핑을 생성하지 않았기 때문에,
 `aes()` 함수 밖으로 색상을 명세하는 부분을 예를 들어, `geom_line(color="blue")`와 같이 빼내기만 하면 된다.
 :::
 
@@ -424,11 +424,11 @@ R은 역사가 오래된 검증된 언어라 보니 그 시대의 컴퓨팅 환�
 - `ggplot` 시각화 시스템: 윌킨슨(Wilkinson)의 **Grammar of Graphics**에서 출발
 
 2017년 3월 기준 R 팩키지를 시각화 시스템으로 구분하면 다음과 같다.
-현재는 `ggplot`이 후발주자의 잇점을 발휘하여 대세로 자리잡았고 
-이는 `ggplot2` 패키지 기여자수, 코드 길이, 연관된 패키지수를 확인하면 
+현재는 `ggplot`이 후발주자의 이점을 발휘하여 대세로 자리잡았고 
+이는 `ggplot2` 패키지 기여자 수, 코드 길이, 연관된 패키지 수를 확인하면 
 쉽게 파악할 수 있다.
 
-|  시각화 시스템  |   팩키지 갯수   |
+|  시각화 시스템  |   패키지 개수   |
 |:---------------:|:---------------:|
 |Base 시각화      |      5,612       |
 |`lattice` 시각화 |      3,654       |
@@ -437,15 +437,16 @@ R은 역사가 오래된 검증된 언어라 보니 그 시대의 컴퓨팅 환�
 
 ### Base 시각화 시스템 {#viz-base-system}
 
-R 설치하면 내장된 Base 시각화 시스템은 **화가의 팔레트(Artist Palallete)** 모형으로 빈 도화지 캔바스 위에 화가가 그림을 그리는 것과 동일한 방식으로 시각화 산출물을 만들어 나간다.
+R을 설치하면 내장되어 있는 Base 시각화 시스템은 **화가의 팔레트(Artist Palallete)** 모형으로 빈 도화지 캔버스 위에 화가가 그림을 그리는 것과 동일한 방식으로 시각화 산출물을 만들어 나간다.
 `plot()` 혹은 유사한 시각화 함수로 시작해서 텍스트(`text`), 선(`line`), 점(`point`), 축(`axis`) 등을 표현하는데  **주석(Annotation)** 함수를 활용한다.
 
 따라서, 사람이 사고하는 방식으로 시각화 산출물을 만들어 나가 편리하지만, 시각화 산출물을 다시 그리려고 하면 처음부터 다시 해야 되기 때문에 시각화 산출물을 
 만드는 초기부터 시간을 갖고 잘 설계해 나가야 된다. 그리고, 시각화 산출물이 생성되면 다른 것으로 변환하기 어려운 단점이 있고, 그래픽 언어가 아니라 일련의 R 명령어
-묶음에 불가하다.
+묶음에 불과하다.
 
 ``` {r}
-#| label: viz-base
+#| label: fig-viz-base
+#| fig-cap: Base 시각화 시스템
 # 1. Base 시각화 시스템---------------------------------------
 data(mtcars)
 with(mtcars, plot(disp, mpg))
@@ -453,19 +454,20 @@ with(mtcars, plot(disp, mpg))
 
 ### `lattice` 시각화 시스템 {#viz-lattice-system}
 
-`lattice` 시각화 시스템은 `lattice` 팩키지를 통해 설치되고, 함수 호출(`xyplot()`, `bwplot()` 등)을 통해 시각화 산출물을 생성하게 된다.
+`lattice` 시각화 시스템은 `lattice` 패키지를 통해 설치되고, 함수 호출(`xyplot()`, `bwplot()` 등)을 통해 시각화 산출물을 생성하게 된다.
 조건에 따라 일변량 혹은 다변량 변수를 시각화하는데 유용하다. 즉, 특정 범주형 변수 수준에 따라 두 변수간의 관계를 시각적으로 표현하는 것을 예로 들 수 있다.
 전체 시각화 산출물 결과는 여백(margin), 공간 등은 자동으로 한번에 정해져서, 화면에 다수 시각화 산출물을 배치할 때 유용하다.
 
-하지만, 함수호출 한번으로 전체 시각화 산출물을 명세하는 것이 쉽지는 않다. 특히 주석(Annotation)을 시각화 산출물에 다는 것이 그다지 직관적이는 않다.
-그리고 `lattice` 함수를 통해 시각화 산출물이 만들어지면 더이상 추가는 불가하다.
+하지만, 함수호출 한번으로 전체 시각화 산출물을 명세하는 것이 쉽지는 않다. 특히 주석(Annotation)을 시각화 산출물에 다는 것이 그다지 직관적이지는 않다.
+그리고 `lattice` 함수를 통해 시각화 산출물이 만들어지면 더 이상 추가하는 것은 불가능하다.
 
 [키보드 자판으로 통계모형을 R로 표현하는 방법](https://statkclee.github.io/statistics/stat-modeling.html)처럼 변수들을 `lattice` 시각화 시스템에서 
-공식으로 표현할 수 있다는 점은 큰 장점중 하나다.
+공식으로 표현할 수 있다는 점은 큰 장점 중 하나이다.
 
 
 ``` {r}
-#| label: viz-lattice
+#| label: fig-viz-lattice
+#| fig-cap: Lattice 시각화 시스템
 library(lattice)
 # 2. Lattice 시각화 시스템---------------
 xyplot(mpg ~ disp | am, data=mtcars, layout=c(2,1))
@@ -473,13 +475,14 @@ xyplot(mpg ~ disp | am, data=mtcars, layout=c(2,1))
 
 ### `ggplot` 시각화 시스템 {#viz-ggplot-system}
 
-`ggplot` 시각화 시스템은 `ggplot2` 팩키지를 통해 설치가 가능하다. Base 시각화 시스템과 `lattice` 시각화 시스템의 장점을 취사선택해서 개발된 것으로 보는 견해도 있다.
-그래픽 문법(Grammer of Graphic)에 기반하고 있으며, `lattice` 시각화 시스템처럼 공백, 텍스트, 제목 등을 자동으로 설정하고,
-Base 시각화 시스템에서 지원하는 다양한 그래픽 요소를 추가하는 것도 가능하다. 전반적으로 `lattice`느낌이 나지만 사용하기는 직관적이며 다양한 그래픽 요소를 
+`ggplot` 시각화 시스템은 `ggplot2` 패키지를 통해 설치가 가능하다. Base 시각화 시스템과 `lattice` 시각화 시스템의 장점을 취사선택해서 개발된 것으로 보는 견해도 있다.
+그래픽 문법(Grammar of Graphic)에 기반하고 있으며, `lattice` 시각화 시스템처럼 공백, 텍스트, 제목 등을 자동으로 설정하고,
+Base 시각화 시스템에서 지원하는 다양한 그래픽 요소를 추가하는 것도 가능하다. 전반적으로 `lattice` 느낌이 나지만 사용하기는 직관적이며 다양한 그래픽 요소를 
 추가하는 것도 쉽다. 물론 `ggplot`에서 자동으로 설정하는 것도 원하는 설정으로 바꾸는 것도 가능하다.
 
 ``` {r}
-#| label:  viz-ggplot
+#| label:  fig-viz-ggplot
+#| fig-cap: ggplot 시각화 시스템
 # 3. ggplot 시각화 시스템----------------
 ggplot(data=mtcars, mapping=aes(x=disp, y=mpg)) + 
   geom_point() +
@@ -488,8 +491,8 @@ ggplot(data=mtcars, mapping=aes(x=disp, y=mpg)) +
 
 ### `grid` 시각화 시스템 {#viz-grid}
 
-`grid` 시각화 시스템은 `lattice`와 `ggplot`의 기반이 되는 시각화 시스템으로 R 버전 1.8.0 부터 Base 팩키지의 일부가 되었다.[^grid-viz-system]
-grid_0.7-4에서 [Base 팩키지 일부](https://stat.ethz.ch/R-manual/R-devel/library/grid/doc/changes.txt)가 되어 버젼이 Base 팩키지에 맞춰 버젼이 급상승했다.
+`grid` 시각화 시스템은 `lattice`와 `ggplot`의 기반이 되는 시각화 시스템으로 R 버전 1.8.0 부터 Base 패키지의 일부가 되었다.[^grid-viz-system]
+grid_0.7-4에서 [Base 패키지 일부](https://stat.ethz.ch/R-manual/R-devel/library/grid/doc/changes.txt)가 되어 버전이 Base 패키지에 맞춰 버전이 급상승했다.
 
 `grid` 시각화 시스템을 사용해서 위와 동일하게 상기 그래프를 그리면 다음과 같다. 
 `grid` 시스템을 숙달하기까지 시간이 걸리지만, 익숙해지면 장점이 상당하다.
@@ -497,7 +500,8 @@ grid_0.7-4에서 [Base 팩키지 일부](https://stat.ethz.ch/R-manual/R-devel/l
 [^grid-viz-system]: [R package grid disappeared?](http://stackoverflow.com/questions/29349398/r-package-grid-disappeared)
 
 ``` {r}
-#| label: viz-grid
+#| label: fig-viz-grid
+#| fig-cap: grid 시각화 시스템
 library(grid)
 x <- mtcars$disp
 y <- mtcars$mpg
@@ -513,3 +517,10 @@ grid.text("mtcars$mpg", y = unit(-3, "lines"), rot = 0)
 popViewport(2)
 ```
 
+## 요약
+
+R에는 그래프 문법에 기반한 `ggplot2`를 비롯하여 출판 품질 그래프를 생성할 수 있는 다양한 시각화 시스템이 존재한다. `ggplot2`는 레이어 개념을 사용하여 데이터, 좌표계, 시각적 요소(geom)를 조합함으로써 그래프를 생성하는데 이미지 편집 프로그램으로 유명한 포토샵이나 일러스트레이터와 유사한 방식이다.
+
+`ggplot2`를 사용하여 그래프를 생성할 때는 데이터와 `aes`를 매핑하고, `geom` 레이어를 추가하여 시각적 요소를 지정한다. 필요에 따라 좌표계 변환, 작은 창 분할, 테마 설정 등을 통해 그래프를 맞춤형 제작이 가능하고, `ggsave()` 함수를 사용하여 생성된 그래프를 다양한 형식으로 저장할 수 있다.
+
+`ggplot2` 외에도 R에는 Base 시각화 시스템, `lattice` 시각화 시스템 등 다양한 옵션이 존재한다. Base 시각화 시스템은 그래프를 그리는 기본적인 함수를 제공하며, `lattice`는 격자 그래픽(Trellis Graphics)에 기반하여 조건부 플롯을 생성하는 데 특화되어 있다. 한편 `grid` 시각화 시스템은 `lattice`와 `ggplot`의 기반이 되는 저수준 시각화 도구로, 보다 유연하고 강력한 그래픽을 생성할 수 있다.

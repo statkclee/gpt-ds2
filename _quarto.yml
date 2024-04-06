@@ -54,13 +54,13 @@ book:
         - data_structure.qmd          # OK
         - dataframe.qmd               # OK
         - data_dplyr.qmd              # OK
-        - data_tidyr.qmd
+        - data_tidyr.qmd              # OK
 
     - part: "**3부** 시각화"
       chapters:
-        - ggplot2_concept.qmd
-        - ggplot2.qmd
-        - ggplot2_pattern.qmd
+        - ggplot2_concept.qmd         # OK
+        - ggplot2.qmd                 # OK
+        - ggplot2_pattern.qmd         # OK
 
     - part: "**4부** 모형"
       chapters:
