@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<title>챗GPT 데이터 과학 - 6&nbsp; 데이터프레임 탐색</title>
+<title>챗GPT 데이터 과학 - 5&nbsp; 데이터프레임 탐색</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -275,7 +275,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe","fig-cap":"","context":"interactive","fig-height":5},"id":1,"code":"# cats <- read.csv(\"data/feline-data.csv\") # 로컬 파일 방식\ncats <- read.csv(\"feline-data.csv\")      # webr 방식\n\nage <- c(2, 3, 5)\ncats\n#>     coat weight likes_string\n#> 1 calico    2.1            1\n#> 2  black    5.0            0\n#> 3  tabby    3.2            1"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-cbind","fig-cap":"","context":"interactive","fig-height":5},"id":2,"code":"cbind(cats, age)\n#>     coat weight likes_string age\n#> 1 calico    2.1            1   2\n#> 2  black    5.0            0   3\n#> 3  tabby    3.2            1   5"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-cbind-error","fig-cap":"","context":"interactive","fig-height":5},"id":3,"code":"age <- c(2, 3, 5, 12)\ncbind(cats, age)\n#> data.frame(..., check.names = FALSE)에서 다음과 같은 에러가 발생했습니다:\n#>   arguments imply differing number of rows: 3, 4\n\nage <- c(2, 3)\ncbind(cats, age)\n#> data.frame(..., check.names = FALSE)에서 다음과 같은 에러가 발생했습니다:\n#>   arguments imply differing number of rows: 3, 2"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-cbind-error-fix","fig-cap":"","context":"interactive","fig-height":5},"id":4,"code":"nrow(cats)\n#> [1] 3\nlength(age)\n#> [1] 2"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-cbind-fix","fig-cap":"","context":"interactive","fig-height":5},"id":5,"code":"age <- c(2, 3, 5)\ncats <- cbind(cats, age)"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-rbind","fig-cap":"","context":"interactive","fig-height":5},"id":6,"code":"newRow <- list(\"tortoiseshell\", 3.3, TRUE, 9)\ncats <- rbind(cats, newRow)"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-factor","fig-cap":"","context":"interactive","fig-height":5},"id":7,"code":"levels(cats$coat)\nlevels(cats$coat) <- c(levels(cats$coat), \"tortoiseshell\")\ncats <- rbind(cats, list(\"tortoiseshell\", 3.3, TRUE, 9))"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-factor-str","fig-cap":"","context":"interactive","fig-height":5},"id":8,"code":"str(cats)\ncats$coat <- as.character(cats$coat)\nstr(cats)"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-remove-row","fig-cap":"","context":"interactive","fig-height":5},"id":9,"code":"cats\n\ncats[-4, ]"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-remove-row-na","fig-cap":"","context":"interactive","fig-height":5},"id":10,"code":"na.omit(cats)\n\ncats <- na.omit(cats)"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-remove-column","fig-cap":"","context":"interactive","fig-height":5},"id":11,"code":"cats[,-4]"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-remove-column-name","fig-cap":"","context":"interactive","fig-height":5},"id":12,"code":"drop <- names(cats) %in% c(\"age\")\ncats[,!drop]"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-append","fig-cap":"","context":"interactive","fig-height":5},"id":13,"code":"cats <- rbind(cats, cats)\ncats"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-remove-rowname","fig-cap":"","context":"interactive","fig-height":5},"id":14,"code":"rownames(cats) <- NULL\ncats"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-create-challenge-1","fig-cap":"","context":"interactive","fig-height":5},"id":15,"code":"df <- data.frame(id = c(\"a\", \"b\", \"c\"),\n                 x = 1:3,\n                 y = c(TRUE, TRUE, FALSE),\n                 stringsAsFactors = FALSE)"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-create-challenge-answer","fig-cap":"","context":"interactive","fig-height":5},"id":16,"code":"df <- data.frame(first = c(\"Grace\"),\n                 last = c(\"Hopper\"),\n                 lucky_number = c(0),\n                 stringsAsFactors = FALSE)\ndf <- rbind(df, list(\"Marie\", \"Curie\", 238) )\ndf <- cbind(df, coffeetime = c(TRUE,TRUE))"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-download-file-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":17,"code":"download.file(\"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv\", destfile = \"gapminder_data.csv\")\ngapminder <- read.csv(\"gapminder_data.csv\")"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-str-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":18,"code":"str(gapminder)\n#> 'data.frame':    1704 obs. of  6 variables:\n#>  $ country  : chr  \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...\n#>  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...\n#>  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...\n#>  $ continent: chr  \"Asia\" \"Asia\" \"Asia\" \"Asia\" ...\n#>  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...\n#>  $ gdpPercap: num  779 821 853 836 740 ..."},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-typeof-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":19,"code":"typeof(gapminder$year)\n#> [1] \"integer\"\ntypeof(gapminder$country)\n#> [1] \"character\"\nstr(gapminder$country)\n#>  chr [1:1704] \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ..."},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-dim-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":20,"code":"length(gapminder)\n#> [1] 6"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-typeof-gapminder-list","fig-cap":"","context":"interactive","fig-height":5},"id":21,"code":"typeof(gapminder)\n#> [1] \"list\""},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-nrow-ncol-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":22,"code":"nrow(gapminder)\n#> [1] 1704\nncol(gapminder)\n#> [1] 6"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-dim-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":23,"code":"dim(gapminder)\n#> [1] 1704    6"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-colnames-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":24,"code":"colnames(gapminder)\n#> [1] \"country\"   \"year\"      \"pop\"       \"continent\" \"lifeExp\"   \"gdpPercap\""},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-head-gapminder","fig-cap":"","context":"interactive","fig-height":5},"id":25,"code":"head(gapminder)\n#>       country year      pop continent lifeExp gdpPercap\n#> 1 Afghanistan 1952  8425333      Asia  28.801  779.4453\n#> 2 Afghanistan 1957  9240934      Asia  30.332  820.8530\n#> 3 Afghanistan 1962 10267083      Asia  31.997  853.1007\n#> 4 Afghanistan 1967 11537966      Asia  34.020  836.1971\n#> 5 Afghanistan 1972 13079460      Asia  36.088  739.9811\n#> 6 Afghanistan 1977 14880372      Asia  38.438  786.1134"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-tail-gapminder-answer","fig-cap":"","context":"interactive","fig-height":5},"id":26,"code":"tail(gapminder)\ntail(gapminder, n = 15)"},{"options":{"results":"markup","dpi":72,"warning":"true","out-height":"","output":"true","message":"true","autorun":"false","comment":"","out-width":"700px","fig-width":7,"read-only":"false","classes":"","label":"dataframe-tail-gapminder-answer2","fig-cap":"","context":"interactive","fig-height":5},"id":27,"code":"gapminder[sample(nrow(gapminder), 5), ]"}];
+globalThis.qwebrCellDetails = [{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":1,"code":"# cats <- read.csv(\"data/feline-data.csv\") # 로컬 파일 방식\ncats <- read.csv(\"feline-data.csv\")      # webr 방식\n\nage <- c(2, 3, 5)\ncats\n#>     coat weight likes_string\n#> 1 calico    2.1            1\n#> 2  black    5.0            0\n#> 3  tabby    3.2            1"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-cbind","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":2,"code":"cbind(cats, age)\n#>     coat weight likes_string age\n#> 1 calico    2.1            1   2\n#> 2  black    5.0            0   3\n#> 3  tabby    3.2            1   5"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-cbind-error","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":3,"code":"age <- c(2, 3, 5, 12)\ncbind(cats, age)\n#> data.frame(..., check.names = FALSE)에서 다음과 같은 에러가 발생했습니다:\n#>   arguments imply differing number of rows: 3, 4\n\nage <- c(2, 3)\ncbind(cats, age)\n#> data.frame(..., check.names = FALSE)에서 다음과 같은 에러가 발생했습니다:\n#>   arguments imply differing number of rows: 3, 2"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-cbind-error-fix","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":4,"code":"nrow(cats)\n#> [1] 3\nlength(age)\n#> [1] 2"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-cbind-fix","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":5,"code":"age <- c(2, 3, 5)\ncats <- cbind(cats, age)"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-rbind","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":6,"code":"newRow <- list(\"tortoiseshell\", 3.3, TRUE, 9)\ncats <- rbind(cats, newRow)"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-factor","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":7,"code":"levels(cats$coat)\nlevels(cats$coat) <- c(levels(cats$coat), \"tortoiseshell\")\ncats <- rbind(cats, list(\"tortoiseshell\", 3.3, TRUE, 9))"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-factor-str","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":8,"code":"str(cats)\ncats$coat <- as.character(cats$coat)\nstr(cats)"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-remove-row","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":9,"code":"cats\n\ncats[-4, ]"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-remove-row-na","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":10,"code":"na.omit(cats)\n\ncats <- na.omit(cats)"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-remove-column","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":11,"code":"cats[,-4]"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-remove-column-name","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":12,"code":"drop <- names(cats) %in% c(\"age\")\ncats[,!drop]"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-append","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":13,"code":"cats <- rbind(cats, cats)\ncats"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-remove-rowname","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":14,"code":"rownames(cats) <- NULL\ncats"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-create-challenge-1","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":15,"code":"df <- data.frame(id = c(\"a\", \"b\", \"c\"),\n                 x = 1:3,\n                 y = c(TRUE, TRUE, FALSE),\n                 stringsAsFactors = FALSE)"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-create-challenge-answer","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":16,"code":"df <- data.frame(first = c(\"Grace\"),\n                 last = c(\"Hopper\"),\n                 lucky_number = c(0),\n                 stringsAsFactors = FALSE)\ndf <- rbind(df, list(\"Marie\", \"Curie\", 238) )\ndf <- cbind(df, coffeetime = c(TRUE,TRUE))"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-download-file-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":17,"code":"download.file(\"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv\", destfile = \"gapminder_data.csv\")\ngapminder <- read.csv(\"gapminder_data.csv\")"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-str-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":18,"code":"str(gapminder)\n#> 'data.frame':    1704 obs. of  6 variables:\n#>  $ country  : chr  \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...\n#>  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...\n#>  $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...\n#>  $ continent: chr  \"Asia\" \"Asia\" \"Asia\" \"Asia\" ...\n#>  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...\n#>  $ gdpPercap: num  779 821 853 836 740 ..."},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-typeof-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":19,"code":"typeof(gapminder$year)\n#> [1] \"integer\"\ntypeof(gapminder$country)\n#> [1] \"character\"\nstr(gapminder$country)\n#>  chr [1:1704] \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ..."},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-dim-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":20,"code":"length(gapminder)\n#> [1] 6"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-typeof-gapminder-list","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":21,"code":"typeof(gapminder)\n#> [1] \"list\""},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-nrow-ncol-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":22,"code":"nrow(gapminder)\n#> [1] 1704\nncol(gapminder)\n#> [1] 6"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-dim-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":23,"code":"dim(gapminder)\n#> [1] 1704    6"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-colnames-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":24,"code":"colnames(gapminder)\n#> [1] \"country\"   \"year\"      \"pop\"       \"continent\" \"lifeExp\"   \"gdpPercap\""},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-head-gapminder","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":25,"code":"head(gapminder)\n#>       country year      pop continent lifeExp gdpPercap\n#> 1 Afghanistan 1952  8425333      Asia  28.801  779.4453\n#> 2 Afghanistan 1957  9240934      Asia  30.332  820.8530\n#> 3 Afghanistan 1962 10267083      Asia  31.997  853.1007\n#> 4 Afghanistan 1967 11537966      Asia  34.020  836.1971\n#> 5 Afghanistan 1972 13079460      Asia  36.088  739.9811\n#> 6 Afghanistan 1977 14880372      Asia  38.438  786.1134"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-tail-gapminder-answer","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":26,"code":"tail(gapminder)\ntail(gapminder, n = 15)"},{"options":{"read-only":"false","warning":"true","results":"markup","output":"true","comment":"","fig-width":7,"classes":"","out-height":"","message":"true","dpi":72,"fig-cap":"","label":"dataframe-tail-gapminder-answer2","context":"interactive","fig-height":5,"autorun":"false","out-width":"700px"},"id":27,"code":"gapminder[sample(nrow(gapminder), 5), ]"}];
 
 </script><script type="module">
 // Declare startupMessageQWebR globally
@@ -995,7 +995,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -1042,25 +1042,19 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">데이터 과학 운영체제</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 큰 그림</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -1077,25 +1071,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 패키지</span></span></a>
   </div>
 </li>
       </ul>
@@ -1112,19 +1106,19 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -1141,25 +1135,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
   </div>
 </li>
       </ul>
@@ -1176,25 +1170,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -1211,25 +1205,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
   </div>
 </li>
       </ul>
@@ -1246,25 +1240,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -1281,25 +1275,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_rtutor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -1319,16 +1313,17 @@ globalThis.qwebrExecuteCode = async function (
    
   <ul>
 <li>
-<a href="#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%B6%94%EA%B0%80" id="toc-행과-열-추가" class="nav-link active" data-scroll-target="#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%B6%94%EA%B0%80"><span class="header-section-number">6.1</span> 행과 열 추가</a>
+<a href="#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%B6%94%EA%B0%80" id="toc-행과-열-추가" class="nav-link active" data-scroll-target="#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%B6%94%EA%B0%80"><span class="header-section-number">5.1</span> 행과 열 추가</a>
   <ul class="collapse">
 <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   </ul>
 </li>
-  <li><a href="#%EC%9A%94%EC%9D%B8" id="toc-요인" class="nav-link" data-scroll-target="#%EC%9A%94%EC%9D%B8"><span class="header-section-number">6.2</span> 요인</a></li>
-  <li><a href="#%ED%96%89-%EC%A0%9C%EA%B1%B0" id="toc-행-제거" class="nav-link" data-scroll-target="#%ED%96%89-%EC%A0%9C%EA%B1%B0"><span class="header-section-number">6.3</span> 행 제거</a></li>
-  <li><a href="#%EC%B9%BC%EB%9F%BC-%EC%A0%9C%EA%B1%B0" id="toc-칼럼-제거" class="nav-link" data-scroll-target="#%EC%B9%BC%EB%9F%BC-%EC%A0%9C%EA%B1%B0"><span class="header-section-number">6.4</span> 칼럼 제거</a></li>
-  <li><a href="#%EB%8D%A7%EB%B6%99%EC%9D%B4%EA%B8%B0" id="toc-덧붙이기" class="nav-link" data-scroll-target="#%EB%8D%A7%EB%B6%99%EC%9D%B4%EA%B8%B0"><span class="header-section-number">6.5</span> 덧붙이기</a></li>
-  <li><a href="#%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%98%88%EC%A0%9C" id="toc-현실적인-예제" class="nav-link" data-scroll-target="#%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%98%88%EC%A0%9C"><span class="header-section-number">6.6</span> 현실적인 예제</a></li>
+  <li><a href="#%EC%9A%94%EC%9D%B8" id="toc-요인" class="nav-link" data-scroll-target="#%EC%9A%94%EC%9D%B8"><span class="header-section-number">5.2</span> 요인</a></li>
+  <li><a href="#%ED%96%89-%EC%A0%9C%EA%B1%B0" id="toc-행-제거" class="nav-link" data-scroll-target="#%ED%96%89-%EC%A0%9C%EA%B1%B0"><span class="header-section-number">5.3</span> 행 제거</a></li>
+  <li><a href="#%EC%B9%BC%EB%9F%BC-%EC%A0%9C%EA%B1%B0" id="toc-칼럼-제거" class="nav-link" data-scroll-target="#%EC%B9%BC%EB%9F%BC-%EC%A0%9C%EA%B1%B0"><span class="header-section-number">5.4</span> 칼럼 제거</a></li>
+  <li><a href="#%EB%8D%A7%EB%B6%99%EC%9D%B4%EA%B8%B0" id="toc-덧붙이기" class="nav-link" data-scroll-target="#%EB%8D%A7%EB%B6%99%EC%9D%B4%EA%B8%B0"><span class="header-section-number">5.5</span> 덧붙이기</a></li>
+  <li><a href="#%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%98%88%EC%A0%9C" id="toc-현실적인-예제" class="nav-link" data-scroll-target="#%ED%98%84%EC%8B%A4%EC%A0%81%EC%9D%B8-%EC%98%88%EC%A0%9C"><span class="header-section-number">5.6</span> 현실적인 예제</a></li>
+  <li><a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">5.7</span> 요약</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/dataframe.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -1503,8 +1498,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   };
   
 }
-</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-dataframe" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></h1>
+</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./dataframe.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-dataframe" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></h1>
 </div>
 
 
@@ -1518,10 +1513,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   
 
 
-</header><p><a href="data_structure.html" class="quarto-xref"><span>5</span></a> 장에서 R의 모든 기본 자료형과 자료구조에 대한 여행을 마쳤다. 데이터 과학에서 수행하는 모든 작업은 <a href="data_structure.html" class="quarto-xref"><span>5</span></a> 장에서 소개한 도구를 조작하는 것이 된다. 하지만, 거의 대부분 데이터 과학 프로젝트에서 진정한 스타는 <strong>데이터프레임(dataframe)</strong>이다. CSV 파일에 정보를 불러와서 생성시킨 테이블을 지칭한다. 이번 장에서 데이터프레임으로 작업하는 방법에 대해 좀 더 상세히 살펴볼 것이다.</p>
-<section id="행과-열-추가" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="행과-열-추가">
-<span class="header-section-number">6.1</span> 행과 열 추가</h2>
-<p>데이터프레임의 칼럼은 벡터라는 것을 배웠다. 따라서, 데이터는 칼럼에서 자료형의 일관성을 유지해야 한다. 이를테면, 칼럼을 새로 추가하려면 벡터를 새로 만들어서 시작한다.</p>
+</header><p><a href="data_structure.html" class="quarto-xref"><span>4</span></a> 장에서 R의 모든 기본 자료형과 자료구조에 대한 여행을 마쳤다. 데이터 과학에서 수행하는 모든 작업은 <a href="data_structure.html" class="quarto-xref"><span>4</span></a> 장에서 소개한 도구를 조작하는 것이 된다. 하지만, 거의 대부분의 데이터 과학 프로젝트에서 진정한 스타는 <strong>데이터프레임(dataframe)</strong>이다. CSV 파일에서 정보를 불러와 생성한 테이블을 지칭한다. 이번 장에서는 데이터프레임으로 작업하는 방법에 대해 좀 더 상세히 살펴본다.</p>
+<section id="행과-열-추가" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="행과-열-추가">
+<span class="header-section-number">5.1</span> 행과 열 추가</h2>
+<p>데이터프레임의 칼럼은 벡터라는 것을 배웠다. 따라서, 데이터는 칼럼에서 자료형의 일관성을 유지해야 한다. 이를테면, 칼럼을 새로 추가하려면 벡터를 새로 만드는 것부터 시작한다.</p>
 <section id="r" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="r">R</h3>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1540,10 +1535,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>이제 행을 추가하면 어떻게 될까? 이미 데이터프레임의 행이 리스트라는 사실을 알고 있다.</p>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section></section><section id="요인" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="요인">
-<span class="header-section-number">6.2</span> 요인</h2>
+</section></section><section id="요인" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="요인">
+<span class="header-section-number">5.2</span> 요인</h2>
 <p>살펴볼 것이 하나 더 있다. 범주형 자료 처리를 위한 <code>요인(factor)</code>에서 각기 다른 값을 범주 <code>수준(level)</code>이라고 한다. 요인형 “coat” 변수는 수준이 3으로 구성된다. “black”, “calico”, “tabby”. R은 세 가지 수준 중 하나와 매칭되는 값만 받아들인다. 완전 새로운 값을 추가하게 되면, 추가되는 신규 값은 <code>NA</code>가 된다.</p>
-<p>경고 메시지를 통해서 <em>coat</em> 요인변수에 “tortoiseshell” 값을 추가하는데 성공하지 못했다고 알려준다. 하지만, 3.3 (숫자형), TRUE (논리형), 9 (숫자형)은 모두 <em>weight</em>, <em>likes_string</em>, <em>age</em> 변수에 성공적으로 추가된다. 왜냐하면 이 변수들이 요인형이 아니기 때문이다. “tortoiseshell”을 <em>coat</em> 요인변수에 성공적으로 추가하려면 요인의 수준(level)로 “tortoiseshell”을 추가하면 된다.</p>
+<p>경고 메시지를 통해서 <em>coat</em> 요인변수에 “tortoiseshell” 값을 추가하는 데 성공하지 못했다고 알려준다. 하지만, 3.3 (숫자형), TRUE (논리형), 9 (숫자형)은 모두 <em>weight</em>, <em>likes_string</em>, <em>age</em> 변수에 성공적으로 추가된다. 왜냐하면 이 변수들이 요인형이 아니기 때문이다. “tortoiseshell”을 <em>coat</em> 요인변수에 성공적으로 추가하려면 요인의 수준(level)로 “tortoiseshell”을 추가하면 된다.</p>
 <div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>대안으로, 요인형 벡터를 문자형 벡터로 변환시키면 된다. 요인변수의 범주를 잃게 되지만, 요인 수준을 조심스럽게 다룰 필요 없이 칼럼에 추가하고자 하는 임의의 단어를 추가할 수 있다.</p>
@@ -1563,9 +1558,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>
 <code>cats$age</code> 벡터에 7을 곱해서 <code>human_age</code> 벡터를 생성하자.</li>
 <li>
-<code>human_age</code>를 요인형으로 변환시키자.</li>
+<code>human_age</code>를 요인형으로 변환하자.</li>
 <li>
-<code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> 함수를 사용해서 <code>human_age</code> 벡터를 다시 숫자형 벡터로 변환시킨다. 이제 7로 나눠서 원래 고양이 나이로 되돌리자. 무슨 일이 생겼는지 설명하자.</li>
+<code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> 함수를 사용해서 <code>human_age</code> 벡터를 다시 숫자형 벡터로 변환한다. 이제 7로 나눠서 원래 고양이 나이로 되돌리자. 무슨 일이 생겼는지 설명하자.</li>
 </ol>
 <div class="callout callout-style-simple callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -1582,34 +1577,34 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <ol type="1">
 <li><code>human_age &lt;- cats$age * 7</code></li>
 <li>
-<code>human_age &lt;- factor(human_age)</code>. <code>as.factor(human_age)</code> 도 잘 동작한다.</li>
+<code>human_age &lt;- factor(human_age)</code>. <code>as.factor(human_age)</code>도 잘 동작한다.</li>
 <li>
 <code>as.numeric(human_age)</code>을 실행하면 <code>1 2 3 4 4</code>이 된다.</li>
 </ol>
-<p>왜냐하면 요인형 변수는 정수형(여기서 1:4)으로 자료를 저장하기 때문이다. 정수 라벨과 연관된 값은 여기서 28, 35, 56, 63이다. 요인형 변수를 숫자형 벡터로 변환시키면 라벨이 아니라 그 밑단의 정수를 반환시킨다. 원래 숫자를 원하는 경우, <code>human_age</code>를 문자형 벡터로 변환시키고 나서 숫자형 벡터로 변환시키면 된다. (왜 이 방식은 정상 동작할까?) 실수로 숫자만 담긴 칼럼 어딘가에 문자가 포함된 csv 파일로 작업할 때 이런 일이 실제로 종종 일어난다. 데이터를 불러 읽어올 때 <code>stringsAsFactors=FALSE</code> 설정을 잊지 말자.</p>
+<p>왜냐하면 요인형 변수는 정수형(여기서 1:4)으로 자료를 저장하기 때문이다. 정수 라벨과 연관된 값은 여기서 28, 35, 56, 63이다. 요인형 변수를 숫자형 벡터로 변환시키면 라벨이 아니라 그 밑단의 정수를 반환시킨다. 원래 숫자를 원하는 경우, <code>human_age</code>를 문자형 벡터로 변환시키고 나서 숫자형 벡터로 변환시키면 된다. (왜 이 방식은 정상 동작할까?) 실수로 숫자만 담긴 칼럼 어딘가에 문자가 포함된 csv 파일로 작업할 때 이런 일이 실제로 종종 일어난다. 데이터를 불러올 때 <code>stringsAsFactors=FALSE</code> 설정을 잊지 말자.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="행-제거" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="행-제거">
-<span class="header-section-number">6.3</span> 행 제거</h2>
-<p>이제 데이터프레임에 행과 열을 추가하는 방법을 알게 되었다. 하지만, 데이터프레임에 “tortoiseshell” 고양이를 처음으로 추가하면서 우연히 쓰레기 행을 추가시켰다. 데이터프레임에 문제가 되는 행을 마이너스 연산자를 사용해서 빼자.</p>
+</section><section id="행-제거" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="행-제거">
+<span class="header-section-number">5.3</span> 행 제거</h2>
+<p>이제 데이터프레임에 행과 열을 추가하는 방법을 알게 되었다. 하지만, 데이터프레임에 “tortoiseshell” 고양이를 처음으로 추가하면서 우연히 쓰레기 행을 추가시켰다. 데이터프레임에서 문제가 되는 행을 마이너스 연산자를 사용해서 제거하자.</p>
 <div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><code>-4,</code> 다음에 아무것도 지정하지 않아서 4번째 행 전체를 제거함에 주목한다. 주목: 벡터 내부에 행 다수를 넣어 한번에 행을 제거할 수도 있다: <code>cats[c(-4,-5), ]</code> 대안으로, <code>NA</code> 값을 갖는 모든 행을 제거시킨다. 출력결과를 <code>cats</code>에 다시 대입하여 변경사항이 데이터프레임에 영구히 남도록 조치한다.</p>
+<p><code>-4,</code> 다음에 아무것도 지정하지 않아서 4번째 행 전체를 제거함에 주목한다. 주목: 벡터 내부에 행 다수를 넣어 한번에 행을 제거할 수도 있다: <code>cats[c(-4,-5), ]</code> 대안으로, <code>NA</code> 값을 갖는 모든 행을 제거한다. 출력결과를 <code>cats</code>에 다시 대입하여 변경사항이 데이터프레임에 영구히 남도록 조치한다.</p>
 <div id="qwebr-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section><section id="칼럼-제거" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="칼럼-제거">
-<span class="header-section-number">6.4</span> 칼럼 제거</h2>
-<p>데이터프레임의 칼럼도 제거할 수 있다. “age” 칼럼을 제거하고자 한다면 어떻게 해야 할까? 변수명과 변수 인덱스, 두가지 방식으로 칼럼을 제거할 수 있다.</p>
+</section><section id="칼럼-제거" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="칼럼-제거">
+<span class="header-section-number">5.4</span> 칼럼 제거</h2>
+<p>데이터프레임의 칼럼도 제거할 수 있다. “age” 칼럼을 제거하고자 한다면 어떻게 해야 할까? 변수명과 변수 인덱스, 두 가지 방식으로 칼럼을 제거할 수 있다.</p>
 <div id="qwebr-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><code>,-4</code> 앞에 아무것도 없는 것에 주목한다. 이는 모든 행을 간직한다는 의미를 갖는다. 대안으로, 색인명을 사용해서 컬럼을 제거할 수도 있다.</p>
 <div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section><section id="덧붙이기" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="덧붙이기">
-<span class="header-section-number">6.5</span> 덧붙이기</h2>
+</section><section id="덧붙이기" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="덧붙이기">
+<span class="header-section-number">5.5</span> 덧붙이기</h2>
 <p>데이터프레임에 데이터를 추가할 때 기억할 것은 <strong>칼럼은 벡터, 행은 리스트</strong>라는 사실이다. <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> 함수를 사용해서 데이터프레임 두 개를 본드로 붙이듯이 결합시킬 수 있다.</p>
 <div id="qwebr-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1655,9 +1650,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
-</section><section id="현실적인-예제" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="현실적인-예제">
-<span class="header-section-number">6.6</span> 현실적인 예제</h2>
-<p>지금까지 고양이 데이터를 가지고 데이터프레임 조작에 대한 기본적인 사항을 살펴봤다. 이제 학습한 기술을 사용해서 좀 더 현실적인 데이터셋을 다뤄보자. 앞에서 다운로드 받은 <code>gapminder</code> 데이터셋을 불러오자.</p>
+</section><section id="현실적인-예제" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="현실적인-예제">
+<span class="header-section-number">5.6</span> 현실적인 예제</h2>
+<p>지금까지 고양이 데이터를 가지고 데이터프레임 조작에 대한 기본적인 사항을 살펴봤다. 이제 학습한 기술을 사용해서 좀 더 현실적인 데이터셋을 다뤄보자. 앞에서 다운로드받은 <code>gapminder</code> 데이터셋을 불러오자.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/gapminder_data.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1672,13 +1667,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>흔히 맞닥드리는 또다른 유형의 파일이 탭구분자를 갖는 파일(.tsv)이다. 탭을 구분자로 명세하는데, <code>"\\t"</code>을 사용하고, <code><a href="https://rdrr.io/r/utils/read.table.html">read.delim()</a></code> 함수로 불러 읽어온다.</p></li>
-<li><p>파일을 <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> 함수를 사용해서 인터넷으로부터 직접 본인 컴퓨터 폴더로 다운로드할 수 있다. <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> 함수를 실행해서 다운로드 받은 파일을 읽어온다. 예를 들어,</p></li>
+<li><p>흔히 맞닥뜨리는 또 다른 유형의 파일이 탭으로 구분된 파일(.tsv)이다. 탭을 구분자로 명세하는데, <code>"\\t"</code>을 사용하고, <code><a href="https://rdrr.io/r/utils/read.table.html">read.delim()</a></code> 함수로 불러온다.</p></li>
+<li><p><code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> 함수를 사용해서 파일을 인터넷으로부터 직접 본인 컴퓨터 폴더로 다운로드할 수 있다. <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> 함수를 실행해서 다운로드받은 파일을 읽어온다. 예를 들어,</p></li>
 </ul>
 <div id="qwebr-insertion-location-17"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
-<li>대안으로, <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> 함수 내부에 파일 경로를 웹 주소로 치환해서 인터넷에서 직접 파일을 불러올 수도 있다. 이런 경우 로컬 컴퓨터에 CSV 파일이 전혀 저장되지 않았다는 점을 주의한다. 예를 들어,</li>
+<li>대안으로, <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> 함수 내부에 파일 경로를 웹 주소로 치환해서 인터넷에서 직접 파일을 불러올 수도 있다. 이런 경우 로컬 컴퓨터에 CSV 파일이 전혀 저장되지 않는다는 점을 주의한다. 예를 들어,</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1689,7 +1684,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </ul>
 </div>
 </div>
-<p><code>gapminder</code> 데이터셋을 좀 더 살펴보자. 항상 가장 먼저 해야 되는 작업은 <code>str</code> 명령어로 데이터가 어떻게 생겼는지 확인하는 것이다.</p>
+<p><code>gapminder</code> 데이터셋을 좀 더 살펴보자. 항상 가장 먼저 해야 하는 작업은 <code>str</code> 명령어로 데이터가 어떻게 생겼는지 확인하는 것이다.</p>
 <div id="qwebr-insertion-location-18"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> 함수로 데이터프레임 칼럼 각각을 면밀히 조사할 수도 있다.</p>
@@ -1698,7 +1693,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>데이터프레임 차원에 대한 정보를 얻어낼 수도 있다. <code>str(gapminder)</code> 실행결과 <code>gapminder</code> 데이터프레임에 관측점 1704개, 변수 6개가 있음을 상기한다. 다음 코드 실행결과는 무엇일까? 그리고 왜 그렇게 되는가?</p>
 <div id="qwebr-insertion-location-20"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>공정한 추측은 아마도 데이터프레임 길이가 행의 길이(1704)라고 보는 것이다. 하지만, 이번에는 다르다. 데이터프레임은 <strong>벡터와 요인으로 구성된 리스트</strong>라는 사실을 기억하라.</p>
+<p>공정한 추측은 아마도 데이터프레임 길이가 행의 길이(1704)라고 보는 것이다. 하지만, 이번에는 다르다. 데이터프레임은 <strong>벡터와 요인으로 구성된 리스트</strong>라는 사실을 기억하자.</p>
 <div id="qwebr-insertion-location-21"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><code><a href="https://rdrr.io/r/base/length.html">length()</a></code> 함수가 6을 제시하는 이유는 <code>gapminder</code>가 6개 칼럼을 갖는 리스트로 만들어졌기 때문이다. 데이터셋에서 행과 열 숫자를 얻는 데 다음 함수를 던져보자.</p>
@@ -1710,7 +1705,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>또한, 모든 칼럼의 칼럼명이 무엇인지 파악하고자 하면 다음과 같이 질문을 던진다.</p>
 <div id="qwebr-insertion-location-24"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>현 단계에서, R이 제시하는 구조가 우리의 직관이나 예상과 부합되는지 묻어보는 것이 중요하다. 각 칼럼에 대한 기본 자료형은 이해가 되는가? 만약 납득이 가지 않는다면, 후속 작업에서 나쁜 놀라운 사실로 전환되기 전에 문제를 해결해야 한다. 문제를 해결하는 데, R이 데이터를 이해하는 방법과 데이터를 기록할 때 <strong>엄격한 일관성(strict consistency)</strong>의 중요성에 관해 학습한 것을 동원한다.</p>
+<p>현 단계에서, R이 제시하는 구조가 우리의 직관이나 예상과 부합되는지 묻어보는 것이 중요하다. 각 칼럼에 대한 기본 자료형은 이해가 되는가? 만약 납득이 가지 않는다면, 후속 작업에서 나쁜 놀라운 사실로 전환되기 전에 문제를 해결해야 한다. 문제를 해결하는 데, R이 데이터를 이해하는 방법과 데이터를 기록할 때 <strong>엄격한 일관성(strict consistency)</strong>의 중요성에 관해 학습한 것을 활용한다.</p>
 <p>자료형과 자료구조가 타당해 보이게 되면, 데이터를 제대로 파고들 시간이 되었다. <code>gapminder</code> 데이터의 처음 몇 줄을 살펴보자.</p>
 <div id="qwebr-insertion-location-25"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1725,7 +1720,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div class="callout-body-container callout-body">
 <p>데이터 마지막 몇 줄, 중간 몇 줄을 점검하는 것도 좋은 습관이다. 그런데 어떻게 점검할 수 있을까?</p>
-<p>중간 몇 줄을 찾아보는 것이 너무 어렵지는 않지만, 임의로 몇 줄을 추출할 수도 있다. 어떻게 할 수 있을까?</p>
+<p>중간 몇 줄을 찾아보는 것은 너무 어렵지 않지만, 임의로 몇 줄을 추출할 수도 있다. 어떻게 할 수 있을까?</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1738,10 +1733,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>마지막 몇 줄을 점검하려면, R에 내장된 함수가 있어서 상대적으로 간단하다.</p>
+<p>마지막 몇 줄을 점검하려면, R에 내장된 함수를 사용하면 상대적으로 간단하다.</p>
 <div id="qwebr-insertion-location-26"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>데이터가 온전한지(혹은 관점에 따라 데이터가 온전하지 않은지)를 점검하는 데 몇 줄을 추출할 수 있을까?</p>
+<p>데이터가 온전한지(혹은 관점에 따라 데이터가 온전하지 않은지)를 점검하기 위해 몇 줄을 추출할 수 있을까?</p>
 <blockquote class="blockquote">
 <p>팁: 몇 가지 방법이 존재한다.</p>
 </blockquote>
@@ -1782,7 +1777,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv"</span>, destfile <span class="op">=</span> <span class="st">"data/gapminder_data.csv"</span><span class="op">)</span></span>
 <span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/gapminder_data.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>스크립트를 실행시키면 데이터를 <code>gapminder</code> 변수에 적재시킨다.</p>
+<p>스크립트를 실행하면 데이터를 <code>gapminder</code> 변수에 적재한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"scripts/load-gapminder.R"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1801,7 +1796,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>str(gapminder)</code> 출력결과를 다시 불러오자. 이번에는 <code>gapminder</code> 데이터에 대해 <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> 함수가 출력하는 모든 것이 의미하는 바를 설명한다. 지금까지 학습한 요인, 리스트와 벡터 뿐만 아니라, <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>, <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> 같은 함수도 동원한다. 이해하지 못한 부분이 있다면, 주변 동료와 상의한다!</p>
+<p><code>str(gapminder)</code> 출력결과를 다시 불러오자. 이번에는 <code>gapminder</code> 데이터에 대해 <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> 함수가 출력하는 모든 것이 의미하는 바를 설명한다. 지금까지 학습한 요인, 리스트와 벡터뿐만 아니라 <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>, <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> 같은 함수도 동원한다. 이해하지 못한 부분이 있다면, 주변 동료와 상의한다!</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1820,6 +1815,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
+</section><section id="요약" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="요약">
+<span class="header-section-number">5.7</span> 요약</h2>
+<p>데이터 분석을 수행할 때 가장 중요한 자료 구조는 데이터프레임이다. 데이터프레임은 행과 열로 구성된 테이블 형태의 데이터를 저장하는 데 사용되며, 각 열은 벡터로 구성되고 각 행은 관측치를 나타낸다. 데이터프레임에 새로운 행이나 열을 추가할 때는 데이터의 일관성을 유지하는 것이 중요하다.</p>
+<p>데이터프레임의 열은 각각 서로 다른 자료형을 가질 수 있지만, 한 열 내에서는 모든 데이터가 동일한 자료형을 가져야 하며 필요한 경우 자료형 변환을 수행해야 한다. 특히 문자열로 구성된 열을 처리할 때는 요인형(factor)으로 변환하는 것이 효과이다.</p>
+<p>데이터프레임에서 필요 없는 행이나 열은 제거할 수 있다. 행을 제거할 때는 행 번호를 이용하거나 조건에 맞는 행을 선택하여 제거할 수 있으며, 열을 제거할 때는 열 이름이나 열 번호를 사용한다. 또한 두 개 이상의 데이터프레임을 병합하여 새로운 데이터프레임을 생성할 수도 있다.</p>
+<p>실제 데이터 분석에서는 데이터의 구조와 내용을 파악하는 것이 매우 중요하다. 왜냐하면 처음 보는 데이터로 어떻게 구성되었는지 파악하는 것이 먼저다. <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>, <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> 등의 함수를 활용하여 데이터의 개요를 살펴보고, 각 변수의 자료형과 값의 분포를 확인해야 한다. 또한 데이터에 결측치나 이상치가 있는지 검토하고, 상황에 맞게 적절히 처리해야 한다.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -2271,12 +2272,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./data_structure.html" class="pagination-link" aria-label="자료구조">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data_dplyr.html" class="pagination-link" aria-label="`dplyr` 데이터프레임 조작">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data_dplyr.html" class="pagination-link" aria-label="`dplyr` 패키지">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 패키지</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
