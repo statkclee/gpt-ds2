@@ -74,14 +74,14 @@ book:
         - functions.qmd               # OK
         - function_plyr.qmd           # OK
         - functions_ds.qmd            # OK
-        - functions_purrr.qmd
+        - functions_purrr.qmd         # OK
 
     - part: "**6부** 커뮤니케이션"
       chapters:
-        - comm_quarto.qmd
-        - comm_knitr.qmd
-        - comm_export.qmd
-        - comm_map.qmd
+        - comm_quarto.qmd             # OK
+        - comm_knitr.qmd              # OK
+        - comm_export.qmd             # OK
+        - comm_map.qmd                # OK
 
     - part: "**7부** 가져오기"
       chapters:

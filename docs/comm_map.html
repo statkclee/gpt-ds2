@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<title>챗GPT 데이터 과학 - 23&nbsp; 사례: 프로빅스 논문</title>
+<title>챗GPT 데이터 과학 - 22&nbsp; 사례: 프로빅스 논문</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,7 +169,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_map.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -216,25 +216,19 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">데이터 과학 운영체제</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 큰 그림</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -251,25 +245,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 패키지</span></span></a>
   </div>
 </li>
       </ul>
@@ -286,19 +280,19 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,25 +309,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
   </div>
 </li>
       </ul>
@@ -350,25 +344,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,25 +379,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
   </div>
 </li>
       </ul>
@@ -420,25 +414,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -455,25 +449,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_rtutor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -492,19 +486,20 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%B6%9C%EB%A0%A5%ED%98%95%EC%8B%9D" id="toc-다양한-출력형식" class="nav-link active" data-scroll-target="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%B6%9C%EB%A0%A5%ED%98%95%EC%8B%9D"><span class="header-section-number">23.1</span> 다양한 출력형식</a></li>
-  <li><a href="#%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4%EC%9D%98-%EC%97%AD%EC%82%AC-%EB%B0%8F-%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4-%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%B2%95" id="toc-공간정보의-역사-및-공간정보-처리기법" class="nav-link" data-scroll-target="#%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4%EC%9D%98-%EC%97%AD%EC%82%AC-%EB%B0%8F-%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4-%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%B2%95"><span class="header-section-number">23.2</span> 공간정보의 역사 및 공간정보 처리기법</a></li>
-  <li><a href="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0" id="toc-들어가며" class="nav-link" data-scroll-target="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0"><span class="header-section-number">23.3</span> 들어가며</a></li>
-  <li><a href="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94" id="toc-도구의-진화" class="nav-link" data-scroll-target="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94"><span class="header-section-number">23.4</span> 도구의 진화</a></li>
-  <li><a href="#gis-%EC%83%9D%ED%83%9C%EA%B3%84" id="toc-gis-생태계" class="nav-link" data-scroll-target="#gis-%EC%83%9D%ED%83%9C%EA%B3%84"><span class="header-section-number">23.5</span> GIS 생태계</a></li>
-  <li><a href="#%EC%82%AC%EB%A1%80" id="toc-사례" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80"><span class="header-section-number">23.6</span> 사례</a></li>
-  <li><a href="#%EB%A7%88%EB%AC%B4%EB%A6%AC" id="toc-마무리" class="nav-link" data-scroll-target="#%EB%A7%88%EB%AC%B4%EB%A6%AC"><span class="header-section-number">23.7</span> 마무리</a></li>
+<li><a href="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%B6%9C%EB%A0%A5%ED%98%95%EC%8B%9D" id="toc-다양한-출력형식" class="nav-link active" data-scroll-target="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%B6%9C%EB%A0%A5%ED%98%95%EC%8B%9D"><span class="header-section-number">22.1</span> 다양한 출력형식</a></li>
+  <li><a href="#%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4%EC%9D%98-%EC%97%AD%EC%82%AC-%EB%B0%8F-%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4-%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%B2%95" id="toc-공간정보의-역사-및-공간정보-처리기법" class="nav-link" data-scroll-target="#%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4%EC%9D%98-%EC%97%AD%EC%82%AC-%EB%B0%8F-%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4-%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%B2%95"><span class="header-section-number">22.2</span> 공간정보의 역사 및 공간정보 처리기법</a></li>
+  <li><a href="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0" id="toc-들어가며" class="nav-link" data-scroll-target="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0"><span class="header-section-number">22.3</span> 들어가며</a></li>
+  <li><a href="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94" id="toc-도구의-진화" class="nav-link" data-scroll-target="#%EB%8F%84%EA%B5%AC%EC%9D%98-%EC%A7%84%ED%99%94"><span class="header-section-number">22.4</span> 도구의 진화</a></li>
+  <li><a href="#gis-%EC%83%9D%ED%83%9C%EA%B3%84" id="toc-gis-생태계" class="nav-link" data-scroll-target="#gis-%EC%83%9D%ED%83%9C%EA%B3%84"><span class="header-section-number">22.5</span> GIS 생태계</a></li>
+  <li><a href="#%EC%82%AC%EB%A1%80" id="toc-사례" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80"><span class="header-section-number">22.6</span> 사례</a></li>
+  <li><a href="#%EB%A7%88%EB%AC%B4%EB%A6%AC" id="toc-마무리" class="nav-link" data-scroll-target="#%EB%A7%88%EB%AC%B4%EB%A6%AC"><span class="header-section-number">22.7</span> 마무리</a></li>
+  <li><a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">22.8</span> 요약</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/comm_map.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_map.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./comm_quarto.html"><strong>6부</strong> 커뮤니케이션</a></li><li class="breadcrumb-item"><a href="./comm_map.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span>
+<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span>
 </h1>
 </div>
 
@@ -522,7 +517,7 @@ window.Quarto = {
 </header><p>데이터 과학에서 논문이나 보고서를 저작한 후 PDF, MS 워드, 웹사이트 등 다양한 형태로 커뮤니케이션하는 것은 연구 결과를 효과적으로 전달하고 공유하여 해당 분야의 발전을 촉진하기 위해 매우 중요하다. PDF는 원본 레이아웃을 유지하고 인쇄에 최적화되어 있으며, MS 워드는 협업과 편집에 유용하고, 웹사이트는 가시성을 높이고 대중과의 소통을 촉진한다. R/파이썬 등 프로그래밍 언어와 쿼토의 다른 기능을 활용하여 PPT, 포스터, 인포그래픽 등 다양한 형태로 데이터 과학 산출물을 효과적으로 커뮤니케이션할 수 있다.</p>
 <p>쿼토는 다양한 출력 형식을 지원하는 강력한 출판 도구로, 버전제어 도구(Git)과 결합하여 재현 가능한 연구를 가능하게 하고, 하나의 문서로 다양한 형식의 출력을 생성할 수 있으며, 마크다운과 {&lt; latex &gt;}의 기능을 활용할 수 있는 유연성과 확장성을 가지고 있다. 또한, 오픈 소스 프로젝트로 커뮤니티의 지원을 받아 지속적인 발전과 안정성도 보장하고 있다. 쿼토는 텍스트 저작은 마크다운과 {&lt; latex &gt;}이 담당하고 R, 파이썬, SQL, 줄리아, 자바스크립트 등 다양한 프로그래밍 언어와의 결합도 코드 청크를 통해 지원한다.</p>
 <p>주택학회 프롭테크빅데이터연구소에서 발간하는 “프롭빅스”는 부동산 데이터 과학 분야의 연구자들에게 중요한 플랫폼을 제공하고 있다. 부동산 데이터 과학과 관련된 다양한 주제를 다루며, 최신 연구 결과를 공유하고 소통할 수 있는 장을 마련하고 있다.</p>
-<p>2023년 프롭빅스에 게재된 “공간정보의 역사 및 공간정보 처리기법” 논문은 쿼토를 활용한 데이터 과학 커뮤니케이션의 사례를 보여준다. 이 논문은 기존의 정형 데이터를 넘어 지리공간정보를 활용하여 커뮤니케이션의 효과를 높이는 방법을 제시한다. 쿼토를 통해 지리공간정보를 시각화하고, 상호작용적인 탐색을 가능하게 함으로써 독자들의 이해를 돕고, 연구 결과의 실제 적용 가능성을 높일 수 있다. 또한, 쿼토를 활용하여 지리공간정보를 PDF, MS 워드, 웹사이트 등 다양한 형태로 커뮤니케이션 할 수 있어, 연구 결과를 효과적으로 전달하고 공유하고 있다.</p>
+<p>2023년 프롭빅스에 게재된 “공간정보의 역사 및 공간정보 처리기법” 논문은 쿼토를 활용한 데이터 과학 커뮤니케이션의 사례를 보여준다. 이 논문은 기존의 정형 데이터를 넘어 지리공간정보를 활용하여 커뮤니케이션의 효과를 높이는 방법을 제시한다. 쿼토를 통해 지리공간정보를 시각화하고, 상호작용적인 탐색을 가능하게 함으로써 독자들의 이해를 돕고, 연구 결과의 실제 적용 가능성을 높일 수 있다. 또한, 쿼토를 활용하여 지리공간정보를 PDF, MS 워드, 웹사이트 등 다양한 형태로 커뮤니케이션할 수 있어, 연구 결과를 효과적으로 전달하고 공유하고 있다.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-quarto-communcation-case" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -558,7 +553,7 @@ window.Quarto = {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quarto-communcation-case-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;23.1: 챗GPT 데이터 과학 커뮤니케이션 사례
+그림&nbsp;22.1: 챗GPT 데이터 과학 커뮤니케이션 사례
 </figcaption></figure>
 </div>
 </div>
@@ -580,13 +575,13 @@ window.Quarto = {
 <a href="images/comm_propbix.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/comm_propbix.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quarto-communcation-case-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;23.2: 프롭빅스 2023년 9월호에 게재된 “공간정보의 역사 및 공간정보 처리기법” 논문
+그림&nbsp;22.2: 프롭빅스 2023년 9월호에 게재된 “공간정보의 역사 및 공간정보 처리기법” 논문
 </figcaption></figure>
 </div>
 </div>
 </div>
-<section id="다양한-출력형식" class="level2" data-number="23.1"><h2 data-number="23.1" class="anchored" data-anchor-id="다양한-출력형식">
-<span class="header-section-number">23.1</span> 다양한 출력형식</h2>
+<section id="다양한-출력형식" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="다양한-출력형식">
+<span class="header-section-number">22.1</span> 다양한 출력형식</h2>
 <p>쿼토에서 논문 콘텐츠는 동일하고 야믈(YAML) 헤더만 달리하여 PDF 인쇄출판, MS 워드, 웹 HTML 형식으로 변환하여 의사소통 콘텐츠를 제작하게 된다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -626,7 +621,7 @@ window.Quarto = {
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">classoption</span><span class="kw">:</span><span class="at"> abstract</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래 발전 방향을 함께 가늠하고자 한다.</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> authors-block</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -653,7 +648,7 @@ window.Quarto = {
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">highlight-style</span><span class="kw">:</span><span class="at"> github</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">classoption</span><span class="kw">:</span><span class="at"> abstract</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="at">오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> authors-block    </span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -679,55 +674,55 @@ window.Quarto = {
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">highlight-style</span><span class="kw">:</span><span class="at"> github</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">classoption</span><span class="kw">:</span><span class="at"> abstract</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="at">오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> authors-block    </span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="공간정보의-역사-및-공간정보-처리기법" class="level2" data-number="23.2"><h2 data-number="23.2" class="anchored" data-anchor-id="공간정보의-역사-및-공간정보-처리기법">
-<span class="header-section-number">23.2</span> 공간정보의 역사 및 공간정보 처리기법</h2>
+</section><section id="공간정보의-역사-및-공간정보-처리기법" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="공간정보의-역사-및-공간정보-처리기법">
+<span class="header-section-number">22.2</span> 공간정보의 역사 및 공간정보 처리기법</h2>
 <blockquote class="blockquote">
-<p>오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래발전 방향을 함께 가늠하고자 한다.</p>
+<p>오픈소스 소프트웨어와 공간정보 공공데이터가 넘쳐나고 있는 가운데, 시민 데이터 과학자의 중요성이 증가하고 있다. 그러나, 지난 50년 동안 빠르게 발전해 온 지리 정보 시스템(GIS) 분야를 부동산 기술(프롭테크) 관점에서 바라보면 가속되고 있는 도구의 발전이 가져올 미래 방향을 유추할 수 있다. 다른 과학 및 엔지니어링 분야에서와 마찬가지로, GIS 분야 또한 지속적인 도구의 발전을 통해 큰 혁신이 일어나고 있다. 본 연구에서는 GIS 도구의 발전 과정을 살펴보고, 사례로 제시된 코드와 코드를 지탱하는 도구를 코드 뒤에 숨겨진 기술 생태계를 이해하고 프롭테크 미래 발전 방향을 함께 가늠하고자 한다.</p>
 </blockquote>
-</section><section id="들어가며" class="level2" data-number="23.3"><h2 data-number="23.3" class="anchored" data-anchor-id="들어가며">
-<span class="header-section-number">23.3</span> 들어가며</h2>
+</section><section id="들어가며" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="들어가며">
+<span class="header-section-number">22.3</span> 들어가며</h2>
 <p>최근 OpenAI사가 공개한 챗GPT는 인공지능 분야 자체도 큰 반향을 일으키고 있지만, 다른 분야에도 커다란 변화를 일으키고 있는데 가장 큰 이유는 쓸만한 도구가 마련되었기 때문이다. 시대에 맞는 적절한 도구 없이 지리정보시스템과 프롭테크를 지향하는 것은 커다란 모순이기 때문에 지리학에 대한 주요 개념을 먼저 살펴본 후에 도구의 진화를 살펴보고 진화된 도구를 통한 사례로 프롭테크의 미래를 함께 조망해보자.</p>
-<p>지리학(Geography)은 가장 오래된 과학 중 하나로 꼽히며, 학생때부터 교실 여기저기에서 볼 수 있는 지도가 아마도 처음 접한 데이터 시각화 산출물일 것이다. 지리학은 지구의 곡률을 정확히 파악하여 지구의 크기와 모양, 중력에 대한 이해를 높이는 데 중요한 역할을 수행했을 뿐만 아니라 대항해 시대 지도가 매우 큰 기여를 했고, 현대에 와서 지리학 데이터 응용 범위는 더욱 확장되어, 민간과 국방 범위를 가리지 않고 상업적으로 입점위치 선정, 우주 탐사, 군사 작전, 인구이동 패턴 분석 등 다방면에서 요긴한 역할을 수행하고 있다. <strong>지리정보시스템(GIS)</strong>은 공간 위치를 분석하고 정보를 지도와 필요한 경우 3D로 시각화하여 데이터 패턴, 관계, 상황 등에 대한 심도 깊은 이해를 제공하여 의사결정을 지원한다.</p>
+<p>지리학(Geography)은 가장 오래된 과학 중 하나로 꼽히며, 학생 때부터 교실 여기저기에서 볼 수 있는 지도가 아마도 처음 접한 데이터 시각화 산출물일 것이다. 지리학은 지구의 곡률을 정확히 파악하여 지구의 크기와 모양, 중력에 대한 이해를 높이는 데 중요한 역할을 수행했을 뿐만 아니라 대항해 시대 지도가 매우 큰 기여를 했고, 현대에 와서 지리학 데이터 응용 범위는 더욱 확장되어, 민간과 국방 범위를 가리지 않고 상업적으로 입점 위치 선정, 우주 탐사, 군사 작전, 인구 이동 패턴 분석 등 다방면에서 요긴한 역할을 수행하고 있다. <strong>지리정보시스템(GIS)</strong>은 공간 위치를 분석하고 정보를 지도와 필요한 경우 3D로 시각화하여 데이터 패턴, 관계, 상황 등에 대한 심도 깊은 이해를 제공하여 의사결정을 지원한다.</p>
 <p>먼저 좌표계를 살펴보자. 지도 자체가 불가피하게 왜곡된 현실을 시각적으로 표현하기 때문에 ‘현실의 축소판’(Maps are scale models of reality)이라고 할 수 있다. 예를 들어, 사과 껍질을 벗겨 펼친 것처럼, 평면화시켜 지도를 제작한다. 특히, <strong>지리 좌표계(Geographic Coordinate System)</strong>와 <strong>투영 좌표계(Projected Coordinate System)</strong>는 지도 작성과 공간 분석에서 중요한 개념이다. 간단히 요약하면, 지리 좌표계는 정확한 위치 정보를 제공하는 반면, 투영 좌표계는 거리와 면적 측정에 더 적합하다. 지리 좌표계는 지구상 위치를 설명하며, 지구가 둥글기 때문에 주로 각도 단위로 측정되고, 기준점에 상관없이 위치가 달라지지 않으므로 절대 좌표계다. 투영 좌표계는 지리 좌표계를 평면화한 것으로, 투영 좌표계를 사용할 경우 직선을 이용해 거리를 측정할 수 있어, 토지 이용 계획, 건물 배치, 거리 측정 등에서 유용하다.</p>
-<p>다음으로 지도학의 대표적인 파일 형식을 살펴보자. <strong>지도학(Cartography)</strong>은 지도를 작성하는 중요한 실무분야로 과거 벡터 데이터 형식으로 대표적인 <code>Shapefile</code> 파일을 통해 점, 다각형, 선으로 지리적 정보를 표현했다면, GIS 분야에 오픈소스 소프트웨어 문화가 확산되면서 <code>Geopackage</code>, <code>GeoJSON</code>, <code>KML</code>과 같은 다른 파일형식도 인기를 얻고 있다. GIS 데이터는 지도 뿐만 아니라 R 혹은 파이썬 프로그래밍 언어를 활용하여 다른 형태의 (비)정형 데이터와 결합한 교차분석이 일반화되고 있다.</p>
-<p>전통적인 <strong>벡터(Vector)</strong> <code>Shapefile</code> 파일과 함께 <strong>래스터(Raster)</strong> 데이터는 GIS에서 큰 축을 담당하는 대표적인 데이터 형식이다. 벡터 데이터가 점, 선, 다각형 등의 기하학적 형태로 주로 경계선, 위치 정보 등을 정확하게 표현할 때 사용되는 반면, 래스터 데이터는 픽셀이나 셀 배열로 정보를 표현한다는 점에서 차이가 난다. 각 픽셀은 고유값을 가지며, 색상, 높이, 밀도 등 다양한 형태 정보를 표현하는데 용이하다.</p>
-<p>GIS에서 계층(레이어, Layer)별로 나눠 데이터를 표현하고, 이를 결합하여 공간정보 지도형태 산출물을 얻는다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보는 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합하여 작업한다. <a href="#fig-layers" class="quarto-xref">그림&nbsp;<span>23.3</span></a> 에 실제 세상이 벡터와 래스터 데이터로 표현하는 사례가 제시되어 있다.</p>
+<p>다음으로 지도학의 대표적인 파일 형식을 살펴보자. <strong>지도학(Cartography)</strong>은 지도를 작성하는 중요한 실무 분야로 과거 벡터 데이터 형식으로 대표적인 <code>Shapefile</code> 파일을 통해 점, 다각형, 선으로 지리적 정보를 표현했다면, GIS 분야에 오픈소스 소프트웨어 문화가 확산되면서 <code>Geopackage</code>, <code>GeoJSON</code>, <code>KML</code>과 같은 다른 파일 형식도 인기를 얻고 있다. GIS 데이터는 지도뿐만 아니라 R 혹은 파이썬 프로그래밍 언어를 활용하여 다른 형태의 (비)정형 데이터와 결합한 교차분석이 일반화되고 있다.</p>
+<p>전통적인 <strong>벡터(Vector)</strong> <code>Shapefile</code> 파일과 함께 <strong>래스터(Raster)</strong> 데이터는 GIS에서 큰 축을 담당하는 대표적인 데이터 형식이다. 벡터 데이터가 점, 선, 다각형 등의 기하학적 형태로 주로 경계선, 위치 정보 등을 정확하게 표현할 때 사용되는 반면, 래스터 데이터는 픽셀이나 셀 배열로 정보를 표현한다는 점에서 차이가 난다. 각 픽셀은 고유값을 가지며, 색상, 높이, 밀도 등 다양한 형태 정보를 표현하는 데 용이하다.</p>
+<p>GIS에서 계층(레이어, Layer)별로 나눠 데이터를 표현하고, 이를 결합하여 공간정보 지도형태 산출물을 얻는다. 한 구획의 토지(parcle), 공간 정보를 점, 선, 다각형 같은 벡터 데이터로 표현하고 비공간 정보는 소유권, 토지 이용, 구역 분류, 평가 가치 등 다양한 속성(칼럼) 데이터프레임과 결합하여 작업한다. <a href="#fig-layers" class="quarto-xref">그림&nbsp;<span>22.3</span></a> 에 실제 세상이 벡터와 래스터 데이터로 표현하는 사례가 제시되어 있다.</p>
 <div id="fig-layers" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/gis_layers.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/gis_layers.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;23.3: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/
+그림&nbsp;22.3: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/
 </figcaption></figure>
 </div>
-</section><section id="도구의-진화" class="level2" data-number="23.4"><h2 data-number="23.4" class="anchored" data-anchor-id="도구의-진화">
-<span class="header-section-number">23.4</span> 도구의 진화</h2>
-<p>GIS, 좌표계, 파일 형식, 계층(Layer), 교차분석 등 주요개념을 바탕으로 도구 진화과정을 살펴보자. 초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.</p>
-<p>2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식별로 서로 다른 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 파편화된 진화과정이 일어났다. 2020년대 넘어서면서 1990년대와 유사한 상황이 재현되었고, 이를 해결하고 새로운 전환점을 만들기 위해 <code>OpenEO</code>가 제시되며 사용자와 데이터 센터 사이에서 새로운 표준으로 자리잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통한 공간정보 가치 창출이 용이해졌다. <span class="citation" data-cites="Pebesma2016">(Pebesma 기타 2016)</span></p>
+</section><section id="도구의-진화" class="level2" data-number="22.4"><h2 data-number="22.4" class="anchored" data-anchor-id="도구의-진화">
+<span class="header-section-number">22.4</span> 도구의 진화</h2>
+<p>GIS, 좌표계, 파일 형식, 계층(Layer), 교차분석 등 주요 개념을 바탕으로 도구 진화 과정을 살펴보자. 초기 PC가 보급되면서 1980년대 GIS 시스템은 사일로 형태 고가 시스템이었으며, 1990년대에는 1980년대 개발된 GIS 시스템 간 연결이 시작되면서 스파게티 현상이 심해지면서 새로운 애플리케이션과 파일 형식이 도입되는데 필요 이상의 낭비가 심해지는 구조가 되었다.</p>
+<p>2000년대 GDAL(Geospatial Data Abstraction Layer)이 등장하여 개발자가 각 파일 형식별로 서로 다른 드라이버를 작성하는 대신 GDAL 클라이언트 드라이버만 개발하면 되기 때문에 일대 혁신이 일어났다. 2010년대는 인공위성을 통한 대량의 데이터가 넘쳐나며 이를 저장하기 위해서 클라우드 서비스가 우후죽순처럼 생겨났고 각기 다른 파편화된 진화 과정이 일어났다. 2020년대 넘어서면서 1990년대와 유사한 상황이 재현되었고, 이를 해결하고 새로운 전환점을 만들기 위해 <code>OpenEO</code>가 제시되며 사용자와 데이터 센터 사이에서 새로운 표준으로 자리 잡게 되면서 R, 파이썬 등 데이터 과학 프로그래밍 언어를 통한 공간정보 가치 창출이 용이해졌다. <span class="citation" data-cites="Pebesma2016">(Pebesma 기타 2016)</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="images/gis_evolution.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3" title="GIS 도구 진화과정"><img src="images/gis_evolution.jpg" class="img-fluid figure-img" alt="GIS 도구 진화과정"></a></p>
 <figcaption>GIS 도구 진화과정</figcaption></figure>
 </div>
-</section><section id="gis-생태계" class="level2" data-number="23.5"><h2 data-number="23.5" class="anchored" data-anchor-id="gis-생태계">
-<span class="header-section-number">23.5</span> GIS 생태계</h2>
-<p>인간은 오랜 역사 동안 다양한 도구를 개발하고 사용해 왔으며, GIS에서도 도구는 단순한 계산부터 복잡한 데이터 분석, 시각화를 통한 의사결정지원, 최근 거대언어모형(LLM) 인공지능까지 다양한 형태로 기여하고 있다.</p>
-<p>현재 직면한 문제를 해결하는데 과거 도구를 사용하는 것은 마치 철기시대에 석기시대 도구를 사용하는 것과 다름이 없다. 따라서, 데이터를 통해 가치를 만드는 데이터 과학자 입장에서 도구의 선택은 매우 중요할 수 밖에 없다.</p>
+</section><section id="gis-생태계" class="level2" data-number="22.5"><h2 data-number="22.5" class="anchored" data-anchor-id="gis-생태계">
+<span class="header-section-number">22.5</span> GIS 생태계</h2>
+<p>인간은 오랜 역사 동안 다양한 도구를 개발하고 사용해 왔으며, GIS에서도 도구는 단순한 계산부터 복잡한 데이터 분석, 시각화를 통한 의사결정 지원, 최근 거대언어모형(LLM) 인공지능까지 다양한 형태로 기여하고 있다.</p>
+<p>현재 직면한 문제를 해결하는 데 과거 도구를 사용하는 것은 마치 철기시대에 석기시대 도구를 사용하는 것과 다름없다. 따라서, 데이터를 통해 가치를 만드는 데이터 과학자 입장에서 도구의 선택은 매우 중요할 수밖에 없다.</p>
 <div id="fig-evolution" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/sf_deps.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/sf_deps.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-evolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;23.4: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성
+그림&nbsp;22.4: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성
 </figcaption></figure>
 </div>
-<p>현재 R 공간정보 생태계는 공간정보 도구 진화과정을 몇차례 경험한 후에 <a href="#fig-evolution" class="quarto-xref">그림&nbsp;<span>23.4</span></a> 처럼 자리를 잡았다. 결론부터 들어가면 <code>sf</code> 패키지가 생태계의 중심으로 자리 잡았으며, 사용자와 개발자는 <code>sf</code> 패키지를 통해 상당수 공간정보 데이터 문제를 해결할 수 있게 되었다. 하지만, <code>sf</code> 패키지는 C/C++ 라이브러리에 크게 의존성하기 때문에 각 라이브러리를 살펴보는 것은 향후 GIS 개발자와 분석가로 현업에서 활약하는데 큰 도움이 될 것으로 보인다.</p>
+<p>현재 R 공간정보 생태계는 공간정보 도구 진화 과정을 몇 차례 경험한 후에 <a href="#fig-evolution" class="quarto-xref">그림&nbsp;<span>22.4</span></a> 처럼 자리를 잡았다. 결론부터 들어가면 <code>sf</code> 패키지가 생태계의 중심으로 자리 잡았으며, 사용자와 개발자는 <code>sf</code> 패키지를 통해 상당수 공간정보 데이터 문제를 해결할 수 있게 되었다. 하지만, <code>sf</code> 패키지는 C/C++ 라이브러리에 크게 의존하기 때문에 각 라이브러리를 살펴보는 것은 향후 GIS 개발자와 분석가로 현업에서 활약하는 데 큰 도움이 될 것으로 보인다.</p>
 <p><code>GDAL</code>, <code>GEOS</code>, <code>PROJ</code>, <code>liblwgeom</code>, <code>s2geometry</code>, <code>NetCDF</code>, <code>udunits2</code>는 C/C++ 라이브러리를 개발, 유지보수, 지원하는 커뮤니티가 존재하는 반면 R, 파이썬, 줄리아(Julia), 자바스크립트는 대화형 인터페이스를 통해 라이브러리를 활용하는 커뮤니티도 존재한다. <span class="citation" data-cites="sds">(Pebesma 와/과 Bivand 2023)</span></p>
 <ul>
 <li>
@@ -735,13 +730,13 @@ window.Quarto = {
 <li>
 <code>PROJ</code>는 지도 투영 및 데이터 변환을 위한 라이브러리로, 하나의 좌표계에서 다른 좌표계로 좌표를 변환할 때 유용하다.</li>
 <li>
-<code>GEOS</code> (Geometry Engine Open Source)와 <code>s2geometry</code> 라이브러리는 기하학 연산에 사용하며, 길이, 면적, 거리를 측정하거나 연산작업에 사용되며 <span class="math inline">\(R^2\)</span>로 표기되며 <code>GEOS</code>는 평평한 2차원 공간에, <span class="math inline">\(S^2\)</span>로 표기되며 <code>s2geometry</code>는 구형 공간에 사용한다.</li>
+<code>GEOS</code> (Geometry Engine Open Source)와 <code>s2geometry</code> 라이브러리는 기하학 연산에 사용하며, 길이, 면적, 거리를 측정하거나 연산 작업에 사용되며 <span class="math inline">\(R^2\)</span>로 표기되며 <code>GEOS</code>는 평평한 2차원 공간에, <span class="math inline">\(S^2\)</span>로 표기되며 <code>s2geometry</code>는 구형 공간에 사용한다.</li>
 <li>
-<code>NetCDF</code>는 파일 형식이며 C 라이브러리로, 어떤 차원 배열도 정의할 수 있으며 특히 (기후) 모형개발 커뮤니티에서 널리 사용된다. <code>Udunits2</code>는 측정 단위의 데이터베이스 및 소프트웨어 라이브러리로, 단위의 변환과 파생 단위, 사용자 정의 단위를 처리한다. <code>liblwgeom</code>은 PostGIS 구성 요소로, <code>GDAL</code>, <code>GEOS</code>에서 누락된 몇 가지 루틴을 포함한다. <span class="citation" data-cites="Pebesma2016">(Pebesma 기타 2016)</span>
+<code>NetCDF</code>는 파일 형식이며 C 라이브러리로, 어떤 차원 배열도 정의할 수 있으며 특히 (기후) 모형 개발 커뮤니티에서 널리 사용된다. <code>Udunits2</code>는 측정 단위의 데이터베이스 및 소프트웨어 라이브러리로, 단위의 변환과 파생 단위, 사용자 정의 단위를 처리한다. <code>liblwgeom</code>은 PostGIS 구성 요소로, <code>GDAL</code>, <code>GEOS</code>에서 누락된 몇 가지 루틴을 포함한다. <span class="citation" data-cites="Pebesma2016">(Pebesma 기타 2016)</span>
 </li>
-</ul></section><section id="사례" class="level2" data-number="23.6"><h2 data-number="23.6" class="anchored" data-anchor-id="사례">
-<span class="header-section-number">23.6</span> 사례</h2>
-<p><code>sf</code> 패키지가 추상화된 함수를 제공하기 때문에 R 공간정보 생태계에서 <code>GDAL</code> 라이브러리를 GIS 분석가가 직접적으로 다룰 일은 없다. 하지만, GIS 도구를 활용하여 2023년 7월 기준 시도별 인구수를 대한민국 지도위에 도식화하기 위해서는 R 공간정보 생태계를 구성하는 다양한 도구가 꼭 필요하다. 먼저, 지도 데이터를 다루기 위해 <code>sf</code> 패키지를 사용하고 통계청(KOSIS) 데이터를 처리하기 위해 <code>tidyverse</code> 패키지 도구를 활용하고 오픈지도 개발자가 공개한 <code>geojson</code> 파일을 결합하여 인구수를 시도 수준에서 시도별 인구수 색상을 달리하여 지도위에 시각화한다. 작성된 코드는 R로 작성되었지만 파이썬 진영에도 공간정보 생태계도 유사한 도구가 준비되어 있어 각자 사용하기 좋은 도구를 가지고 의미있는 결과물을 만들어내고 있다.</p>
+</ul></section><section id="사례" class="level2" data-number="22.6"><h2 data-number="22.6" class="anchored" data-anchor-id="사례">
+<span class="header-section-number">22.6</span> 사례</h2>
+<p><code>sf</code> 패키지가 추상화된 함수를 제공하기 때문에 R 공간정보 생태계에서 <code>GDAL</code> 라이브러리를 GIS 분석가가 직접적으로 다룰 일은 없다. 하지만, GIS 도구를 활용하여 2023년 7월 기준 시도별 인구수를 대한민국 지도 위에 도식화하기 위해서는 R 공간정보 생태계를 구성하는 다양한 도구가 꼭 필요하다. 먼저, 지도 데이터를 다루기 위해 <code>sf</code> 패키지를 사용하고 통계청(KOSIS) 데이터를 처리하기 위해 <code>tidyverse</code> 패키지 도구를 활용하고 오픈지도 개발자가 공개한 <code>geojson</code> 파일을 결합하여 인구수를 시도 수준에서 시도별 인구수 색상을 달리하여 지도 위에 시각화한다. 작성된 코드는 R로 작성되었지만 파이썬 진영에도 공간정보 생태계도 유사한 도구가 준비되어 있어 각자 사용하기 좋은 도구를 가지고 의미 있는 결과물을 만들어내고 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -778,16 +773,21 @@ window.Quarto = {
 <figure class="figure"><p><a href="images/GIS_tools.jpeg" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5" title="GIS 도구 활용 대한민국 시도별 인구수"><img src="images/GIS_tools.jpeg" class="img-fluid figure-img" alt="GIS 도구 활용 대한민국 시도별 인구수"></a></p>
 <figcaption>GIS 도구 활용 대한민국 시도별 인구수</figcaption></figure>
 </div>
-</section><section id="마무리" class="level2" data-number="23.7"><h2 data-number="23.7" class="anchored" data-anchor-id="마무리">
-<span class="header-section-number">23.7</span> 마무리</h2>
-<p>공간정보 개발자와 사용자가 개발하는 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위한 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되었다. IoT와 인공위성을 통해 엄청난 공간정보 데이터가 축적되고 있지만, GIS 도구가 꾸준히 발전하면서 이제 누구나 이러한 도구를 활용하여 공간정보 데이터를 통해 의미있는 산출물을 제작하고 도구도 개발할 수 있게 되었고, 다른 한편으로는 도구 없이 도구에 대한 이해없이 프롭테크를 논하는 것조차 의미없는 시대로 접어들고 있다.</p>
+</section><section id="마무리" class="level2" data-number="22.7"><h2 data-number="22.7" class="anchored" data-anchor-id="마무리">
+<span class="header-section-number">22.7</span> 마무리</h2>
+<p>공간정보 개발자와 사용자가 개발하는 코드는 기계보다 사람 친화적으로 바뀌었으며, 효과적인 디버그와 신속한 개발을 위한 파이프 철학도 도입되어 생산성 향상이 비약적으로 높아졌고 도구의 추상화 수준도 대폭 향상되었다. IoT와 인공위성을 통해 엄청난 공간정보 데이터가 축적되고 있지만, GIS 도구가 꾸준히 발전하면서 이제 누구나 이러한 도구를 활용하여 공간정보 데이터를 통해 의미 있는 산출물을 제작하고 도구도 개발할 수 있게 되었고, 다른 한편으로는 도구 없이 도구에 대한 이해 없이 프롭테크를 논하는 것조차 의미 없는 시대로 접어들고 있다.</p>
+</section><section id="요약" class="level2" data-number="22.8"><h2 data-number="22.8" class="anchored" data-anchor-id="요약">
+<span class="header-section-number">22.8</span> 요약</h2>
+<p>데이터 과학에서 효과적인 커뮤니케이션은 연구 결과를 전달하고 협업을 촉진하는 데 매우 중요하다. 특히 공간정보는 데이터 과학 커뮤니케이션에서 핵심적인 역할을 담당한다. 공간 데이터는 위치와 관련된 정보를 포함하고 있어, 현실 세계의 복잡한 현상을 이해하고 설명하는 데 큰 도움을 준다. 지도와 공간 시각화는 데이터의 패턴과 관계를 직관적으로 전달할 수 있어, 다양한 분야에서 의사결정 지원 도구로 활용되고 있다.</p>
+<p>공간정보를 효과적으로 활용하기 위해서는 지리정보시스템(GIS)에 대한 이해가 필수적이다. GIS는 공간 데이터를 수집, 관리, 분석, 시각화하는 강력한 도구로, 데이터 과학자들이 공간 데이터를 다루는 데 있어 핵심적인 역할을 한다. 최근에는 오픈소스 GIS 도구와 데이터 과학 프로그래밍 언어의 발전으로 공간 데이터 분석이 더욱 쉽고 효율적으로 이루어질 수 있게 되었다.</p>
+<p>공간정보의 중요성은 부동산 기술(프롭테크) 분야에서 특히 두드러진다. 프롭테크는 공간 데이터를 기반으로 부동산 시장을 분석하고, 의사결정을 지원하는 기술을 통칭한다. GIS와 데이터 과학 기술을 활용한 공간 분석은 프롭테크 분야에서 새로운 가치를 창출하는 원동력이 되고 있다.</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;23.2: 프롭빅스 2023년 9월호에 게재된 “공간정보의 역사 및 공간정보 처리기법” 논문</span>
-<span class="glightbox-desc lightbox-desc-2">그림&nbsp;23.3: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;22.2: 프롭빅스 2023년 9월호에 게재된 “공간정보의 역사 및 공간정보 처리기법” 논문</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;22.3: GIS 벡터와 래스터 계층, 출처: http://gis.sbcounty.gov/</span>
 <span class="glightbox-desc lightbox-desc-3">GIS 도구 진화과정</span>
-<span class="glightbox-desc lightbox-desc-4">그림&nbsp;23.4: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;22.4: <code>sf</code> 패키지와 의존성 - 화살표는 강한 의존성, 점선 화살표는 약한 의존성</span>
 <span class="glightbox-desc lightbox-desc-5">GIS 도구 활용 대한민국 시도별 인구수</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -1250,12 +1250,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./comm_export.html" class="pagination-link" aria-label="내보내기">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">내보내기</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ingest_database.html" class="pagination-link" aria-label="데이터베이스">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">데이터베이스</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1271,7 +1271,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
