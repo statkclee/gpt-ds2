@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<title>챗GPT 데이터 과학 - 17&nbsp; 분할-적용-병합 전략</title>
+<title>챗GPT 데이터 과학 - 16&nbsp; 분할-적용-병합 전략</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -298,7 +298,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"# 데이터셋을 가져와서 인구 열과 1인당 GDP 열을 곱한다.\ncalcGDP <- function(dat, year=NULL, country=NULL) {\n  if(!is.null(year)) {\n    dat <- dat[dat$year %in% year, ]\n  }\n  if (!is.null(country)) {\n    dat <- dat[dat$country %in% country,]\n  }\n  gdp <- dat$pop * dat$gdpPercap\n\n  new <- cbind(dat, gdp=gdp)\n  return(new)\n}","options":{"results":"markup","out-width":"700px","classes":"","fig-height":5,"out-height":"","warning":"true","output":"true","autorun":"false","comment":"","context":"interactive","read-only":"false","dpi":72,"label":"pry-calcGDP","fig-cap":"","fig-width":7,"message":"true"}},{"id":2,"code":"withGDP <- calcGDP(gapminder)\n\nmean(withGDP[withGDP$continent == \"Africa\", \"gdp\"])\nmean(withGDP[withGDP$continent == \"Americas\", \"gdp\"])\nmean(withGDP[withGDP$continent == \"Asia\", \"gdp\"])","options":{"results":"markup","out-width":"700px","classes":"","fig-height":5,"out-height":"","warning":"true","output":"true","autorun":"false","comment":"","context":"interactive","read-only":"false","dpi":72,"label":"pry-calcGDP-command","fig-cap":"","fig-width":7,"message":"true"}},{"id":3,"code":"library(dplyr)\n\ncalcGDP(gapminder) %>%\n  group_by(continent) %>%\n  summarise(mean_gdp = mean(gdp))","options":{"results":"markup","out-width":"700px","classes":"","fig-height":5,"out-height":"","warning":"true","output":"true","autorun":"false","comment":"","context":"interactive","read-only":"false","dpi":72,"label":"pry-dplyr-split-apply-combine","fig-cap":"","fig-width":7,"message":"true"}},{"id":4,"code":"calcGDP(gapminder) %>%\n  group_by(continent, year) %>%\n  summarise(mean_gdp = mean(gdp))","options":{"results":"markup","out-width":"700px","classes":"","fig-height":5,"out-height":"","warning":"true","output":"true","autorun":"false","comment":"","context":"interactive","read-only":"false","dpi":72,"label":"pry-dplyr-split-apply-combine-group","fig-cap":"","fig-width":7,"message":"true"}},{"id":5,"code":"gapminder |> \n  group_by(continent)  |> \n  summarise(mean_lifeExp = mean(lifeExp))","options":{"results":"markup","out-width":"700px","classes":"","fig-height":5,"out-height":"","warning":"true","output":"true","autorun":"false","comment":"","context":"interactive","read-only":"false","dpi":72,"label":"pry-dplyr-challenge1-solution","fig-cap":"","fig-width":7,"message":"true"}},{"id":6,"code":"calcGDP(gapminder) |> \n  group_by(continent, year)  |> \n  summarise(mean_gdp = mean(gdp))","options":{"results":"markup","out-width":"700px","classes":"","fig-height":5,"out-height":"","warning":"true","output":"true","autorun":"false","comment":"","context":"interactive","read-only":"false","dpi":72,"label":"pry-dplyr-challenge2-solution","fig-cap":"","fig-width":7,"message":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"# 데이터셋을 가져와서 인구 열과 1인당 GDP 열을 곱한다.\ncalcGDP <- function(dat, year=NULL, country=NULL) {\n  if(!is.null(year)) {\n    dat <- dat[dat$year %in% year, ]\n  }\n  if (!is.null(country)) {\n    dat <- dat[dat$country %in% country,]\n  }\n  gdp <- dat$pop * dat$gdpPercap\n\n  new <- cbind(dat, gdp=gdp)\n  return(new)\n}","id":1,"options":{"output":"true","fig-width":7,"label":"pry-calcGDP","results":"markup","out-width":"700px","fig-height":5,"comment":"","fig-cap":"","autorun":"false","context":"interactive","message":"true","out-height":"","dpi":72,"read-only":"false","classes":"","warning":"true"}},{"code":"withGDP <- calcGDP(gapminder)\n\nmean(withGDP[withGDP$continent == \"Africa\", \"gdp\"])\nmean(withGDP[withGDP$continent == \"Americas\", \"gdp\"])\nmean(withGDP[withGDP$continent == \"Asia\", \"gdp\"])","id":2,"options":{"output":"true","fig-width":7,"label":"pry-calcGDP-command","results":"markup","out-width":"700px","fig-height":5,"comment":"","fig-cap":"","autorun":"false","context":"interactive","message":"true","out-height":"","dpi":72,"read-only":"false","classes":"","warning":"true"}},{"code":"library(dplyr)\n\ncalcGDP(gapminder) %>%\n  group_by(continent) %>%\n  summarise(mean_gdp = mean(gdp))","id":3,"options":{"output":"true","fig-width":7,"label":"pry-dplyr-split-apply-combine","results":"markup","out-width":"700px","fig-height":5,"comment":"","fig-cap":"","autorun":"false","context":"interactive","message":"true","out-height":"","dpi":72,"read-only":"false","classes":"","warning":"true"}},{"code":"calcGDP(gapminder) %>%\n  group_by(continent, year) %>%\n  summarise(mean_gdp = mean(gdp))","id":4,"options":{"output":"true","fig-width":7,"label":"pry-dplyr-split-apply-combine-group","results":"markup","out-width":"700px","fig-height":5,"comment":"","fig-cap":"","autorun":"false","context":"interactive","message":"true","out-height":"","dpi":72,"read-only":"false","classes":"","warning":"true"}},{"code":"gapminder |> \n  group_by(continent)  |> \n  summarise(mean_lifeExp = mean(lifeExp))","id":5,"options":{"output":"true","fig-width":7,"label":"pry-dplyr-challenge1-solution","results":"markup","out-width":"700px","fig-height":5,"comment":"","fig-cap":"","autorun":"false","context":"interactive","message":"true","out-height":"","dpi":72,"read-only":"false","classes":"","warning":"true"}},{"code":"calcGDP(gapminder) |> \n  group_by(continent, year)  |> \n  summarise(mean_gdp = mean(gdp))","id":6,"options":{"output":"true","fig-width":7,"label":"pry-dplyr-challenge2-solution","results":"markup","out-width":"700px","fig-height":5,"comment":"","fig-cap":"","autorun":"false","context":"interactive","message":"true","out-height":"","dpi":72,"read-only":"false","classes":"","warning":"true"}}];
 
 </script><script type="module">
 // Declare startupMessageQWebR globally
@@ -1018,7 +1018,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./function_plyr.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./function_plyr.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -1065,25 +1065,19 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">데이터 과학 운영체제</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 큰 그림</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -1100,25 +1094,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 패키지</span></span></a>
   </div>
 </li>
       </ul>
@@ -1135,19 +1129,19 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -1164,25 +1158,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
   </div>
 </li>
       </ul>
@@ -1199,25 +1193,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -1234,25 +1228,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
   </div>
 </li>
       </ul>
@@ -1269,25 +1263,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -1304,25 +1298,25 @@ globalThis.qwebrExecuteCode = async function (
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_rtutor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -1341,24 +1335,25 @@ globalThis.qwebrExecuteCode = async function (
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#gapminder-dataset" id="toc-gapminder-dataset" class="nav-link active" data-scroll-target="#gapminder-dataset"><span class="header-section-number">17.1</span> <code>gapminder</code> 데이터셋</a></li>
+<li><a href="#gapminder-dataset" id="toc-gapminder-dataset" class="nav-link active" data-scroll-target="#gapminder-dataset"><span class="header-section-number">16.1</span> <code>gapminder</code> 데이터셋</a></li>
   <li>
-<a href="#%EC%A7%84%ED%99%94%EC%9D%98-%EC%97%AD%EC%82%AC" id="toc-진화의-역사" class="nav-link" data-scroll-target="#%EC%A7%84%ED%99%94%EC%9D%98-%EC%97%AD%EC%82%AC"><span class="header-section-number">17.2</span> 진화의 역사</a>
+<a href="#%EC%A7%84%ED%99%94%EC%9D%98-%EC%97%AD%EC%82%AC" id="toc-진화의-역사" class="nav-link" data-scroll-target="#%EC%A7%84%ED%99%94%EC%9D%98-%EC%97%AD%EC%82%AC"><span class="header-section-number">16.2</span> 진화의 역사</a>
   <ul class="collapse">
-<li><a href="#ddplyr-prehistoric" id="toc-ddplyr-prehistoric" class="nav-link" data-scroll-target="#ddplyr-prehistoric"><span class="header-section-number">17.2.1</span> 선사시대</a></li>
-  <li><a href="#ddplyr-stone-age" id="toc-ddplyr-stone-age" class="nav-link" data-scroll-target="#ddplyr-stone-age"><span class="header-section-number">17.2.2</span> 석기시대</a></li>
-  <li><a href="#ddplyr-early-tidyverse" id="toc-ddplyr-early-tidyverse" class="nav-link" data-scroll-target="#ddplyr-early-tidyverse"><span class="header-section-number">17.2.3</span> 초기 <code>tidyverse</code> 시대</a></li>
-  <li><a href="#ddplyr-midage-tidyverse" id="toc-ddplyr-midage-tidyverse" class="nav-link" data-scroll-target="#ddplyr-midage-tidyverse"><span class="header-section-number">17.2.4</span> 중기 <code>tidyverse</code> 시대</a></li>
-  <li><a href="#ddplyr-current-tidyverse" id="toc-ddplyr-current-tidyverse" class="nav-link" data-scroll-target="#ddplyr-current-tidyverse"><span class="header-section-number">17.2.5</span> 현대 <code>tidyverse</code> 시대</a></li>
-  <li><a href="#base-current-tidyverse" id="toc-base-current-tidyverse" class="nav-link" data-scroll-target="#base-current-tidyverse"><span class="header-section-number">17.2.6</span> <code>tidyverse</code>/base R 조합</a></li>
+<li><a href="#ddplyr-prehistoric" id="toc-ddplyr-prehistoric" class="nav-link" data-scroll-target="#ddplyr-prehistoric"><span class="header-section-number">16.2.1</span> 선사시대</a></li>
+  <li><a href="#ddplyr-stone-age" id="toc-ddplyr-stone-age" class="nav-link" data-scroll-target="#ddplyr-stone-age"><span class="header-section-number">16.2.2</span> 석기시대</a></li>
+  <li><a href="#ddplyr-early-tidyverse" id="toc-ddplyr-early-tidyverse" class="nav-link" data-scroll-target="#ddplyr-early-tidyverse"><span class="header-section-number">16.2.3</span> 초기 <code>tidyverse</code> 시대</a></li>
+  <li><a href="#ddplyr-midage-tidyverse" id="toc-ddplyr-midage-tidyverse" class="nav-link" data-scroll-target="#ddplyr-midage-tidyverse"><span class="header-section-number">16.2.4</span> 중기 <code>tidyverse</code> 시대</a></li>
+  <li><a href="#ddplyr-current-tidyverse" id="toc-ddplyr-current-tidyverse" class="nav-link" data-scroll-target="#ddplyr-current-tidyverse"><span class="header-section-number">16.2.5</span> 현대 <code>tidyverse</code> 시대</a></li>
+  <li><a href="#base-current-tidyverse" id="toc-base-current-tidyverse" class="nav-link" data-scroll-target="#base-current-tidyverse"><span class="header-section-number">16.2.6</span> <code>tidyverse</code>/base R 조합</a></li>
   </ul>
 </li>
   <li>
-<a href="#gapminder-%EC%8B%A4%EC%8A%B5" id="toc-gapminder-실습" class="nav-link" data-scroll-target="#gapminder-%EC%8B%A4%EC%8A%B5"><span class="header-section-number">17.3</span> <code>gapminder</code> 실습</a>
+<a href="#gapminder-%EC%8B%A4%EC%8A%B5" id="toc-gapminder-실습" class="nav-link" data-scroll-target="#gapminder-%EC%8B%A4%EC%8A%B5"><span class="header-section-number">16.3</span> <code>gapminder</code> 실습</a>
   <ul class="collapse">
-<li><a href="#dplyr-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-dplyr-패키지" class="nav-link" data-scroll-target="#dplyr-%ED%8C%A8%ED%82%A4%EC%A7%80"><span class="header-section-number">17.3.1</span> <code>dplyr</code> 패키지</a></li>
+<li><a href="#dplyr-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-dplyr-패키지" class="nav-link" data-scroll-target="#dplyr-%ED%8C%A8%ED%82%A4%EC%A7%80"><span class="header-section-number">16.3.1</span> <code>dplyr</code> 패키지</a></li>
   </ul>
 </li>
+  <li><a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">16.4</span> 요약</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/function_plyr.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -1533,8 +1528,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   };
   
 }
-</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./function_plyr.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-split-apply-combine-histroy" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></h1>
+</script><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./function_plyr.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-split-apply-combine-histroy" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></h1>
 </div>
 
 
@@ -1548,10 +1543,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   
 
 
-</header><p>데이터 분석에서 흔히 사용되는 방법 중 하나가 <strong>분할-적용-병합(Split-Apply-Combine)</strong> 전략<span class="citation" data-cites="wickham2011split">(Wickham 2011)</span>이다. 즉, 큰 문제를 작은 문제로 쪼개고 각 문제에 대해서 적절한 연산(예를 들어 요약통계량)을 취하고 이를 결합하는 방법이 많이 사용되는 방법이다. 예를 들어 <a href="https://statkclee.github.io/r-novice-gapminder/12-plyr-kr.html">재현가능한 과학적 분석을 위한 R - “분할-적용-병합 전략”</a>에 나온 것처럼 각 그룹별로 쪼갠 후에 각 그룹별로 평균을 내고 이를 조합한 사례가 전반적인 큰 그림을 그리는데 도움이 될 수 있다. 여기서 평균을 사용했는데 요약(summarize) 뿐만 아니라, 윈도우 함수, 이를 일반화한 <code><a href="https://dplyr.tidyverse.org/reference/do.html">do()</a></code> 함수도 포함된다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<section id="gapminder-dataset" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="gapminder-dataset">
-<span class="header-section-number">17.1</span> <code>gapminder</code> 데이터셋</h2>
-<p><code>gapminder</code> 데이터 팩키지의 각 대륙, 국가, 연도별 인구와 중요 두가지 정보인 평균수명과 일인당GDP 정보를 바탕으로 각 대륙별 평균 GDP를 추출해보자. 이를 위해서 먼저 인당GDP(<code>gdpPercap</code>)와 인구수(<code>pop</code>)를 바탕으로 GDP를 계산하고 이를 평균낸다. 특정 연도를 지칭하지 않는 것이 다소 문제의 소지가 있을 수 있지만, 분할-적용-병합 전략을 살펴보는데 큰 무리는 없어 보인다.</p>
+</header><p>데이터 분석에서 흔히 사용되는 방법 중 하나가 <strong>분할-적용-병합(Split-Apply-Combine)</strong> 전략<span class="citation" data-cites="wickham2011split">(Wickham 2011)</span>이다. 즉, 큰 문제를 작은 문제로 쪼개고 각 문제에 대해서 적절한 연산(예를 들어 요약통계량)을 취하고 이를 결합하는 방법이 많이 사용되는 방법이다. 예를 들어 <a href="https://statkclee.github.io/r-novice-gapminder/12-plyr-kr.html">재현가능한 과학적 분석을 위한 R - “분할-적용-병합 전략”</a>에 나온 것처럼 각 그룹별로 쪼갠 후에 각 그룹별로 평균을 내고 이를 조합한 사례가 전반적인 큰 그림을 그리는 데 도움이 될 수 있다. 여기서 평균을 사용했는데 요약(summarize) 뿐만 아니라, 윈도우 함수, 이를 일반화한 <code><a href="https://dplyr.tidyverse.org/reference/do.html">do()</a></code> 함수도 포함된다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<section id="gapminder-dataset" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="gapminder-dataset">
+<span class="header-section-number">16.1</span> <code>gapminder</code> 데이터셋</h2>
+<p><code>gapminder</code> 데이터 팩키지의 각 대륙, 국가, 연도별 인구와 중요 두 가지 정보인 평균수명과 일인당 GDP 정보를 바탕으로 각 대륙별 평균 GDP를 추출해보자. 이를 위해서 먼저 인당 GDP(<code>gdpPercap</code>)와 인구수(<code>pop</code>)를 바탕으로 GDP를 계산하고 이를 평균낸다. 특정 연도를 지칭하지 않는 것이 다소 문제의 소지가 있을 수 있지만, 분할-적용-병합 전략을 살펴보는 데 큰 무리는 없어 보인다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
@@ -1586,8 +1581,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635. 14121995875.</span></span>
 <span><span class="co">#&gt; # ℹ 1,694 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="진화의-역사" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="진화의-역사">
-<span class="header-section-number">17.2</span> 진화의 역사</h2>
+</section><section id="진화의-역사" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="진화의-역사">
+<span class="header-section-number">16.2</span> 진화의 역사</h2>
 <p>R에서 데이터 처리를 위한 분할-적용-병합 전략은 시간이 지남에 따라 발전해왔다. 초기에는 베이스 R 함수를 사용하여 데이터를 처리했지만, 점차 새로운 패키지와 함수가 개발되면서 더 효율적이고 가독성 높은 코드를 작성할 수 있게 되었다. 각 시대별로 주로 사용된 패키지와 함수가 발전함에 따라 데이터 처리에 대한 인식과 요구 사항을 반영하고 있기 때문이다.</p>
 <ul>
 <li>선사시대 분할-적용-병합: <code>split</code>, <code>lapply</code>, <code>do.call(rbind, ...)</code>
@@ -1604,7 +1599,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>초기 tidyverse 시대 분할-적용-병합: <code>group_by</code>, <code>do</code>
 <ul>
 <li>
-<code>dplyr</code> 패키지 <code>group_by</code> 함수를 사용하여 데이터를 그룹화하고, <code>do</code> 함수를 사용하여 각 그룹에 함수를 적용한다.</li>
+<code>dplyr</code> 패키지의 <code>group_by</code> 함수를 사용하여 데이터를 그룹화하고, <code>do</code> 함수를 사용하여 각 그룹에 함수를 적용한다.</li>
 </ul>
 </li>
 <li>중기 tidyverse 시대 분할-적용-병합: <code>group_by</code> &amp; <code>by_slice</code>
@@ -1621,13 +1616,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </li>
 <li>tidyverse/base 하이브리드 조합 분할-적용-병합: <code>split</code>, <code>map_dfr</code>
 <ul>
-<li>기본 R의 <code>split</code> 함수로 데이터를 분할하고, <code>purrr</code> 패키지 <code>map_dfr</code> 함수를 사용하여 각 분할에 함수를 적용하고 결과를 데이터 프레임으로 결합한다.</li>
+<li>기본 R의 <code>split</code> 함수로 데이터를 분할하고, <code>purrr</code> 패키지의 <code>map_dfr</code> 함수를 사용하여 각 분할에 함수를 적용하고 결과를 데이터프레임으로 결합한다.</li>
 </ul>
 </li>
 </ul>
-<section id="ddplyr-prehistoric" class="level3" data-number="17.2.1"><h3 data-number="17.2.1" class="anchored" data-anchor-id="ddplyr-prehistoric">
-<span class="header-section-number">17.2.1</span> 선사시대</h3>
-<p>선사시대에는 대륙별로 <code>split</code> 한 후에 <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> 함수를 사용해서 앞서 정의한 <code>calc_GDP</code> 함수로 GDP를 계산한 후에 평균을 다시 계산한 뒤에 마지막으로 <code><a href="https://rdrr.io/r/base/do.call.html">do.call()</a></code> 함수로 병합(combine)하여 GDP 대륙별 평균을 구할 수 있다.</p>
+<section id="ddplyr-prehistoric" class="level3" data-number="16.2.1"><h3 data-number="16.2.1" class="anchored" data-anchor-id="ddplyr-prehistoric">
+<span class="header-section-number">16.2.1</span> 선사시대</h3>
+<p>선사시대에는 대륙별로 <code>split</code>한 후에 <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> 함수를 사용해서 앞서 정의한 <code>calc_GDP</code> 함수로 GDP를 계산한 후에 평균을 다시 계산한 뒤에 마지막으로 <code><a href="https://rdrr.io/r/base/do.call.html">do.call()</a></code> 함수로 병합(combine)하여 GDP 대륙별 평균을 구할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continent_split_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">gapminder</span><span class="op">$</span><span class="va">continent</span><span class="op">)</span></span>
 <span><span class="va">GDP_list_df</span>         <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">continent_split_df</span>, <span class="va">calc_GDP</span><span class="op">)</span></span>
@@ -1642,9 +1637,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; Europe   269442085301</span></span>
 <span><span class="co">#&gt; Oceania  188187105354</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ddplyr-stone-age" class="level3" data-number="17.2.2"><h3 data-number="17.2.2" class="anchored" data-anchor-id="ddplyr-stone-age">
-<span class="header-section-number">17.2.2</span> 석기시대</h3>
-<p>석기시대 <code>plyr</code> 팩키지 <code>ddply</code> 함수를 사용해서 각 대륙별로 쪼갠 후에 각 대륙별 평균 GDP를 구할 수 있다.</p>
+</section><section id="ddplyr-stone-age" class="level3" data-number="16.2.2"><h3 data-number="16.2.2" class="anchored" data-anchor-id="ddplyr-stone-age">
+<span class="header-section-number">16.2.2</span> 석기시대</h3>
+<p>석기시대에는 <code>plyr</code> 패키지의 <code>ddply</code> 함수를 사용해서 각 대륙별로 쪼갠 후에 각 대륙별 평균 GDP를 구할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
 <span></span>
@@ -1660,8 +1655,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; 4    Europe 269442085301</span></span>
 <span><span class="co">#&gt; 5   Oceania 188187105354</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ddplyr-early-tidyverse" class="level3" data-number="17.2.3"><h3 data-number="17.2.3" class="anchored" data-anchor-id="ddplyr-early-tidyverse">
-<span class="header-section-number">17.2.3</span> 초기 <code>tidyverse</code> 시대</h3>
+</section><section id="ddplyr-early-tidyverse" class="level3" data-number="16.2.3"><h3 data-number="16.2.3" class="anchored" data-anchor-id="ddplyr-early-tidyverse">
+<span class="header-section-number">16.2.3</span> 초기 <code>tidyverse</code> 시대</h3>
 <p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> + <code><a href="https://dplyr.tidyverse.org/reference/do.html">do()</a></code>를 결합하여 임의 연산작업을 각 그룹별로 수행시킬 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1678,9 +1673,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; 4 Europe    269442085301.</span></span>
 <span><span class="co">#&gt; 5 Oceania   188187105354.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ddplyr-midage-tidyverse" class="level3" data-number="17.2.4"><h3 data-number="17.2.4" class="anchored" data-anchor-id="ddplyr-midage-tidyverse">
-<span class="header-section-number">17.2.4</span> 중기 <code>tidyverse</code> 시대</h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> + <code>by_slice()</code>를 결합하여 분할-적용-병합 전략을 적용시킬 수도 있으나 <code>by_slice()</code> 함수가 <code><a href="https://dplyr.tidyverse.org/reference/do.html">dplyr::do()</a></code> 함수와 같은 작업을 수행했고, <code>purrrlyr</code>에 갔다가… 그후 행방이 묘연해졌다.</p>
+</section><section id="ddplyr-midage-tidyverse" class="level3" data-number="16.2.4"><h3 data-number="16.2.4" class="anchored" data-anchor-id="ddplyr-midage-tidyverse">
+<span class="header-section-number">16.2.4</span> 중기 <code>tidyverse</code> 시대</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> + <code>by_slice()</code>를 결합하여 분할-적용-병합 전략을 적용시킬 수도 있으나 <code>by_slice()</code> 함수가 <code><a href="https://dplyr.tidyverse.org/reference/do.html">dplyr::do()</a></code> 함수와 같은 작업을 수행했고, <code>purrrlyr</code>로 갔다가 그 후 행방이 묘연해졌다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1697,8 +1692,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; 4 Europe    269442085301.</span></span>
 <span><span class="co">#&gt; 5 Oceania   188187105354.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ddplyr-current-tidyverse" class="level3" data-number="17.2.5"><h3 data-number="17.2.5" class="anchored" data-anchor-id="ddplyr-current-tidyverse">
-<span class="header-section-number">17.2.5</span> 현대 <code>tidyverse</code> 시대</h3>
+</section><section id="ddplyr-current-tidyverse" class="level3" data-number="16.2.5"><h3 data-number="16.2.5" class="anchored" data-anchor-id="ddplyr-current-tidyverse">
+<span class="header-section-number">16.2.5</span> 현대 <code>tidyverse</code> 시대</h3>
 <p>현대 분할-적용-병합 전략은 <code>group_by</code> + <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code>로 그룹별 데이터프레임으로 만들고, <code>mutate(map())</code>을 사용해서 <code>calc_GDP()</code> 함수를 적용시켜 GDP를 계산하고, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> 함수를 적용시켜 각 대륙별 평균 GDP를 계산한다. 마지막으로 <code>unnest</code>를 적용시켜 원하는 산출물을 얻는다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1717,9 +1712,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; 4 Americas  &lt;df [300 × 6]&gt; 379262350210.</span></span>
 <span><span class="co">#&gt; 5 Oceania   &lt;df [24 × 6]&gt;  188187105354.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="base-current-tidyverse" class="level3" data-number="17.2.6"><h3 data-number="17.2.6" class="anchored" data-anchor-id="base-current-tidyverse">
-<span class="header-section-number">17.2.6</span> <code>tidyverse</code>/base R 조합</h3>
-<p>마지막으로 base R <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> 함수와 <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_dfr()</a></code> 함수를 조합해서 원하는 결과를 얻어낼 수도 있다.</p>
+</section><section id="base-current-tidyverse" class="level3" data-number="16.2.6"><h3 data-number="16.2.6" class="anchored" data-anchor-id="base-current-tidyverse">
+<span class="header-section-number">16.2.6</span> <code>tidyverse</code>/base R 조합</h3>
+<p>마지막으로 base R의 <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> 함수와 <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_dfr()</a></code> 함수를 조합해서 원하는 결과를 얻어낼 수도 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1736,8 +1731,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span><span class="co">#&gt; 4 Europe    269442085301.</span></span>
 <span><span class="co">#&gt; 5 Oceania   188187105354.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="gapminder-실습" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="gapminder-실습">
-<span class="header-section-number">17.3</span> <code>gapminder</code> 실습</h2>
+</section></section><section id="gapminder-실습" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="gapminder-실습">
+<span class="header-section-number">16.3</span> <code>gapminder</code> 실습</h2>
 <p>앞서, 함수를 사용해서 코드를 단순화하는 방법을 살펴봤다. <code>gapminder</code> 데이터셋을 인자로 받아, <code>pop</code>와 <code>gdpPercap</code>를 곱해 GDP를 계산하는 <code>calcGDP</code> 함수를 정의했다. 추가적인 인자를 정의해서, <code>year</code>별, <code>country</code>별 필터를 적용할 수도 있다.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1745,20 +1740,20 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p><code>calcGDP</code>를 실행하고 나서, 각 대륙별로 평균을 산출해보자. 데이터셋을 가져와서 인구 열과 1인당 GDP 열을 곱합니다.</p>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>하지만, 그다지 <em>멋있지는</em> 않다. 그렇다. 함수를 사용해서 반복되는 작업을 상당량 줄일 수 있었다. 함수 사용은 <strong>멋있었다</strong>. 하지만, 여전히 반복이 있다. 직접 반복하게 되면, 지금은 물론이고 나중에도 시간을 까먹게 되고, 잠재적으로 버그가 스며들 여지를 남기게 된다.</p>
-<p><code>calcGDP</code>처럼 유연성 있는 함수를 새로 작성할 수도 있지만, 제대로 동작하는 함수를 개발하기까지 상당한 노력과 테스트가 필요하다.</p>
+<p>하지만, 그다지 <em>멋있지는</em> 않다. 그렇다. 함수를 사용해서 반복되는 작업을 상당 부분 줄일 수 있었다. 함수 사용은 <strong>멋있었다</strong>. 하지만, 여전히 반복이 있다. 직접 반복하게 되면, 지금은 물론이고 나중에도 시간을 까먹게 되고, 잠재적으로 버그가 스며들 여지를 남기게 된다.</p>
+<p><code>calcGDP</code>처럼 유연성 있는 함수를 새로 작성할 수도 있지만, 제대로 동작하는 함수를 개발하기까지는 상당한 노력과 테스트가 필요하다.</p>
 <p>여기서 맞닥뜨린 추상화 문제를 <strong>“분할-적용-병합(split-apply-combine)” 전략</strong>이라고 한다.</p>
 <div id="fig-split-apply-combine" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-split-apply-combine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/gapminder/12-plyr-fig1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/gapminder/12-plyr-fig1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-split-apply-combine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;17.1: 분할-적용-병합 전략 도식화
+그림&nbsp;16.1: 분할-적용-병합 전략 도식화
 </figcaption></figure>
 </div>
 <p>데이터를 집단으로 <em>분할(split)</em>하고, 이번 경우에는 대륙별로 분할한다. 그리고 분할된 집단에 연산을 <em>적용(apply)</em>한 후, 선택적으로 결과를 묶어 <em>병합(combine)</em>한다.</p>
-<section id="dplyr-패키지" class="level3" data-number="17.3.1"><h3 data-number="17.3.1" class="anchored" data-anchor-id="dplyr-패키지">
-<span class="header-section-number">17.3.1</span> <code>dplyr</code> 패키지</h3>
+<section id="dplyr-패키지" class="level3" data-number="16.3.1"><h3 data-number="16.3.1" class="anchored" data-anchor-id="dplyr-패키지">
+<span class="header-section-number">16.3.1</span> <code>dplyr</code> 패키지</h3>
 <p><code>dplyr</code> 패키지는 데이터 조작을 위한 문법을 제공하며, 이를 통해 “분할-적용-병합” 문제를 해결할 수 있다. 먼저 <code>dplyr</code> 패키지를 로드하고, <code>dplyr</code>을 사용하여 대륙별 평균 GDP를 빠르게 계산한다.</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1835,7 +1830,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </div>
-<p>이렇게 <code>dplyr</code> 패키지를 사용하면 데이터 조작과 분석을 보다 간결하고 직관적으로 수행할 수 있다. 파이프 연산자(<code>%&gt;%</code>)를 사용하여 연산을 연결하면 코드의 가독성도 향상된다. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> 등의 함수를 조합하여 다양한 분석 작업을 수행할 수 있다.알겠습니다. 계속해서 교정 작업을 진행하겠습니다.</p>
+<p>이렇게 <code>dplyr</code> 패키지를 사용하면 데이터 조작과 분석을 보다 간결하고 직관적으로 수행할 수 있다. 파이프 연산자(<code>%&gt;%</code>)를 사용하여 연산을 연결하면 코드의 가독성도 향상된다. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> 등의 함수를 조합하여 다양한 분석 작업을 수행할 수 있다.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1868,14 +1863,6 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </li></ol>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="1">
-<li>
-</li></ol>
-<div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1891,23 +1878,28 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>답안 3은 대륙별 평균 기대 수명을 계산한다.</p>
+<p>답안 1은 대륙별 평균 기대수명을 계산한다.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
+</section></section><section id="요약" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="요약">
+<span class="header-section-number">16.4</span> 요약</h2>
+<p>분할-적용-병합 전략은 큰 문제를 작은 문제로 쪼개어 각각에 대해 연산을 수행하고 그 결과를 다시 합치는 방식으로, 데이터를 그룹별로 처리하고 요약하는 데 효과적이다.</p>
+<p>R에서 분할-적용-병합 전략은 시대에 따라 발전해 왔는데, 초기에는 베이스 R 함수를 사용하다가 <code>plyr</code>, <code>dplyr</code> 등의 패키지가 개발되면서 보다 간결하고 가독성 높은 코드를 작성할 수 있게 되었다. 특히 <code>dplyr</code> 패키지는 파이프 연산자(<code>%&gt;%</code>)와 함께 그룹화(<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>), 요약(<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>), 변환(<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>) 등의 함수를 제공하여 데이터 조작과 분석을 매우 직관적으로 수행할 수 있다.</p>
+<p><code>gapminder</code> 데이터셋을 활용한 실습을 통해 분할-적용-병합 전략의 실제 적용 방법을 살펴보고, 대륙별, 연도별로 그룹화하여 평균 GDP와 기대수명을 계산하는 예제를 통해 <code>dplyr</code> 패키지의 강력함을 체감할 수 있었다. 또한 <code>dplyr</code>의 함수를 조합하여 다양한 분석 작업을 수행할 수 있음을 확인했다.</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;17.1: 분할-적용-병합 전략 도식화</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;16.1: 분할-적용-병합 전략 도식화</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-wickham2011split" class="csl-entry" role="listitem">
 Wickham, Hadley. 2011. <span>“The split-apply-combine strategy for data analysis”</span>. <em>Journal of statistical software</em> 40: 1–29.
 </div>
 </div>
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p><a href="https://coolbutuseless.bitbucket.io/2018/03/03/split-apply-combine-my-search-for-a-replacement-for-group_by---do/">cool but useless, “Split-Apply-Combine: My search for a replacement for ‘group_by + do’”</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -2359,12 +2351,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./functions.html" class="pagination-link" aria-label="함수">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./functions_ds.html" class="pagination-link" aria-label="데이터 과학 함수">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -2491,7 +2483,7 @@ qwebrInstance.then(
     );  
   }
 );
-</script><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+</script><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

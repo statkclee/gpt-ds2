@@ -5,14 +5,14 @@ editor_options:
 ---
 # 분할-적용-병합 전략 {#sec-split-apply-combine-histroy}
 
-데이터 분석에서 흔히 사용되는 방법 중 하나가 **분할-적용-병합(Split-Apply-Combine)** 전략[@wickham2011split]이다. 즉, 큰 문제를 작은 문제로 쪼개고 각 문제에 대해서 적절한 연산(예를 들어 요약통계량)을 취하고 이를 결합하는 방법이 많이 사용되는 방법이다. 예를 들어 [재현가능한 과학적 분석을 위한 R - "분할-적용-병합 전략"](https://statkclee.github.io/r-novice-gapminder/12-plyr-kr.html)에 나온 것처럼 각 그룹별로 쪼갠 후에 각 그룹별로 평균을 내고 이를 조합한 사례가 전반적인 큰 그림을 그리는데 도움이 될 수 있다. 여기서 평균을 사용했는데 요약(summarize) 뿐만 아니라, 윈도우 함수, 이를 일반화한 `do()` 함수도 포함된다.[^split-apply-combine]
+데이터 분석에서 흔히 사용되는 방법 중 하나가 **분할-적용-병합(Split-Apply-Combine)** 전략[@wickham2011split]이다. 즉, 큰 문제를 작은 문제로 쪼개고 각 문제에 대해서 적절한 연산(예를 들어 요약통계량)을 취하고 이를 결합하는 방법이 많이 사용되는 방법이다. 예를 들어 [재현가능한 과학적 분석을 위한 R - "분할-적용-병합 전략"](https://statkclee.github.io/r-novice-gapminder/12-plyr-kr.html)에 나온 것처럼 각 그룹별로 쪼갠 후에 각 그룹별로 평균을 내고 이를 조합한 사례가 전반적인 큰 그림을 그리는 데 도움이 될 수 있다. 여기서 평균을 사용했는데 요약(summarize) 뿐만 아니라, 윈도우 함수, 이를 일반화한 `do()` 함수도 포함된다.[^split-apply-combine]
 
 [^split-apply-combine]: [cool but useless, "Split-Apply-Combine: My search for a replacement for 'group_by + do'"](https://coolbutuseless.bitbucket.io/2018/03/03/split-apply-combine-my-search-for-a-replacement-for-group_by---do/)
 
 
 ## `gapminder` 데이터셋 {#gapminder-dataset}
 
-`gapminder` 데이터 팩키지의 각 대륙, 국가, 연도별 인구와 중요 두가지 정보인 평균수명과 일인당GDP 정보를 바탕으로 각 대륙별 평균 GDP를 추출해보자. 이를 위해서 먼저 인당GDP(`gdpPercap`)와 인구수(`pop`)를 바탕으로 GDP를 계산하고 이를 평균낸다. 특정 연도를 지칭하지 않는 것이 다소 문제의 소지가 있을 수 있지만,  분할-적용-병합 전략을 살펴보는데 큰 무리는 없어 보인다.
+`gapminder` 데이터 팩키지의 각 대륙, 국가, 연도별 인구와 중요 두 가지 정보인 평균수명과 일인당 GDP 정보를 바탕으로 각 대륙별 평균 GDP를 추출해보자. 이를 위해서 먼저 인당 GDP(`gdpPercap`)와 인구수(`pop`)를 바탕으로 GDP를 계산하고 이를 평균낸다. 특정 연도를 지칭하지 않는 것이 다소 문제의 소지가 있을 수 있지만, 분할-적용-병합 전략을 살펴보는 데 큰 무리는 없어 보인다.
 
 ```{r gapminder-dataset}
 library(tidyverse)
@@ -49,7 +49,7 @@ R에서 데이터 처리를 위한 분할-적용-병합 전략은 시간이 지�
   - `plyr` 패키지의 `ddply` 함수를 사용하여 데이터를 분할, 함수 적용, 결합을 한 번에 처리한다.
 
 - 초기 tidyverse 시대 분할-적용-병합: `group_by`, `do`
-  - `dplyr` 패키지 `group_by` 함수를 사용하여 데이터를 그룹화하고, `do` 함수를 사용하여 각 그룹에 함수를 적용한다.
+  - `dplyr` 패키지의 `group_by` 함수를 사용하여 데이터를 그룹화하고, `do` 함수를 사용하여 각 그룹에 함수를 적용한다.
 
 - 중기 tidyverse 시대 분할-적용-병합: `group_by` & `by_slice`
   - `group_by` 함수로 데이터를 그룹화한 후, `by_slice` 함수를 사용하여 각 그룹에 함수를 적용한다.
@@ -58,12 +58,12 @@ R에서 데이터 처리를 위한 분할-적용-병합 전략은 시간이 지�
   - `group_by` 함수로 데이터를 그룹화하고, `nest` 함수로 각 그룹을 중첩 데이터프레임으로 변환한 후, `mutate`와 `purrr` 패키지의 `map` 함수를 사용하여 각 그룹에 함수를 적용한다.
 
 - tidyverse/base 하이브리드 조합 분할-적용-병합: `split`, `map_dfr`
-  - 기본 R의 `split` 함수로 데이터를 분할하고, `purrr` 패키지 `map_dfr` 함수를 사용하여 각 분할에 함수를 적용하고 결과를 데이터 프레임으로 결합한다.
+  - 기본 R의 `split` 함수로 데이터를 분할하고, `purrr` 패키지의 `map_dfr` 함수를 사용하여 각 분할에 함수를 적용하고 결과를 데이터프레임으로 결합한다.
 
 
 ### 선사시대 {#ddplyr-prehistoric}
 
-선사시대에는 대륙별로 `split` 한 후에 `lapply()` 함수를 사용해서 앞서 정의한 `calc_GDP` 함수로 GDP를 계산한 후에 평균을 다시 계산한 뒤에 마지막으로 `do.call()` 함수로 병합(combine)하여 GDP 대륙별 평균을 구할 수 있다.
+선사시대에는 대륙별로 `split`한 후에 `lapply()` 함수를 사용해서 앞서 정의한 `calc_GDP` 함수로 GDP를 계산한 후에 평균을 다시 계산한 뒤에 마지막으로 `do.call()` 함수로 병합(combine)하여 GDP 대륙별 평균을 구할 수 있다.
 
 ```{r gapminder-prehistoric}
 continent_split_df  <- split(gapminder, gapminder$continent)
@@ -77,7 +77,7 @@ mean_GDP_df
 
 ### 석기시대 {#ddplyr-stone-age}
 
-석기시대 `plyr` 팩키지 `ddply` 함수를 사용해서 각 대륙별로 쪼갠 후에 각 대륙별 평균 GDP를 구할 수 있다.
+석기시대에는 `plyr` 패키지의 `ddply` 함수를 사용해서 각 대륙별로 쪼갠 후에 각 대륙별 평균 GDP를 구할 수 있다.
 
 ```{r gapminder-ddply}
 library(gapminder)
@@ -104,7 +104,7 @@ gapminder %>%
 
 ### 중기 `tidyverse` 시대 {#ddplyr-midage-tidyverse}
 
-`group_by()` + `by_slice()`를 결합하여 분할-적용-병합 전략을 적용시킬 수도 있으나 `by_slice()` 함수가 `dplyr::do()` 함수와 같은 작업을 수행했고, `purrrlyr`에 갔다가... 그후 행방이 묘연해졌다. 
+`group_by()` + `by_slice()`를 결합하여 분할-적용-병합 전략을 적용시킬 수도 있으나 `by_slice()` 함수가 `dplyr::do()` 함수와 같은 작업을 수행했고, `purrrlyr`로 갔다가 그 후 행방이 묘연해졌다. 
 
 ```{r midage-tidyverse}
 gapminder %>%
@@ -131,7 +131,7 @@ gapminder %>%
 
 ### `tidyverse`/base R 조합 {#base-current-tidyverse}
 
-마지막으로 base R `split()` 함수와 `map_dfr()` 함수를 조합해서 원하는 결과를 얻어낼 수도 있다.
+마지막으로 base R의 `split()` 함수와 `map_dfr()` 함수를 조합해서 원하는 결과를 얻어낼 수도 있다.
 
 ```{r hybrid-tidyverse}
 gapminder %>%
@@ -182,11 +182,11 @@ mean(withGDP[withGDP$continent == "Asia", "gdp"])
 ```
 
 하지만, 그다지 *멋있지는* 않다.
-그렇다. 함수를 사용해서 반복되는 작업을 상당량 줄일 수 있었다.
+그렇다. 함수를 사용해서 반복되는 작업을 상당 부분 줄일 수 있었다.
 함수 사용은 **멋있었다**. 하지만, 여전히 반복이 있다.
 직접 반복하게 되면, 지금은 물론이고 나중에도 시간을 까먹게 되고, 잠재적으로 버그가 스며들 여지를 남기게 된다.
 
-`calcGDP`처럼 유연성 있는 함수를 새로 작성할 수도 있지만, 제대로 동작하는 함수를 개발하기까지 상당한 노력과 테스트가 필요하다.
+`calcGDP`처럼 유연성 있는 함수를 새로 작성할 수도 있지만, 제대로 동작하는 함수를 개발하기까지는 상당한 노력과 테스트가 필요하다.
 
 여기서 맞닥뜨린 추상화 문제를 **"분할-적용-병합(split-apply-combine)" 전략**이라고 한다.
 
@@ -269,8 +269,7 @@ calcGDP(gapminder) |>
 
 이렇게 `dplyr` 패키지를 사용하면 데이터 조작과 분석을 보다 간결하고 직관적으로 수행할 수 있다.
 파이프 연산자(`%>%`)를 사용하여 연산을 연결하면 코드의 가독성도 향상된다.
-`group_by()`, `summarise()`, `mutate()` 등의 함수를 조합하여 다양한 분석 작업을 수행할 수 있다.알겠습니다.
-계속해서 교정 작업을 진행하겠습니다.
+`group_by()`, `summarise()`, `mutate()` 등의 함수를 조합하여 다양한 분석 작업을 수행할 수 있다.
 
 ::::: callout-tip
 ### 도전과제
@@ -294,13 +293,6 @@ gapminder %>%
 3.
 ```{r, eval=FALSE}
 gapminder %>%
-  group_by(continent) %>%
-  summarise(mean_lifeExp = mean(lifeExp))
-```
-
-4.
-```{r, eval=FALSE}
-gapminder %>%
   filter(continent) %>%
   summarise(mean_lifeExp = mean(lifeExp))
 ```
@@ -308,10 +300,21 @@ gapminder %>%
 ::: {.callout-caution collapse="true"}
 ### 해답
 
-답안 3은 대륙별 평균 기대 수명을 계산한다.
+답안 1은 대륙별 평균 기대수명을 계산한다.
 
 :::
 
 :::::
+
+## 요약
+
+분할-적용-병합 전략은 큰 문제를 작은 문제로 쪼개어 각각에 대해 연산을 수행하고 그 결과를 다시 합치는 방식으로, 데이터를 그룹별로 처리하고 요약하는 데 효과적이다.
+
+R에서 분할-적용-병합 전략은 시대에 따라 발전해 왔는데, 초기에는 베이스 R 함수를 사용하다가 `plyr`, `dplyr` 등의 패키지가 개발되면서 보다 간결하고 가독성 높은 코드를 작성할 수 있게 되었다. 
+특히 `dplyr` 패키지는 파이프 연산자(`%>%`)와 함께 그룹화(`group_by()`), 요약(`summarise()`), 변환(`mutate()`) 등의 함수를 제공하여 데이터 조작과 분석을 매우 직관적으로 수행할 수 있다.
+
+`gapminder` 데이터셋을 활용한 실습을 통해 분할-적용-병합 전략의 실제 적용 방법을 살펴보고, 대륙별, 연도별로 그룹화하여 평균 GDP와 기대수명을 계산하는 예제를 통해 `dplyr` 패키지의 강력함을 체감할 수 있었다. 
+또한 `dplyr`의 함수를 조합하여 다양한 분석 작업을 수행할 수 있음을 확인했다.
+
 
 

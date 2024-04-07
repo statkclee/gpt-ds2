@@ -64,16 +64,16 @@ book:
 
     - part: "**4부** 모형"
       chapters:
-        - models.qmd
-        - models_building.qmd
-        - models_many.qmd
-        - models_case_study.qmd
+        - models.qmd                  # OK
+        - models_building.qmd         # OK
+        - models_many.qmd             # OK
+        - models_case_study.qmd       # OK
 
     - part: "**5부** 프로그래밍"
       chapters:
-        - functions.qmd
-        - function_plyr.qmd
-        - functions_ds.qmd
+        - functions.qmd               # OK
+        - function_plyr.qmd           # OK
+        - functions_ds.qmd            # OK
         - functions_purrr.qmd
 
     - part: "**6부** 커뮤니케이션"
