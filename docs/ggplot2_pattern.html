@@ -298,7 +298,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"warning":"true","fig-cap":"","autorun":"false","read-only":"false","classes":"","out-width":"700px","out-height":"","output":"true","fig-height":5,"context":"interactive","label":"viz-anscombe-descriptive","message":"true","results":"markup","fig-width":7,"dpi":72,"comment":""},"code":"datasets::anscombe\ndata(anscombe)\n\n# x1, x2, x3, x4 평균\npurrr::map_dbl(1:4, function(x) mean(anscombe[,x]))\n\n# x1, x2, x3, x4 분산\npurrr::map_dbl(1:4, function(x) var(anscombe[,x]))\n\n# y1, y2, y3, y4 평균\npurrr::map_dbl(5:8, function(x) mean(anscombe[,x]))\n\n# y1, y2, y3, y4 분산\npurrr::map_dbl(5:8, function(x) var(anscombe[,x]))\n\n# x1:y1 ~ x4:y4 상관계수\n# 상관계수\npurrr::map_dbl(1:4, function(x) cor(anscombe[, x], anscombe[, x+4]))\n\n# y1:x1-x4 ~ y1:x1-x4 회귀분석\nlm_fit <- function(y1, x1, dat) {\n  the_fit <- lm(y1 ~ x1, dat)\n  setNames(data.frame(t(coef(the_fit))), c(\"intercept\", \"slope\"))\n}\n\nreg_fits <- anscombe %>%\n  do(reg1 = lm_fit(y1, x1, .), reg2 = lm_fit(y2, x2, .), \n     reg3 = lm_fit(y3, x3, .), reg4 = lm_fit(y4, x4, .))\n\nunlist(reg_fits$reg1)\nunlist(reg_fits$reg2)\nunlist(reg_fits$reg3)\nunlist(reg_fits$reg4)"}];
+globalThis.qwebrCellDetails = [{"options":{"out-width":"700px","output":"true","results":"markup","comment":"","context":"interactive","fig-cap":"","message":"true","label":"viz-anscombe-descriptive","read-only":"false","warning":"true","out-height":"","fig-height":5,"classes":"","fig-width":7,"dpi":72,"autorun":"false"},"code":"datasets::anscombe\ndata(anscombe)\n\n# x1, x2, x3, x4 평균\npurrr::map_dbl(1:4, function(x) mean(anscombe[,x]))\n\n# x1, x2, x3, x4 분산\npurrr::map_dbl(1:4, function(x) var(anscombe[,x]))\n\n# y1, y2, y3, y4 평균\npurrr::map_dbl(5:8, function(x) mean(anscombe[,x]))\n\n# y1, y2, y3, y4 분산\npurrr::map_dbl(5:8, function(x) var(anscombe[,x]))\n\n# x1:y1 ~ x4:y4 상관계수\n# 상관계수\npurrr::map_dbl(1:4, function(x) cor(anscombe[, x], anscombe[, x+4]))\n\n# y1:x1-x4 ~ y1:x1-x4 회귀분석\nlm_fit <- function(y1, x1, dat) {\n  the_fit <- lm(y1 ~ x1, dat)\n  setNames(data.frame(t(coef(the_fit))), c(\"intercept\", \"slope\"))\n}\n\nreg_fits <- anscombe %>%\n  do(reg1 = lm_fit(y1, x1, .), reg2 = lm_fit(y2, x2, .), \n     reg3 = lm_fit(y3, x3, .), reg4 = lm_fit(y4, x4, .))\n\nunlist(reg_fits$reg1)\nunlist(reg_fits$reg2)\nunlist(reg_fits$reg3)\nunlist(reg_fits$reg4)","id":1}];
 
 </script><script type="module">
 // Declare startupMessageQWebR globally
@@ -1576,24 +1576,24 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <span>  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html">gt_theme_538</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<div id="rxizzimtco" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="czydxssusl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#rxizzimtco table {
+#czydxssusl table {
   font-family: Chivo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rxizzimtco thead, #rxizzimtco tbody, #rxizzimtco tfoot, #rxizzimtco tr, #rxizzimtco td, #rxizzimtco th {
+#czydxssusl thead, #czydxssusl tbody, #czydxssusl tfoot, #czydxssusl tr, #czydxssusl td, #czydxssusl th {
   border-style: none;
 }
 
-#rxizzimtco p {
+#czydxssusl p {
   margin: 0;
   padding: 0;
 }
 
-#rxizzimtco .gt_table {
+#czydxssusl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1619,12 +1619,12 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-left-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_caption {
+#czydxssusl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rxizzimtco .gt_title {
+#czydxssusl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1636,7 +1636,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-bottom-width: 0;
 }
 
-#rxizzimtco .gt_subtitle {
+#czydxssusl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1648,7 +1648,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-top-width: 0;
 }
 
-#rxizzimtco .gt_heading {
+#czydxssusl .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1660,13 +1660,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-right-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_bottom_border {
+#czydxssusl .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_col_headings {
+#czydxssusl .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1681,7 +1681,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-right-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_col_heading {
+#czydxssusl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1701,7 +1701,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   overflow-x: hidden;
 }
 
-#rxizzimtco .gt_column_spanner_outer {
+#czydxssusl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1713,15 +1713,15 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   padding-right: 4px;
 }
 
-#rxizzimtco .gt_column_spanner_outer:first-child {
+#czydxssusl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rxizzimtco .gt_column_spanner_outer:last-child {
+#czydxssusl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rxizzimtco .gt_column_spanner {
+#czydxssusl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -1733,11 +1733,11 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   width: 100%;
 }
 
-#rxizzimtco .gt_spanner_row {
+#czydxssusl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rxizzimtco .gt_group_heading {
+#czydxssusl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1763,7 +1763,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   text-align: left;
 }
 
-#rxizzimtco .gt_empty_group_heading {
+#czydxssusl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1778,15 +1778,15 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   vertical-align: middle;
 }
 
-#rxizzimtco .gt_from_md > :first-child {
+#czydxssusl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rxizzimtco .gt_from_md > :last-child {
+#czydxssusl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rxizzimtco .gt_row {
+#czydxssusl .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -1805,7 +1805,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   overflow-x: hidden;
 }
 
-#rxizzimtco .gt_stub {
+#czydxssusl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1818,7 +1818,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   padding-right: 5px;
 }
 
-#rxizzimtco .gt_stub_row_group {
+#czydxssusl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1832,15 +1832,15 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   vertical-align: top;
 }
 
-#rxizzimtco .gt_row_group_first td {
+#czydxssusl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rxizzimtco .gt_row_group_first th {
+#czydxssusl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rxizzimtco .gt_summary_row {
+#czydxssusl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1850,16 +1850,16 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   padding-right: 5px;
 }
 
-#rxizzimtco .gt_first_summary_row {
+#czydxssusl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_first_summary_row.thick {
+#czydxssusl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rxizzimtco .gt_last_summary_row {
+#czydxssusl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1869,7 +1869,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-bottom-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_grand_summary_row {
+#czydxssusl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1879,7 +1879,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   padding-right: 5px;
 }
 
-#rxizzimtco .gt_first_grand_summary_row {
+#czydxssusl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1889,7 +1889,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-top-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_last_grand_summary_row_top {
+#czydxssusl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1899,11 +1899,11 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-bottom-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_striped {
+#czydxssusl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rxizzimtco .gt_table_body {
+#czydxssusl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1912,7 +1912,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-bottom-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_footnotes {
+#czydxssusl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1926,7 +1926,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-right-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_footnote {
+#czydxssusl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1935,7 +1935,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   padding-right: 5px;
 }
 
-#rxizzimtco .gt_sourcenotes {
+#czydxssusl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1949,7 +1949,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   border-right-color: #D3D3D3;
 }
 
-#rxizzimtco .gt_sourcenote {
+#czydxssusl .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1957,63 +1957,63 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
   padding-right: 5px;
 }
 
-#rxizzimtco .gt_left {
+#czydxssusl .gt_left {
   text-align: left;
 }
 
-#rxizzimtco .gt_center {
+#czydxssusl .gt_center {
   text-align: center;
 }
 
-#rxizzimtco .gt_right {
+#czydxssusl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rxizzimtco .gt_font_normal {
+#czydxssusl .gt_font_normal {
   font-weight: normal;
 }
 
-#rxizzimtco .gt_font_bold {
+#czydxssusl .gt_font_bold {
   font-weight: bold;
 }
 
-#rxizzimtco .gt_font_italic {
+#czydxssusl .gt_font_italic {
   font-style: italic;
 }
 
-#rxizzimtco .gt_super {
+#czydxssusl .gt_super {
   font-size: 65%;
 }
 
-#rxizzimtco .gt_footnote_marks {
+#czydxssusl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rxizzimtco .gt_asterisk {
+#czydxssusl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rxizzimtco .gt_indent_1 {
+#czydxssusl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rxizzimtco .gt_indent_2 {
+#czydxssusl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rxizzimtco .gt_indent_3 {
+#czydxssusl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rxizzimtco .gt_indent_4 {
+#czydxssusl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rxizzimtco .gt_indent_5 {
+#czydxssusl .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -3120,7 +3120,7 @@ qwebrInstance.then(
     );  
   }
 );
-</script><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+</script><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

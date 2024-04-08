@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<title>챗GPT 데이터 과학 - 28&nbsp; 챗GPT 환경 구축</title>
+<title>챗GPT 데이터 과학 - 27&nbsp; 챗GPT 환경 구축</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ ga('send', {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gpt_python.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./gpt_python.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gpt_python.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./gpt_python.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -170,25 +170,19 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">들어가며</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 사이언스 운영체제</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">데이터 과학 운영체제</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">데이터 과학 맛보기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">데이터 과학 큰 그림</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,25 +199,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_tidyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 데이터프레임 조작</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 패키지</span></span></a>
   </div>
 </li>
       </ul>
@@ -240,19 +234,19 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,25 +263,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_building.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_many.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
   </div>
 </li>
       </ul>
@@ -304,25 +298,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,25 +333,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
   </div>
 </li>
       </ul>
@@ -374,25 +368,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
   </div>
 </li>
       </ul>
@@ -409,25 +403,25 @@ ga('send', {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_python.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gpt_rtutor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
   </div>
 </li>
       </ul>
@@ -447,20 +441,21 @@ ga('send', {
    
   <ul>
 <li>
-<a href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%84%A4%EC%B9%98" id="toc-파이썬-설치" class="nav-link active" data-scroll-target="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%84%A4%EC%B9%98"><span class="header-section-number">28.1</span> 파이썬 설치</a>
+<a href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%84%A4%EC%B9%98" id="toc-파이썬-설치" class="nav-link active" data-scroll-target="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%84%A4%EC%B9%98"><span class="header-section-number">27.1</span> 파이썬 설치</a>
   <ul class="collapse">
-<li><a href="#%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD" id="toc-가상환경" class="nav-link" data-scroll-target="#%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD"><span class="header-section-number">28.1.1</span> 가상환경</a></li>
-  <li><a href="#rprofile-%EC%84%A4%EC%A0%95" id="toc-rprofile-설정" class="nav-link" data-scroll-target="#rprofile-%EC%84%A4%EC%A0%95"><span class="header-section-number">28.1.2</span> <code>.Rprofile</code> 설정</a></li>
+<li><a href="#%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD" id="toc-가상환경" class="nav-link" data-scroll-target="#%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD"><span class="header-section-number">27.1.1</span> 가상환경</a></li>
+  <li><a href="#rprofile-%EC%84%A4%EC%A0%95" id="toc-rprofile-설정" class="nav-link" data-scroll-target="#rprofile-%EC%84%A4%EC%A0%95"><span class="header-section-number">27.1.2</span> <code>.Rprofile</code> 설정</a></li>
   </ul>
 </li>
-  <li><a href="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D-%EC%82%AC%EB%A1%80" id="toc-감성분석-사례" class="nav-link" data-scroll-target="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D-%EC%82%AC%EB%A1%80"><span class="header-section-number">28.2</span> 감성분석 사례</a></li>
-  <li><a href="#rstudio-%EB%B6%80%EC%A1%B0%EC%A2%85%EC%82%AC" id="toc-rstudio-부조종사" class="nav-link" data-scroll-target="#rstudio-%EB%B6%80%EC%A1%B0%EC%A2%85%EC%82%AC"><span class="header-section-number">28.3</span> RStudio 부조종사</a></li>
-  <li><a href="#openai-api" id="toc-openai-api" class="nav-link" data-scroll-target="#openai-api"><span class="header-section-number">28.4</span> OpenAI API</a></li>
+  <li><a href="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D-%EC%82%AC%EB%A1%80" id="toc-감성분석-사례" class="nav-link" data-scroll-target="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D-%EC%82%AC%EB%A1%80"><span class="header-section-number">27.2</span> 감성분석 사례</a></li>
+  <li><a href="#rstudio-%EB%B6%80%EC%A1%B0%EC%A2%85%EC%82%AC" id="toc-rstudio-부조종사" class="nav-link" data-scroll-target="#rstudio-%EB%B6%80%EC%A1%B0%EC%A2%85%EC%82%AC"><span class="header-section-number">27.3</span> RStudio 부조종사</a></li>
+  <li><a href="#openai-api" id="toc-openai-api" class="nav-link" data-scroll-target="#openai-api"><span class="header-section-number">27.4</span> OpenAI API</a></li>
+  <li><a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">27.5</span> 요약</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/gpt_python.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gpt_python.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./gpt_python.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-gpt" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gpt_python.html"><strong>8부</strong> 챗GPT</a></li><li class="breadcrumb-item"><a href="./gpt_python.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-gpt" class="quarto-section-identifier"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></h1>
 </div>
 
 
@@ -499,15 +494,15 @@ ga('send', {
 </div>
 </div>
 </div>
-<section id="파이썬-설치" class="level2" data-number="28.1"><h2 data-number="28.1" class="anchored" data-anchor-id="파이썬-설치">
-<span class="header-section-number">28.1</span> 파이썬 설치</h2>
+<section id="파이썬-설치" class="level2" data-number="27.1"><h2 data-number="27.1" class="anchored" data-anchor-id="파이썬-설치">
+<span class="header-section-number">27.1</span> 파이썬 설치</h2>
 <p>가장 최신 파이썬 3.12 버전 대신 안정성이 검증된 파이썬 3.11 버전 <a href="https://www.python.org/downloads/release/python-3118/">다운로드</a> 웹사이트에서 운영체제에 맞게 설치한다. 설치 과정에서 <code>Add Python 3.11 to PATH</code> 옵션을 반드시 선택한다.</p>
 <div id="fig-install-python" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-install-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/gpt-python-install.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/gpt-python-install.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-install-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;28.1: 파이썬 설치 과정
+그림&nbsp;27.1: 파이썬 설치 과정
 </figcaption></figure>
 </div>
 <div class="cell">
@@ -519,9 +514,9 @@ ga('send', {
 <span><span class="co">#&gt; Enter 'exit' or 'quit' to exit the REPL and return to R.</span></span>
 <span><span class="co">#&gt; &gt;&gt;&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="가상환경" class="level3" data-number="28.1.1"><h3 data-number="28.1.1" class="anchored" data-anchor-id="가상환경">
-<span class="header-section-number">28.1.1</span> 가상환경</h3>
-<p>파이썬 가상환경을 생성하는 이유는 프로젝트별로 필요한 패키지를 분리하여 관리하여 충돌을 방지하기 위함이다. 파일명(<code>--name</code>) 방식과 경로명(<code>--prefix</code>) 방식이 있으며 서로 장단점이 있다. 여기서 경로명 방식과 <code>reticulate</code> 패키지를 활용하여 R 내부적으로 수행하는 방식을 소개한다. <code><a href="https://rstudio.github.io/reticulate/reference/virtualenv-tools.html">virtualenv_remove()</a></code> 함수를 사용하여 가상환경을 삭제할 수 있다.</p>
+<section id="가상환경" class="level3" data-number="27.1.1"><h3 data-number="27.1.1" class="anchored" data-anchor-id="가상환경">
+<span class="header-section-number">27.1.1</span> 가상환경</h3>
+<p>파이썬 가상환경을 생성하는 이유는 프로젝트별로 필요한 패키지를 분리하여 관리하여 충돌을 방지하기 위함이다. 파일명(<code>--name</code>) 방식과 경로명(<code>--prefix</code>) 방식이 있으며 서로 장단점이 있다. 여기서는 경로명 방식과 <code>reticulate</code> 패키지를 활용하여 R 내부적으로 수행하는 방식을 소개한다. <code><a href="https://rstudio.github.io/reticulate/reference/virtualenv-tools.html">virtualenv_remove()</a></code> 함수를 사용하여 가상환경을 삭제할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/virtualenv-tools.html">virtualenv_create</a></span><span class="op">(</span><span class="st">"d:/envs/gpt-ds"</span><span class="op">)</span></span>
 <span></span>
@@ -539,8 +534,8 @@ ga('send', {
 <span></span>
 <span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/virtualenv-tools.html">virtualenv_install</a></span><span class="op">(</span><span class="st">"d:/envs/gpt-ds"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"transformers"</span>, <span class="st">"torch"</span>, <span class="st">"torchvision"</span>, <span class="st">"torchtext"</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="rprofile-설정" class="level3" data-number="28.1.2"><h3 data-number="28.1.2" class="anchored" data-anchor-id="rprofile-설정">
-<span class="header-section-number">28.1.2</span> <code>.Rprofile</code> 설정</h3>
+</section><section id="rprofile-설정" class="level3" data-number="27.1.2"><h3 data-number="27.1.2" class="anchored" data-anchor-id="rprofile-설정">
+<span class="header-section-number">27.1.2</span> <code>.Rprofile</code> 설정</h3>
 <p>매번 R을 실행할 때마다 파이썬 가상환경을 활성화하는 것은 번거롭다. <code>.Rprofile</code> 파일에 <code>RETICULATE_PYTHON</code> 환경변수를 설정하게 되면, <code>.Rprofile</code> 파일은 R을 시작할 때 자동으로 파이썬 가상환경이 활성화된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html">edit_r_profile</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -562,9 +557,9 @@ ga('send', {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; NOTE: Python version was forced by RETICULATE_PYTHON</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="감성분석-사례" class="level2" data-number="28.2"><h2 data-number="28.2" class="anchored" data-anchor-id="감성분석-사례">
-<span class="header-section-number">28.2</span> 감성분석 사례</h2>
-<p>앞서 구축한 파이썬 가상환경에서 음식점 리뷰에 대한 감성분석을 수행하는 사례를 살펴본다. 먼저 <code>transformers</code> 라이브러리 <code>pipeline</code>을 사용하여 텍스트 분류 모델을 로드하고, 한국어 문장을 입력으로 받아 다국어 버트(bert) 모형으로 감성 분석을 수행한다. 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.</p>
+</section></section><section id="감성분석-사례" class="level2" data-number="27.2"><h2 data-number="27.2" class="anchored" data-anchor-id="감성분석-사례">
+<span class="header-section-number">27.2</span> 감성분석 사례</h2>
+<p>앞서 구축한 파이썬 가상환경에서 음식점 리뷰에 대한 감성분석을 수행하는 사례를 살펴본다. 먼저 <code>transformers</code> 라이브러리의 <code>pipeline</code>을 사용하여 텍스트 분류 모델을 로드하고, 한국어 문장을 입력으로 받아 다국어 BERT(Bidirectional Encoder Representations from Transformers) 모형으로 감성 분석을 수행한다. 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -577,14 +572,14 @@ ga('send', {
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prediction)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [{'label': '4 stars', 'score': 0.5038140416145325}]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="rstudio-부조종사" class="level2" data-number="28.3"><h2 data-number="28.3" class="anchored" data-anchor-id="rstudio-부조종사">
-<span class="header-section-number">28.3</span> RStudio 부조종사</h2>
-<p><a href="https://github.com/features/copilot">GitHub Copilot</a>은 Visual Studio Code를 비롯한 다양한 코드 편집기와 통합할 수 있는 AI 기반 코딩 도우미(Assistant)다. 부조종사(Copilot)는 개발자가 보다 효율적이고 정확하게 코드를 작성할 수 있도록 도와주는 지능형 도우미 기능 제공하기 위해 GitHub와 OpenAI가 공동으로 개발했다.</p>
+</section><section id="rstudio-부조종사" class="level2" data-number="27.3"><h2 data-number="27.3" class="anchored" data-anchor-id="rstudio-부조종사">
+<span class="header-section-number">27.3</span> RStudio 부조종사</h2>
+<p><a href="https://github.com/features/copilot">GitHub Copilot</a>은 Visual Studio Code를 비롯한 다양한 코드 편집기와 통합할 수 있는 AI 기반 코딩 도우미(Assistant)다. 부조종사(Copilot)는 개발자가 보다 효율적이고 정확하게 코드를 작성할 수 있도록 도와주는 지능형 도우미 기능을 제공하기 위해 GitHub와 OpenAI가 공동으로 개발했다.</p>
 <p>Copilot은 머신 러닝 알고리즘을 사용하여 다른 개발자가 작성한 코드를 분석하고 학습한 다음 현재 코드베이스에 삽입할 수 있는 제안 및 코드 조각을 생성한다. 이 기능은 방대한 코드 코퍼스를 학습한 신경망을 사용하여 개발자가 작성할 가능성이 있는 다음 코드 줄을 예측하는 방식으로 작동한다.</p>
 <p>이 기술을 통해 Copilot은 현재 코드의 컨텍스트를 기반으로 전체 함수 또는 클래스를 제안하고 구문적으로 정확하고 모범 사례를 준수하는 코드를 생성할 수도 있다. 또한 Copilot은 생성하는 코드의 의미와 목적을 이해할 수 있으므로 새로운 아이디어를 빠르게 프로토타입으로 만들거나 문제에 대한 다양한 해결책을 모색해야 하는 개발자에게 유용한 도구다.</p>
 <p>GitHub Copilot은 Python, JavaScript, TypeScript, Ruby, Go, R 등 다양한 프로그래밍 언어와 원활하게 작동하도록 설계되었다. 또한 사용자 지정이 가능하므로 개발자가 특정 코드베이스에 대해 학습시켜 제안을 개선하고 더욱 정확하게 만들 수 있다.</p>
-<p>Copilot을 사용하면 얻을 수 있는 잠재적 이점은 상당하다. 코드 작성에 필요한 시간과 노력을 줄임으로써 개발자는 새로운 기능을 설계하거나 기존 기능을 개선하는 등 더 복잡한 작업에 집중할 수 있다. 또한 Copilot은 모범 사례를 따르고 구조적으로 건전하고 읽기 쉬운 코드를 생성하도록 프로그래밍되어 있으므로 오류와 버그를 줄이는 데 도움이 될 수 있다.</p>
-<p>R 사용자는 RStudio를 많이 사용했으나 최근 챗GPT, Github Copilot의 부상으로 개발방식에 변화가 생겨나고 있다. 하지만, RStudio가 곧 Copilot 지원하지는 않을 예정이다. RStudio는 무료 오픈 소스인 반면 Copilot은 Microsoft의 독점 기술이며, Microsoft는 공식 비공개 소스 소프트웨어 및 플러그인에서만 사용할 수 있도록 라이선스를 부여하고 있다. 시중에 존재하는 몇몇 타사 플러그인은 공식 플러그인에서 바이너리를 추출하여 작동하지만, RStudio IDE에는 이런 우회 편법적인 방법을 취하고 있지는 않고 있다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Copilot을 사용하면 얻을 수 있는 잠재적 이점은 상당하다. 코드 작성에 필요한 시간과 노력을 줄임으로써 개발자는 새로운 기능을 설계하거나 기존 기능을 개선하는 등 더 복잡한 작업에 집중할 수 있다. 또한 Copilot은 모범 사례를 따르고 구조적으로 건전하며 읽기 쉬운 코드를 생성하도록 프로그래밍되어 있으므로 오류와 버그를 줄이는 데 도움이 될 수 있다.</p>
+<p>R 사용자는 RStudio를 많이 사용했으나 최근 챗GPT, Github Copilot의 부상으로 개발 방식에 변화가 생겨나고 있다. 하지만, RStudio가 곧바로 Copilot을 지원하지는 않을 예정이다. RStudio는 무료 오픈 소스인 반면 Copilot은 Microsoft의 독점 기술이며, Microsoft는 공식 비공개 소스 소프트웨어 및 플러그인에서만 사용할 수 있도록 라이선스를 부여하고 있다. 시중에 존재하는 몇몇 타사 플러그인은 공식 플러그인에서 바이너리를 추출하여 작동하지만, RStudio IDE에는 이런 우회적인 방법을 취하고 있지는 않다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>이러한 기술적, 문화적 제약으로 인해 Microsoft와 Posit이 RStudio 내에서 Copilot을 허용하는 방법과 RStudio가 공개 데이터 및 기술을 사용하여 Copilot과 유사한 AI 프로그래밍 도우미를 구현하는 방법 등 다양한 방식을 검토한 후에 2023년 7월 RStudio IDE에 GitHub Copilot 통합 버전을 출시했다.</p>
 <p>RStudio 부조종사는 RStudio IDE에 GitHub Copilot을 통합한 버전으로, RStudio 사용자가 RStudio IDE에서 Copilot을 사용할 수 있도록 지원한다. RStudio 부조종사는 RStudio IDE의 기능과 GitHub Copilot의 기능을 통합하여 RStudio 사용자가 더욱 효율적으로 코드를 작성하고 디버깅할 수 있도록 도와준다. RStudio 부조종사는 RStudio IDE의 사용성을 향상시키고 RStudio 사용자가 더욱 효율적으로 코드를 작성할 수 있도록 도와준다.</p>
 <div id="fig-rstudio-copilot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -592,18 +587,18 @@ ga('send', {
 <a href="images/rstudio_copilot.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/rstudio_copilot.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-copilot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;28.2: RStudio 부조종사 설정방법
+그림&nbsp;27.2: RStudio 부조종사 설정방법
 </figcaption></figure>
 </div>
-</section><section id="openai-api" class="level2" data-number="28.4"><h2 data-number="28.4" class="anchored" data-anchor-id="openai-api">
-<span class="header-section-number">28.4</span> OpenAI API</h2>
+</section><section id="openai-api" class="level2" data-number="27.4"><h2 data-number="27.4" class="anchored" data-anchor-id="openai-api">
+<span class="header-section-number">27.4</span> OpenAI API</h2>
 <p>OpenAI API는 OpenAI의 인공지능 모형을 활용하는 API 서비스로, 개발자가 쉽게 인공지능 모형을 활용할 수 있도록 제공된다. OpenAI API를 사용하면 개발자는 챗GPT, DALL-E, 위스퍼, 임베딩 등 OpenAI의 다양한 인공지능 언어, 음성, 시각 모형을 활용하여 다양한 인공지능 응용프로그램을 개발할 수 있다. OpenAI API는 RESTful API로 제공되며, 개발자는 HTTP 요청을 통해 OpenAI의 인공지능 모형을 활용할 수 있다. OpenAI, 챗GPT(ChatGPT), OpenAI API를 명확히 구분하는 것이 필요하다.</p>
 <ul>
 <li>OpenAI: 회사명</li>
 <li>챗GPT(ChatGPT): AI 응용프로그램 (AI 챗팅 서비스)</li>
 <li>OpenAI API: OpenAI 인공지능 모형을 활용하는 API 서비스</li>
 </ul>
-<p>OpenAI 회사가 제시하고 있는 기준에 맞춰 따라줘야 OpenAI API를 사용할 수 있다. 이를 위해 먼저 회원가입을 통한 계정을 생성하고 본인 인증과 과금을 위한 API KEY를 생성하고 프로그래밍 언어에서 쉽게 사용할 수 있도록 파이썬의 경우 <code>openai</code> 패키지를 설치하고 문법에 맞춰 코드를 작성하면 된다.</p>
+<p>OpenAI 회사가 제시하고 있는 기준에 맞춰 따라야 OpenAI API를 사용할 수 있다. 이를 위해 먼저 회원가입을 통한 계정을 생성하고 본인 인증과 과금을 위한 API KEY를 생성하고 프로그래밍 언어에서 쉽게 사용할 수 있도록 파이썬의 경우 <code>openai</code> 패키지를 설치하고 문법에 맞춰 코드를 작성하면 된다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">계정생성</a></li>
@@ -620,7 +615,7 @@ ga('send', {
 <a href="images/openai_api_signup.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/openai_api_signup.jpg" class="quarto-figure quarto-figure-center figure-img" height="265"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-openai-signup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;28.3: OpenAI 계정 생성
+그림&nbsp;27.3: OpenAI 계정 생성
 </figcaption></figure>
 </div>
 </div>
@@ -631,7 +626,7 @@ ga('send', {
 <a href="images/apikey_creation.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/apikey_creation.jpg" class="quarto-figure quarto-figure-center figure-img" height="265"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apikey-creation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;28.4: API 키 생성
+그림&nbsp;27.4: API 키 생성
 </figcaption></figure>
 </div>
 </div>
@@ -674,7 +669,7 @@ ga('send', {
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
-<p><code>python-dotenv</code> 패키지를 사용하여 API KEY를 환경변수로 관리한다. <code>.env</code> 파일에 OpenAI 발급받은 API KEY를 저장하고 파이썬 프로그램에서 <code>.env</code> 파일을 읽어서 API KEY를 사용한다. 버전 관리 시스템에 <code>.env</code> 파일을 포함시키지 않도록 <code>.gitignore</code> 파일에 추가한다. 이와 같은 방식으로 API KEY를 관리하면 API KEY가 노출되는 것을 방지할 수 있다.</p>
+<p><code>python-dotenv</code> 패키지를 사용하여 API KEY를 환경변수로 관리한다. <code>.env</code> 파일에 OpenAI에서 발급받은 API KEY를 저장하고 파이썬 프로그램에서 <code>.env</code> 파일을 읽어서 API KEY를 사용한다. 버전 관리 시스템에 <code>.env</code> 파일을 포함시키지 않도록 <code>.gitignore</code> 파일에 추가한다. 이와 같은 방식으로 API KEY를 관리하면 API KEY가 노출되는 것을 방지할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
@@ -695,13 +690,19 @@ ga('send', {
 </div>
 </div>
 </div>
+</section><section id="요약" class="level2" data-number="27.5"><h2 data-number="27.5" class="anchored" data-anchor-id="요약">
+<span class="header-section-number">27.5</span> 요약</h2>
+<p>파이썬 설치, 가상환경 설정, <code>.Rprofile</code> 설정 등 체계적인 사전 준비를 통해 쿼토에서 안정적이고 효율적인 감성 분석 환경을 마련할 수 있다.</p>
+<p>특히 가상환경을 사용하면 프로젝트별로 필요한 패키지를 분리하여 관리할 수 있어 패키지 간 충돌을 방지할 수 있다. 또한 <code>.Rprofile</code> 파일에 가상환경 경로를 설정함으로써 매번 가상환경을 활성화하는 번거로움을 줄일 수 있다.</p>
+<p>구축한 환경을 바탕으로 <code>transformers</code> 라이브러리와 사전 학습된 BERT 모델을 활용하여 한국어 리뷰 텍스트에 대한 감성 분석을 수행해 보았다. 이처럼 가상환경과 최신 라이브러리를 사용하면 자연어 처리 작업을 보다 쉽고 효과적으로 수행할 수 있다.</p>
+<p>RStudio IDE에 통합된 GitHub Copilot인 RStudio 부조종사와 OpenAI API에 대해서도 간략히 소개했다. 이러한 도구들을 적절히 활용한다면 데이터 과학자의 생산성과 효율성을 한층 더 높일 수 있다.</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;28.1: 파이썬 설치 과정</span>
-<span class="glightbox-desc lightbox-desc-2">그림&nbsp;28.2: RStudio 부조종사 설정방법</span>
-<span class="glightbox-desc lightbox-desc-3">그림&nbsp;28.3: OpenAI 계정 생성</span>
-<span class="glightbox-desc lightbox-desc-4">그림&nbsp;28.4: API 키 생성</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;27.1: 파이썬 설치 과정</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;27.2: RStudio 부조종사 설정방법</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;27.3: OpenAI 계정 생성</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;27.4: API 키 생성</span>
 </div>
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
@@ -1155,12 +1156,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./ingest_spreadsheet.html" class="pagination-link" aria-label="상용 데이터">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">상용 데이터</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./gpt_prompt_ds.html" class="pagination-link" aria-label="데이터 과학 프롬프트">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1176,7 +1177,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

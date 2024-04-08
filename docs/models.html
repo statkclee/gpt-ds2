@@ -555,7 +555,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-galton-hegith-reg" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-galton-hegith-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-galton-hegith-reg-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="models_files/figure-html/fig-galton-hegith-reg-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-galton-hegith-reg-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="models_files/figure-html/fig-galton-hegith-reg-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galton-hegith-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.1: 산점도와 회귀직선
@@ -578,7 +578,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-galton-hegith-scatterplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-galton-hegith-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galton-hegith-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.2: 성별에 따른 산점도와 회귀직선
@@ -614,7 +614,7 @@ window.Quarto = {
 <span class="header-section-number">11.3</span> 통계모형 구축 과정</h2>
 <p>데이터 과학 분야의 제품 개발 방식은 다양하다. 엔지니어링의 관점에서 볼 때, 전통적인 장인의 기술이 제자에게 계승되는 방식에서 시작하여, 포드의 대량 생산 방식을 거치고, <strong>대량 맞춤생산(Mass Customization)</strong> 방식으로 발전하여, 현재에는 기계 학습과 딥러닝이 통합된 혁신적인 개발 방식까지 다양한 방법론이 혼재되어 있다.</p>
 <p>전통적인 가내수공업 방식은 개별 주문에 따라 제품을 최적화하여 만드는 방식이다. 이 방식에서는 인간의 경험과 지식이 중요한 역할을 하며, 고객의 특별한 요구사항을 충족하기 위해 맞춤형 모델을 개발한다. 이러한 방식을 간략히 살펴보면, 각 고객의 고유한 필요에 따라 제품이나 서비스를 특별히 설계하고 생산하는 것이 핵심이다.</p>
-<p>이번 장에서는 전통적인 통계모형을 제작하는 과정을 살펴보고 <a href="models_building.html" class="quarto-xref"><span>13</span></a>장에서 다른 방식의 모형개발과정을 살펴본다.</p>
+<p>이번 장에서는 전통적인 통계모형을 제작하는 과정을 살펴보고 <a href="models_building.html" class="quarto-xref"><span>12</span></a>장에서 다른 방식의 모형개발과정을 살펴본다.</p>
 <p>데이터 준비 단계에서 모의시험 데이터를 생성한다. 독립변수 <span class="math inline">\(x\)</span>는 1부터 100까지의 연속적인 수열이며, 종속변수 <span class="math inline">\(y\)</span>는 <span class="math inline">\(x^2\)</span>에 노이즈를 추가한 값으로 정의한다. 생성된 데이터는 <code>df</code>라는 데이터프레임에 저장하며, 데이터의 처음 몇 행을 출력하여 확인한다.</p>
 <p>탐색적 데이터 분석(EDA) 단계에서는 데이터의 기술통계량을 <code>psych</code> 패키지의 <code>describe</code> 함수를 활용하여 출력하고, 데이터 분포와 관계를 확인하기 위해 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span>의 산점도로 시각화한다.</p>
 <p>모형 적합 단계에서는 먼저, 선형회귀 모델을 사용하여 <span class="math inline">\(y\)</span>를 <span class="math inline">\(x\)</span>로 예측한다. 적합된 선형 모형 결과를 출력하고, 적합된 모델과 잔차를 시각적으로 확인한다. <span class="math inline">\(y = \beta_0 + \beta_1 x + \beta_2 x^2\)</span> 형태를 가진 2차 회귀 모형을 적합시킨다. <span class="math inline">\(x^2\)</span> 항을 데이터프레임에 추가하여 2차 회귀 모델을 적합한 후, 결과를 출력하고, 적합된 모형과 잔차를 시각적으로 확인한다. 기본모형과 최종모형 사이에는 수많은 가설생성과 검증 절차가 진행되어 데이터를 가장 잘 설명하는 모형을 최종 선택하게 된다.</p>
@@ -640,12 +640,12 @@ window.Quarto = {
 <span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
 <span><span class="co">#&gt;       x      y</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1   38.1</span></span>
-<span><span class="co">#&gt; 2     2  117. </span></span>
-<span><span class="co">#&gt; 3     3 -130. </span></span>
-<span><span class="co">#&gt; 4     4   20.9</span></span>
-<span><span class="co">#&gt; 5     5  110. </span></span>
-<span><span class="co">#&gt; 6     6   41.1</span></span>
+<span><span class="co">#&gt; 1     1 -125. </span></span>
+<span><span class="co">#&gt; 2     2  122. </span></span>
+<span><span class="co">#&gt; 3     3 -141. </span></span>
+<span><span class="co">#&gt; 4     4   34.2</span></span>
+<span><span class="co">#&gt; 5     5   80.0</span></span>
+<span><span class="co">#&gt; 6     6 -124.</span></span>
 <span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co">## 02. 탐색적 데이터 분석</span></span>
@@ -653,18 +653,18 @@ window.Quarto = {
 <span><span class="co"># 통계량</span></span>
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   vars   n    mean      sd  median trimmed     mad     min     max    range</span></span>
-<span><span class="co">#&gt; x    1 100   50.50   29.01   50.50    50.5   37.06    1.00  100.00    99.00</span></span>
-<span><span class="co">#&gt; y    2 100 3445.57 3064.97 2575.62  3148.6 3308.11 -130.47 9911.66 10042.13</span></span>
-<span><span class="co">#&gt;   skew kurtosis    se</span></span>
-<span><span class="co">#&gt; x 0.00    -1.24   2.9</span></span>
-<span><span class="co">#&gt; y 0.61    -0.92 306.5</span></span>
+<span><span class="co">#&gt; x    1 100   50.50   29.01   50.50   50.50   37.06    1.00  100.00    99.00</span></span>
+<span><span class="co">#&gt; y    2 100 3437.42 3046.91 2458.58 3145.16 3103.61 -140.56 9932.63 10073.19</span></span>
+<span><span class="co">#&gt;   skew kurtosis     se</span></span>
+<span><span class="co">#&gt; x 0.00    -1.24   2.90</span></span>
+<span><span class="co">#&gt; y 0.62    -0.92 304.69</span></span>
 <span></span>
 <span><span class="co"># 산점도</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.3: 데이터를 확인하는 단계
@@ -688,19 +688,19 @@ window.Quarto = {
 <span><span class="co">#&gt; lm(formula = y ~ x, data = df)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
-<span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
-<span><span class="co">#&gt; -957.2 -641.5 -225.1  540.8 1664.4 </span></span>
+<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">#&gt; -1025.9  -638.9  -143.2   608.9  1617.8 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -1728.755    151.277  -11.43   &lt;2e-16 ***</span></span>
-<span><span class="co">#&gt; x             102.462      2.601   39.40   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; (Intercept) -1699.336    153.619  -11.06   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; x             101.718      2.641   38.52   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 750.7 on 98 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9406, Adjusted R-squared:   0.94 </span></span>
-<span><span class="co">#&gt; F-statistic:  1552 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 762.3 on 98 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.938,  Adjusted R-squared:  0.9374 </span></span>
+<span><span class="co">#&gt; F-statistic:  1483 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -713,7 +713,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.4: 기본 모형 적합 후 적합도 확인
@@ -737,19 +737,19 @@ window.Quarto = {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
 <span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span><span class="co">#&gt; -220.72  -85.22   14.14   84.75  195.48 </span></span>
+<span><span class="co">#&gt; -194.06 -101.09  -11.17  109.05  187.02 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -35.03267   34.02178  -1.030   0.3057    </span></span>
-<span><span class="co">#&gt; x             2.83112    1.55489   1.821   0.0717 .  </span></span>
-<span><span class="co">#&gt; x2            0.98644    0.01492  66.136   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) 18.29443   36.58145   0.500    0.618    </span></span>
+<span><span class="co">#&gt; x            0.68094    1.67187   0.407    0.685    </span></span>
+<span><span class="co">#&gt; x2           1.00037    0.01604  62.376   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 111.1 on 97 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9987, Adjusted R-squared:  0.9987 </span></span>
-<span><span class="co">#&gt; F-statistic: 3.759e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 119.5 on 97 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9985, Adjusted R-squared:  0.9985 </span></span>
+<span><span class="co">#&gt; F-statistic: 3.213e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -761,7 +761,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.5: 최종모형과 적합도 검증
@@ -1280,7 +1280,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

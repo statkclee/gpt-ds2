@@ -52,7 +52,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -608,14 +628,14 @@ ga('send', {
 </div>
 </section><section id="웹-앱" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="웹-앱">
 <span class="header-section-number">21.3</span> 웹 앱</h2>
-<p>데이터 과학 프로젝트의 마지막 단계는 결과를 공유하거나 사업적 목적을 위해 사용자에게 제공하는 것이다. R 마크다운/쿼토 보고서, 그래프, 데이터 파일 저장하는 것 외에도 웹 앱(shiny)을 만들어 사용자와 상호작용할 수 있다. 앞서 살펴본 펭귄 데이터에서 성별을 예측하는 통계 모형, 기계학습 모형을 개발한 후 웹앱을 제작하여 서비스 형태로 커뮤니케이션하는 것도 물론 가능하다.</p>
+<p>데이터 과학 프로젝트의 마지막 단계는 결과를 공유하거나 사업적 목적을 위해 사용자에게 제공하는 것이다. R 마크다운/쿼토 보고서, 그래프, 데이터 파일 저장하는 것 외에도 웹 앱(shiny)<span class="citation" data-cites="wickham2021mastering">(Wickham 2021)</span>을 만들어 사용자와 상호작용할 수 있다. 앞서 살펴본 펭귄 데이터에서 성별을 예측하는 통계 모형, 기계학습 모형을 개발한 후 웹앱을 제작하여 서비스 형태로 커뮤니케이션하는 것도 물론 가능하다.</p>
 <p>펭귄의 부리 길이, 부리 깊이, 물갈퀴 길이, 체중 등의 신체 특징을 입력받아 기계학습 모형에 넣어 성별과 성별 확률을 추론하는 웹앱(Shiny)이다.</p>
 <section id="dashboard-ui-wireframe" class="level3" data-number="21.3.1"><h3 data-number="21.3.1" class="anchored" data-anchor-id="dashboard-ui-wireframe">
 <span class="header-section-number">21.3.1</span> UI 뼈대설계</h3>
 <p><a href="https://app.diagrams.net/">draw.io</a> 웹사이트에서 <code>wireframe</code> 템플릿을 활용하여 대시보드 UI 뼈대 설계(wireframe)를 작성한다. 성별 예측 모형 변수 4개가 입력값으로 들어가고, 출력값으로는 펭귄의 성별과 예측 모형이 예측한 성별을 어느 정도 지지하는지 확률값을 함께 출력하도록 화면 설계를 한다.</p>
 <div id="fig-comm-wireframe" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-comm-wireframe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/comm_wireframe.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/comm_wireframe.png" class="img-fluid figure-img"></a>
+<a href="images/comm_wireframe.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/comm_wireframe.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comm-wireframe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;21.1: 펭귄 성별예측 웹앱 UI 뼈대설계
@@ -627,7 +647,7 @@ ga('send', {
 <p><code>tidymodels</code>로 개발한 예측 모형을 <code>shinydashboard</code>에 연결시키기 위해서는 입력변수가 <code>reactive</code>라는 특성을 갖기 때문에 이를 데이터프레임, 예측 모형 추론, 성별 예측과 성별 예측 확률에 연결시키는 점을 유념하여 개발한다.</p>
 <div id="fig-comm-shiny" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-comm-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/comm_shiny.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/comm_shiny.jpg" class="img-fluid figure-img"></a>
+<a href="images/comm_shiny.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/comm_shiny.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comm-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;21.2: 펭귄 성별예측 웹앱
@@ -745,6 +765,11 @@ ga('send', {
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;21.1: 펭귄 성별예측 웹앱 UI 뼈대설계</span>
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;21.2: 펭귄 성별예측 웹앱</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-wickham2021mastering" class="csl-entry" role="listitem">
+Wickham, Hadley. 2021. <em>Mastering shiny</em>. " O’Reilly Media, Inc.".
+</div>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1216,7 +1241,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

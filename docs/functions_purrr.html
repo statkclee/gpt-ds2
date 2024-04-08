@@ -534,7 +534,7 @@ window.Quarto = {
   
 
 
-</header><p>함수형 프로그래밍은 데이터 과학에서 중추적인 역할을 한다. 특정 연산을 수행하는 함수에 집중하며, 참조 투명성을 통해 동일한 입력에 대해 일관된 출력을 보장함으로써 데이터 분석 예측 가능성과 재현성을 강화한다. 또한, 데이터 분석 과정을 단순화하고 디버깅 및 테스팅을 용이하게 하는 동시에 부수 효과를 최소화한다. R 언어에서는 <code>purrr</code> 패키지를 통해 함수형 프로그래밍을 구현하고 있다.</p>
+</header><p>함수형 프로그래밍<span class="citation" data-cites="wickham2019advanced">(Wickham 2019)</span>은 데이터 과학에서 중추적인 역할을 한다. 특정 연산을 수행하는 함수에 집중하며, 참조 투명성을 통해 동일한 입력에 대해 일관된 출력을 보장함으로써 데이터 분석 예측 가능성과 재현성을 강화한다. 또한, 데이터 분석 과정을 단순화하고 디버깅 및 테스팅을 용이하게 하는 동시에 부수 효과를 최소화한다. R 언어에서는 <code>purrr</code> 패키지<span class="citation" data-cites="wickham2023r">(Wickham, Çetinkaya-Rundel, 와/과 Grolemund 2023)</span>를 통해 함수형 프로그래밍을 구현하고 있다.</p>
 <p><strong>함수형 프로그래밍(functional programming)</strong>은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수 함수형 언어, 예를 들어 <a href="https://ko.wikipedia.org/wiki/%ED%95%98%EC%8A%A4%EC%BC%88">하스켈(Haskell)</a>은 루프가 없다. 루프 없이 어떻게 프로그램을 작성할 수 있을까? 루프는 재귀(recursion)로 대체된다. 이런 이유로 아래에서 뉴턴 방법을 통해 근을 구하는 방식을 R코드로 두 가지 방법을 보여준다. R은 아직 <a href="http://hanmomhanda.github.io/2015/07/27/%EC%9E%AC%EA%B7%80-%EB%B0%98%EB%B3%B5-Tail-Recursion/">꼬리 호출(tail-call recurssion)</a> 기능을 제공하지 않기 때문에 루프를 사용하는 것이 더 낫다.</p>
 <p>수학 함수는 멋진 특성이 있는데, 즉 해당 입력에 항상 동일한 결과를 갖는다. 이 특성을 <strong>참조 투명성(referential transparaency)</strong> 이라고 부른다. 참조 투명성은 <strong>부수효과(side effect)</strong> 없음을 표현하는 속성인데, 함수가 결과값 외에 다른 상태를 변경시킬 때 부수효과(side effect)가 있다고 한다. 부수 효과는 프로그램 버그를 발생시키는 온상으로, 부수 효과를 없애면 디버깅이 용이해진다. 따라서, 부수 효과를 제거하고 참조 투명성을 유지함으로써 데이터 분석 수행 결과를 예측 가능한 상태로 유지시켜 <strong>재현가능한 과학</strong>이 가능하게 된다.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -572,7 +572,7 @@ window.Quarto = {
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp-data-analysis.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="함수로 이해하는 데이터 분석"><img src="images/fp-data-analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="810"></a></p>
+<figure class="figure"><p><a href="images/fp-data-analysis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="함수로 이해하는 데이터 분석"><img src="images/fp-data-analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="810"></a></p>
 </figure>
 </div>
 <figcaption>함수로 이해하는 데이터 분석</figcaption></figure>
@@ -581,7 +581,7 @@ window.Quarto = {
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp-data-analysis-workflow.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="데이터 분석 작업흐름"><img src="images/fp-data-analysis-workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="377"></a></p>
+<figure class="figure"><p><a href="images/fp-data-analysis-workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="데이터 분석 작업흐름"><img src="images/fp-data-analysis-workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="377"></a></p>
 </figure>
 </div>
 <figcaption>데이터 분석 작업흐름</figcaption></figure>
@@ -597,7 +597,7 @@ window.Quarto = {
 <p>반면에 툴이나 패키지 개발에는 객체지향 프로그래밍(OOP) 패러다임을 사용하는 것이 권장된다. 객체지향 프로그래밍은 데이터와 해당 데이터를 다루는 메서드(함수)를 하나의 객체로 묶어 관리함으로써 코드의 모듈화, 캡슐화, 재사용성을 높이는 데 도움이 된다. 객체지향 프로그래밍에서는 클래스를 정의하고, 클래스 간의 상속과 다형성을 활용하여 코드의 구조를 체계화할 수 있어 패키지 개발에서 중요한 특성인 코드의 유지보수성, 확장성, 협업 용이성 등을 향상시킬 수 있다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp-data-analysis-choice.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3" title="데이터 분석과 툴/패키지 도구 개발"><img src="images/fp-data-analysis-choice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="687" alt="데이터 분석과 툴/패키지 도구 개발"></a></p>
+<figure class="figure"><p><a href="images/fp-data-analysis-choice.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="데이터 분석과 툴/패키지 도구 개발"><img src="images/fp-data-analysis-choice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="687" alt="데이터 분석과 툴/패키지 도구 개발"></a></p>
 </figure>
 </div>
 <figcaption>데이터 분석과 툴/패키지 도구 개발</figcaption></figure>
@@ -613,7 +613,7 @@ window.Quarto = {
 <p>기하적으로 보면, 파란 선은 함수 <span class="math inline">\(f\)</span> 이고, <span class="math inline">\(f\)</span>를 미분한 <span class="math inline">\(f'\)</span> 빨간 선은 뉴턴방법을 활용하여 근을 구해가는 과정을 시각적으로 보여주고 있다. <span class="math inline">\(x_{n-1}\)</span> 보다 <span class="math inline">\(x_n\)</span>이, <span class="math inline">\(x_n\)</span> 보다 <span class="math inline">\(x_{n+1}\)</span>이 함수 <span class="math inline">\(f\)</span> 근에 더 가깝게 접근해 나가는 것이 확인된다.</p>
 <div id="fig-newton-raphson" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-newton-raphson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/newton_method_ani.gif" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/newton_method_ani.gif" class="img-fluid figure-img"></a>
+<a href="images/newton_method_ani.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/newton_method_ani.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newton-raphson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;18.2: 뉴튼 방법 도식화(출처: 위키백과)
@@ -875,11 +875,11 @@ window.Quarto = {
 <p><strong>순수하지 않은 함수(impure function)</strong></p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-04-07 13:30:42 KST"</span></span>
+<span><span class="co">#&gt; [1] "2024-04-08 09:02:13 KST"</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1]  1.28499729 -1.19343897  0.07164258 -0.18559801  0.31109260  0.51413979</span></span>
-<span><span class="co">#&gt;  [7]  0.50247576  0.34023928  0.27570174 -1.23444622</span></span>
+<span><span class="co">#&gt;  [1] -0.99891420  0.28339773 -1.56739162  0.08105369  2.69238537  0.50913512</span></span>
+<span><span class="co">#&gt;  [7] -0.16310793 -0.92971553 -0.57436650 -1.24419094</span></span>
 <span></span>
 <span><span class="co"># write_csv("data/sample.csv")</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1015,7 +1015,7 @@ window.Quarto = {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5" title="고차함수 유형"><img src="images/fp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="416" alt="고차함수 유형"></a></p>
+<figure class="figure"><p><a href="images/fp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="고차함수 유형"><img src="images/fp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="416" alt="고차함수 유형"></a></p>
 </figure>
 </div>
 <figcaption>고차함수 유형</figcaption></figure>
@@ -1064,7 +1064,7 @@ window.Quarto = {
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; &lt;simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function&gt;</span></span>
+<span><span class="co">#&gt; &lt;simpleError in .Primitive("log")(x, base): 수학함수에 숫자가 아닌 인자가 전달되었습니다&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt; NULL</span></span>
@@ -1196,7 +1196,7 @@ window.Quarto = {
 <p>구글 검색을 통해서 쉽게 <a href="https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv">iris(붓꽃) 데이터</a>를 구할 수 있다. 이를 불러와서 각 종별로 <code>setosa</code> <code>versicolor</code>, <code>virginica</code>로 나눠 로컬 <code>.csv</code> 파일로 저장하고 나서 이를 다시 불러오는 사례를 함수형 프로그래밍으로 구현해본다.</p>
 <div id="fig-iris-data-loading" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iris-data-loading-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/fp-iris.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="images/fp-iris.png" class="img-fluid figure-img"></a>
+<a href="images/fp-iris.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="images/fp-iris.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iris-data-loading-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;18.3: 붓꽃 데이터 불러오기
@@ -1309,7 +1309,7 @@ window.Quarto = {
 <span></span>
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     mu: 1     mu: 5    mu: 10 </span></span>
-<span><span class="co">#&gt;  1.002996  5.994051 10.013723</span></span>
+<span><span class="co">#&gt; 0.8054056 4.7178333 9.4505863</span></span>
 <span></span>
 <span><span class="va">sim_mu_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
@@ -1336,7 +1336,7 @@ window.Quarto = {
 <span></span>
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_sd_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; mu: 1,  sd: 10  mu: 5,  sd: 5 mu: 10,  sd: 1 </span></span>
-<span><span class="co">#&gt;     10.9245697      5.9312611      0.8201664</span></span>
+<span><span class="co">#&gt;      14.031650       5.832396       1.275494</span></span>
 <span></span>
 <span><span class="va">sim_mu_sd_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
@@ -1456,6 +1456,12 @@ window.Quarto = {
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Rodrigues2016Functional" class="csl-entry" role="listitem">
 Rodrigues, Bruno. 2016. <em>Functional Programming and Unit Testing for Data Munging with R</em>. LeanPub. <a href="https://b-rodrigues.github.io/fput/">https://b-rodrigues.github.io/fput/</a>.
+</div>
+<div id="ref-wickham2019advanced" class="csl-entry" role="listitem">
+Wickham, Hadley. 2019. <em>Advanced r</em>. chapman; hall/CRC.
+</div>
+<div id="ref-wickham2023r" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, 와/과 Garrett Grolemund. 2023. <em>R for data science</em>. " O’Reilly Media, Inc.".
 </div>
 </div>
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
@@ -1934,7 +1940,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

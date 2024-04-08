@@ -1,4 +1,4 @@
 species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year
-Adelie,Biscoe,37.8,190,4250,male,2009
+Adelie,Torgersen,35.5,190,3700,female,2008
 Adelie,Torgersen,38.8,191,3275,female,2009
-Adelie,Dream,37,185,3000,female,2007
+Adelie,Dream,39.5,188,3300,female,2007
