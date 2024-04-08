@@ -492,9 +492,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html"><strong>4부</strong> 모형</a></li><li class="breadcrumb-item"><a href="./models.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span>
-</h1>
+<h1 class="title"><span id="sec-model" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></h1>
 </div>
 
 
@@ -508,26 +506,11 @@ window.Quarto = {
   
 
 
-</header><p>모형 개발의 목표는 정보를 잃지 않고 데이터셋을 간단히 요약하는 것이다. 모형은 참 ‘신호’(즉, 관심 있는 현상으로 생성된 패턴)를 포착하고 ‘잡음’(즉, 관심 없는 임의 변동)을 구분하여 신호 대비 잡음비를 최적화한다. 전통적으로 모형은 추론 혹은 가설이 사실인지 검증하고 확인하는 데 중점을 둔다. 추정과 가설 검정 작업은 복잡하지는 않지만 어렵다.</p>
-<p>모형 제작의 목표는 진실을 찾는 것보다는 유용하지만 단순한 근사치를 찾아내는 것이다.</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-조지 박스(George Box) 박사 명언
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<blockquote class="blockquote">
-<p>모든 모델은 틀렸지만, 어떤 모델은 유용하다. (All models are wrong, but some are useful.)</p>
-</blockquote>
-<p>자연과학과 사회과학의 두 가지 사례를 통해 조지 박스 박사의 모형에 대한 명언을 되새겨보자. 지구의 움직임을 설명하기 위한 기본 모형은 “평평한 지구” 모형으로, 지구의 실제 구조와 움직임을 정확히 반영하지 못했지만, 일상적인 생활에서 지구의 특성을 설명하기에는 충분했다. 경제학에서 사용되는 많은 모형은 단순화된 가정을 바탕으로 한다. 예를 들어, 모든 소비자와 생산자가 완벽한 정보를 가지고 있고 합리적으로 행동한다는 가정을 바탕으로 한 경제 모형은 현실 세계의 복잡한 상황을 반영하지 않지만, 복잡한 경제 관계를 단순화시켜 기본적인 경제 원리를 이해시키는 데 도움이 된다.</p>
-</div>
-</div>
+</header><p></p>
+<p>모형 개발의 목표는 정보를 잃지 않고 데이터셋을 간단히 요약하는 것이다. 모형은 참 ‘신호’(즉, 관심 있는 현상으로 생성된 패턴)를 포착하고 ‘잡음’(즉, 관심 없는 임의 변동)을 구분하여 신호 대비 잡음비를 최적화한다. 전통적으로 모형은 추론 혹은 가설이 사실인지 검증하고 확인하는 데 중점을 둔다. 추정과 가설 검정 작업은 복잡하지는 않지만 어렵다. 모형 제작의 목표는 진실을 찾는 것보다는 유용하지만 단순한 근사치를 찾아내는 것이다.</p>
 <section id="회귀분석" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="회귀분석">
 <span class="header-section-number">11.1</span> 회귀분석</h2>
+<p> </p>
 <p>회귀분석은 갤톤(Galton)의 부모와 자식의 신장 간의 관계를 회귀식으로 표현한 데이터셋<span class="citation" data-cites="caffo2015advanced">(Caffo 2015)</span> <span class="citation" data-cites="histdata2023">(Friendly 2023)</span>이 유명하다. 부모의 신장을 기초로 자녀의 신장을 예측하는 회귀식을 구하기 전에 산점도를 통해 관계를 살펴보면 다음과 같다.</p>
 <p>먼저 dataframe 자료형을 <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> 함수로 변환하고, 신장 단위를 인치에서 cm로 변환한다. 영어로 된 성별을 <code>ifelse</code> 함수로 남자와 여자로 변환한 후 <code>ggplot</code>으로 시각화한다. <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> 함수로 회귀직선을 추가한다.</p>
 <div class="cell">
@@ -555,7 +538,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-galton-hegith-reg" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-galton-hegith-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-galton-hegith-reg-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="models_files/figure-html/fig-galton-hegith-reg-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-galton-hegith-reg-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="models_files/figure-html/fig-galton-hegith-reg-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galton-hegith-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.1: 산점도와 회귀직선
@@ -578,7 +561,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-galton-hegith-scatterplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-galton-hegith-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="models_files/figure-html/fig-galton-hegith-scatterplot-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-galton-hegith-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.2: 성별에 따른 산점도와 회귀직선
@@ -586,8 +569,26 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+조지 박스(George Box) 박사 명언
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p></p>
+<blockquote class="blockquote">
+<p>모든 모델은 틀렸지만, 어떤 모델은 유용하다. (All models are wrong, but some are useful.)</p>
+</blockquote>
+<p>자연과학과 사회과학의 두 가지 사례를 통해 조지 박스 박사의 모형에 대한 명언을 되새겨보자. 지구의 움직임을 설명하기 위한 기본 모형은 “평평한 지구” 모형으로, 지구의 실제 구조와 움직임을 정확히 반영하지 못했지만, 일상적인 생활에서 지구의 특성을 설명하기에는 충분했다. 경제학에서 사용되는 많은 모형은 단순화된 가정을 바탕으로 한다. 예를 들어, 모든 소비자와 생산자가 완벽한 정보를 가지고 있고 합리적으로 행동한다는 가정을 바탕으로 한 경제 모형은 현실 세계의 복잡한 상황을 반영하지 않지만, 복잡한 경제 관계를 단순화시켜 기본적인 경제 원리를 이해시키는 데 도움이 된다.</p>
+</div>
+</div>
 </section><section id="회귀계수-추정" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="회귀계수-추정">
 <span class="header-section-number">11.2</span> 회귀계수 추정</h2>
+<p> </p>
 <p>선형대수로 회귀계수를 추정하는 문제를 풀면 다음과 같이 정의된다. 한 번 미분해서 <span class="math inline">\(\nabla f(\beta ) = -2Xy + X^t X \beta =0\)</span> 이 되고, 0으로 놓고 푼 값은 최솟값이 되는데, 그 이유는 <span class="math inline">\(\beta\)</span>에 대해서 두 번 미분하게 되면 <span class="math inline">\(2 X^t X\)</span> 로 양수가 되기 때문이다.</p>
 <p><span class="math display">\[f(\beta ) = ||y - \beta X ||^2 = (y - \beta X)^t (y - \beta X) = y^t y - 2 y^t X^t \beta + \beta^t X^t X \beta\]</span></p>
 <p><span class="math display">\[\nabla f(\beta ) = -2Xy + X^t X \beta\]</span></p>
@@ -612,6 +613,7 @@ window.Quarto = {
 </div>
 </section><section id="통계모형-구축-과정" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="통계모형-구축-과정">
 <span class="header-section-number">11.3</span> 통계모형 구축 과정</h2>
+<p> </p>
 <p>데이터 과학 분야의 제품 개발 방식은 다양하다. 엔지니어링의 관점에서 볼 때, 전통적인 장인의 기술이 제자에게 계승되는 방식에서 시작하여, 포드의 대량 생산 방식을 거치고, <strong>대량 맞춤생산(Mass Customization)</strong> 방식으로 발전하여, 현재에는 기계 학습과 딥러닝이 통합된 혁신적인 개발 방식까지 다양한 방법론이 혼재되어 있다.</p>
 <p>전통적인 가내수공업 방식은 개별 주문에 따라 제품을 최적화하여 만드는 방식이다. 이 방식에서는 인간의 경험과 지식이 중요한 역할을 하며, 고객의 특별한 요구사항을 충족하기 위해 맞춤형 모델을 개발한다. 이러한 방식을 간략히 살펴보면, 각 고객의 고유한 필요에 따라 제품이나 서비스를 특별히 설계하고 생산하는 것이 핵심이다.</p>
 <p>이번 장에서는 전통적인 통계모형을 제작하는 과정을 살펴보고 <a href="models_building.html" class="quarto-xref"><span>12</span></a>장에서 다른 방식의 모형개발과정을 살펴본다.</p>
@@ -638,14 +640,14 @@ window.Quarto = {
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
-<span><span class="co">#&gt;       x      y</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     1 -125. </span></span>
-<span><span class="co">#&gt; 2     2  122. </span></span>
-<span><span class="co">#&gt; 3     3 -141. </span></span>
-<span><span class="co">#&gt; 4     4   34.2</span></span>
-<span><span class="co">#&gt; 5     5   80.0</span></span>
-<span><span class="co">#&gt; 6     6 -124.</span></span>
+<span><span class="co">#&gt;       x       y</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1  -22.5 </span></span>
+<span><span class="co">#&gt; 2     2  148.  </span></span>
+<span><span class="co">#&gt; 3     3  143.  </span></span>
+<span><span class="co">#&gt; 4     4 -153.  </span></span>
+<span><span class="co">#&gt; 5     5 -167.  </span></span>
+<span><span class="co">#&gt; 6     6   -1.99</span></span>
 <span></span>
 <span><span class="co">##========================================================</span></span>
 <span><span class="co">## 02. 탐색적 데이터 분석</span></span>
@@ -654,17 +656,17 @@ window.Quarto = {
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   vars   n    mean      sd  median trimmed     mad     min     max    range</span></span>
 <span><span class="co">#&gt; x    1 100   50.50   29.01   50.50   50.50   37.06    1.00  100.00    99.00</span></span>
-<span><span class="co">#&gt; y    2 100 3437.42 3046.91 2458.58 3145.16 3103.61 -140.56 9932.63 10073.19</span></span>
+<span><span class="co">#&gt; y    2 100 3410.06 3042.91 2601.12 3125.51 3270.21 -167.36 9941.33 10108.69</span></span>
 <span><span class="co">#&gt;   skew kurtosis     se</span></span>
-<span><span class="co">#&gt; x 0.00    -1.24   2.90</span></span>
-<span><span class="co">#&gt; y 0.62    -0.92 304.69</span></span>
+<span><span class="co">#&gt; x  0.0    -1.24   2.90</span></span>
+<span><span class="co">#&gt; y  0.6    -0.95 304.29</span></span>
 <span></span>
 <span><span class="co"># 산점도</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="models_files/figure-html/fig-traditional-modeling-step1-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.3: 데이터를 확인하는 단계
@@ -688,19 +690,19 @@ window.Quarto = {
 <span><span class="co">#&gt; lm(formula = y ~ x, data = df)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
-<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span><span class="co">#&gt; -1025.9  -638.9  -143.2   608.9  1617.8 </span></span>
+<span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
+<span><span class="co">#&gt; -974.0 -656.3 -171.5  554.5 1672.1 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) -1699.336    153.619  -11.06   &lt;2e-16 ***</span></span>
-<span><span class="co">#&gt; x             101.718      2.641   38.52   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1727.20     150.10  -11.51   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; x             101.73       2.58   39.42   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 762.3 on 98 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.938,  Adjusted R-squared:  0.9374 </span></span>
-<span><span class="co">#&gt; F-statistic:  1483 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 744.9 on 98 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9407, Adjusted R-squared:  0.9401 </span></span>
+<span><span class="co">#&gt; F-statistic:  1554 on 1 and 98 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -713,7 +715,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="models_files/figure-html/fig-traditional-modeling-step2-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.4: 기본 모형 적합 후 적합도 확인
@@ -737,19 +739,19 @@ window.Quarto = {
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals:</span></span>
 <span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span><span class="co">#&gt; -194.06 -101.09  -11.17  109.05  187.02 </span></span>
+<span><span class="co">#&gt; -174.47  -94.06  -10.90   89.63  213.36 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) 18.29443   36.58145   0.500    0.618    </span></span>
-<span><span class="co">#&gt; x            0.68094    1.67187   0.407    0.685    </span></span>
-<span><span class="co">#&gt; x2           1.00037    0.01604  62.376   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -48.64546   35.52775  -1.369   0.1741    </span></span>
+<span><span class="co">#&gt; x             2.98939    1.62371   1.841   0.0687 .  </span></span>
+<span><span class="co">#&gt; x2            0.97761    0.01558  62.765   &lt;2e-16 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 119.5 on 97 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.9985, Adjusted R-squared:  0.9985 </span></span>
-<span><span class="co">#&gt; F-statistic: 3.213e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; Residual standard error: 116.1 on 97 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.9986, Adjusted R-squared:  0.9985 </span></span>
+<span><span class="co">#&gt; F-statistic: 3.398e+04 on 2 and 97 DF,  p-value: &lt; 2.2e-16</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># 적합모형 시각화</span></span>
@@ -761,7 +763,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-traditional-modeling-step3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-traditional-modeling-step3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="models_files/figure-html/fig-traditional-modeling-step3-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traditional-modeling-step3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.5: 최종모형과 적합도 검증
@@ -782,6 +784,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p> </p>
 <p><code>predict</code>와 <code>forecast</code>는 둘 다 ’예측하다’라는 의미로 사용되지만, 차이는 명확하다. <code>predict</code>는 보다 확정적인 결과에 대한 예측에 초점을 맞추는 반면, <code>forecast</code>는 미래의 불확실한 사건에 대한 확률적인 추정에 중점을 둔다.</p>
 <p><code>predict</code>는 과학, 사회학, 심리학 등에서 사용되며 일반적으로 특정 사건이나 결과가 일어날 것이라고 말하는 데 사용된다. 예를 들어, 기계학습 모형이 특정 데이터를 바탕으로 결과를 ’예측(predict)’하는 경우가 대표적이다. 특정 조건이나 상황에서 특정 결과가일어날 것이라고 하는, 비교적 구체적이고 확정적인 예측을 내포한다.</p>
 <p>반면, <code>forecast</code>는 주로 기상학, 경제학, 재무학 등에서 사용되며, 미래의 사건이나 조건에 대한 확률적인 추정을 의미한다. <code>forecast</code>는 불확실성과 확률적인 요소를 포함한 예측을 가리키며, 예를 들어 날씨 예보나 경제 성장률 예측 등에서 사용되기 때문에 특정 사건이 발생할 ’가능성’이나 ’확률’을 중시한다.</p>
@@ -1280,7 +1283,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false,"selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

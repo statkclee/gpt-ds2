@@ -457,7 +457,7 @@ ga('send', {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_database.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_web.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></h1>
+<h1 class="title"><span id="sec-web-data" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></h1>
 </div>
 
 
@@ -471,11 +471,12 @@ ga('send', {
   
 
 
-</header><p>중앙선거관리위원회(이하 선관위)가 데이터를 엑셀, 웹, API 형식으로 제작하고 배포하는 이유는 국민들의 다양한 정보 접근성을 보장하고, 선거 정보의 활용도를 높이기 위해서다. 선관위의 다양한 형태 데이터 제작 및 배포 노력이 시민들의 선거 참여를 촉진하고, 민주주의 발전에 기여할 것으로 기대하고 있다. 다양한 형식의 데이터 제공은 시민들이 자신의 필요와 선호에 따라 선거 정보를 활용할 수 있도록 하며, 시민들의 정치적 권리 행사를 지원하는 데 도움이 된다.</p>
+</header><p> </p>
+<p>중앙선거관리위원회(이하 선관위)가 데이터를 엑셀, 웹, API 형식으로 제작하고 배포하는 이유는 국민들의 다양한 정보 접근성을 보장하고, 선거 정보의 활용도를 높이기 위해서다. 선관위의 다양한 형태 데이터 제작 및 배포 노력이 시민들의 선거 참여를 촉진하고, 민주주의 발전에 기여할 것으로 기대하고 있다. 다양한 형식의 데이터 제공은 시민들이 자신의 필요와 선호에 따라 선거 정보를 활용할 수 있도록 하며, 시민들의 정치적 권리 행사를 지원하는 데 도움이 된다.</p>
 <p>엑셀 형식은 데이터 분석과 가공이 용이하므로, 연구자나 데이터 분석가들이 선거 데이터를 심층적으로 분석하고 새로운 통찰을 도출하는 데 도움이 된다. 또한, 엑셀 파일은 일반 국민들이 쉽게 다운로드하여 사용할 수 있어, 선거 정보의 접근성을 높이는 데 기여한다.</p>
 <p>웹 형식은 일반 국민들이 쉽게 접근하고 이해할 수 있는 형태로 선거 정보를 제공한다. 시각화된 데이터와 인터랙티브한 웹 페이지를 통해 선거에 대한 국민들의 관심과 참여를 높일 수 있다. 웹 페이지를 통해 선거 정보가 실시간으로 업데이트되어, 시민들에게 최신 정보를 제공한다.</p>
 <p>API 형식은 개발자들이 선거 데이터를 활용하여 다양한 애플리케이션과 서비스를 개발할 수 있도록 하여 선거 정보의 활용 범위를 넓히고, 시민들에게 더욱 편리하고 유용한 서비스를 제공하는 데 기여한다. API를 통해 선거 데이터를 다른 시스템과 연동하여 활용할 수 있어, 선거 정보를 다양한 제품과 서비스에 녹여내는 데 비용과 노력을 크게 낮출 수 있다.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-import-web" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-web-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -523,12 +524,12 @@ ga('send', {
 </div>
 </div>
 <p>입장을 바꾸어 선관위에서는 데이터를 어떻게 제공할까? 선관위는 자체 선거데이터를 체계적으로 관리하는 데이터베이스와 웹서버, API 서버 등을 갖추고 PC뿐만 아니라 모바일에서도 선거 관련 다양한 정보를 제공하고 있다. 데이터 제공 측면에서 보면 선거 데이터를 수집, 정제, 가공한 후 엑셀 파일, 웹 페이지, API 형식으로 별도 개발을 통해 시민에게 다양한 형식으로 제공하고 있다.</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
+<div id="fig-export-web" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-export-web-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
+<pre class="mermaid mermaid-js" data-label="fig-export-web">graph LR
     subgraph 선관위 데이터 제작 과정
         AB[데이터 수집 &lt;br&gt; 데이터 정제 및 가공]
         AB --&gt; C{데이터 &lt;br&gt; 형식 결정}
@@ -571,32 +572,35 @@ ga('send', {
     style O fill:#f5f5f5,stroke:#000,stroke-width:2px
 </pre>
 </div>
-<p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-export-web-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.2: 선관위 데이터 제작 과정
+</figcaption></figure>
 </div>
 </div>
 </div>
 <section id="엑셀" class="level2" data-number="25.1"><h2 data-number="25.1" class="anchored" data-anchor-id="엑셀">
 <span class="header-section-number">25.1</span> 엑셀</h2>
+<p></p>
 <p>제21대 국회의원 선거 당선인 명부 데이터를 엑셀 형태로 구하려면, <a href="https://www.nec.go.kr/site/nec/ex/bbs/List.do?cbIdx=1129">선관위 자료공간</a> 웹사이트 게시판을 통해 엑셀 파일을 다운로드할 수 있다.</p>
-<div id="fig-nec-excel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-nec-excel" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/nec_excel.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/nec_excel.jpeg" class="img-fluid figure-img"></a>
+<a href="images/nec_excel.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/nec_excel.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;25.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일
+그림&nbsp;25.3: 선관위 제21대 국회의원 당선인 명부 엑셀파일
 </figcaption></figure>
 </div>
-<p>다운로드받은 엑셀 데이터를 가져오는 코드를 <a href="#lst-excel" class="quarto-xref">목록&nbsp;<span>25.1</span></a> 와 같이 작성할 수 있다. 먼저, <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>과 <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>를 통해 필요한 패키지를 로드한다. <code>nec_sheets &lt;- readxl::excel_sheets(...)</code>는 엑셀 파일의 시트 이름을 가져오는 코드로 엑셀 파일에서 가져올 시트를 선택한다. <code>winner_raw &lt;- readxl::read_excel(...)</code>는 선택한 시트의 데이터를 읽어오는 코드로 당선인 명부 데이터를 R 환경으로 불러온다.</p>
+<p>다운로드받은 엑셀 데이터를 가져오는 코드를 <span class="quarto-unresolved-ref">?lst-excel</span> 와 같이 작성할 수 있다. 먼저, <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>과 <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>를 통해 필요한 패키지를 로드한다. <code>nec_sheets &lt;- readxl::excel_sheets(...)</code>는 엑셀 파일의 시트 이름을 가져오는 코드로 엑셀 파일에서 가져올 시트를 선택한다. <code>winner_raw &lt;- readxl::read_excel(...)</code>는 선택한 시트의 데이터를 읽어오는 코드로 당선인 명부 데이터를 R 환경으로 불러온다.</p>
 <p>이후, <code>winner_raw |&gt; count(소속정당명, name = "당선인수", sort = TRUE)</code>는 파이프 연산자(<code>|&gt;</code>)를 사용하여 데이터를 조작하여 정당별로 집계하고, 당선인 수를 계산한 후, 결과를 내림차순으로 정렬하여 당선인 수를 쉽게 파악할 수 있다. <code>janitor::adorn_totals(where = "row", name = "합계")</code>는 <code>janitor</code> 패키지 함수로, 집계 결과에 총합 행을 추가하여 전체 당선인 수를 확인할 수 있다.</p>
 <div class="cell">
-<div id="lst-excel" class="r cell-code code-overflow-wrap listing quarto-float">
-<figure class="quarto-float quarto-float-lst figure"><div aria-describedby="lst-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-excel"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1" data-lst-cap="제21대 국회의원 선거 당선인 명부 데이터 불러오기"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">nec_sheets</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets</a></span><span class="op">(</span><span class="st">"data/nec/제21대_국회의원선거(재보궐선거_포함)_당선인명부.xlsx"</span><span class="op">)</span></span>
+<span><span class="va">nec_sheets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets</a></span><span class="op">(</span><span class="st">"data/nec/제21대_국회의원선거(재보궐선거_포함)_당선인명부.xlsx"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">winner_raw</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/nec/제21대_국회의원선거(재보궐선거_포함)_당선인명부.xlsx"</span>, sheet <span class="op">=</span> <span class="va">nec_sheets</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">winner_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/nec/제21대_국회의원선거(재보궐선거_포함)_당선인명부.xlsx"</span>, </span>
+<span>                         sheet <span class="op">=</span> <span class="va">nec_sheets</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">winner_raw</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">소속정당명</span>, name <span class="op">=</span> <span class="st">"당선인수"</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -608,29 +612,25 @@ ga('send', {
 <span><span class="co">#&gt;        정의당        1</span></span>
 <span><span class="co">#&gt;          합계      253</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-lst" id="lst-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-목록&nbsp;25.1: 제21대 국회의원 선거 당선인 명부 데이터 불러오기
-</figcaption></figure>
-</div>
-</div>
 </section><section id="api" class="level2" data-number="25.2"><h2 data-number="25.2" class="anchored" data-anchor-id="api">
 <span class="header-section-number">25.2</span> API</h2>
+<p> </p>
 <p>공공데이터포털 <a href="https://www.data.go.kr/data/15000864/openapi.do">중앙선거관리위원회 당선인정보 API</a>를 활용하여 당선인 정보를 프로그래밍을 통해 직접 가져올 수 있다. 아래아한글로 작성된 당선인 정보 조회 서비스 API 명세서를 참고하여 Java, Javascript, C#, PHP, Curl, Objective-C, Python, Nodejs, R 언어로 예제 코드가 작성되어 있어 사용자가 편리하게 API를 활용할 수 있다.</p>
 <div id="fig-nec-api" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/nec_api.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/nec_api.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;25.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서
+그림&nbsp;25.4: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서
 </figcaption></figure>
 </div>
 <p>공공데이터포털 API 끝점(Endpoint)과 API KEY를 발급받고 API 서비스 신청을 하였다면 다음 단계로 아래아한글 당선인 정보 조회 서비스 API 명세서 내용을 참고하여 코드를 작성한다.</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
+<div id="fig-endpoint" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-endpoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
+<pre class="mermaid mermaid-js" data-label="fig-endpoint">graph LR
 
   subgraph API 파악
     A[공공데이터포털&lt;br&gt;API 발급] --&gt; B[API 명세서&lt;br&gt;참고]
@@ -667,7 +667,10 @@ style H fill:#c0c0c0,stroke:#333,stroke-width:2px
 style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </pre>
 </div>
-<p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-endpoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.5: 공공데이터포털 API 명세서 참고 및 코드 작성
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -675,8 +678,9 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 <p>당선인 정보와 선거구 정보를 가져오기 위한 API 호출 스크립트를 작성하고, 반복을 줄이고 재사용성을 높이기 위해 함수로 변환하는 작업을 수행한다. 선거구 데이터프레임에서 기본 정보, 즉 시도명과 선거구명을 작성한 함수 <code>get_winner()</code>에 전달하여 선거구별 당선인 정보를 데이터프레임으로 가져온다.</p>
 <section id="스크립트" class="level3" data-number="25.2.1"><h3 data-number="25.2.1" class="anchored" data-anchor-id="스크립트">
 <span class="header-section-number">25.2.1</span> 스크립트</h3>
+<p></p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite">jsonlite</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
@@ -707,7 +711,7 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </section><section id="함수" class="level3" data-number="25.2.2"><h3 data-number="25.2.2" class="anchored" data-anchor-id="함수">
 <span class="header-section-number">25.2.2</span> 함수</h3>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_winner</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sdName</span> <span class="op">=</span> <span class="st">"서울특별시"</span>, <span class="va">sggName</span> <span class="op">=</span> <span class="st">"종로구"</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_winner</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sdName</span> <span class="op">=</span> <span class="st">"서울특별시"</span>, <span class="va">sggName</span> <span class="op">=</span> <span class="st">"종로구"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">"http://apis.data.go.kr/9760000/WinnerInfoInqireService2/getWinnerInfoInqire"</span>,</span>
 <span>                query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sgId <span class="op">=</span> <span class="st">"20200415"</span>,</span>
 <span>                              sgTypecode <span class="op">=</span> <span class="st">"2"</span>,</span>
@@ -734,9 +738,10 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </div>
 </section><section id="선거구" class="level3" data-number="25.2.3"><h3 data-number="25.2.3" class="anchored" data-anchor-id="선거구">
 <span class="header-section-number">25.2.3</span> 선거구</h3>
+<p></p>
 <p><a href="https://www.data.go.kr/data/15000897/openapi.do">중앙선거관리위원회 코드정보</a> API를 활용하여 선거구 정보를 프로그래밍을 통해 가져올 수 있다. 당선인 명부 데이터를 불러올 때 선거구 정보가 필수적이라 이 과정을 생략할 수는 없다. 당선인 정보와 동일하기 때문에 스크립트 제작 과정은 생략하고 명세서에 나와 있는 내용을 바탕으로 R 코드를 작성해서 선거구 데이터프레임을 제작한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_precinct</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pageNo</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_precinct</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pageNo</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">"http://apis.data.go.kr/9760000/CommonCodeService/getCommonSggCodeList"</span>,</span>
 <span>              query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sgId <span class="op">=</span> <span class="st">"20200415"</span>,</span>
 <span>                            sgTypecode <span class="op">=</span> <span class="st">"2"</span>,</span>
@@ -781,7 +786,7 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </section><section id="선거구-당선인" class="level3" data-number="25.2.4"><h3 data-number="25.2.4" class="anchored" data-anchor-id="선거구-당선인">
 <span class="header-section-number">25.2.4</span> 선거구 당선인</h3>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">winners_raw</span> <span class="op">&lt;-</span> <span class="va">precinct_tbl</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">winners_raw</span> <span class="op">&lt;-</span> <span class="va">precinct_tbl</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>winner <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">sdName</span>, <span class="va">sggName</span>, <span class="va">get_winner</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">winners_tbl</span> <span class="op">&lt;-</span><span class="va">winners_raw</span> <span class="op">|&gt;</span> </span>
@@ -809,16 +814,17 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 </section><section id="데이터-저장" class="level3" data-number="25.2.5"><h3 data-number="25.2.5" class="anchored" data-anchor-id="데이터-저장">
 <span class="header-section-number">25.2.5</span> 데이터 저장</h3>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">winners_tbl</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">winners_tbl</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="st">"data/21st_election_winners.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="동적-웹-페이지" class="level2" data-number="25.3"><h2 data-number="25.3" class="anchored" data-anchor-id="동적-웹-페이지">
 <span class="header-section-number">25.3</span> 동적 웹 페이지</h2>
+<p> </p>
 <p>중앙선거관리위원회 선거통계시스템에서 제공하는 제21대 국회의원선거 당선인 명단을 R과 RSelenium을 활용한 동적 웹 크롤링을 통해 수집하고 정제하는 과정을 살펴본다. <code>RSelenium</code> 패키지를 설치하고 불여우(Firefox) 브라우저를 제어하기 위해 드라이버를 설치하고 선관위 웹사이트로 이동한다.</p>
 <p>다음으로 CSS 선택자(selector)를 이용하여 선거유형, 선거명, 선거코드, 시도 등의 조회조건을 순차적으로 선택하고 클릭 이벤트를 실행하여 검색조건을 완성한 후 검색 버튼을 클릭하여 해당 조건에 맞는 당선인 명단이 포함된 HTML 표를 브라우저에 렌더링한다. 마지막 단계로, 다시 CSS 선택자로 해당 표를 선택하고 <code>getElementAttribute()</code> 함수를 통해 HTML 표를 추출한 다음, <code>rvest</code> 패키지의 <code>read_html()</code>, <code>html_table()</code> 함수를 이용하여 HTML 표를 데이터프레임으로 변환하여 <code>tibble</code> 형태로 크롤링 작업을 마무리 한다.</p>
 <p>과거에는 <code>RSelenium</code>을 <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 명령어를 통해서 CRAN에서 다운로드를 할 수 없었으나 이제는 <a href="https://cran.r-project.org/web/packages/RSelenium/index.html">CRAN, RSelenium</a>에서 직접 설치가 가능하고 <a href="https://github.com/ropensci/RSelenium">GitHub rOpenSci</a> 저장소에서 <code>devtools</code>로 설치할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># devtools::install_github("ropensci/binman")</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># devtools::install_github("ropensci/binman")</span></span>
 <span><span class="co"># devtools::install_github("ropensci/wdman")</span></span>
 <span><span class="co"># devtools::install_github("ropensci/RSelenium")</span></span>
 <span></span>
@@ -879,12 +885,12 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 <span><span class="co">#&gt; # ℹ 39 more rows</span></span>
 <span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fig-nec_selelium" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec_selelium-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-nec_selelium-gif" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nec_selelium-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/nec_selelium.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/nec_selelium.gif" class="img-fluid figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec_selelium-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;25.4: 동적 웹 페이지 데이터 추출과정
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nec_selelium-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;25.6: 동적 웹 페이지 데이터 추출과정
 </figcaption></figure>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -911,9 +917,9 @@ style I fill:#c0c0c0,stroke:#333,stroke-width:2px
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;25.2: 선관위 제21대 국회의원 당선인 명부 엑셀파일</span>
-<span class="glightbox-desc lightbox-desc-2">그림&nbsp;25.3: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서</span>
-<span class="glightbox-desc lightbox-desc-3">그림&nbsp;25.4: 동적 웹 페이지 데이터 추출과정</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;25.3: 선관위 제21대 국회의원 당선인 명부 엑셀파일</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;25.4: 국가선거정보 - 당선인 정보 조회 서비스 API 명세서</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;25.6: 동적 웹 페이지 데이터 추출과정</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1385,7 +1391,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

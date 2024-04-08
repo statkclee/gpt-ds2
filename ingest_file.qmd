@@ -4,9 +4,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-# 파일 데이터 {#intro}
+# 파일 데이터 {#sec-file}
+\index{파일 데이터}
 
 ## 유니코드와 UTF-8
+\index{유니코드} \index{UTF-8}
 
 사람 간의 의사소통은 다양한 기호 체계를 통해 이루어진다. 영어 알파벳, 한글, 한자 등의 문자가 의사소통에 사용되는 좋은 예이다. 
 디지털 환경에서 이러한 의사소통을 가능하게 하는 기술적 장치가 바로 문자 집합과 문자 인코딩 및 디코딩이다.
@@ -26,6 +28,7 @@ editor_options:
 
 ::: callout-note
 ### 인코딩(Encoding) {.unnmbered}
+\index{인코딩} \index{Encoding}
 
 **문자 인코딩(character encoding)**, 줄여서 인코딩은 사용자가 입력한 문자나 기호들을 컴퓨터가 이용할 수 있는 신호로 변환하는 것을 말한다. 
 넓은 의미의 컴퓨터는 이러한 신호를 입력받고 처리하는 기계를 뜻하며, 신호 처리 시스템을 통해 이렇게 처리된 정보를 사용자가 이해할 수 있게 된다.
@@ -34,6 +37,7 @@ editor_options:
 :::
 
 ### 인코딩 문제
+\index{인코딩 문제} \index{문자 깨짐} \index{두부} \index{물음표}
 
 문자 인코딩은 컴퓨터가 텍스트를 바이트로 변환하거나 바이트를 텍스트로 변환하는 방법이다. 
 인코딩 과정에서는 다양한 문제가 발생할 수 있고, 그중 세 가지 문제가 많이 알려져 있다. 첫 번째는 '두부(Tofu)'라 불리는 상황으로, 
@@ -45,8 +49,10 @@ editor_options:
 ![세 가지 인코딩 문제](images/common-encoding-problem.png)
 
 ### 문자 집합
+\index{문자 집합} \index{Character Set} \index{Charset} 
 
 #### 아스키 코드
+\index{아스키 코드} \index{ASCII}
 
 디지털 글쓰기는 내용과 상관없이 결국 텍스트로 표현되고, 텍스트는 단지 문자이다. 하지만, 컴퓨터가 문자 하나를 어떻게 표현할까?
 
@@ -99,10 +105,11 @@ ascii_gt
 ![제어 문자와 출력 가능한 아스키 문자표 알파벳 예시](images/ascii_gt.png){#fig-ascii}
 
 
-@fig-ascii는 아스키 문자표에서 제어 문자 10개와 출력 가능한 아스키 문자표 중 영문 대문자 A-I까지 10개를 뽑아 사례로 보여준다. 
+[@fig-ascii]는 아스키 문자표에서 제어 문자 10개와 출력 가능한 아스키 문자표 중 영문 대문자 A-I까지 10개를 뽑아 사례로 보여준다. 
 즉, 문자표는 어떤 문자가 어떤 숫자에 해당하는지를 정의하고 있다.
 
 #### 확장 아스키 {#ascii-extension}
+\index{확장 아스키} \index{Extended ASCII}
 
 아스키(ASCII) 방식으로 숫자 `2`, 문자 `q`, 혹은 곡절 악센트 `^`를 표현하는 데 충분하다. 
 하지만, 투르크어족 추바시어 `ĕ`, 그리스 문자 `β`, 러시아 키릴 문자 `Я`는 어떻게 저장하고 표현해야 할까? 
@@ -117,6 +124,7 @@ ascii_gt
 이와는 별도로 한중일(CJK) 동아시아 국가들을 비롯한 많은 국가에서는 256개 이상의 기호를 사용한다. 왜냐하면 8비트로는 특히 동아시아 국가 문자를 표현하는 데 부족하기 때문이다.
 
 #### 한글 완성형과 조합형
+\index{한글 완성형} \index{한글 조합형}
 
 1980년대부터 컴퓨터를 사용하신 분이라면 완성형과 조합형의 표준화 전쟁을 지켜봤을 것이고, 그 이면에는 한글 워드프로세서에 대한 주도권 쟁탈전이 있었던 것을 기억할 것이다. 
 결국 완성형과 조합형을 모두 포용하는 것으로 마무리되었지만, 여기서 끝난 게 아니다. 
@@ -135,6 +143,7 @@ ascii_gt
 :::
 
 #### 유니코드 {#ascii-unicode}
+\index{유니코드} \index{Unicode}
 
 1990년대에 나타나기 시작한 해결책을 **유니코드(Unicode)**라고 부른다. 
 예를 들어, 영어 A 대문자는 1바이트, 한글 가는 3바이트다. 
@@ -178,6 +187,7 @@ R, 파이썬 3.x에서 모든 문자열은 유니코드다. 엄청난 바이트�
 
 
 #### UTF-8
+\index{UTF-8}
 
 UTF-8(Universal Coded Character Set + Transformation Format -- 8-bit의 약자)은 유니코드 중에서 가장 널리 쓰이는 인코딩으로, 유니코드를 위한 가변 길이 문자 인코딩 방식 중 하나로 켄 톰프슨과 롭 파이크가 제작했다.
 
@@ -185,6 +195,7 @@ UTF-8 인코딩의 가장 큰 장점은 아스키(ASCII), 라틴-1(ISO-8859-1)�
 이러한 이유로 많은 오픈소스 소프트웨어와 데이터를 생산하는 미국을 비롯한 유럽 언어권에서 UTF-8이 많이 사용되고 있지만, 한글은 한 글자당 3바이트 용량을 차지한다.
 
 #### 웹 표준 인코딩
+\index{인코딩!웹 표준}
 
 스마트폰의 대중화에 따라 더 이상 윈도우 운영체제에서 사용되는 문자체계가 표준이 되지 못하고 여러 문제점을 야기함에 따라 **유니코드 + UTF-8** 체제가 대세로 자리잡고 있는 것이 확연히 나타나고 있다.
 
@@ -309,6 +320,7 @@ R에서 데이터프레임으로 다양한 데이터를 가져올 때, 아스키
 %%| label: fig-import-data
 %%| fig-cap: 다양한 데이터 종류
 %%| fig-align: center
+%%| fig-width: 5
 
 graph TB
 
@@ -432,6 +444,7 @@ penguins_tbl
 ```
 
 ## 다양한 파일 형태
+\index{구분자} \index{구분자!탭} \index{구분자!콤마} \index{구분자!고정 길이} \index{아스키 파일}
 
 ### 파일 저장
 
@@ -444,7 +457,7 @@ library(palmerpenguins)
 nine_penguins <- palmerpenguins::penguins |> 
     drop_na() |> 
     slice_sample(n = 3, replace = FALSE, by = species) |> 
-    select(-bill_depth_mm)
+    select(-island, -bill_depth_mm, -sex, -flipper_length_mm)
 ```
 
 
@@ -525,6 +538,7 @@ nine_penguins_fwf
 
 
 ## 공공 데이터
+\index{공공 데이터} \index{이용승객} \index{정류장} \index{인코딩} \index{EUC-KR}
 
 공공데이터포털을 비롯한 많은 정부기관에서 제공하는 데이터는 대부분 `EUC-KR`로 인코딩되어 있다. 
 이유는 여러 가지가 있겠지만 가장 큰 이유는 아마도 엑셀에서 `.csv` 파일을 열었을 때 한글이 깨지는 민원을 처리하기 위함이 아닐까 싶다. 
@@ -588,13 +602,15 @@ incheon_bus <- read_csv(file_path, locale = locale(encoding = "EUC-KR"),
 incheon_bus
 ```
 
-지금까지 작업한 전반적인 작업 흐름은 @fig-public-data-ingest에 대략적으로 나와 있다. 
+지금까지 작업한 전반적인 작업 흐름은 [@fig-public-data-ingest]에 대략적으로 나와 있다. 
 공공데이터포털에서 다운로드받은 `인천광역시_정류장별 이용승객 현황_20220630.csv`는 EUC-KR로 인코딩되어 있고 헤더를 갖고 있으며 쉼표로 구분되어 있다. 
 결측치는 없으나 임의로 `---`으로 정류장 한 곳을 달리 표현하여 `na = c("---", "")`로 결측값 처리를 하였다.
 
 ```{mermaid}
 %%| fig-cap: 인천광역시 정류장별 이용승객 현황 데이터 데이터프레임 가져오는 과정
 %%| label: fig-public-data-ingest
+%%| fig-width: 5
+%%| fig-align: center
 
 graph LR
     subgraph "<strong>파일 형식 결정</strong>"

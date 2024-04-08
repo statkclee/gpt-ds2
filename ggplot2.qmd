@@ -1,4 +1,11 @@
-# 논문 품질 그래프 생성
+```{r}
+#| include: false
+
+source("_common.R")
+```
+
+# 논문 품질 그래프 생성 {#sec-publication-quality-graphics}
+\index{논문 품질 그래프} \index{ggplot2} \index{베이스 R} \index{lattice}
 
 데이터를 시각화하는 것은 변수 간 다양한 관계를 신속하게 탐색하는 가장 좋은 방법 중 하나이다.
 R에는 세 가지 주요 그래프 시스템이 있다. R 시각화 시스템에 대해서는 논문 품질 그래프 생성을 마무리하고 [-@sec-viz-R-system] 절에서 별도로 자세히 소개되어 있다.
@@ -403,6 +410,7 @@ ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = contin
 :::::
 
 ## R 시각화 시스템 {#sec-viz-R-system}
+\index{시각화!R} \index{R!시각화} \index{R!명령형} \index{R!선언형}   
 
 동일한 시각화 산출물을 제작한다고 하더라도 철학에 따라 차이점이 있다.
 크게 시각화 도구는 명령형과 선언형으로 나눠지고 그래프 문법을 따르는
@@ -436,6 +444,7 @@ R은 역사가 오래된 검증된 언어라 보니 그 시대의 컴퓨팅 환�
 
 
 ### Base 시각화 시스템 {#viz-base-system}
+\index{시각화!Base R} \index{R!Base 시각화}
 
 R을 설치하면 내장되어 있는 Base 시각화 시스템은 **화가의 팔레트(Artist Palallete)** 모형으로 빈 도화지 캔버스 위에 화가가 그림을 그리는 것과 동일한 방식으로 시각화 산출물을 만들어 나간다.
 `plot()` 혹은 유사한 시각화 함수로 시작해서 텍스트(`text`), 선(`line`), 점(`point`), 축(`axis`) 등을 표현하는데  **주석(Annotation)** 함수를 활용한다.
@@ -447,12 +456,16 @@ R을 설치하면 내장되어 있는 Base 시각화 시스템은 **화가의 �
 ``` {r}
 #| label: fig-viz-base
 #| fig-cap: Base 시각화 시스템
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 # 1. Base 시각화 시스템---------------------------------------
 data(mtcars)
 with(mtcars, plot(disp, mpg))
 ```
 
 ### `lattice` 시각화 시스템 {#viz-lattice-system}
+\index{시각화!lattice} \index{R!lattice}
 
 `lattice` 시각화 시스템은 `lattice` 패키지를 통해 설치되고, 함수 호출(`xyplot()`, `bwplot()` 등)을 통해 시각화 산출물을 생성하게 된다.
 조건에 따라 일변량 혹은 다변량 변수를 시각화하는데 유용하다. 즉, 특정 범주형 변수 수준에 따라 두 변수간의 관계를 시각적으로 표현하는 것을 예로 들 수 있다.
@@ -468,12 +481,16 @@ with(mtcars, plot(disp, mpg))
 ``` {r}
 #| label: fig-viz-lattice
 #| fig-cap: Lattice 시각화 시스템
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 library(lattice)
 # 2. Lattice 시각화 시스템---------------
 xyplot(mpg ~ disp | am, data=mtcars, layout=c(2,1))
 ```
 
 ### `ggplot` 시각화 시스템 {#viz-ggplot-system}
+\index{시각화!ggplot} \index{R!ggplot}
 
 `ggplot` 시각화 시스템은 `ggplot2` 패키지를 통해 설치가 가능하다. Base 시각화 시스템과 `lattice` 시각화 시스템의 장점을 취사선택해서 개발된 것으로 보는 견해도 있다.
 그래픽 문법(Grammar of Graphic)에 기반하고 있으며, `lattice` 시각화 시스템처럼 공백, 텍스트, 제목 등을 자동으로 설정하고,
@@ -481,8 +498,11 @@ Base 시각화 시스템에서 지원하는 다양한 그래픽 요소를 추가
 추가하는 것도 쉽다. 물론 `ggplot`에서 자동으로 설정하는 것도 원하는 설정으로 바꾸는 것도 가능하다.
 
 ``` {r}
-#| label:  fig-viz-ggplot
+#| label: fig-viz-ggplot
 #| fig-cap: ggplot 시각화 시스템
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 # 3. ggplot 시각화 시스템----------------
 ggplot(data=mtcars, mapping=aes(x=disp, y=mpg)) + 
   geom_point() +
@@ -490,6 +510,7 @@ ggplot(data=mtcars, mapping=aes(x=disp, y=mpg)) +
 ```
 
 ### `grid` 시각화 시스템 {#viz-grid}
+\index{시각화!grid} \index{R!grid}
 
 `grid` 시각화 시스템은 `lattice`와 `ggplot`의 기반이 되는 시각화 시스템으로 R 버전 1.8.0 부터 Base 패키지의 일부가 되었다.[^grid-viz-system]
 grid_0.7-4에서 [Base 패키지 일부](https://stat.ethz.ch/R-manual/R-devel/library/grid/doc/changes.txt)가 되어 버전이 Base 패키지에 맞춰 버전이 급상승했다.
@@ -502,6 +523,9 @@ grid_0.7-4에서 [Base 패키지 일부](https://stat.ethz.ch/R-manual/R-devel/l
 ``` {r}
 #| label: fig-viz-grid
 #| fig-cap: grid 시각화 시스템
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 library(grid)
 x <- mtcars$disp
 y <- mtcars$mpg

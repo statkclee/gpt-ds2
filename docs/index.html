@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -487,14 +507,14 @@ ga('send', {
 <p>데이터 과학과 AI 기술의 융합이 가속화되는 시대에 본서는 이러한 변화의 흐름을 파악하고 대비하는 데 유용한 길잡이가 될 것이다. 데이터 과학의 기본기를 다지고 최신 AI 기술과의 조화를 도모하는 여정에 이 책이 든든한 동반자가 되기를 기대하며, 독자 여러분의 뜻깊은 배움의 여정을 진심으로 응원한다.</p>
 <section id="책의-구성" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="책의-구성">책의 구성</h2>
-<p>“챗GPT 데이터 과학”은 데이터 과학의 모든 단계를 아우르는 포괄적인 안내서로 데이터 과학 기초 개념부터 최신 인공지능 기술과 융합까지, 데이터 과학 프로젝트 전반에 걸쳐 필요한 지식과 기술을 체계적으로 정리하고 있다. 데이터 수집, 정제, 탐색, 시각화, 모형, 프로그래밍, 커뮤니케이션 등 데이터 과학의 핵심 영역을 깊이 있게 다루고 있으며, 특히 챗GPT로 대표되는 최신 AI 기술을 데이터 과학에 접목하는 방법도 소개한다.</p>
-<div class="cell" data-layout-align="center">
+<p>“챗GPT 데이터 과학”은 데이터 과학의 모든 단계를 아우르는 포괄적인 안내서로 데이터 과학 기초 개념부터 최신 인공지능 기술과 융합까지, 데이터 과학 프로젝트 전반에 걸쳐 필요한 지식과 기술을 체계적으로 정리하고 있다. 데이터 수집, 정제, 탐색, 시각화, 모형, 프로그래밍, 커뮤니케이션 등 데이터 과학의 핵심 영역을 깊이 있게 다루고 있으며, 특히 챗GPT로 대표되는 최신 AI 기술을 데이터 과학에 접목하는 방법도 소개한다. 특히, 소프트웨어 카펜트리 워크샵 콘텐츠<span class="citation" data-cites="zimmerman2019software">(Zimmerman 기타 2019)</span>와 R4DS<span class="citation" data-cites="wickham2023r">(Wickham, Çetinkaya-Rundel, 와/과 Grolemund 2023)</span>는 데이터 과학의 기본 개념과 기술을 익히는 데 뼈대를 이루고 있다.</p>
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-book-structure" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-book-structure-index" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-book-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-book-structure-index-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-book-structure">graph TB
+<pre class="mermaid mermaid-js" data-label="fig-book-structure-index">graph TB
     subgraph Software["&lt;strong&gt;좋은 소프트웨어 개발(사람) + 챗GPT(인공지능)&lt;/strong&gt;"]
         subgraph 이해하기
             모형 --&gt; 시각화
@@ -509,17 +529,13 @@ ga('send', {
 
     end
     
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
     classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
-    
-    class 가져오기,깔끔화,변환,모형,시각화,의사소통 modern
+
     class AI emphasize
-    class 이해하기 subgraphStyle
 </pre>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-book-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-book-structure-index-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;1: 챗GPT 데이터 과학 구성
 </figcaption>
 </figure>
@@ -553,6 +569,14 @@ ga('send', {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-wickham2023r" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, 와/과 Garrett Grolemund. 2023. <em>R for data science</em>. " O’Reilly Media, Inc.".
+</div>
+<div id="ref-zimmerman2019software" class="csl-entry" role="listitem">
+Zimmerman, Naupaka, Greg Wilson, Raniere Silva, Scott Ritchie, François Michonneau, Jeffrey Oliver, 기타. 2019. <span>“Software Carpentry: R for Reproducible Scientific Analysis, June 2019”</span>. Zenodo. <a href="https://doi.org/10.5281/zenodo.3265164">https://doi.org/10.5281/zenodo.3265164</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -1028,7 +1052,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

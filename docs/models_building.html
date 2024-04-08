@@ -485,7 +485,7 @@ window.Quarto = {
    
   <ul>
 <li><a href="#ml-basic-elements" id="toc-ml-basic-elements" class="nav-link active" data-scroll-target="#ml-basic-elements"><span class="header-section-number">12.1</span> 기계학습 구성요소</a></li>
-  <li><a href="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-%EC%84%B8-%EA%B0%80%EC%A7%80-%EC%9B%90%EC%B9%99" id="toc-기계학습-세-가지-원칙" class="nav-link" data-scroll-target="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-%EC%84%B8-%EA%B0%80%EC%A7%80-%EC%9B%90%EC%B9%99"><span class="header-section-number">12.2</span> 기계학습 세 가지 원칙</a></li>
+  <li><a href="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3-%EC%9B%90%EC%B9%99" id="toc-기계학습-3-원칙" class="nav-link" data-scroll-target="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5-3-%EC%9B%90%EC%B9%99"><span class="header-section-number">12.2</span> 기계학습 3 원칙</a></li>
   <li><a href="#%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EA%B3%BC%EC%A0%95" id="toc-모형-개발과정" class="nav-link" data-scroll-target="#%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EA%B3%BC%EC%A0%95"><span class="header-section-number">12.3</span> 모형 개발과정</a></li>
   <li><a href="#%EA%B3%BC%EC%A0%81%ED%95%A9-%EB%AA%A8%ED%98%95-%EC%8B%9C%EA%B0%81%ED%99%94" id="toc-과적합-모형-시각화" class="nav-link" data-scroll-target="#%EA%B3%BC%EC%A0%81%ED%95%A9-%EB%AA%A8%ED%98%95-%EC%8B%9C%EA%B0%81%ED%99%94"><span class="header-section-number">12.4</span> 과적합 모형 시각화</a></li>
   <li><a href="#%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4-%EC%A0%81%EC%9A%A9" id="toc-비즈니스-적용" class="nav-link" data-scroll-target="#%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4-%EC%A0%81%EC%9A%A9"><span class="header-section-number">12.5</span> 비즈니스 적용</a></li>
@@ -508,7 +508,8 @@ window.Quarto = {
   
 
 
-</header><p>통계학은 실제로 데이터를 다루는 가장 오래된 학문 중 하나이며, 기본적으로 두 가지 큰 줄기, 즉 <strong>기술 통계</strong>(Descriptive Statistics)와 <strong>추론 통계</strong>(Inferential Statistics)로 나눌 수 있다. 기술 통계는 데이터를 요약하고 설명하는 데 초점을 맞추며, 추론 통계는 표본 데이터를 바탕으로 보다 큰 모집단에 대한 결론이나 예측을 하는 데 사용된다.</p>
+</header><p></p>
+<p>통계학은 실제로 데이터를 다루는 가장 오래된 학문 중 하나이며, 기본적으로 두 가지 큰 줄기, 즉 <strong>기술 통계</strong>(Descriptive Statistics)와 <strong>추론 통계</strong>(Inferential Statistics)로 나눌 수 있다. 기술 통계는 데이터를 요약하고 설명하는 데 초점을 맞추며, 추론 통계는 표본 데이터를 바탕으로 보다 큰 모집단에 대한 결론이나 예측을 하는 데 사용된다.</p>
 <p>기계학습은 통계학의 기술 통계와 추론 통계 모두와 관련이 있지만, 그 중에서도 주로 추론 통계에 무게를 두고 있다. 기계학습의 주된 목적은 데이터를 바탕으로 모형을 구축하여 새로운 데이터에 대한 예측이나 일반화를 수행하는 것이다.</p>
 <p>기계학습<span class="citation" data-cites="abu2012learning">(Abu-Mostafa, Magdon-Ismail, 와/과 Lin 2012)</span>은 다음 세 가지 사항을 기반으로 하고 있다. 패턴이 존재한다고 가정하는 부분에서 통계학의 회귀분석과 유사하나, 수학적으로 명시적으로 명세할 수 없다는 점에서 차이가 난다. 기계학습과 회귀모형은 둘 다 데이터를 기반으로 한다는 면에서 공통점을 갖는다.</p>
 <ol type="1">
@@ -519,7 +520,7 @@ window.Quarto = {
 <p>기계학습을 구성하는 이론은 편향-분산(bias-variance), 복잡성, <a href="https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_theory">Vapnik–Chervonenkis 이론</a>, 베이즈 통계가 기반이 되고, 선형회귀모형을 비롯한 다양한 모형이 존재하며, 모형의 성능과 신뢰성을 높이고자 데이터 전처리, 교차 타당성(cross validation), 정규화(regularization) 등이 동원된다.</p>
 <div id="fig-ml-map" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ml-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/ml-map.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/ml-map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="585"></a>
+<a href="images/ml-map.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/ml-map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ml-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.1: 기계학습 지도
@@ -527,6 +528,7 @@ window.Quarto = {
 </div>
 <section id="ml-basic-elements" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="ml-basic-elements">
 <span class="header-section-number">12.1</span> 기계학습 구성요소</h2>
+<p></p>
 <p>데이터 과학에서 모형은 현실 세계의 복잡한 현상을 단순화하고 추상화하여 표현하는 도구이다. 모형을 통해 데이터에 내재된 패턴과 관계를 발견하고, 미래를 예측하며, 의사 결정을 지원할 수 있다. 모형을 구축할 때, 데이터에서 진정한 신호를 추출하고 잡음을 제거하는 것을 목표로 한다. 일반 모형을 “신호 + 잡음(signal + noise)”으로 가정하고 다음과 같은 수식으로 표현할 수 있다.</p>
 <p><span class="math display">\[y = f(x) + \epsilon\]</span></p>
 <ol type="1">
@@ -548,15 +550,16 @@ window.Quarto = {
 <p>결국, 잡음이 낀 데이터에서 잡음을 제거하고 신호만 뽑아내는 것이 회귀모형과 기계학습 모형이라고 볼 수 있다. 회귀모형은 특정 함수 형태를 가정하고 데이터에서 신호와 잡음을 구분하는 데 초점을 두었다면, 기계학습 모형은 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span>의 인과관계를 가정으로 놓고 신호와 잡음을 가장 잘 구분해낼 수 있는 함수를 찾아내는 데 초점을 둔다.</p>
 <div id="fig-ml-process-diagram" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ml-process-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/ml-process-math.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/ml-process-math.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="395"></a>
+<a href="images/ml-process-math.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/ml-process-math.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="395"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ml-process-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.2: 기계학습 도해
 </figcaption></figure>
 </div>
-</section><section id="기계학습-세-가지-원칙" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="기계학습-세-가지-원칙">
-<span class="header-section-number">12.2</span> 기계학습 세 가지 원칙</h2>
-<p>기계학습 알고리즘 개발에는 세 가지 기본 원칙<span class="citation" data-cites="coelho2015building">(Coelho 와/과 Richert 2015)</span>이 적용된다. 첫째, <strong>오컴의 면도날</strong> 원칙에 따라 더 단순하고 간결한 모형을 선택한다. 둘째, <strong>표집 편향</strong>을 고려해 모집단을 잘 대표하는 데이터를 사용하여 정확성을 확보한다. 셋째, <strong>데이터 염탐 편향</strong>을 회피해 알고리즘 선택을 객관적으로 한다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section><section id="기계학습-3-원칙" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="기계학습-3-원칙">
+<span class="header-section-number">12.2</span> 기계학습 3 원칙</h2>
+<p> </p>
+<p>기계학습 알고리즘 개발에는 3 기본 원칙<span class="citation" data-cites="coelho2015building">(Coelho 와/과 Richert 2015)</span>이 적용된다. 첫째, <strong>오컴의 면도날</strong> 원칙에 따라 더 단순하고 간결한 모형을 선택한다. 둘째, <strong>표집 편향</strong>을 고려해 모집단을 잘 대표하는 데이터를 사용하여 정확성을 확보한다. 셋째, <strong>데이터 염탐 편향</strong>을 회피해 알고리즘 선택을 객관적으로 한다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ol type="1">
 <li><p><strong>오컴의 면도날(Occam’s Razor)</strong>: 절약의 원리(Principle of Parsimony)라고도 불리며, 동일한 현상을 설명하는 여러 모형이 있을 때, 가장 단순한 모형을 선택하는 것이 좋다는 원리다. 과적합(overfitting)을 방지하고 모형의 일반화 성능을 높이는 데 도움이 된다.</p></li>
 <li><p><strong>표집 대표성(Sampling Representativeness)</strong>: 기계학습 알고리즘을 훈련시키는 데 사용되는 데이터는 전체 모집단을 대표할 수 있어야 한다. <strong>표집 편향(Sampling Bias)</strong>이 발생하면, 즉 훈련 데이터가 모집단을 제대로 반영하지 못하면 알고리즘의 성능 저하는 물론 일반화 능력도 떨어진다.</p></li>
@@ -564,7 +567,7 @@ window.Quarto = {
 </ol>
 <div id="fig-ml-three-principle" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ml-three-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/ml-three-principle.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/ml-three-principle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="414"></a>
+<a href="images/ml-three-principle.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/ml-three-principle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="414"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ml-three-principle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;12.3: 기계학습 세 가지 원칙
@@ -607,6 +610,7 @@ window.Quarto = {
 </div>
 </section><section id="모형-개발과정" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="모형-개발과정">
 <span class="header-section-number">12.3</span> 모형 개발과정</h2>
+<p></p>
 <p>통계모형 개발과정은 데이터 과학 프로세스에서 크게 차이가 나지 않는다. 다만, 일반적인 통계모형을 개발할 경우 다음과 같은 과정을 거치게 되고, 지난한 과정이 될 수도 있다.</p>
 <ol type="1">
 <li>데이터를 정제하고, 모형에 적합한 데이터(R/파이썬과 모형 패키지와 소통이 될 수 있는 데이터 형태)가 되도록 준비한다.</li>
@@ -691,6 +695,7 @@ window.Quarto = {
 </div>
 </section><section id="과적합-모형-시각화" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="과적합-모형-시각화">
 <span class="header-section-number">12.4</span> 과적합 모형 시각화</h2>
+<p> </p>
 <p><span class="math inline">\(y=x^2 + \epsilon\)</span> 오차는 정규분포 평균 0, 표준편차 0.2를 갖는 모형을 따른다고 가정하고, 이를 차수가 높은 다항식을 사용하여 적합시킨 결과를 확인하는 절차는 다음과 같다.</p>
 <ol type="1">
 <li>
@@ -754,9 +759,13 @@ window.Quarto = {
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitted_tbl</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_value</span>, y <span class="op">=</span> <span class="va">prediction</span>, color <span class="op">=</span> <span class="va">차수</span>, group <span class="op">=</span> <span class="va">차수</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="models_building_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="models_building_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-overfitting" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="models_building_files/figure-html/fig-overfitting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="models_building_files/figure-html/fig-overfitting-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.4: 다항식 차수에 따른 과적합 모형 시각화
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -785,16 +794,17 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-poly-fit" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-poly-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_building_files/figure-html/fig-poly-fit-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="models_building_files/figure-html/fig-poly-fit-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_building_files/figure-html/fig-poly-fit-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="models_building_files/figure-html/fig-poly-fit-1.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poly-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;12.4: 데이터 과적합 모형 시각화
+그림&nbsp;12.5: 다항식 모형 식별
 </figcaption></figure>
 </div>
 </div>
 </div>
 </section><section id="비즈니스-적용" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="비즈니스-적용">
 <span class="header-section-number">12.5</span> 비즈니스 적용</h2>
+<p></p>
 <p>비즈니스 문제를 기계학습 문제로 전환하는 것은 데이터 기반 의사결정을 강화하고 비즈니스 전략을 최적화하는 데 핵심적인 역할을 한다. 고객 구매 패턴의 예측, 고객 세분화를 통한 효율적인 마케팅 전략 개발, 추천 시스템을 통한 맞춤형 서비스 제공, 사기 탐지를 통한 위험 관리, 가격 탄력성 분석을 통한 수익 극대화, 인기 제품 식별 및 마케팅 캠페인 효과 분석 등은 기계학습을 활용함으로써 비즈니스의 효율성과 경쟁력을 향상시킬 수 있다.</p>
 <table class="table">
 <colgroup>
@@ -847,7 +857,8 @@ window.Quarto = {
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;12.1: 기계학습 지도</span>
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;12.2: 기계학습 도해</span>
 <span class="glightbox-desc lightbox-desc-3">그림&nbsp;12.3: 기계학습 세 가지 원칙</span>
-<span class="glightbox-desc lightbox-desc-5">그림&nbsp;12.4: 데이터 과적합 모형 시각화</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;12.4: 다항식 차수에 따른 과적합 모형 시각화</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;12.5: 다항식 모형 식별</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-abu2012learning" class="csl-entry" role="listitem">
@@ -1331,7 +1342,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

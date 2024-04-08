@@ -1,4 +1,6 @@
-# AI 데이터 분석
+# AI 데이터 분석 {#sec-gpt-ai}
+\index{AI 데이터 분석} \index{RTutor} \index{OpenAI} 
+\index{데이터 과학}
 
 ## RTutor
 
@@ -25,6 +27,7 @@ RTutor는 처음 R 언어에 초점을 두고 개발되었으나 현재는 파�
 ![RTutor 실행화면](images/gpt_rtutor.jpg){#fig-rtutor-screenshot}
 
 ## 판다스AI
+\index{판다스AI} \index{pandasAI}
 
 [PandasAI](https://github.com/Sinaptik-AI/pandas-ai)는 자연어를 사용하여
 다양한 데이터(CSV, XLSX, PostgreSQL, MySQL, BigQuery, Databrick,
@@ -42,6 +45,9 @@ PandasAI는 자연어 질의를 이해하고 해석하여 파이썬 코드와 SQ
 ```{mermaid}
 %%| label: fig-pandasai-workflow
 %%| fig-cap: PandasAI 작업흐름도
+%%| fig-width: 5
+%%| fig-align: center
+
 graph LR
    classDef default fill:#fff, stroke:#333, stroke-width:1px;
 

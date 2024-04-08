@@ -520,7 +520,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functions.html"><strong>5부</strong> 프로그래밍</a></li><li class="breadcrumb-item"><a href="./functions_purrr.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="r-functional-programming" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></h1>
+<h1 class="title"><span id="sec-functional-programming" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></h1>
 </div>
 
 
@@ -534,7 +534,8 @@ window.Quarto = {
   
 
 
-</header><p>함수형 프로그래밍<span class="citation" data-cites="wickham2019advanced">(Wickham 2019)</span>은 데이터 과학에서 중추적인 역할을 한다. 특정 연산을 수행하는 함수에 집중하며, 참조 투명성을 통해 동일한 입력에 대해 일관된 출력을 보장함으로써 데이터 분석 예측 가능성과 재현성을 강화한다. 또한, 데이터 분석 과정을 단순화하고 디버깅 및 테스팅을 용이하게 하는 동시에 부수 효과를 최소화한다. R 언어에서는 <code>purrr</code> 패키지<span class="citation" data-cites="wickham2023r">(Wickham, Çetinkaya-Rundel, 와/과 Grolemund 2023)</span>를 통해 함수형 프로그래밍을 구현하고 있다.</p>
+</header><p> </p>
+<p>함수형 프로그래밍<span class="citation" data-cites="wickham2019advanced">(Wickham 2019)</span>은 데이터 과학에서 중추적인 역할을 한다. 특정 연산을 수행하는 함수에 집중하며, 참조 투명성을 통해 동일한 입력에 대해 일관된 출력을 보장함으로써 데이터 분석 예측 가능성과 재현성을 강화한다. 또한, 데이터 분석 과정을 단순화하고 디버깅 및 테스팅을 용이하게 하는 동시에 부수 효과를 최소화한다. R 언어에서는 <code>purrr</code> 패키지<span class="citation" data-cites="wickham2023r">(Wickham, Çetinkaya-Rundel, 와/과 Grolemund 2023)</span>를 통해 함수형 프로그래밍을 구현하고 있다.</p>
 <p><strong>함수형 프로그래밍(functional programming)</strong>은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수 함수형 언어, 예를 들어 <a href="https://ko.wikipedia.org/wiki/%ED%95%98%EC%8A%A4%EC%BC%88">하스켈(Haskell)</a>은 루프가 없다. 루프 없이 어떻게 프로그램을 작성할 수 있을까? 루프는 재귀(recursion)로 대체된다. 이런 이유로 아래에서 뉴턴 방법을 통해 근을 구하는 방식을 R코드로 두 가지 방법을 보여준다. R은 아직 <a href="http://hanmomhanda.github.io/2015/07/27/%EC%9E%AC%EA%B7%80-%EB%B0%98%EB%B3%B5-Tail-Recursion/">꼬리 호출(tail-call recurssion)</a> 기능을 제공하지 않기 때문에 루프를 사용하는 것이 더 낫다.</p>
 <p>수학 함수는 멋진 특성이 있는데, 즉 해당 입력에 항상 동일한 결과를 갖는다. 이 특성을 <strong>참조 투명성(referential transparaency)</strong> 이라고 부른다. 참조 투명성은 <strong>부수효과(side effect)</strong> 없음을 표현하는 속성인데, 함수가 결과값 외에 다른 상태를 변경시킬 때 부수효과(side effect)가 있다고 한다. 부수 효과는 프로그램 버그를 발생시키는 온상으로, 부수 효과를 없애면 디버깅이 용이해진다. 따라서, 부수 효과를 제거하고 참조 투명성을 유지함으로써 데이터 분석 수행 결과를 예측 가능한 상태로 유지시켜 <strong>재현가능한 과학</strong>이 가능하게 된다.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -572,7 +573,7 @@ window.Quarto = {
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp-data-analysis.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="함수로 이해하는 데이터 분석"><img src="images/fp-data-analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="810"></a></p>
+<figure class="figure"><p><a href="images/fp-data-analysis.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="함수로 이해하는 데이터 분석"><img src="images/fp-data-analysis.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="648"></a></p>
 </figure>
 </div>
 <figcaption>함수로 이해하는 데이터 분석</figcaption></figure>
@@ -581,7 +582,7 @@ window.Quarto = {
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp-data-analysis-workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="데이터 분석 작업흐름"><img src="images/fp-data-analysis-workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="377"></a></p>
+<figure class="figure"><p><a href="images/fp-data-analysis-workflow.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="데이터 분석 작업흐름"><img src="images/fp-data-analysis-workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="209"></a></p>
 </figure>
 </div>
 <figcaption>데이터 분석 작업흐름</figcaption></figure>
@@ -597,13 +598,14 @@ window.Quarto = {
 <p>반면에 툴이나 패키지 개발에는 객체지향 프로그래밍(OOP) 패러다임을 사용하는 것이 권장된다. 객체지향 프로그래밍은 데이터와 해당 데이터를 다루는 메서드(함수)를 하나의 객체로 묶어 관리함으로써 코드의 모듈화, 캡슐화, 재사용성을 높이는 데 도움이 된다. 객체지향 프로그래밍에서는 클래스를 정의하고, 클래스 간의 상속과 다형성을 활용하여 코드의 구조를 체계화할 수 있어 패키지 개발에서 중요한 특성인 코드의 유지보수성, 확장성, 협업 용이성 등을 향상시킬 수 있다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp-data-analysis-choice.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="데이터 분석과 툴/패키지 도구 개발"><img src="images/fp-data-analysis-choice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="687" alt="데이터 분석과 툴/패키지 도구 개발"></a></p>
+<figure class="figure"><p><a href="images/fp-data-analysis-choice.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3" title="데이터 분석과 툴/패키지 도구 개발"><img src="images/fp-data-analysis-choice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500" alt="데이터 분석과 툴/패키지 도구 개발"></a></p>
 </figure>
 </div>
 <figcaption>데이터 분석과 툴/패키지 도구 개발</figcaption></figure>
 </div>
 </section><section id="functional-programming-newton" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="functional-programming-newton">
 <span class="header-section-number">18.2</span> 뉴튼 방법</h2>
+<p> </p>
 <p>뉴튼 방법은 데이터 과학에서 최적화 문제를 해결하는 데 강력한 도구로 사용된다. 머신러닝과 딥러닝에서는 여러 알고리즘의 기반이 되며, 모형 파라미터를 효율적으로 업데이트하고 최적화하는 데 활용되고, 통계 분석에서 최대 가능도 추정, 일반화 선형 모델 등의 모형 파라미터를 추정하고 최적화하는 데 뉴튼 방법을 심심치 않게 보게 된다.</p>
 <p>뉴튼-랩슨 알고리즘으로도 알려진 <a href="https://en.wikipedia.org/wiki/Newton%27s_method">뉴튼(Newton Method) 방법</a>은 컴퓨터를 사용해서 수치해석 방법으로 실함수의 근을 찾아내는 방법부터 차근차근 들어가보자.</p>
 <p>특정 함수 <span class="math inline">\(f\)</span> 의 근을 찾을 경우, 함수 미분값 <span class="math inline">\(f'\)</span>, 초기값 <span class="math inline">\(x_0\)</span>가 주어지면 근사적 근에 가까운 값은 다음과 같이 정의된다.</p>
@@ -613,7 +615,7 @@ window.Quarto = {
 <p>기하적으로 보면, 파란 선은 함수 <span class="math inline">\(f\)</span> 이고, <span class="math inline">\(f\)</span>를 미분한 <span class="math inline">\(f'\)</span> 빨간 선은 뉴턴방법을 활용하여 근을 구해가는 과정을 시각적으로 보여주고 있다. <span class="math inline">\(x_{n-1}\)</span> 보다 <span class="math inline">\(x_n\)</span>이, <span class="math inline">\(x_n\)</span> 보다 <span class="math inline">\(x_{n+1}\)</span>이 함수 <span class="math inline">\(f\)</span> 근에 더 가깝게 접근해 나가는 것이 확인된다.</p>
 <div id="fig-newton-raphson" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-newton-raphson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/newton_method_ani.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/newton_method_ani.gif" class="img-fluid figure-img"></a>
+<a href="images/newton_method_ani.gif" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/newton_method_ani.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newton-raphson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;18.2: 뉴튼 방법 도식화(출처: 위키백과)
@@ -621,6 +623,7 @@ window.Quarto = {
 </div>
 </section><section id="functional-programming-newton-method" class="level2" data-number="18.3"><h2 data-number="18.3" class="anchored" data-anchor-id="functional-programming-newton-method">
 <span class="header-section-number">18.3</span> 뉴튼 방법 R 코드</h2>
+<p> </p>
 <p>뉴튼 방법을 R코드로 구현하면 다음과 같이 612의 제곱근 값을 수치적으로 컴퓨터를 활용<span class="citation" data-cites="Rodrigues2016Functional">(Rodrigues 2016)</span>하여 구할 수 있다. <code>while</code>같은 루프를 활용하여 반복적으로 해를 구하는 것도 가능하지만 재귀를 활용하여 해를 구하는 방법이 코드를 작성하고 읽는 개발자 관점에서는 훨씬 더 편리하고 권장된다. 하지만, 속도는 <code>while</code> 루프를 사용하는 것이 R에서는 이득이 많다. 이유는 오랜 세월에 걸쳐 최적화 과정을 거쳐 진화했기 때문이다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -674,10 +677,12 @@ window.Quarto = {
 </div>
 </section><section id="map-reduce-apply" class="level2" data-number="18.4"><h2 data-number="18.4" class="anchored" data-anchor-id="map-reduce-apply">
 <span class="header-section-number">18.4</span> <code>Map</code>, <code>Reduce</code>, <code>*apply</code> 함수</h2>
+<p> </p>
 <p><code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>, <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code>, <code>*apply()</code> 계열 함수들은 R에서 함수형 프로그래밍을 구현하는 데 핵심적인 도구다. 벡터, 리스트, 행렬 등 자료구조에 대해 함수를 적용하고 그 결과를 반환하는 기능을 제공한다. <code>for</code> 루프를 명시적으로 사용하지 않고도 데이터에 대한 반복 연산을 수행할 수 있게 해주므로, 코드의 가독성과 효율성을 높이는 데 도움이 된다.</p>
 <p>함수를 인자로 받는 함수를 <strong>고차함수(Higher-order function)</strong>라고 부른다. 대표적인 고차함수로 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>과 <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code>가 있다. 숫자 하나가 아닌 벡터에 대한 제곱근을 구하기 위해 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수를 사용하는 사례부터 살펴보고, <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>, <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code>, <code>*apply()</code> 계열 함수들의 기본 개념과 사용 방법에 대해 살펴본다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <section id="map-함수" class="level3" data-number="18.4.1"><h3 data-number="18.4.1" class="anchored" data-anchor-id="map-함수">
 <span class="header-section-number">18.4.1</span> <code>Map()</code> 함수</h3>
+<p></p>
 <p><code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수를 사용하여 벡터의 각 요소에 대해 <code>find_root_recur()</code> 함수를 적용하는 방법은 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수가 주어진 함수를 벡터 각 요소에 적용한다. 벡터의 각 요소에 대해 개별적으로 함수를 호출하므로, 벡터의 길이가 길어질수록 함수 호출 횟수가 증가했다. 코드의 가독성 측면에서는 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수를 사용하여 벡터에 함수를 적용하는 것이 명확하게 표현된다.</p>
 <p>반면에 <code>find_vec_root_recur()</code> 함수를 정의하여 캡슐화하여 벡터 전체에 대해 한 번에 제곱근을 계산하는 방법은 <code>find_vec_root_recur()</code> 함수가 벡터를 인자로 받아 벡터 전체에 대해 <code>find_root_recur()</code> 함수를 적용한다. <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수를 <code>find_vec_root_recur()</code> 함수 내부에서 사용하여 벡터 각 요소에 대해 <code>find_root_recur()</code> 함수를 적용했다. 벡터 전체에 대해 한 번의 함수 호출로 제곱근을 계산하므로, 함수 호출 횟수는 벡터의 길이와 관계없이 일정하다. 코드의 가독성 측면에서는 <code>find_vec_root_recur()</code> 함수를 별도로 정의하여 사용하므로, 벡터에 대한 제곱근 계산 로직이 함수 내부에 캡슐화되어 있다.</p>
 <p>성능 측면에서 보면, 후자 <code>find_vec_root_recur()</code> 함수를 사용하는 것이 더 효율적일 수 있다. 벡터 전체에 대해 한 번의 함수 호출로 제곱근을 계산하므로, 함수 호출 오버헤드가 줄어들 수 있기 때문이다. 하지만, 가독성 측면에서 첫 번째 방법이 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수를 직접 사용하여 벡터에 함수를 적용하는 것이 명확하게 드러나는 반면, 두 번째 방법은 벡터에 대한 제곱근 계산 로직을 별도 함수로 캡슐화하여 코드의 구조를 더 깔끔하게 만들 수 있다는 면에서 호불호가 갈린다.</p>
@@ -752,6 +757,7 @@ window.Quarto = {
 </div>
 </section><section id="lapply-함수" class="level3" data-number="18.4.2"><h3 data-number="18.4.2" class="anchored" data-anchor-id="lapply-함수">
 <span class="header-section-number">18.4.2</span> <code>lapply</code> 함수</h3>
+<p></p>
 <p><code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>와 <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>를 사용한 방법은 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>을 사용한 방법과 유사하게 모두 벡터 각 요소에 대해 함수를 적용하는 기능제공을 목표로 개발되었다. <code>purrr</code> 패키지가 도입되기 이전 R 코드에서 흔히 사용되는 함수다.</p>
 <p><code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>는 벡터 각 요소에 대해 함수를 적용하고 그 결과를 리스트로 반환한다. 따라서 <code>lapply(numbers_z, find_root_recur, init=1, eps=10^(-10))</code>은 <code>numbers_z</code> 벡터의 각 요소에 대해 <code>find_root_recur()</code> 함수를 적용하고, 그 결과를 리스트로 반환하는 반면, <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>는 결과를 가능한 경우 벡터나 행렬로 단순화하여 반환한다는 면에서 차이가 난다.</p>
 <p>앞선 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code> 함수를 사용한 방법과 비교하면, <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>와 <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>는 추가 인자를 전달하는 방식에서 차이가 있다. <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>에서는 <code>Map(find_root_recur, numbers, init=1, eps=10^-10)</code>과 같이 함수의 인자를 순서대로 나열하는 반면, <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>와 <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>에서는 <code>lapply(numbers_z, find_root_recur, init=1, eps=10^(-10))</code>와 같이 함수와 추가 인자 순서를 바꿔 전달한다.</p>
@@ -777,6 +783,7 @@ window.Quarto = {
 </div>
 </section><section id="reduce-함수" class="level3" data-number="18.4.3"><h3 data-number="18.4.3" class="anchored" data-anchor-id="reduce-함수">
 <span class="header-section-number">18.4.3</span> <code>Reduce</code> 함수</h3>
+<p></p>
 <p><code>Reduce</code> 함수도 삶을 편안하게 할 수 있는, 루프를 회피하는 또 다른 방법이다. 이름에서 알 수 있듯이 <code>numbers_z</code> 벡터 원소 각각에 대해 해당 연산작업 <code>+</code>, <code>%%</code>을 수행시킨다. <code>%%</code>는 나머지 연산자로 기본 디폴트 설정으로 <span class="math inline">\(\frac{10}{7}\)</span>로 몫 대신에 나머지 3을 우선 계산하고, 그 다음으로 <span class="math inline">\(\frac{3}{5}\)</span>로 최종 나머지 3을 순차적으로 계산하여 결과를 도출한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reduce ----------------------------------------------</span></span>
@@ -814,6 +821,7 @@ window.Quarto = {
 </div>
 </section></section><section id="functional-programming-purrr" class="level2" data-number="18.5"><h2 data-number="18.5" class="anchored" data-anchor-id="functional-programming-purrr">
 <span class="header-section-number">18.5</span> <code>purrr</code> 팩키지</h2>
+<p></p>
 <p><code>*apply</code> 계열 함수는 각각의 자료형에 맞춰 사용해야 하므로 기억하기가 쉽지 않아, 매번 도움말을 찾아 확인하고 코딩을 해야 하는 번거로움이 있다. 이러한 불편함을 해소하고 데이터 분석을 함수형 프로그래밍 패러다임으로 실행할 수 있도록 <code>purrr</code> 패키지가 개발되었다. <code>purrr</code> 패키지는 함수형 프로그래밍 도구를 제공하여 데이터 분석 작업을 보다 수월하게 만들어준다. 이를 통해 데이터 분석 작업의 효율성이 향상되고, 코드의 가독성과 유지보수성도 높아질 것으로 기대된다. <code>purrr</code> 패키지를 활용하면 데이터 분석에 더욱 집중할 수 있게 되어, 저녁이 있는 삶을 영위할 수 있는 시간이 늘어날 것이다.</p>
 <p><code>purrr</code> 팩키지를 불러와서 <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> 함수에 구문에 맞게 작성하면 동일한 결과를 깔끔하게 얻을 수 있다. 즉,</p>
 <ul>
@@ -860,6 +868,7 @@ window.Quarto = {
 </div>
 </section><section id="pure-vs-impure-function" class="level2" data-number="18.6"><h2 data-number="18.6" class="anchored" data-anchor-id="pure-vs-impure-function">
 <span class="header-section-number">18.6</span> 순수한 함수 vs 불순한 함수</h2>
+<p> </p>
 <p><strong>순수한 함수(pure function)</strong>는 입력값에만 출력값이 의존하게 되는 특성과 부수효과(side-effect)를 갖지 않는 반면 <strong>순수하지 않은 함수(impure function)</strong>는 환경에 의존하며 부수효과도 갖는다.</p>
 <div class="columns">
 <div class="column">
@@ -875,11 +884,11 @@ window.Quarto = {
 <p><strong>순수하지 않은 함수(impure function)</strong></p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-04-08 09:02:13 KST"</span></span>
+<span><span class="co">#&gt; [1] "2024-04-09 00:27:14 KST"</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] -0.99891420  0.28339773 -1.56739162  0.08105369  2.69238537  0.50913512</span></span>
-<span><span class="co">#&gt;  [7] -0.16310793 -0.92971553 -0.57436650 -1.24419094</span></span>
+<span><span class="co">#&gt;  [1]  0.3663996  0.9929719  0.8315134  1.7259261  0.6756868  0.4725037</span></span>
+<span><span class="co">#&gt;  [7]  0.9844674  2.2644526 -2.6676527 -0.0531321</span></span>
 <span></span>
 <span><span class="co"># write_csv("data/sample.csv")</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -887,6 +896,7 @@ window.Quarto = {
 </div>
 <section id="fp-lambda-functin" class="level3" data-number="18.6.1"><h3 data-number="18.6.1" class="anchored" data-anchor-id="fp-lambda-functin">
 <span class="header-section-number">18.6.1</span> 무명함수와 매퍼</h3>
+<p> </p>
 <p><span class="math inline">\(\lambda\)</span> (람다), 무명(anonymous) 함수는 함수명을 갖는 일반적인 함수와 비교하여 함수의 좋은 점은 그대로 누리면서 함수가 많아 함수명으로 메모리가 난잡하게 지저분해지는 것도 막을 수 있다.</p>
 <p>무명함수로 기능을 구현한 후에 매퍼(mapper)를 사용해서 <code><a href="https://purrr.tidyverse.org/reference/as_mapper.html">as_mapper()</a></code> 명칭을 부여하여 함수처럼 사용하는 것도 가능하다. 매퍼(mapper)를 사용하는 이유는 다음과 같이 정리할 수 있다.</p>
 <ul>
@@ -995,6 +1005,7 @@ window.Quarto = {
 </div>
 </section><section id="high-order-function" class="level3" data-number="18.6.2"><h3 data-number="18.6.2" class="anchored" data-anchor-id="high-order-function">
 <span class="header-section-number">18.6.2</span> 고차 함수</h3>
+<p></p>
 <p>고차 함수(High order function)는 함수의 인자로 함수를 받아 함수로 반환시키는 함수를 지칭한다. <code>high_order_fun</code> 함수는 함수를 인자(<code>func</code>)로 받아 함수를 반환시키는 고차함수다. 평균 함수(<code>mean</code>)를 인자로 넣어 출력값으로 <code>mean_na()</code> 함수를 새롭게 생성시킨다. <code>NA</code>가 포함된 벡터를 넣어 평균값을 계산하게 된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">high_order_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">func</span><span class="op">)</span><span class="op">{</span></span>
@@ -1009,19 +1020,21 @@ window.Quarto = {
 </div>
 <p>벡터가 입력값으로 들어가서 벡터가 출력값으로 나오는 보통 함수(Regular Function)외에 고차함수는 3가지 유형이 있다.</p>
 <ul>
-<li>벡터 → 함수: 함수공장(Function Factory)</li>
+<li>벡터 → 벡터: 정규함수</li>
+<li>벡터 → 함수: 함수공장</li>
 <li>함수 → 벡터: Functional - <code>for</code>루프를 <code>purrr</code> 팩키지 <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수로 대체</li>
 <li>함수 → 함수: 함수연산자(Function Operator) - <code>Functional</code>과 함께 사용될 경우 <code>adverbs</code>로서 강력한 기능을 발휘</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/fp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="고차함수 유형"><img src="images/fp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="416" alt="고차함수 유형"></a></p>
+<figure class="figure"><p><a href="images/fp.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5" title="고차함수 유형"><img src="images/fp.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="333" alt="고차함수 유형"></a></p>
 </figure>
 </div>
 <figcaption>고차함수 유형</figcaption></figure>
 </div>
 </section><section id="adverbs-safely-possibly" class="level3" data-number="18.6.3"><h3 data-number="18.6.3" class="anchored" data-anchor-id="adverbs-safely-possibly">
 <span class="header-section-number">18.6.3</span> 부사: <code>safely</code>, <code>possibly</code>,…</h3>
+<p> </p>
 <p><code>purrr</code> 팩키지의 대표적인 부사(adverbs)에는 <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>와 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>가 있다. 그 외에도 <code>silently()</code>, <code>surely()</code> 등 다른 부사도 있으니 필요한 경우 <code>purrr</code> 팩키지 문서를 참조한다.</p>
 <p><code>safely(mean)</code>은 동사 함수(<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>)를 받아 부사 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>로 “부사 + 동사”로 기능이 추가된 부사 동사를 반환시킨다. 따라서, <code>NA</code>가 추가된 벡터를 넣을 경우 <code>$result</code>와 <code>$error</code>를 원소로 갖는 리스트를 반환시킨다.</p>
 <div class="cell">
@@ -1094,8 +1107,7 @@ window.Quarto = {
 <span><span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "watch out"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>는 부울 논리값, <code>NA</code>, 문자열, 숫자를 반환시킬 수 있다.</p>
-<p><code><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose()</a></code>와 결합하여 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code> 결과를 변형시킬 수도 있다.</p>
+<p><code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code>는 부울 논리값, <code>NA</code>, 문자열, 숫자를 반환시킬 수 있다. <code><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose()</a></code>와 결합하여 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/possibly.html">possibly()</a></code> 결과를 변형시킬 수도 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 6</span></span>
@@ -1147,6 +1159,7 @@ window.Quarto = {
 </div>
 </section></section><section id="fp-clean-code" class="level2" data-number="18.7"><h2 data-number="18.7" class="anchored" data-anchor-id="fp-clean-code">
 <span class="header-section-number">18.7</span> 깨끗한 코드</h2>
+<p></p>
 <p><code>round_mean()</code> 함수를 <code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code> 함수를 사용해서 <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> 함수로 평균을 구한 후에 <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>함수로 반올림하는 코드를 다음과 같이 쉽게 작성할 수 있다. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">round_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="va">round</span>, <span class="va">mean</span><span class="op">)</span></span>
@@ -1196,7 +1209,7 @@ window.Quarto = {
 <p>구글 검색을 통해서 쉽게 <a href="https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv">iris(붓꽃) 데이터</a>를 구할 수 있다. 이를 불러와서 각 종별로 <code>setosa</code> <code>versicolor</code>, <code>virginica</code>로 나눠 로컬 <code>.csv</code> 파일로 저장하고 나서 이를 다시 불러오는 사례를 함수형 프로그래밍으로 구현해본다.</p>
 <div id="fig-iris-data-loading" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iris-data-loading-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/fp-iris.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="images/fp-iris.png" class="img-fluid figure-img"></a>
+<a href="images/fp-iris.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="images/fp-iris.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iris-data-loading-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;18.3: 붓꽃 데이터 불러오기
@@ -1293,6 +1306,7 @@ window.Quarto = {
 </div>
 </section><section id="functional-programming-purrr-random-number" class="level2" data-number="18.9"><h2 data-number="18.9" class="anchored" data-anchor-id="functional-programming-purrr-random-number">
 <span class="header-section-number">18.9</span> 사례: 표본추출</h2>
+<p></p>
 <p>서로 다른 난수를 생성시키는 방법을 살펴보자. 정규분포를 가정하고 평균과 표준편차를 달리하는 모수를 지정하고 난수갯수도 숫자를 달리하여 난수를 생성시킨다.</p>
 <section id="functional-programming-purrr-random-number-mean" class="level3" data-number="18.9.1"><h3 data-number="18.9.1" class="anchored" data-anchor-id="functional-programming-purrr-random-number-mean">
 <span class="header-section-number">18.9.1</span> <span class="math inline">\(\mu\)</span> 평균 변화</h3>
@@ -1308,8 +1322,8 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">sim_mu_name</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     mu: 1     mu: 5    mu: 10 </span></span>
-<span><span class="co">#&gt; 0.8054056 4.7178333 9.4505863</span></span>
+<span><span class="co">#&gt;    mu: 1    mu: 5   mu: 10 </span></span>
+<span><span class="co">#&gt; 1.281557 5.383674 9.651964</span></span>
 <span></span>
 <span><span class="va">sim_mu_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
@@ -1336,7 +1350,7 @@ window.Quarto = {
 <span></span>
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">sim_mu_sd_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">random_number</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; mu: 1,  sd: 10  mu: 5,  sd: 5 mu: 10,  sd: 1 </span></span>
-<span><span class="co">#&gt;      14.031650       5.832396       1.275494</span></span>
+<span><span class="co">#&gt;     11.0564335      3.6743235      0.8788563</span></span>
 <span></span>
 <span><span class="va">sim_mu_sd_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
@@ -1415,26 +1429,38 @@ window.Quarto = {
 <span>                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span><span class="va">gapminder_plot</span>, <span class="va">print</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="functions_purrr_files/figure-html/fp-iris-viz-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="functions_purrr_files/figure-html/fp-iris-viz-2.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span><span class="va">gapminder_plot</span>, <span class="va">print</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co">## 리스트 데이터 시각화 - 한 장에 찍기 -----</span></span>
 <span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span>plotlist <span class="op">=</span> <span class="va">gapminder_plot</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_purrr_files/figure-html/fp-iris-viz-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="functions_purrr_files/figure-html/fp-iris-viz-3.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-fp-iris-viz-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fp-iris-viz-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="functions_purrr_files/figure-html/fig-fp-iris-viz-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="functions_purrr_files/figure-html/fig-fp-iris-viz-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fp-iris-viz-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;18.4: 리스트-칼럼 <code>ggplot</code> 시각화
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-fp-iris-viz-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fp-iris-viz-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="functions_purrr_files/figure-html/fig-fp-iris-viz-2.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="functions_purrr_files/figure-html/fig-fp-iris-viz-2.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fp-iris-viz-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;18.5: 리스트-칼럼 <code>ggplot</code> 시각화
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-fp-iris-viz-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fp-iris-viz-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="functions_purrr_files/figure-html/fig-fp-iris-viz-3.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="functions_purrr_files/figure-html/fig-fp-iris-viz-3.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fp-iris-viz-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;18.6: 리스트-칼럼 <code>ggplot</code> 시각화
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1452,6 +1478,9 @@ window.Quarto = {
 <span class="glightbox-desc lightbox-desc-4">그림&nbsp;18.2: 뉴튼 방법 도식화(출처: 위키백과)</span>
 <span class="glightbox-desc lightbox-desc-5">고차함수 유형</span>
 <span class="glightbox-desc lightbox-desc-6">그림&nbsp;18.3: 붓꽃 데이터 불러오기</span>
+<span class="glightbox-desc lightbox-desc-7">그림&nbsp;18.4: 리스트-칼럼 <code>ggplot</code> 시각화</span>
+<span class="glightbox-desc lightbox-desc-8">그림&nbsp;18.5: 리스트-칼럼 <code>ggplot</code> 시각화</span>
+<span class="glightbox-desc lightbox-desc-9">그림&nbsp;18.6: 리스트-칼럼 <code>ggplot</code> 시각화</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Rodrigues2016Functional" class="csl-entry" role="listitem">
@@ -1940,7 +1969,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

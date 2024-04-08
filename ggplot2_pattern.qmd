@@ -5,6 +5,7 @@ source("_common.R")
 ```
 
 # 시각화 패턴 {#sec-ggplot-pattern}
+\index{시각화 패턴}
 
 컴퓨터를 기반으로 한 시각화 시스템은 시각적으로 데이터를 표현함으로써 
 사람이 작업을 더욱 효율적으로 수행할 수 있도록 돕는다.
@@ -13,16 +14,24 @@ source("_common.R")
 따라서, 완전 자동화 해결책이 존재하고 신뢰성이 있는 경우에는 시각화가 필요하지 않다. 하지만, 많은 분석과 개발 문제에서 어떤 질문을 던져야 하는지 사전에 알고 있는 경우가 적어, 명세가 분명하지 않을 때는 시각화가 적합하다.
 
 ## 시각화 이유 {#viz-tamara-why}
+\index{시각화 이유} \index{인지부하} \index{시각적 지각}
 
 시각화는 최종 데이터분석 결과를 표현하는 데이터 과학 제품과 인포그래픽으로 많은 관심을 받았다. 하지만 꼭 시각화가 데이터 과학 최종 결과물로서만 의미가 있는 것은 아니다. 인포그래픽과 같은 최종 결과를 제작하는 과정은 수많은 시도와 실패의 결과물로 조금씩 진전을 이뤄낸 산출물이다. 이 과정에서 데이터에 대한 충분한 이해가 필요한데 원본 데이터를 눈으로 일일이 살펴보거나 요약 통계량으로 데이터가 갖고 있는 의미를 충분히 살펴보는 데는 한계가 있다. 
 원데이터를 첫 번째 행부터 마지막 행까지, 첫 번째 변수부터 마지막 변수까지 일일이 살펴보는 작업은 상당한 인지부하를 가져와 쉽게 피로를 유발한다. **인지부하(cognitive load)**를 **시각적 지각(perception)**으로 해당 작업을 바꿔 수월히 업무를 수행하는 데 필수적인 기법이 **시각화(Visualization)**[@munzner2014visualization]라고 볼 수 있다.
 
 ``` {r}
-#| label: viz-motivation
+#| label: tbl-viz-motivation
+#| tbl-cap: 인지부가 많은 시각화의 필요성
+#| tbl-align: center
 library(tidyverse)
+library(gt)
 
 datasets::women %>% 
-  gt::gt() |> 
+  gt::gt() |>  
+    cols_label(
+    height = "신장",
+    weight = "몸무제"
+  ) |> 
   gtExtras::gt_theme_538()
 ```
 
@@ -33,7 +42,12 @@ datasets::women %>%
 `women` 데이터셋이 몸무게는 파운드(lbs), 신장(inch)로 되어 있어 우리나라에서 사용하는
 kg, cm 단위로 시각화에 앞서 변환시킨다.
 
-``` {r viz-motivation-woman, echo = TRUE}
+``` {r}
+#| label: fig-viz-motivation-woman
+#| fig-cap: 시각화를 통한 신장과 몸무게 관계
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 women %>% 
   mutate(height = 2.54 * height,
          weight = 0.45 * weight) %>% 
@@ -47,6 +61,7 @@ women %>%
 
 
 ## 앤스콤 4종류 데이터 {#viz-anscombe}
+\index{앤스콤 데이터} \index{Anscombe's Quartet}
 
 앤스콤[@anscombe1973graphs]은 1973년 "Anscombe's Quartet"로 알려진 동일한 통계량을 갖는 4종류 데이터셋을 만들어서 시각화의 중요성을 일깨웠다. 
 앤스콤 데이터셋은 평균, 분산, 상관계수, 회귀직선 등 주요 통계치가 매우 유사한 4쌍의 데이터로 구성되어 있다. 그러나 이 데이터들을 그래프로 시각화했을 때 서로 완전히 다른 패턴과 관계성을 보여준다.
@@ -62,14 +77,19 @@ women %>%
 |  상관계수   |  0.82  |
 |  회귀식     |  $y = 3.0 + 0.5 \times x$ |
 
+: 앤스콤 데이터셋 기술통계 {#tbl-anscombe-stats}
 
 ### 데이터셋 기술통계량 {#viz-anscombe-descriptive}
+\index{기술통계량}
 
 `datasets` 패키지 내부에 `anscombe` 명칭으로 데이터셋이 포함되어 있어 앞서 제기한 
 기술통계량이 맞는지 평균, 분산, 상관계수, 회귀식 회귀계수를 통해 소수점 아래 일부 차이가 있지만 동일하다는 것을 확인할 수 있다.
 
 ```{webr-r}
 #| label: viz-anscombe-descriptive
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 datasets::anscombe
 data(anscombe)
 
@@ -106,6 +126,7 @@ unlist(reg_fits$reg4)
 ```
 
 ### 데이터셋 시각화 {#viz-anscombe-viz}
+\index{시각화} 
 
 `anscombe` 데이터셋 기술 통계량을 통해 4종류 데이터셋이 동일한 분포를 갖고 있고
 표본추출로 보면 모집단에서 잘 추출된 표본이라고 볼 수도 있으나 시각화를 통해 보면
@@ -120,6 +141,9 @@ unlist(reg_fits$reg4)
 #| label: fig-viz-anscombe-viz
 #| fig-cap: 앤스콤 데이터셋 시각화
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 # https://rpubs.com/debosruti007/anscombeQuartet 코드를 일부 변형하여 시각화 사용
 p1 <- ggplot(anscombe) + geom_point(aes(x1, y1), color = "darkorange", size = 3) + theme_bw() + scale_x_continuous(breaks = seq(4, 20, 2)) + scale_y_continuous(breaks = seq(0, 12, 2)) + geom_abline(intercept = 3, slope = 0.5, color = "cornflowerblue") + expand_limits(x = 4, y = 4) + labs(title = "첫번째 데이터셋")
 
@@ -136,7 +160,8 @@ gridExtra::grid.arrange(p1, p2, p3, p4, ncol=2, top = "앤스컴 콰르텟(Ansco
 
 `ggplot2` 문법을 활용하여 6가지 고급 그래프를 제작하는 방법을 살펴본다. 시계열 데이터에 라벨을 추가하는 방법, 막대그래프에 그룹별 색상을 적용하는 기법, 추세선에 강조와 라벨을 더하는 방법도 알아본다. 또한 롤리팝 그래프, 아령 그래프, 경사 그래프 등 데이터 비교와 변화를 효과적으로 나타내는 그래프들도 코드와 함께 상세히 살펴본다.
 
-## 라벨 붙은 시계열  {#gghighlight-timeseries}
+## 시계열 데이터  {#gghighlight-timeseries}
+\index{시각화 패턴!시계열 데이터}
 
 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 가장 최근 값이 어떻게 되는지에 대한 관심이 많다.
 이런 사용자 요구를 맞추기 위해 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다.
@@ -149,6 +174,9 @@ gridExtra::grid.arrange(p1, p2, p3, p4, ncol=2, top = "앤스컴 콰르텟(Ansco
 #| label: fig-best-viz-label
 #| fig-cap: 시계열 데이터 마지막 관측점에 라벨을 붙이는 방법
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ## 마지막 관측점
 orange_ends <- datasets::Orange %>% 
   group_by(Tree) %>% 
@@ -173,6 +201,7 @@ datasets::Orange %>%
 ```
 
 ## 막대그래프 그룹별 색상  {#gghighlight-barplot-color}
+\index{시각화 패턴!막대그래프}
 
 RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill의 GitHub 저장소에 공개된 TV 시리즈 데이터를 사용해서 막대그래프를 작성할 때 그룹별 색상을 적용하여 가시성을 높인다. TV 시리즈별 색상을 달리할 경우 `RColorBrewer` 패키지 색상 팔레트를 범주형에 맞춰 각 시리즈별로 가장 잘 구분될 수 있도록 색상을 칠해 시각화한다.
 
@@ -181,6 +210,9 @@ RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill의 GitHub 
 #| label: fig-best-viz-barbplot-color
 #| fig-cap: 막대그래프 그룹별 색상 적용
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ratings <- read_csv("http://bit.ly/cs631-ratings",
                     na = c("", "NA", "N/A"))
 
@@ -215,6 +247,7 @@ ratings_bonanza1 %>%
 
 
 ## 추세선 강조 + 라벨 {#gghighlight-trend-line-label}
+\index{시각화 패턴!추세선 강조}
 
 시각화의 백미는 아무래도 대조와 비교를 통해 강한 인상을 주는 것이다.
 앞선 `ratings` TV 시리즈 시청자 평가 데이터를 대상으로 추세선에 강조를 넣고 라벨 텍스트도 넣어 
@@ -226,6 +259,9 @@ ratings_bonanza1 %>%
 #| label: fig-best-viz-trend-line
 #| fig-cap: 추세선을 강조하고 라벨을 추가한 그래프
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ratings %>% 
   mutate(episode = as.factor(episode)) %>% 
   ggplot(aes(x = episode, y = viewers_7day, group = series)) +
@@ -245,6 +281,7 @@ ratings %>%
 
 
 ## 롤리팝 그래프 {#lollipop-color}
+\index{시각화 패턴!롤리팝}
 
 롤리팝(Lollipop) 사탕 그래프는 막대그래프와 클리블랜드 점그래프를 합성한 것으로 한 축에는 연속형, 다른 한 축에는 범주형을 두고 사용자의 관심을 점그래프로 집중시키는 데 효과적이다. 단순히 막대그래프를 제작하는 것과 비교하여 임팩트 있는 시각화를 가능하게 한다.
 
@@ -261,6 +298,9 @@ ratings %>%
 #| label: fig-best-viz-lolli-pop
 #| fig-cap: 롤리팝 사탕 그래프
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 # 데이터 -----
 ## 롤리팝 사탕 그래프를 위해 상위 15개 군만 추출
 ohio_top15 <- ggplot2::midwest %>%
@@ -308,6 +348,9 @@ cowplot::plot_grid(ohio_barplot_g, ohio_dotplot_g, ohio_lollipop_g, nrow=1)
 ```{r}
 #| label: best-viz-lolli-pop-polish
 #| fig-cap: 롤리팝 사탕 그래프 외양과 설명 추가
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ## 평균기준 대졸비율 비교를 위한 데이터셋 준비
 ohio <- midwest %>%
         filter(state == "OH") %>%
@@ -349,6 +392,7 @@ ohio %>%
 
 
 ## 아령 그래프 {#gghighlight-dumbbel-plot}
+\index{시각화 패턴!아령 그래프}
 
 두 시점을 비교하여 전후를 비교한다든가 두 지역을 비교할 때 아령 그래프는 매우 효과적이다.
 TV 시리즈별로 회차를 달리하여 첫 번째와 가장 마지막 시청자 수를 비교하여 시각화하는데 **아령(dumbbell) 그래프**가 적절한 예시가 될 것으로 보인다. 이를 위해서 `ggplot()`에 들어가는 자료형을 미리 준비하고 이에 맞춰 `geom_line()`과 `geom_point()`를 결합시켜 시각화한다.
@@ -357,6 +401,9 @@ TV 시리즈별로 회차를 달리하여 첫 번째와 가장 마지막 시청�
 #| label: fig-best-viz-dumbbell-plot
 #| fig-cap: 아령 그래프로 시리즈별 시청자수 비교
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ratings_dumbbell_df <- ratings %>% 
   select(series, episode, viewers_7day) %>% 
   group_by(series) %>% 
@@ -384,6 +431,7 @@ ratings_dumbbell_df %>%
 
 
 ## 경사 그래프 {#gghighlight-slope-plot}
+\index{시각화 패턴!경사 그래프}
 
 아령 그래프를 제작한 동일한 데이터를 [`터프티(tufte)` 스타일 경사그래프](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003nk)로 구현하면 
 시즌별 첫 회와 최종회 시청자 수 비교를 좀 더 직관적으로 만들 수 있다.
@@ -398,6 +446,9 @@ ratings_dumbbell_df %>%
 #| label: fig-best-viz-slope-plot-base
 #| fig-cap: 경사그래프로 시리즈별 시청자수 비교
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ratings_dumbbell_df %>% 
   ggplot(aes(x = episode, y = viewers_7day, group = series)) +
     geom_point(data = filter(ratings_dumbbell_df, !series == 8), alpha = .25) +
@@ -426,6 +477,9 @@ ratings_dumbbell_df %>%
 #| label: fig-viz-slope-plot-slopegraph-series
 #| fig-cap: 전용 패키지 사용 경사그래프로 시리즈별 시청자수 비교
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "100%"
 # devtools::install_github("leeper/slopegraph")
 library(slopegraph)
 
@@ -447,8 +501,11 @@ ratings_dumbbell_df %>%
 
 ```{r}
 #| label: fig-viz-slope-plot-ggslopegraph-series
-#| fig-cap: ggplot 패키지 사용 경사그래프로 시리즈별 시청자수 비교
+#| fig-cap: "`ggplot` 패키지 사용 경사그래프로 시리즈별 시청자수 비교"
 #| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: "70%"
 ratings_dumbbell_df %>% 
   pivot_wider(names_from = episode, values_from = viewers_7day) %>% 
   as.data.frame() %>% 

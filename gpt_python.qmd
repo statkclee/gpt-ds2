@@ -6,10 +6,15 @@ editor_options:
 
 
 # 챗GPT 환경 구축 {#sec-gpt}
+\index{챗GPT} \index{환경 구축}
 
 챗GPT 데이터 과학 환경을 구축하기 위해서는 파이썬 설치, 가상환경 설정, `.Rprofile` 설정 등 사전 작업이 필요하다. 쿼토를 통해 감성 분석을 수행하기에 앞서, 이와 같은 환경 구축 작업을 선행함으로써 안정적이고 효율적인 분석 환경을 마련할 수 있다. 체계적인 사전 준비를 통해 원활한 분석 수행이 가능해진다.
 
 ```{mermaid}
+%%| label: fig-gpt-python
+%%| fig-cap: 챗GPT 환경설정
+%%| fig-width: 5
+%%| fig-align: center
 graph LR
    classDef default fill:#fff,stroke:#000,stroke-width:1px,color:#000
    subgraph quarto["<strong>쿼토</strong>"]
@@ -27,6 +32,7 @@ graph LR
 
 
 ## 파이썬 설치
+\index{파이썬}
 
 가장 최신 파이썬 3.12 버전 대신 안정성이 검증된 파이썬 3.11 버전 [다운로드](https://www.python.org/downloads/release/python-3118/) 웹사이트에서 운영체제에 맞게 설치한다. 설치 과정에서 `Add Python 3.11 to PATH` 옵션을 반드시 선택한다.
 
@@ -44,6 +50,7 @@ repl_python()
 ```
 
 ### 가상환경 
+\index{가상환경}
 
 파이썬 가상환경을 생성하는 이유는 프로젝트별로 필요한 패키지를 분리하여 관리하여 충돌을 방지하기 위함이다. 파일명(`--name`) 방식과 경로명(`--prefix`) 방식이 있으며 서로 장단점이 있다. 여기서는 경로명 방식과 `reticulate` 패키지를 활용하여 R 내부적으로 수행하는 방식을 소개한다.
 `virtualenv_remove()` 함수를 사용하여 가상환경을 삭제할 수 있다.
@@ -73,6 +80,7 @@ virtualenv_install("d:/envs/gpt-ds", c("transformers", "torch", "torchvision", "
 ```
 
 ### `.Rprofile` 설정
+\index{\.Rprofile}
 
 매번 R을 실행할 때마다 파이썬 가상환경을 활성화하는 것은 번거롭다.
 `.Rprofile` 파일에 `RETICULATE_PYTHON` 환경변수를 설정하게 되면, `.Rprofile` 파일은 R을 시작할 때 자동으로 파이썬 가상환경이 활성화된다.
@@ -109,6 +117,7 @@ py_config()
 ```
 
 ## 감성분석 사례
+\index{감성분석} \index{transformers} \index{BERT} \index{트랜스포머}
 
 앞서 구축한 파이썬 가상환경에서 음식점 리뷰에 대한 감성분석을 수행하는 사례를 살펴본다. 먼저 `transformers` 라이브러리의 `pipeline`을 사용하여 텍스트 분류 모델을 로드하고, 한국어 문장을 입력으로 받아 다국어 BERT(Bidirectional Encoder Representations from Transformers) 모형으로 감성 분석을 수행한다. 
 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.
@@ -127,6 +136,8 @@ print(prediction)
 
 
 ## RStudio 부조종사
+\index{부조종사} \index{GitHub Copilot} \index{RStudio} 
+\index{Copilot}
 
 [GitHub Copilot](https://github.com/features/copilot)은 Visual Studio Code를 비롯한 다양한 코드 편집기와 통합할 수 있는 AI 기반 코딩 도우미(Assistant)다. 부조종사(Copilot)는 개발자가 보다 효율적이고 정확하게 코드를 작성할 수 있도록 도와주는 지능형 도우미 기능을 제공하기 위해 GitHub와 OpenAI가 공동으로 개발했다.
 
@@ -150,7 +161,7 @@ RStudio 부조종사는 RStudio IDE에 GitHub Copilot을 통합한 버전으로,
 
 
 ## OpenAI API
-
+\index{OpenAI API}
 
 OpenAI API는 OpenAI의 인공지능 모형을 활용하는 API 서비스로, 개발자가 쉽게 인공지능 모형을 활용할 수 있도록 제공된다. OpenAI API를 사용하면 개발자는 챗GPT, DALL-E, 위스퍼, 임베딩 등 OpenAI의 다양한 인공지능 언어, 음성, 시각 모형을 활용하여 다양한 인공지능 응용프로그램을 개발할 수 있다. OpenAI API는 RESTful API로 제공되며, 개발자는 HTTP 요청을 통해 OpenAI의 인공지능 모형을 활용할 수 있다.
 OpenAI, 챗GPT(ChatGPT), OpenAI API를 명확히 구분하는 것이 필요하다.
@@ -174,6 +185,7 @@ OpenAI 회사가 제시하고 있는 기준에 맞춰 따라야 OpenAI API를 �
 ![OpenAI 계정 생성](images/openai_api_signup.jpg){#fig-openai-signup fig-align="center" height="265"}
 
 ### API KEY 발급
+\index{API KEY}
 
 [API keys](https://platform.openai.com/account/api-keys) 웹사이트에서
 API KEY를 발급받는다.
@@ -181,6 +193,7 @@ API KEY를 발급받는다.
 ![API 키 생성](images/apikey_creation.jpg){#fig-apikey-creation fig-align="center" height="265"}
 
 ### `openai` 패키지 설치
+\index{패키지!openai}
 
 [API
 Reference](https://platform.openai.com/docs/api-reference/introduction)
@@ -231,6 +244,7 @@ print(response)
 ```
 
 ### 보안강화
+\index{보안} \index{환경변수} \index{패키지!python-dotenv}
 
 `python-dotenv` 패키지를 사용하여 API KEY를 환경변수로 관리한다.
 `.env` 파일에 OpenAI에서 발급받은 API KEY를 저장하고 파이썬 프로그램에서

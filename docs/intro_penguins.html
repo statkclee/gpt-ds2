@@ -135,10 +135,6 @@ ga('send', {
 });
 </script><meta name="mermaid-theme" content="neutral">
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="site_libs/jquery-1.12.4/jquery.min.js"></script><link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-1.3.1/leaflet.js"></script><link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="site_libs/proj4-2.6.2/proj4.min.js"></script><script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-binding-2.1.2/leaflet.js"></script><script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="site_libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -464,28 +460,23 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li>
-<a href="#%ED%8E%AD%EA%B7%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-펭귄-데이터셋" class="nav-link active" data-scroll-target="#%ED%8E%AD%EA%B7%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B"><span class="header-section-number">4</span> 펭귄 데이터셋</a>
-  <ul class="collapse">
-<li><a href="#penguins-study" id="toc-penguins-study" class="nav-link" data-scroll-target="#penguins-study"><span class="header-section-number">4.1</span> 펭귄 공부</a></li>
-  <li><a href="#penguin-home" id="toc-penguin-home" class="nav-link" data-scroll-target="#penguin-home"><span class="header-section-number">4.2</span> 펭귄 서식지</a></li>
-  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%A4%EC%B9%98" id="toc-데이터-설치" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%A4%EC%B9%98"><span class="header-section-number">4.3</span> 데이터 설치</a></li>
-  <li><a href="#penguin-EDA-skimr" id="toc-penguin-EDA-skimr" class="nav-link" data-scroll-target="#penguin-EDA-skimr"><span class="header-section-number">4.4</span> 자료구조 일별</a></li>
-  <li><a href="#penguin-EDA" id="toc-penguin-EDA" class="nav-link" data-scroll-target="#penguin-EDA"><span class="header-section-number">4.5</span> 데이터 시각화</a></li>
+<li><a href="#penguins-study" id="toc-penguins-study" class="nav-link active" data-scroll-target="#penguins-study"><span class="header-section-number">3.1</span> 펭귄 공부</a></li>
+  <li><a href="#penguin-home" id="toc-penguin-home" class="nav-link" data-scroll-target="#penguin-home"><span class="header-section-number">3.2</span> 펭귄 서식지</a></li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%A4%EC%B9%98" id="toc-데이터-설치" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%A4%EC%B9%98"><span class="header-section-number">3.3</span> 데이터 설치</a></li>
+  <li><a href="#penguin-EDA-skimr" id="toc-penguin-EDA-skimr" class="nav-link" data-scroll-target="#penguin-EDA-skimr"><span class="header-section-number">3.4</span> 자료구조 일별</a></li>
+  <li><a href="#penguin-EDA" id="toc-penguin-EDA" class="nav-link" data-scroll-target="#penguin-EDA"><span class="header-section-number">3.5</span> 데이터 시각화</a></li>
   <li>
-<a href="#%ED%8E%AD%EA%B7%84-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0" id="toc-펭귄-내보내기" class="nav-link" data-scroll-target="#%ED%8E%AD%EA%B7%84-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0"><span class="header-section-number">4.6</span> 펭귄 내보내기</a>
+<a href="#%ED%8E%AD%EA%B7%84-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0" id="toc-펭귄-내보내기" class="nav-link" data-scroll-target="#%ED%8E%AD%EA%B7%84-%EB%82%B4%EB%B3%B4%EB%82%B4%EA%B8%B0"><span class="header-section-number">3.6</span> 펭귄 내보내기</a>
   <ul class="collapse">
-<li><a href="#csv-%ED%8C%8C%EC%9D%BC" id="toc-csv-파일" class="nav-link" data-scroll-target="#csv-%ED%8C%8C%EC%9D%BC"><span class="header-section-number">4.6.1</span> <code>.csv</code> 파일</a></li>
-  <li><a href="#xlsx-%EC%97%91%EC%85%80-%ED%8C%8C%EC%9D%BC" id="toc-xlsx-엑셀-파일" class="nav-link" data-scroll-target="#xlsx-%EC%97%91%EC%85%80-%ED%8C%8C%EC%9D%BC"><span class="header-section-number">4.6.2</span> <code>.xlsx</code> 엑셀 파일</a></li>
-  <li><a href="#sqlite-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" id="toc-sqlite-데이터베이스" class="nav-link" data-scroll-target="#sqlite-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4"><span class="header-section-number">4.6.3</span> <code>.sqlite</code> 데이터베이스</a></li>
-  <li><a href="#pins" id="toc-pins" class="nav-link" data-scroll-target="#pins"><span class="header-section-number">4.6.4</span> <code>pins</code></a></li>
-  <li><a href="#%EA%B5%AC%EA%B8%80%EC%8B%9C%ED%8A%B8" id="toc-구글시트" class="nav-link" data-scroll-target="#%EA%B5%AC%EA%B8%80%EC%8B%9C%ED%8A%B8"><span class="header-section-number">4.6.5</span> 구글시트</a></li>
-  <li><a href="#%EA%B7%B8-%EC%99%B8-%ED%98%95%EC%8B%9D" id="toc-그-외-형식" class="nav-link" data-scroll-target="#%EA%B7%B8-%EC%99%B8-%ED%98%95%EC%8B%9D"><span class="header-section-number">4.6.6</span> 그 외 형식</a></li>
+<li><a href="#csv-%ED%8C%8C%EC%9D%BC" id="toc-csv-파일" class="nav-link" data-scroll-target="#csv-%ED%8C%8C%EC%9D%BC"><span class="header-section-number">3.6.1</span> <code>.csv</code> 파일</a></li>
+  <li><a href="#xlsx-%EC%97%91%EC%85%80-%ED%8C%8C%EC%9D%BC" id="toc-xlsx-엑셀-파일" class="nav-link" data-scroll-target="#xlsx-%EC%97%91%EC%85%80-%ED%8C%8C%EC%9D%BC"><span class="header-section-number">3.6.2</span> <code>.xlsx</code> 엑셀 파일</a></li>
+  <li><a href="#sqlite-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" id="toc-sqlite-데이터베이스" class="nav-link" data-scroll-target="#sqlite-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4"><span class="header-section-number">3.6.3</span> <code>.sqlite</code> 데이터베이스</a></li>
+  <li><a href="#pins" id="toc-pins" class="nav-link" data-scroll-target="#pins"><span class="header-section-number">3.6.4</span> <code>pins</code></a></li>
+  <li><a href="#%EA%B5%AC%EA%B8%80%EC%8B%9C%ED%8A%B8" id="toc-구글시트" class="nav-link" data-scroll-target="#%EA%B5%AC%EA%B8%80%EC%8B%9C%ED%8A%B8"><span class="header-section-number">3.6.5</span> 구글시트</a></li>
+  <li><a href="#%EA%B7%B8-%EC%99%B8-%ED%98%95%EC%8B%9D" id="toc-그-외-형식" class="nav-link" data-scroll-target="#%EA%B7%B8-%EC%99%B8-%ED%98%95%EC%8B%9D"><span class="header-section-number">3.6.6</span> 그 외 형식</a></li>
   </ul>
 </li>
-  <li><a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">4.7</span> 요약</a></li>
-  </ul>
-</li>
+  <li><a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">3.7</span> 요약</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/intro_penguins.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -506,12 +497,12 @@ ga('send', {
   
 
 
-</header><section id="펭귄-데이터셋" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> 펭귄 데이터셋</h1>
+</header><p> </p>
 <p>미국에서 “George Floyd”가 경찰에 의해 살해되면서 촉발된 <a href="https://ko.wikipedia.org/wiki/Black_Lives_Matter">“Black Lives Matter”</a> 운동은 아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다. 한국에서도 소수 정당인 정의당에서 <a href="http://www.hani.co.kr/arti/politics/assembly/949422.html">여당 의원 176명 중 누가?…차별금지법 발의할 ’의인’을 구합니다</a>로 기사를 내는 등 적극적으로 나서고 있다.</p>
 <p>데이터 과학에서 최근 R.A. Fisher의 과거 저술 “The genetical theory of natural selection” <span class="citation" data-cites="fisher1930genetical">(Fisher 1930)</span>의 우생학(Eugenics)에 대한 관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 <code>iris</code> 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하려는 움직임이 활발히 전개되고 있다. <a href="https://github.com/allisonhorst/palmerpenguins"><code>palmerpenguins</code></a> 데이터셋 <span class="citation" data-cites="penguin2020 AbdulMajedRaja2020 Levy2019">(Horst, Hill, 와/과 Gorman 2020; AbdulMajedRaja 2020; Levy 2019)</span>이 대안으로 많은 호응을 얻고 있다.</p>
-<section id="penguins-study" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="penguins-study">
-<span class="header-section-number">4.1</span> 펭귄 공부</h2>
+<section id="penguins-study" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="penguins-study">
+<span class="header-section-number">3.1</span> 펭귄 공부</h2>
+<p> </p>
 <p>팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 나무위키를 참조한다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ul>
 <li>
@@ -523,38 +514,43 @@ ga('send', {
 </ul>
 <div id="fig-penguin-species" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguin-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/penguin-species.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/penguin-species.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="587"></a>
+<a href="images/penguin-species.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/penguin-species.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="251"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguin-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;4.1: 팔머 펭귄 3종 세트
+그림&nbsp;3.1: 팔머 펭귄 3종 세트
 </figcaption></figure>
 </div>
 <p>다음으로 <code>iris</code> 데이터와 마찬가지로 펭귄 3종을 구분하기 위한 변수로 조류의 부리에 있는 중앙 세로선의 융기를 지칭하는 능선(<code>culmen</code>) 길이(culmen length)와 깊이(culmen depth)를 이해하면 된다.</p>
 <div id="fig-penguin-species-variable" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguin-species-variable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/penguin-species-variable.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/penguin-species-variable.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+<a href="images/penguin-species-variable.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/penguin-species-variable.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="233"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguin-species-variable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;4.2: 팔머 펭귄 능선 변수
+그림&nbsp;3.2: 팔머 펭귄 능선 변수
 </figcaption></figure>
 </div>
-</section><section id="penguin-home" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="penguin-home">
-<span class="header-section-number">4.2</span> 펭귄 서식지</h2>
+</section><section id="penguin-home" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="penguin-home">
+<span class="header-section-number">3.2</span> 펭귄 서식지</h2>
+<p> </p>
 <p><code>leaflet</code> 패키지로 펭귄 서식지를 남극에서 특정한다. <code>geocoding</code>을 해야 하는데 구글에서 위치 정보를 구글링하면 <a href="https://latitude.to/" class="uri">https://latitude.to/</a>에서 직접 위경도를 반환해 준다. 이 정보를 근거로 하여 펭귄 서식지를 시각화한다.</p>
-<div>
-
-</div>
-<div id="palmer" class="quarto-layout-panel" data-layout="[[1,1], [1,1,1,1]]">
+<div id="fig-palmer-penguins" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-palmer-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/penguins_map.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="파머 연구소와 펭귄 서식지"><img src="images/penguins_map.png" class="img-fluid figure-img" width="1284" alt="파머 연구소와 펭귄 서식지"></a></p>
-<figcaption>파머 연구소와 펭귄 서식지</figcaption></figure>
+<figure class="figure"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/penguins_map.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="팔머 연구소와 펭귄 서식지"><img src="images/penguins_map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="207"></a></p>
+</figure>
+</div>
+<figcaption>팔머 연구소와 펭귄 서식지</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/penguins_real_photo.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="펭귄 3종"><img src="images/penguins_real_photo.jpg" class="img-fluid figure-img" alt="펭귄 3종"></a></p>
+<figure class="figure"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/penguins_real_photo.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="펭귄 3종"><img src="images/penguins_real_photo.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="250"></a></p>
+</figure>
+</div>
 <figcaption>펭귄 3종</figcaption></figure>
 </div>
 </div>
@@ -562,34 +558,45 @@ ga('send', {
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/penguins_three.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="아델리, 젠투, 턱끈 펭귄이 함께한 사진"><img src="images/penguins_three.jpg" class="img-fluid figure-img" width="1074" alt="아델리, 젠투, 턱끈 펭귄이 함께한 사진"></a></p>
-<figcaption>아델리, 젠투, 턱끈 펭귄이 함께한 사진</figcaption></figure>
+<figure class="figure"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/penguins_three.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="아델리,젠투,턱끈 펭귄"><img src="images/penguins_three.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="120"></a></p>
+</figure>
+</div>
+<figcaption>아델리,젠투,턱끈 펭귄</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/penguins_torgerson.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6" title="토르거센 섬에서 새끼를 키우는 아델리 펭귄"><img src="images/penguins_torgerson.jpg" class="img-fluid figure-img" alt="토르거센 섬에서 새끼를 키우는 아델리 펭귄"></a></p>
-<figcaption>토르거센 섬에서 새끼를 키우는 아델리 펭귄</figcaption></figure>
+<figure class="figure"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/penguins_torgerson.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6" title="토르거센 아델리 펭귄"><img src="images/penguins_torgerson.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="120"></a></p>
+</figure>
+</div>
+<figcaption>토르거센 아델리 펭귄</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/penguins_gentoo.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7" title="비스코 지점 젠투 펭귄 서식지"><img src="images/penguins_gentoo.jpg" class="img-fluid figure-img" width="1074" alt="비스코 지점 젠투 펭귄 서식지"></a></p>
-<figcaption>비스코 지점 젠투 펭귄 서식지</figcaption></figure>
+<figure class="figure"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/penguins_gentoo.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7" title="비스코 젠투 펭귄 서식지"><img src="images/penguins_gentoo.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="120"></a></p>
+</figure>
+</div>
+<figcaption>비스코 젠투 펭귄 서식지</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/penguins_field.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8" title="펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사"><img src="images/penguins_field.jpg" class="img-fluid figure-img" width="1074" alt="펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사"></a></p>
-<figcaption>펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사</figcaption></figure>
+<figure class="figure"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/penguins_field.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8" title="크리스틴 고먼 박사"><img src="images/penguins_field.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="120"></a></p>
+</figure>
+</div>
+<figcaption>크리스틴 고먼 박사</figcaption></figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
-<p>파머 펭귄 데이터셋</p>
 </div>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-palmer-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.3: 팔머 펭귄 데이터셋
+</figcaption></figure>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -597,14 +604,7 @@ ga('send', {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
 <span><span class="co"># library(tidygeocoder)</span></span>
 <span></span>
-<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
-<span><span class="co">#&gt;   island        n</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;     &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Biscoe      168</span></span>
-<span><span class="co">#&gt; 2 Dream       124</span></span>
-<span><span class="co">#&gt; 3 Torgersen    52</span></span>
+<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">island_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="st">"address"</span>, <span class="op">~</span><span class="st">"lat"</span>, <span class="op">~</span><span class="st">"lng"</span>,</span>
 <span>                     <span class="st">"Torgersen Island antarctica"</span>, <span class="op">-</span><span class="fl">64.772819</span>, <span class="op">-</span><span class="fl">64.074325</span>,</span>
@@ -616,18 +616,23 @@ ga('send', {
 <span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/addProviderTiles.html">addProviderTiles</a></span><span class="op">(</span><span class="va">providers</span><span class="op">$</span><span class="va">OpenStreetMap</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span>lng<span class="op">=</span><span class="op">~</span><span class="va">lng</span>, lat<span class="op">=</span><span class="op">~</span><span class="va">lat</span>, </span>
-<span>                   popup <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"명칭:"</span>,<span class="va">`address`</span><span class="op">)</span>, <span class="st">"&lt;/strong&gt;&lt;br&gt;"</span>,</span>
-<span>                                                 <span class="st">"-----------------------------------------------------------&lt;br&gt;"</span>,</span>
-<span>                                                 <span class="st">"&amp;middot; latitude: "</span>, <span class="va">`lat`</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>                                                 <span class="st">"&amp;middot; longitude: "</span>, <span class="va">`lng`</span>, <span class="st">"&lt;br&gt;"</span></span>
+<span>                   popup <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span></span>
+<span>                     <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"명칭:"</span>,<span class="va">`address`</span><span class="op">)</span>, <span class="st">"&lt;/strong&gt;&lt;br&gt;"</span>,</span>
+<span>                       <span class="st">"---------------------&lt;br&gt;"</span>,</span>
+<span>                       <span class="st">"&amp;middot; latitude: "</span>, <span class="va">`lat`</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>                       <span class="st">"&amp;middot; longitude: "</span>, <span class="va">`lng`</span>, <span class="st">"&lt;br&gt;"</span></span>
 <span>                   <span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-31acf2afdf0a4fcd9f36" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-31acf2afdf0a4fcd9f36">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[-64.772819,-64.72555800000001,-64.811565,-64.77431199999999],[-64.074325,-64.225562,-63.777947,-64.054213],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<strong>명칭:Torgersen Island antarctica<\/strong><br>-----------------------------------------------------------<br>&middot; latitude: -64.772819<br>&middot; longitude: -64.074325<br>","<strong>명칭:Dream Island antarctica<\/strong><br>-----------------------------------------------------------<br>&middot; latitude: -64.725558<br>&middot; longitude: -64.225562<br>","<strong>명칭:Biscoe Island antarctica<\/strong><br>-----------------------------------------------------------<br>&middot; latitude: -64.811565<br>&middot; longitude: -63.777947<br>","<strong>명칭:Palmer Station<\/strong><br>-----------------------------------------------------------<br>&middot; latitude: -64.774312<br>&middot; longitude: -64.054213<br>"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-64.811565,-64.72555800000001],"lng":[-64.225562,-63.777947]}},"evals":[],"jsHooks":[]}</script>
 </div>
+<div id="fig-penguins-location" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/penguins_leaflet.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="images/penguins_leaflet.jpg" class="img-fluid figure-img"></a>
 </div>
-</section><section id="데이터-설치" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="데이터-설치">
-<span class="header-section-number">4.3</span> 데이터 설치</h2>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.4: 팔머 연구소와 펭귄 서식지
+</figcaption></figure>
+</div>
+</section><section id="데이터-설치" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="데이터-설치">
+<span class="header-section-number">3.3</span> 데이터 설치</h2>
 <p><code>remotes</code> 패키지 <code>install_github()</code> 함수로 펭귄 데이터를 설치한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
@@ -650,13 +655,14 @@ ga('send', {
 <span><span class="co">#&gt; $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…</span></span>
 <span><span class="co">#&gt; $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="penguin-EDA-skimr" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="penguin-EDA-skimr">
-<span class="header-section-number">4.4</span> 자료구조 일별</h2>
+</section><section id="penguin-EDA-skimr" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="penguin-EDA-skimr">
+<span class="header-section-number">3.4</span> 자료구조 일별</h2>
+<p> </p>
 <p><code>skimr</code> 패키지를 사용해서 <code>penguins</code> 데이터프레임 자료구조를 일별한다. 이를 통해 344개 펭귄 관측값이 있으며, 7개 칼럼으로 구성된 것을 확인할 수 있다. 또한, 범주형 변수가 3개, 숫자형 변수가 4개로 구성되어 있다. 그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim_without_charts</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -747,17 +753,16 @@ ga('send', {
 <p><strong>Variable type: numeric</strong></p>
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 9%">
-<col style="width: 13%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 6%">
+<col style="width: 19%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
 <col style="width: 7%">
 <col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: left;">skim_variable</th>
@@ -770,7 +775,6 @@ ga('send', {
 <th style="text-align: right;">p50</th>
 <th style="text-align: right;">p75</th>
 <th style="text-align: right;">p100</th>
-<th style="text-align: left;">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -784,7 +788,6 @@ ga('send', {
 <td style="text-align: right;">44.45</td>
 <td style="text-align: right;">48.5</td>
 <td style="text-align: right;">59.6</td>
-<td style="text-align: left;">▃▇▇▆▁</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">bill_depth_mm</td>
@@ -797,7 +800,6 @@ ga('send', {
 <td style="text-align: right;">17.30</td>
 <td style="text-align: right;">18.7</td>
 <td style="text-align: right;">21.5</td>
-<td style="text-align: left;">▅▅▇▇▂</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">flipper_length_mm</td>
@@ -810,7 +812,6 @@ ga('send', {
 <td style="text-align: right;">197.00</td>
 <td style="text-align: right;">213.0</td>
 <td style="text-align: right;">231.0</td>
-<td style="text-align: left;">▂▇▃▅▂</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">body_mass_g</td>
@@ -823,7 +824,6 @@ ga('send', {
 <td style="text-align: right;">4050.00</td>
 <td style="text-align: right;">4750.0</td>
 <td style="text-align: right;">6300.0</td>
-<td style="text-align: left;">▃▇▆▃▂</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">year</td>
@@ -836,7 +836,6 @@ ga('send', {
 <td style="text-align: right;">2008.00</td>
 <td style="text-align: right;">2009.0</td>
 <td style="text-align: right;">2009.0</td>
-<td style="text-align: left;">▇▁▇▁▇</td>
 </tr>
 </tbody>
 </table>
@@ -857,8 +856,8 @@ ga('send', {
 <span><span class="co">#&gt; $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…</span></span>
 <span><span class="co">#&gt; $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="penguin-EDA" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="penguin-EDA">
-<span class="header-section-number">4.5</span> 데이터 시각화</h2>
+</section><section id="penguin-EDA" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="penguin-EDA">
+<span class="header-section-number">3.5</span> 데이터 시각화</h2>
 <p><code>palmerpenguins</code> 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer station) 펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를 그려보자.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -874,8 +873,7 @@ ga('send', {
 <span>             alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"NanumGothic"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"펭귄 크기"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"남극 펭귄 3종 물갈퀴 길이와 체질량 관계"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"남극 펭귄 3종 물갈퀴 길이와 체질량 관계"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"물갈퀴 길이 (mm)"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"체질량 (g)"</span>,</span>
 <span>       color <span class="op">=</span> <span class="st">"펭귄 3종"</span>,</span>
@@ -886,25 +884,31 @@ ga('send', {
 <span>        plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span>, face<span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
 <span>        plot.caption.position <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mass_flipper</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="intro_penguins_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="intro_penguins_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<span><span class="va">mass_flipper</span></span>
+<span><span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_jpeg.html">agg_jpeg</a></span><span class="op">(</span><span class="st">"images/mass_flipper.jpeg"</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">7</span>, units <span class="op">=</span> <span class="st">"in"</span>, res <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
+<span><span class="va">mass_flipper</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="fig-mass_flipper" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mass_flipper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/mass_flipper.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="images/mass_flipper.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="357"></a>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass_flipper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.5: 남극 펭귄 3종 물갈퀴 길이와 체질량 관계
+</figcaption></figure>
 </div>
-</section><section id="펭귄-내보내기" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="펭귄-내보내기">
-<span class="header-section-number">4.6</span> 펭귄 내보내기</h2>
+</section><section id="펭귄-내보내기" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="펭귄-내보내기">
+<span class="header-section-number">3.6</span> 펭귄 내보내기</h2>
+<p> </p>
 <p>펭귄 데이터를 다양한 파일 형식으로 저장하는 것은 데이터 공유와 활용 측면에서 중요하다. 데이터 분석 프로젝트를 진행할 때, 협업하는 팀원들이 서로 다른 프로그래밍 언어나 도구를 사용할 수 있기 때문에, 데이터를 여러 형식으로 제공하면 원활한 협업이 가능해진다.</p>
 <p>R 사용자는 <code>.RDS</code>나 <code>.RData</code> 파일을 선호할 수 있지만, 파이썬 사용자는 <code>.feather</code>나 <code>.parquet</code> 형식을 더 편리하게 사용할 수 있다. CSV나 엑셀 파일로 저장하면, R이나 파이썬을 사용하지 않는 팀원들도 쉽게 데이터에 접근할 수 있지만 파일 용량이 커지는 단점이 있다.</p>
 <p>데이터베이스 형식인 SQLite로 저장하는 것은 대용량 데이터를 다룰 때 유용하고, 구글 스프레드시트와 같은 클라우드 기반 스토리지에 데이터를 저장하면, 인터넷만 연결되어 있다면 언제 어디서나 데이터에 접근할 수 있어 원격 협업 시 큰 도움이 된다.</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
+<div id="fig-penguins-export" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-export-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
+<pre class="mermaid mermaid-js" data-label="fig-penguins-export">graph LR
    A["펭귄&lt;br&gt;데이터프레임"] --&gt; B(파일 형식)
    A --&gt; C(데이터베이스)
    A --&gt; D(클라우드 스토리지)
@@ -938,12 +942,15 @@ ga('send', {
    M --&gt; E1
 </pre>
 </div>
-<p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-export-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.6: 펭귄 데이터프레임 내보내기
+</figcaption></figure>
 </div>
 </div>
 </div>
-<section id="csv-파일" class="level3" data-number="4.6.1"><h3 data-number="4.6.1" class="anchored" data-anchor-id="csv-파일">
-<span class="header-section-number">4.6.1</span> <code>.csv</code> 파일</h3>
+<section id="csv-파일" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="csv-파일">
+<span class="header-section-number">3.6.1</span> <code>.csv</code> 파일</h3>
 <p><code>palmerpenguins</code> 패키지 <code>penguins</code> 데이터프레임에서 결측치를 제거하고, <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> 함수를 사용하여 <code>data/penguins.csv</code> 파일로 저장한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
@@ -952,8 +959,8 @@ ga('send', {
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="st">"data/penguins.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="xlsx-엑셀-파일" class="level3" data-number="4.6.2"><h3 data-number="4.6.2" class="anchored" data-anchor-id="xlsx-엑셀-파일">
-<span class="header-section-number">4.6.2</span> <code>.xlsx</code> 엑셀 파일</h3>
+</section><section id="xlsx-엑셀-파일" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="xlsx-엑셀-파일">
+<span class="header-section-number">3.6.2</span> <code>.xlsx</code> 엑셀 파일</h3>
 <p><code>readxl</code> 패키지는 엑셀 파일을 불러오는 데 적합하지만 엑셀파일로 저장하는 기능은 없다. <code>writexl</code> 패키지 <code><a href="https://docs.ropensci.org/writexl/reference/write_xlsx.html">write_xlsx()</a></code> 함수를 사용하여 데이터를 <code>data/penguins.xlsx</code> 파일로 저장한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/writexl/">writexl</a></span><span class="op">)</span></span>
@@ -962,8 +969,8 @@ ga('send', {
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://docs.ropensci.org/writexl/reference/write_xlsx.html">write_xlsx</a></span><span class="op">(</span><span class="st">"data/penguins.xlsx"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="sqlite-데이터베이스" class="level3" data-number="4.6.3"><h3 data-number="4.6.3" class="anchored" data-anchor-id="sqlite-데이터베이스">
-<span class="header-section-number">4.6.3</span> <code>.sqlite</code> 데이터베이스</h3>
+</section><section id="sqlite-데이터베이스" class="level3" data-number="3.6.3"><h3 data-number="3.6.3" class="anchored" data-anchor-id="sqlite-데이터베이스">
+<span class="header-section-number">3.6.3</span> <code>.sqlite</code> 데이터베이스</h3>
 <p>SQLite 데이터베이스를 비롯하여 많은 관계형 데이터베이스가 있다. R에서 데이터베이스에 관계없이 데이터를 저장하려면 <code>DBI</code>와 각 데이터베이스 드라이버를 장착하고 동일한 문법에 맞춰 데이터프레임을 데이터베이스에 저장한다.</p>
 <p><code>DBI</code> 패키지와 <code>RSQLite</code> 패키지를 로드한 후 <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect()</a></code> 함수를 사용하여 SQLite 데이터베이스에 연결한다. <code>dbname</code> 인자로 데이터베이스 파일 경로와 이름을 <code>data/penguins.sqlite</code>와 같이 지정한다. <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html">dbWriteTable()</a></code> 함수를 사용하여 펭귄 데이터프레임을 SQLite 데이터베이스의 테이블로 저장한다. <code>overwrite = TRUE</code> 옵션은 이미 존재하는 테이블을 덮어쓰도록 설정한다. 마지막으로 <code><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect()</a></code> 함수로 데이터베이스 연결을 종료한다.</p>
 <div class="cell">
@@ -976,8 +983,8 @@ ga('send', {
 <span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="pins" class="level3" data-number="4.6.4"><h3 data-number="4.6.4" class="anchored" data-anchor-id="pins">
-<span class="header-section-number">4.6.4</span> <code>pins</code>
+</section><section id="pins" class="level3" data-number="3.6.4"><h3 data-number="3.6.4" class="anchored" data-anchor-id="pins">
+<span class="header-section-number">3.6.4</span> <code>pins</code>
 </h3>
 <p><code>pins</code> 패키지는 R 사용자들이 데이터, 모델, 기타 R 객체를 쉽게 공유하고 관리할 수 있게 해준다. 먼저 <code><a href="https://pins.rstudio.com/reference/board_folder.html">board_folder()</a></code> 함수를 사용하여 로컬 폴더에 보드를 생성한다. 사용자명을 달리하여 각자 환경에 맞춰 <code>"C:/Users/&lt;사용자명&gt;/OneDrive/pins"</code>와 같이 보드 폴더로 설정한다.</p>
 <p><code>metadata</code> 리스트를 생성하여 데이터에 대한 추가 정보를 제공하여 공유 데이터를 전달받는 사용자 입장에서 데이터를 즉각적으로 파악할 수 있도록 한다. <code><a href="https://pins.rstudio.com/reference/pin_read.html">pin_write()</a></code> 함수를 사용하여 펭귄 데이터를 보드에 핀(pin)으로 저장하면서 <code>name</code>, <code>title</code>, <code>description</code> 등의 인자를 통해 핀에 대한 정보를 제공하고, <code>metadata</code> 인자를 사용하여 앞서 생성한 메타데이터를 핀에 첨부한다.</p>
@@ -993,11 +1000,11 @@ ga('send', {
 <span><span class="va">board</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://pins.rstudio.com/reference/pin_read.html">pin_write</a></span><span class="op">(</span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>                    name        <span class="op">=</span> <span class="st">"penguins"</span>,</span>
 <span>                    title       <span class="op">=</span> <span class="st">"펭귄 데이터셋"</span>,</span>
-<span>                    description <span class="op">=</span> <span class="st">"남극 파머 연구소 서식 펭귄 데이터셋"</span>,</span>
+<span>                    description <span class="op">=</span> <span class="st">"남극 팔머 연구소 서식 펭귄 데이터셋"</span>,</span>
 <span>                    metadata    <span class="op">=</span> <span class="va">metadata</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="구글시트" class="level3" data-number="4.6.5"><h3 data-number="4.6.5" class="anchored" data-anchor-id="구글시트">
-<span class="header-section-number">4.6.5</span> 구글시트</h3>
+</section><section id="구글시트" class="level3" data-number="3.6.5"><h3 data-number="3.6.5" class="anchored" data-anchor-id="구글시트">
+<span class="header-section-number">3.6.5</span> 구글시트</h3>
 <p>구글시트는 구글에서 제공하는 엑셀과 동일한 온라인 스프레드시트 서비스로, 실시간 협업, 버전 관리, 클라우드 저장 등의 기능을 제공한다.</p>
 <p>R에서 구글시트와 구글 드라이브를 사용하기 위한 인터페이스를 제공하는 <code>googlesheets4</code>와 <code>googledrive</code> 패키지를 로드한다. <code><a href="https://googledrive.tidyverse.org/reference/drive_auth.html">googledrive::drive_auth()</a></code> 함수를 호출하여 구글 드라이브 인증 과정을 거친다. 함수를 실행하면 웹 브라우저가 열리고, 구글 계정으로 로그인하여 인증을 완료해야만 R에서 구글 드라이브와 구글시트에 접근할 수 있다.</p>
 <p>인증이 완료되면 <code><a href="https://googlesheets4.tidyverse.org/reference/gs4_create.html">gs4_create()</a></code> 함수를 사용하여 새로운 구글시트를 생성한다. <code>name</code> 인자로 시트의 이름을 지정하고, <code>sheets</code> 인자로 시트에 포함될 데이터를 리스트 형태로 제공한다. <code>penguins</code>라는 이름의 시트를 생성하고, 그 안에 펭귄 데이터를 저장한다.</p>
@@ -1023,7 +1030,7 @@ ga('send', {
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-googlesheets" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-googlesheet-01" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-googlesheet-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/googledrive_auth.jpg" class="lightbox" data-gallery="fig-googlesheets" data-glightbox="description: .lightbox-desc-10"><img src="images/googledrive_auth.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-ref-parent="fig-googlesheets" width="306"></a>
+<a href="images/googledrive_auth.jpg" class="lightbox" data-gallery="fig-googlesheets" data-glightbox="description: .lightbox-desc-11"><img src="images/googledrive_auth.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-ref-parent="fig-googlesheets" width="250"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-googlesheet-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) 구글 인증과정
@@ -1033,7 +1040,7 @@ ga('send', {
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-googlesheets" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-googlesheet-02" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-googlesheet-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/googledrive_penguins.jpg" class="lightbox" data-gallery="fig-googlesheets" data-glightbox="description: .lightbox-desc-11"><img src="images/googledrive_penguins.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-ref-parent="fig-googlesheets" width="306"></a>
+<a href="images/googledrive_penguins.jpg" class="lightbox" data-gallery="fig-googlesheets" data-glightbox="description: .lightbox-desc-12"><img src="images/googledrive_penguins.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-ref-parent="fig-googlesheets" width="226"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-googlesheet-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) 구글시트 저장화면
@@ -1043,11 +1050,11 @@ ga('send', {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-googlesheets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;4.3: 구글 시트에 펭귄 데이터 저장
+그림&nbsp;3.7: 구글 시트에 펭귄 데이터 저장
 </figcaption></figure>
 </div>
-</section><section id="그-외-형식" class="level3" data-number="4.6.6"><h3 data-number="4.6.6" class="anchored" data-anchor-id="그-외-형식">
-<span class="header-section-number">4.6.6</span> 그 외 형식</h3>
+</section><section id="그-외-형식" class="level3" data-number="3.6.6"><h3 data-number="3.6.6" class="anchored" data-anchor-id="그-외-형식">
+<span class="header-section-number">3.6.6</span> 그 외 형식</h3>
 <p>앞서 살펴본 데이터 형식은 데이터 과학을 처음 접하는 사용자들이 많이 사용하는 형식이다. 하지만 데이터 과학자로 성장해 나가면서 그 외에도 다양한 형식의 데이터를 마주하게 된다. 펭귄 데이터셋을 비롯한 여러 데이터를 다양한 파일 형식으로 저장할 수 있는데, 각 파일 형식마다 장단점이 있으므로 상황에 맞게 적절한 파일 형식을 선택하여 사용하는 것이 좋다.</p>
 <p><code>.rds</code> 파일 형식은 단일 객체를 저장하고 공유하는 데 적합하며, <code>.rda</code> 파일 형식은 여러 객체를 하나의 파일에 저장하고 작업 환경을 공유하는 데 유용하다. <code>.rds</code> 파일은 크기가 작아 전송 및 저장에 효율적이며, 불필요한 객체를 함께 불러오는 것을 방지할 수 있다. 반면에 <code>.rda</code> 파일은 관련된 여러 객체를 한 번에 저장하고 불러올 수 있어 편리하다.</p>
 <p><code>.rda</code> 파일 형식은 여러 개의 R 객체를 하나의 파일에 저장할 수 있다. <code><a href="https://rdrr.io/r/base/save.html">save()</a></code> 함수를 사용하여 생성하며, 파일에 저장된 객체의 이름을 그대로 사용하여 불러올 수 있다. <code>.rds</code> 파일 형식은 하나의 R 객체만 저장할 수 있다. <code><a href="https://rdrr.io/r/base/readRDS.html">saveRDS()</a></code> 함수를 사용하여 생성하며, 파일에서 객체를 불러올 때는 <code><a href="https://rdrr.io/r/base/readRDS.html">readRDS()</a></code> 함수를 사용하고 객체의 이름을 지정해야 한다.</p>
@@ -1069,25 +1076,27 @@ ga('send', {
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/write_parquet.html">write_parquet</a></span><span class="op">(</span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"data/penguins.parquet"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="요약" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="요약">
-<span class="header-section-number">4.7</span> 요약</h2>
-<p>펭귄 데이터셋은 데이터 과학 분야에서 새롭게 주목받고 있는 데이터셋으로 피셔의 우생학 관점이 담긴 붓꽃 데이터셋을 대체하려는 움직임 속에서 대안으로 떠오르고 있다. 이 데이터셋은 남극의 파머 연구소에서 수집된 세 종류의 펭귄(젠투, 아델리, 턱끈 펭귄)의 형태학적 특징을 담고 있다.</p>
+</section></section><section id="요약" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="요약">
+<span class="header-section-number">3.7</span> 요약</h2>
+<p>펭귄 데이터셋은 데이터 과학 분야에서 새롭게 주목받고 있는 데이터셋으로 피셔의 우생학 관점이 담긴 붓꽃 데이터셋을 대체하려는 움직임 속에서 대안으로 떠오르고 있다. 이 데이터셋은 남극의 팔머 연구소에서 수집된 세 종류의 펭귄(젠투, 아델리, 턱끈 펭귄)의 형태학적 특징을 담고 있다.</p>
 <p>펭귄 데이터는 <code>palmerpenguins</code> 패키지를 통해 쉽게 설치하고 사용할 수 있으며, 데이터 탐색 과정에서 <code>skimr</code>와 <code>dplyr</code> 패키지의 함수들을 활용하여 데이터의 구조와 특징을 파악할 수 있다. 또한 <code>ggplot2</code> 패키지를 사용하여 펭귄 종별 물갈퀴 길이와 체질량 간의 관계를 시각화할 수 있다.</p>
 <p>펭귄 데이터 자체보다는 데이터를 다양한 형식으로 저장하고 공유하는 것은 데이터 과학에서 중요한 부분이다. R 사용자들은 <code>.rds</code>, <code>.rda</code>, <code>.feather</code>, <code>.parquet</code> 등의 파일 형식을 선호하지만, 협업을 위해서는 <code>.csv</code>, <code>.xlsx</code>, SQLite 데이터베이스 등 다른 도구에서도 쉽게 사용할 수 있는 형식으로 저장하는 것이 좋다. 또한 <code>pins</code> 패키지나 구글 스프레드시트를 활용하면 클라우드 기반에서 데이터를 공유하고 협업할 수 있다.</p>
 <p>펭귄 데이터셋은 데이터 과학 교육 및 연구에 널리 사용될 수 있는 유용한 자료로, 데이터 탐색, 시각화, 전처리, 모형 등 다양한 단계에서 저작권 걱정없이 누구나 활용할 수 있다.</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;4.1: 팔머 펭귄 3종 세트</span>
-<span class="glightbox-desc lightbox-desc-2">그림&nbsp;4.2: 팔머 펭귄 능선 변수</span>
-<span class="glightbox-desc lightbox-desc-3">파머 연구소와 펭귄 서식지</span>
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;3.1: 팔머 펭귄 3종 세트</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;3.2: 팔머 펭귄 능선 변수</span>
+<span class="glightbox-desc lightbox-desc-3">팔머 연구소와 펭귄 서식지</span>
 <span class="glightbox-desc lightbox-desc-4">펭귄 3종</span>
-<span class="glightbox-desc lightbox-desc-5">아델리, 젠투, 턱끈 펭귄이 함께한 사진</span>
-<span class="glightbox-desc lightbox-desc-6">토르거센 섬에서 새끼를 키우는 아델리 펭귄</span>
-<span class="glightbox-desc lightbox-desc-7">비스코 지점 젠투 펭귄 서식지</span>
-<span class="glightbox-desc lightbox-desc-8">펭귄과 함께 현장에서 일하는 크리스틴 고먼 박사</span>
-<span class="glightbox-desc lightbox-desc-10">그림&nbsp;4.3&nbsp;(a): 구글 인증과정</span>
-<span class="glightbox-desc lightbox-desc-11">그림&nbsp;4.3&nbsp;(b): 구글시트 저장화면</span>
+<span class="glightbox-desc lightbox-desc-5">아델리,젠투,턱끈 펭귄</span>
+<span class="glightbox-desc lightbox-desc-6">토르거센 아델리 펭귄</span>
+<span class="glightbox-desc lightbox-desc-7">비스코 젠투 펭귄 서식지</span>
+<span class="glightbox-desc lightbox-desc-8">크리스틴 고먼 박사</span>
+<span class="glightbox-desc lightbox-desc-9">그림&nbsp;3.4: 팔머 연구소와 펭귄 서식지</span>
+<span class="glightbox-desc lightbox-desc-10">그림&nbsp;3.5: 남극 펭귄 3종 물갈퀴 길이와 체질량 관계</span>
+<span class="glightbox-desc lightbox-desc-11">그림&nbsp;3.7&nbsp;(a): 구글 인증과정</span>
+<span class="glightbox-desc lightbox-desc-12">그림&nbsp;3.7&nbsp;(b): 구글시트 저장화면</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-AbdulMajedRaja2020" class="csl-entry" role="listitem">
@@ -1103,7 +1112,7 @@ Horst, Allison Marie, Alison Presmanes Hill, 와/과 Kristen B Gorman. 2020. <em
 Levy, Ido. 2019. <span>“Eugenics and the Ethics of Statistical Analysis”</span>. <em>GEORGETOWN PUBLIC POLICY REVIEW</em>. <a href="https://gppreview.com/2019/12/16/eugenics-ethics-statistical-analysis/">https://gppreview.com/2019/12/16/eugenics-ethics-statistical-analysis/</a>.
 </div>
 </div>
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p><a href="http://www.shoestring.kr/shoecast/aaa/sp_01_peninsula/peninsula.html">신발끈 여행사, 관광안내자료</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1576,7 +1585,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -1,4 +1,4 @@
-species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year
-Adelie,Torgersen,35.5,190,3700,female,2008
-Adelie,Torgersen,38.8,191,3275,female,2009
-Adelie,Dream,39.5,188,3300,female,2007
+species,bill_length_mm,body_mass_g,year
+Adelie,39.6,3550,2008
+Adelie,42.5,4500,2007
+Adelie,36.5,3150,2007

@@ -3,7 +3,9 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
+
 # 분할-적용-병합 전략 {#sec-split-apply-combine-histroy}
+\index{분할-적용-병합 전략} \index{split-apply-combine}
 
 데이터 분석에서 흔히 사용되는 방법 중 하나가 **분할-적용-병합(Split-Apply-Combine)** 전략[@wickham2011split]이다. 즉, 큰 문제를 작은 문제로 쪼개고 각 문제에 대해서 적절한 연산(예를 들어 요약통계량)을 취하고 이를 결합하는 방법이 많이 사용되는 방법이다. 예를 들어 [재현가능한 과학적 분석을 위한 R - "분할-적용-병합 전략"](https://statkclee.github.io/r-novice-gapminder/12-plyr-kr.html)에 나온 것처럼 각 그룹별로 쪼갠 후에 각 그룹별로 평균을 내고 이를 조합한 사례가 전반적인 큰 그림을 그리는 데 도움이 될 수 있다. 여기서 평균을 사용했는데 요약(summarize) 뿐만 아니라, 윈도우 함수, 이를 일반화한 `do()` 함수도 포함된다.[^split-apply-combine]
 
@@ -11,6 +13,7 @@ editor_options:
 
 
 ## `gapminder` 데이터셋 {#gapminder-dataset}
+\index{gapminder}
 
 `gapminder` 데이터 팩키지의 각 대륙, 국가, 연도별 인구와 중요 두 가지 정보인 평균수명과 일인당 GDP 정보를 바탕으로 각 대륙별 평균 GDP를 추출해보자. 이를 위해서 먼저 인당 GDP(`gdpPercap`)와 인구수(`pop`)를 바탕으로 GDP를 계산하고 이를 평균낸다. 특정 연도를 지칭하지 않는 것이 다소 문제의 소지가 있을 수 있지만, 분할-적용-병합 전략을 살펴보는 데 큰 무리는 없어 보인다.
 
@@ -62,6 +65,7 @@ R에서 데이터 처리를 위한 분할-적용-병합 전략은 시간이 지�
 
 
 ### 선사시대 {#ddplyr-prehistoric}
+\index{split} \index{lapply} \index{do.call}
 
 선사시대에는 대륙별로 `split`한 후에 `lapply()` 함수를 사용해서 앞서 정의한 `calc_GDP` 함수로 GDP를 계산한 후에 평균을 다시 계산한 뒤에 마지막으로 `do.call()` 함수로 병합(combine)하여 GDP 대륙별 평균을 구할 수 있다.
 
@@ -76,6 +80,7 @@ mean_GDP_df
 
 
 ### 석기시대 {#ddplyr-stone-age}
+\index{plyr}
 
 석기시대에는 `plyr` 패키지의 `ddply` 함수를 사용해서 각 대륙별로 쪼갠 후에 각 대륙별 평균 GDP를 구할 수 있다.
 
@@ -90,6 +95,7 @@ plyr::ddply(
 ```
 
 ### 초기 `tidyverse` 시대 {#ddplyr-early-tidyverse}
+\index{tidyverse}
 
 `group_by()` + `do()`를 결합하여 임의 연산작업을 각 그룹별로 수행시킬 수 있다.
 
@@ -103,6 +109,7 @@ gapminder %>%
 
 
 ### 중기 `tidyverse` 시대 {#ddplyr-midage-tidyverse}
+\index{purrrlyr}
 
 `group_by()` + `by_slice()`를 결합하여 분할-적용-병합 전략을 적용시킬 수도 있으나 `by_slice()` 함수가 `dplyr::do()` 함수와 같은 작업을 수행했고, `purrrlyr`로 갔다가 그 후 행방이 묘연해졌다. 
 
@@ -116,6 +123,7 @@ gapminder %>%
 ```
 
 ### 현대 `tidyverse` 시대 {#ddplyr-current-tidyverse}
+\index{purrr}
 
 현대 분할-적용-병합 전략은 `group_by` + `nest()`로 그룹별 데이터프레임으로 만들고, `mutate(map())`을 사용해서 `calc_GDP()` 함수를 적용시켜 GDP를 계산하고, `summarize()` 함수를 적용시켜 각 대륙별 평균 GDP를 계산한다. 마지막으로 `unnest`를 적용시켜 원하는 산출물을 얻는다.
 
@@ -196,6 +204,7 @@ mean(withGDP[withGDP$continent == "Asia", "gdp"])
 그리고 분할된 집단에 연산을 *적용(apply)*한 후, 선택적으로 결과를 묶어 *병합(combine)*한다.
 
 ### `dplyr` 패키지
+\index{dplyr}
 
 `dplyr` 패키지는 데이터 조작을 위한 문법을 제공하며, 이를 통해 "분할-적용-병합" 문제를 해결할 수 있다. 먼저 `dplyr` 패키지를 로드하고, `dplyr`을 사용하여 대륙별 평균 GDP를 빠르게 계산한다.
 

@@ -7,8 +7,14 @@ editor:
     wrap: 72
 ---
 
+```{r}
+#| include: false
+
+source("_common.R")
+```
 
 # 데이터 과학 함수 {#sec-data-science-functions}
+\index{데이터 과학!함수}
 
 일반 프로그래밍 언어 함수와 `tidyverse` 데이터 과학 함수에서 차이점이 발견되는데 그 이유는 개발된 목적과 사용 환경 차이에 기인한다. C/C++, 파이썬, 자바스크립트와 같은 프로그래밍 언어 함수는 광범위한 프로그래밍 작업에 적합하도록 설계된 반면, `tidyverse` 함수는 R 언어에서 데이터 조작과 시각화, 모형 개발에 특화되었다.
 
@@ -30,6 +36,7 @@ editor:
 - 데이터프레임을 입력받아 그래프를 반환하는 함수.
 
 ## 신관제거 주입 패턴
+\index{신관제거 주입 패턴} \index{defuse-and-inject pattern} \index{enquo} 
 
 `tidy evaluation`에서 신관제거 주입(Defuse-and-Inject) 패턴을 통해 데이터프레임을 다루는 `dplyr` 패키지와 그래프 문법에 따른 시각화를 수행하는 `ggplot2` 패키지에 함수를 직관적으로 적용시킬 수 있다. **신관제거(defuse)**는 기본적으로 표현식의 평가를 지연시켜 바로 실행되는 것을 막는 역할을 수행한다. 이런 기능을 통해 환경의 맥락을 유지하는 역할을 한다. **주입(injection)**은 포획되거나 신관제거된 표현식을 다른 맥락에서 평가하거나 다른 표현식에 주입하는 개념이다. 신관제거에 `enquo()`가 사용되었다면, 주입에는 `!!` (뱅뱅이라고 읽음) 연산자를 사용하여 다른 함수 내부에서 평가되어 실행되는 역할을 수행한다. 
 
@@ -57,6 +64,9 @@ penguins %>% filter_na(sex)
 주입시켜 평가 작업을 수행하여 원하는 결과를 반환한다.
 
 ## 역사
+\index{데이터 마스킹} \index{data masking} \index{rlang} 
+\index{attach} \index{frametools} \index{rlang} 
+
 
 `tidyverse`는 **데이터 마스킹(data-masking)** 방식을 `ggplot2`, `dplyr`
 패키지에 도입했지만, 결국 `rlang` 패키지에 자체 프로그래밍 프레임워크를
@@ -84,13 +94,14 @@ penguins %>% filter_na(sex)
 |   **행 필터링 (Filter)**    |              `subset(data, condition)`               |                       `data %>% filter(condition)`                        |
 | **특정 칼럼 선택 (Select)** |             `data[, c("col1", "col2")]`              |                       `data %>% select(col1, col2)`                       |
 |     **그룹별 집계작업**     |   `aggregate(. ~ grouping_var, data, FUN = mean)`    | `data %>% group_by(grouping_var) %>% summarize(new_col = mean(col_name))` |
-|       조인(Join)          |       `merge(data1, data2, by = "key_column")`       |             `data1 %>% inner_join(data2, by = "key_column")`              |
+|     **조인(Join)**       |       `merge(data1, data2, by = "key_column")`       |             `data1 %>% inner_join(data2, by = "key_column")`              |
 |        **칼럼 추가**        | `transform(data, new_col = some_func(existing_col))` |           `data %>% mutate(new_col = some_func(existing_col))`            |
 |         **행 결합**         |                `rbind(data1, data2)`                 |                         `bind_rows(data1, data2)`                         |
 |        **칼럼 결합**        |                `cbind(data1, data2)`                 |                         `bind_cols(data1, data2)`                         |
 |          **정렬**           |            `data[order(data$col_name), ]`            |                       `data %>% arrange(col_name)`                        |
 
 ### `attach()` 함수
+\index{attach} \index{detach}
 
 데이터프레임에 `attach()` 함수를 사용하면 데이터프레임을 구성하는 칼럼이
 벡터로 작업 환경에서 바로 접근하여 작업을 수행할 수 있다. `penguins`
@@ -111,6 +122,7 @@ detach(penguins)
 ```
 
 ### `with()` 함수
+\index{with}
 
 `attach()` 함수는 편리한 장점이 있지만, 데이터프레임 변수명과 함수명, 또
 다른 작업에서 나온 객체명과 충돌이 발생할 경우 전혀 생각하지 못한 문제가
@@ -126,6 +138,7 @@ with(data = penguins,
 ```
 
 ### `aggregate()` 함수
+\index{aggregate}  
 
 Base R에서 지원되는 `aggregate()` 함수를 사용해서 동일한 결과를 얻을 수
 있다. `aggregate()` 함수는 `with()`와 지향점은 유사하지만 구현 방식에서
@@ -140,6 +153,7 @@ aggregate(bill_depth_mm ~ 1,
 
 
 ## 데이터 마스킹
+\index{데이터 마스킹} \index{Data Masking} \index{dplyr}
 
 R에서의 **데이터 마스킹(Data Masking)**은 `tidyverse` 생태계에서 데이터
 문법을 담당하는 `dplyr` 패키지에서 핵심적인 개념이다. 데이터 마스킹을
@@ -182,6 +196,7 @@ penguins %>%
 |  **복잡성**   | \- 최종 사용자를 위해 간소화. <br> - 기본적인 복잡성을 추상화.                                              | \- R 메타프로그래밍 이해 필요. <br> - 고급 사용자에게 더 많은 유연성 제공.                                                       |
 
 ## 깔끔한 평가
+\index{깔끔한 평가} \index{Tidy Evaluation}
 
 **깔끔한 평가(Tidy evaluation)**은 R `tidyverse` 프레임워크로, 특히
 비표준 평가(Non-Standard Evaluation, NSE)와 관련하여 `tidyverse` 함수로
@@ -291,6 +306,11 @@ get_group_mean(penguins, species, bill_length_mm)
 스크립트를 다음과 같이 작성한다.
 
 ```{r}
+#| label: fig-purrr-bar-chart
+#| fig-cap: 범주형 변수를 막대그래프로 시각화
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: '70%'
 library(ggplot2)
 library(palmerpenguins)
 
@@ -300,9 +320,16 @@ penguins |>
     geom_col(width = 0.5)
 ```
 
+![함수 인자를 달리하여 제작하는 그래프](images/function_graph.jpg){#fig-function-graph}
+
 범주형 변수를 막대그래프로 시각화하는 함수를 제작해보자.
 
 ```{r}
+#| label: fig-function-graph
+#| fig-cap: 함수 인자를 달리하여 막대그래프 제작
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: '70%'
 draw_bar_chart <- function(dataframe, varname) {
   dataframe |> 
     count( {{ varname }} ) |> 
@@ -313,7 +340,6 @@ draw_bar_chart <- function(dataframe, varname) {
 penguins |> draw_bar_chart(year)
 ```
 
-![함수 인자를 달리하여 제작하는 그래프](images/function_graph.jpg){#fig-function-graph}
 
 함수 내에서 새로운 변수 이름을 생성하는 경우 `:=` 연산자를 사용해야 한다.
 깔끔한 평가(tidy evaluation)에서 `=`와 동일한 역할을 수행하는 것이 `:=`
@@ -322,6 +348,11 @@ penguins |> draw_bar_chart(year)
 재정의해야 하는데 이때 `:=` 연산자의 도입이 필요하다.
 
 ```{r}
+#| label: fig-function-order-graph
+#| fig-cap: 함수 내에서 범주형 변수 재정의 막대그래프
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: '70%'
 library(forcats)
 
 order_bar_chart <- function(dataframe, varname) {
@@ -340,6 +371,11 @@ penguins |> order_bar_chart(island)
 기능이 `rlang` 패키지의 `englue()` 함수다.
 
 ```{r}
+#| label: fig-function-label-graph
+#| fig-cap: 변수명과 문자열을 함수로 전달하여 그래프 제작
+#| fig-width: 6
+#| fig-height: 4
+#| out-width: '70%'
 draw_bar_chart <- function(dataframe, varname, penguin_species) {
   
   title_label <- rlang::englue("남극 서식 펭귄 종 ({{ varname }}) {penguin_species} 빈도수")

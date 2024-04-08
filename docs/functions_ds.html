@@ -495,11 +495,12 @@ ga('send', {
   
 
 
-</header><p>일반 프로그래밍 언어 함수와 <code>tidyverse</code> 데이터 과학 함수에서 차이점이 발견되는데 그 이유는 개발된 목적과 사용 환경 차이에 기인한다. C/C++, 파이썬, 자바스크립트와 같은 프로그래밍 언어 함수는 광범위한 프로그래밍 작업에 적합하도록 설계된 반면, <code>tidyverse</code> 함수는 R 언어에서 데이터 조작과 시각화, 모형 개발에 특화되었다.</p>
+</header><p></p>
+<p>일반 프로그래밍 언어 함수와 <code>tidyverse</code> 데이터 과학 함수에서 차이점이 발견되는데 그 이유는 개발된 목적과 사용 환경 차이에 기인한다. C/C++, 파이썬, 자바스크립트와 같은 프로그래밍 언어 함수는 광범위한 프로그래밍 작업에 적합하도록 설계된 반면, <code>tidyverse</code> 함수는 R 언어에서 데이터 조작과 시각화, 모형 개발에 특화되었다.</p>
 <p>따라서, R 언어 <code>tidyverse</code> 프레임워크는 일반 프로그래밍 언어가 갖는 함수의 장점은 차용하고 불편한 점은 개선하여 데이터 과학 업무에 적합한 함수 개발 및 활용 체계를 구축하게 되었다. 특히 <code>tidyverse</code>를 구성하는 <code>dplyr</code>, <code>ggplot2</code> 같은 패키지는 깔끔한 데이터(‘tidy’) 형식을 공통 기반으로 삼고 있어 데이터 과학 작업을 더 직관적이고 효율적으로 수행할 수 있다.</p>
 <div id="fig-dataframe-function" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-dataframe-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/function_vector.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/function_vector.jpg" class="img-fluid figure-img"></a>
+<a href="images/function_vector.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/function_vector.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dataframe-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;17.1: 데이터프레임 처리에 중점을 둔 함수
@@ -520,6 +521,7 @@ ga('send', {
 </ul>
 <section id="신관제거-주입-패턴" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="신관제거-주입-패턴">
 <span class="header-section-number">17.1</span> 신관제거 주입 패턴</h2>
+<p> </p>
 <p><code>tidy evaluation</code>에서 신관제거 주입(Defuse-and-Inject) 패턴을 통해 데이터프레임을 다루는 <code>dplyr</code> 패키지와 그래프 문법에 따른 시각화를 수행하는 <code>ggplot2</code> 패키지에 함수를 직관적으로 적용시킬 수 있다. <strong>신관제거(defuse)</strong>는 기본적으로 표현식의 평가를 지연시켜 바로 실행되는 것을 막는 역할을 수행한다. 이런 기능을 통해 환경의 맥락을 유지하는 역할을 한다. <strong>주입(injection)</strong>은 포획되거나 신관제거된 표현식을 다른 맥락에서 평가하거나 다른 표현식에 주입하는 개념이다. 신관제거에 <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code>가 사용되었다면, 주입에는 <code>!!</code> (뱅뱅이라고 읽음) 연산자를 사용하여 다른 함수 내부에서 평가되어 실행되는 역할을 수행한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -537,23 +539,20 @@ ga('send', {
 <span><span class="co"># 사용방법</span></span>
 <span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">filter_na</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 11 × 5</span></span>
-<span><span class="co">#&gt;    species island    sex    year body_mass_g</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; &lt;int&gt;       &lt;int&gt;</span></span>
-<span><span class="co">#&gt;  1 Adelie  Torgersen &lt;NA&gt;   2007          NA</span></span>
-<span><span class="co">#&gt;  2 Adelie  Torgersen &lt;NA&gt;   2007        3475</span></span>
-<span><span class="co">#&gt;  3 Adelie  Torgersen &lt;NA&gt;   2007        4250</span></span>
-<span><span class="co">#&gt;  4 Adelie  Torgersen &lt;NA&gt;   2007        3300</span></span>
-<span><span class="co">#&gt;  5 Adelie  Torgersen &lt;NA&gt;   2007        3700</span></span>
-<span><span class="co">#&gt;  6 Adelie  Dream     &lt;NA&gt;   2007        2975</span></span>
-<span><span class="co">#&gt;  7 Gentoo  Biscoe    &lt;NA&gt;   2007        4100</span></span>
-<span><span class="co">#&gt;  8 Gentoo  Biscoe    &lt;NA&gt;   2008        4650</span></span>
-<span><span class="co">#&gt;  9 Gentoo  Biscoe    &lt;NA&gt;   2009        4725</span></span>
-<span><span class="co">#&gt; 10 Gentoo  Biscoe    &lt;NA&gt;   2009        4875</span></span>
-<span><span class="co">#&gt; 11 Gentoo  Biscoe    &lt;NA&gt;   2009          NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   species island    sex    year body_mass_g</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; &lt;int&gt;       &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen &lt;NA&gt;   2007          NA</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen &lt;NA&gt;   2007        3475</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen &lt;NA&gt;   2007        4250</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen &lt;NA&gt;   2007        3300</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen &lt;NA&gt;   2007        3700</span></span>
+<span><span class="co">#&gt; 6 Adelie  Dream     &lt;NA&gt;   2007        2975</span></span>
+<span><span class="co">#&gt; # ℹ 5 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>filter_na()</code> 함수는 데이터프레임과 칼럼명을 인자로 전달받아 칼럼명에 결측값이 있는 행만 추출하여 반환하는 역할을 수행한다. 이를 위해 칼럼명을 신관제거하여 <code>col_quo</code> 표현식으로 지연시킨 후에 <code>!!col_quo</code>에 주입시켜 평가 작업을 수행하여 원하는 결과를 반환한다.</p>
 </section><section id="역사" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="역사">
 <span class="header-section-number">17.2</span> 역사</h2>
+<p> </p>
 <p><code>tidyverse</code>는 <strong>데이터 마스킹(data-masking)</strong> 방식을 <code>ggplot2</code>, <code>dplyr</code> 패키지에 도입했지만, 결국 <code>rlang</code> 패키지에 자체 프로그래밍 프레임워크를 장착했다. <code>rlang</code> 패키지의 신관제거 주입(<code>Defuse-and-Inject</code>) 패턴에 이르는 과정은 이전의 다양한 시도를 통해 학습된 배움의 과정이었다.</p>
 <ul>
 <li>S언어에서 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수로 데이터 범위 개념을 도입했다. <span class="citation" data-cites="becker2018new">(Becker 2018)</span>
@@ -596,7 +595,7 @@ ga('send', {
 <td style="text-align: center;"><code>data %&gt;% group_by(grouping_var) %&gt;% summarize(new_col = mean(col_name))</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">조인(Join)</td>
+<td style="text-align: center;"><strong>조인(Join)</strong></td>
 <td style="text-align: center;"><code>merge(data1, data2, by = "key_column")</code></td>
 <td style="text-align: center;"><code>data1 %&gt;% inner_join(data2, by = "key_column")</code></td>
 </tr>
@@ -624,6 +623,7 @@ ga('send', {
 </table>
 <section id="attach-함수" class="level3" data-number="17.2.1"><h3 data-number="17.2.1" class="anchored" data-anchor-id="attach-함수">
 <span class="header-section-number">17.2.1</span> <code>attach()</code> 함수</h3>
+<p> </p>
 <p>데이터프레임에 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수를 사용하면 데이터프레임을 구성하는 칼럼이 벡터로 작업 환경에서 바로 접근하여 작업을 수행할 수 있다. <code>penguins</code> 데이터프레임을 <code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code>한 결과 <code>bill_depth_mm</code> 벡터가 작업 환경에서 바로 접근하여 평균값을 계산할 수 있게 되었다. 작업을 완료한 후에는 <code><a href="https://rdrr.io/r/base/detach.html">detach()</a></code>를 사용해서 작업 환경에서 제거한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
@@ -642,6 +642,7 @@ ga('send', {
 </div>
 </section><section id="with-함수" class="level3" data-number="17.2.2"><h3 data-number="17.2.2" class="anchored" data-anchor-id="with-함수">
 <span class="header-section-number">17.2.2</span> <code>with()</code> 함수</h3>
+<p></p>
 <p><code><a href="https://rdrr.io/r/base/attach.html">attach()</a></code> 함수는 편리한 장점이 있지만, 데이터프레임 변수명과 함수명, 또 다른 작업에서 나온 객체명과 충돌이 발생할 경우 전혀 생각하지 못한 문제가 발생할 수 있다. 따라서, 격리를 통해 문제를 단순화하는 것이 필요하다. 이를 위해서 <code><a href="https://rdrr.io/r/base/with.html">with()</a></code> 함수를 사용하게 되면 데이터프레임에 속한 칼럼명을 명시하지 않더라도 간결하게 데이터 분석 작업을 이어나갈 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
@@ -652,6 +653,7 @@ ga('send', {
 </div>
 </section><section id="aggregate-함수" class="level3" data-number="17.2.3"><h3 data-number="17.2.3" class="anchored" data-anchor-id="aggregate-함수">
 <span class="header-section-number">17.2.3</span> <code>aggregate()</code> 함수</h3>
+<p></p>
 <p>Base R에서 지원되는 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 사용해서 동일한 결과를 얻을 수 있다. <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수는 <code><a href="https://rdrr.io/r/base/with.html">with()</a></code>와 지향점은 유사하지만 구현 방식에서 다소 차이가 난다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">bill_depth_mm</span> <span class="op">~</span> <span class="fl">1</span>, </span>
@@ -663,6 +665,7 @@ ga('send', {
 </div>
 </section></section><section id="데이터-마스킹" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="데이터-마스킹">
 <span class="header-section-number">17.3</span> 데이터 마스킹</h2>
+<p> </p>
 <p>R에서의 <strong>데이터 마스킹(Data Masking)</strong>은 <code>tidyverse</code> 생태계에서 데이터 문법을 담당하는 <code>dplyr</code> 패키지에서 핵심적인 개념이다. 데이터 마스킹을 사용하면 데이터프레임 칼럼을 <code>$</code>, <code>[[ ]]</code>를 사용하지 않고도 칼럼명으로 직접 참조할 수 있어, 데이터를 조작하고 변환할 때 훨씬 직관적이고 가독성 높은 코드를 작성할 수 있다.</p>
 <p><code>penguins</code> 데이터프레임의 <code>species</code>를 데이터 마스킹 없이 조작하려면 <code>penguins$species</code> 혹은 <code>penguins[['species']]</code>와 같이 구문을 작성해야 하지만 데이터 마스킹을 사용하면 <code>species</code>만으로 충분하다.</p>
 <div class="cell">
@@ -672,20 +675,16 @@ ga('send', {
 <span><span class="co"># 데이터 마스킹을 사용하여 펭귄 종(species)이 "Adelie"인 것만 추출한다.</span></span>
 <span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 152 × 8</span></span>
-<span><span class="co">#&gt;    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;</span></span>
-<span><span class="co">#&gt;  1 Adelie  Torgersen           39.1          18.7               181        3750</span></span>
-<span><span class="co">#&gt;  2 Adelie  Torgersen           39.5          17.4               186        3800</span></span>
-<span><span class="co">#&gt;  3 Adelie  Torgersen           40.3          18                 195        3250</span></span>
-<span><span class="co">#&gt;  4 Adelie  Torgersen           NA            NA                  NA          NA</span></span>
-<span><span class="co">#&gt;  5 Adelie  Torgersen           36.7          19.3               193        3450</span></span>
-<span><span class="co">#&gt;  6 Adelie  Torgersen           39.3          20.6               190        3650</span></span>
-<span><span class="co">#&gt;  7 Adelie  Torgersen           38.9          17.8               181        3625</span></span>
-<span><span class="co">#&gt;  8 Adelie  Torgersen           39.2          19.6               195        4675</span></span>
-<span><span class="co">#&gt;  9 Adelie  Torgersen           34.1          18.1               193        3475</span></span>
-<span><span class="co">#&gt; 10 Adelie  Torgersen           42            20.2               190        4250</span></span>
-<span><span class="co">#&gt; # ℹ 142 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen           39.1          18.7               181</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen           39.5          17.4               186</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen           40.3          18                 195</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen           NA            NA                  NA</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen           36.7          19.3               193</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen           39.3          20.6               190</span></span>
+<span><span class="co">#&gt; # ℹ 146 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>dplyr</code> 함수의 데이터 마스킹은 비표준 평가(Non-standard evaluation, NSE)라는 개념에 기반을 두는데, 표현식을 캡처하고 난 후 바로 실행되지 않고 제공된 데이터의 맥락 내에서 평가가 이루어진다. 데이터 마스킹은 강력하며 깔끔한 구문을 제공하지만, 칼럼명과 충돌할 수 있는 환경의 변수 이름이 있을 때 예기치 않은 방식으로 동작한다. 모호한 상황이 발생할 때 항상 다음과 같은 방식으로 <code>.data$column_name</code>을 사용함으로써 데이터 마스킹 재정의(Overriding)를 통해 명확히 한다.</p>
 <div class="cell">
@@ -694,20 +693,16 @@ ga('send', {
 <span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 152 × 8</span></span>
-<span><span class="co">#&gt;    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;</span></span>
-<span><span class="co">#&gt;  1 Adelie  Torgersen           39.1          18.7               181        3750</span></span>
-<span><span class="co">#&gt;  2 Adelie  Torgersen           39.5          17.4               186        3800</span></span>
-<span><span class="co">#&gt;  3 Adelie  Torgersen           40.3          18                 195        3250</span></span>
-<span><span class="co">#&gt;  4 Adelie  Torgersen           NA            NA                  NA          NA</span></span>
-<span><span class="co">#&gt;  5 Adelie  Torgersen           36.7          19.3               193        3450</span></span>
-<span><span class="co">#&gt;  6 Adelie  Torgersen           39.3          20.6               190        3650</span></span>
-<span><span class="co">#&gt;  7 Adelie  Torgersen           38.9          17.8               181        3625</span></span>
-<span><span class="co">#&gt;  8 Adelie  Torgersen           39.2          19.6               195        4675</span></span>
-<span><span class="co">#&gt;  9 Adelie  Torgersen           34.1          18.1               193        3475</span></span>
-<span><span class="co">#&gt; 10 Adelie  Torgersen           42            20.2               190        4250</span></span>
-<span><span class="co">#&gt; # ℹ 142 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   species island    bill_length_mm bill_depth_mm flipper_length_mm</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen           39.1          18.7               181</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen           39.5          17.4               186</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen           40.3          18                 195</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen           NA            NA                  NA</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen           36.7          19.3               193</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen           39.3          20.6               190</span></span>
+<span><span class="co">#&gt; # ℹ 146 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <table class="table">
 <colgroup>
@@ -744,6 +739,7 @@ ga('send', {
 </tbody>
 </table></section><section id="깔끔한-평가" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="깔끔한-평가">
 <span class="header-section-number">17.4</span> 깔끔한 평가</h2>
+<p> </p>
 <p><strong>깔끔한 평가(Tidy evaluation)</strong>은 R <code>tidyverse</code> 프레임워크로, 특히 비표준 평가(Non-Standard Evaluation, NSE)와 관련하여 <code>tidyverse</code> 함수로 프로그래밍하는 방법을 표준화했다. NSE는 R 함수가 표준과는 다른 맥락에서 표현식을 평가할 때 발생한다.</p>
 <ul>
 <li>준인용(Quasiquotation): <code><a href="https://rlang.r-lib.org/reference/enquo.html">enquo()</a></code> 함수를 사용하여 표현식을 캡처하고 <code>!!</code>를 사용하여 표현식의 인용 제거(Unquoting)를 가능케 한다.</li>
@@ -819,7 +815,7 @@ ga('send', {
 </div>
 <div id="fig-function-group-mean" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-group-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/function_dataframe.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/function_dataframe.jpg" class="img-fluid figure-img"></a>
+<a href="images/function_dataframe.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/function_dataframe.jpg" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-group-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;17.2: 그룹 평균을 구하는 함수 사례
@@ -866,11 +862,23 @@ ga('send', {
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">island</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="functions_ds_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-purrr-bar-chart" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-purrr-bar-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="functions_ds_files/figure-html/fig-purrr-bar-chart-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="functions_ds_files/figure-html/fig-purrr-bar-chart-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-purrr-bar-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;17.3: 범주형 변수를 막대그래프로 시각화
+</figcaption></figure>
 </div>
 </div>
+</div>
+<div id="fig-function-graph" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/function_graph.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/function_graph.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;17.4: 함수 인자를 달리하여 제작하는 그래프
+</figcaption></figure>
 </div>
 <p>범주형 변수를 막대그래프로 시각화하는 함수를 제작해보자.</p>
 <div class="cell">
@@ -883,19 +891,15 @@ ga('send', {
 <span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">draw_bar_chart</span><span class="op">(</span><span class="va">year</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="functions_ds_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-</div>
 <div id="fig-function-graph" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/function_graph.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="images/function_graph.jpg" class="img-fluid figure-img"></a>
+<a href="functions_ds_files/figure-html/fig-function-graph-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="functions_ds_files/figure-html/fig-function-graph-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;17.3: 함수 인자를 달리하여 제작하는 그래프
+그림&nbsp;17.5: 함수 인자를 달리하여 막대그래프 제작
 </figcaption></figure>
+</div>
+</div>
 </div>
 <p>함수 내에서 새로운 변수 이름을 생성하는 경우 <code>:=</code> 연산자를 사용해야 한다. 깔끔한 평가(tidy evaluation)에서 <code>=</code>와 동일한 역할을 수행하는 것이 <code>:=</code> 이기 때문이다. 예를 들어, 펭귄이 서식하고 있는 섬을 기준으로 빈도수를 내림차순 막대그래프를 작성할 경우, 함수 내부에서 범주형 변수를 다시 재정의해야 하는데 이때 <code>:=</code> 연산자의 도입이 필요하다.</p>
 <div class="cell">
@@ -910,9 +914,13 @@ ga('send', {
 <span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">order_bar_chart</span><span class="op">(</span><span class="va">island</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="functions_ds_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-function-order-graph" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-order-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="functions_ds_files/figure-html/fig-function-order-graph-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="functions_ds_files/figure-html/fig-function-order-graph-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-order-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;17.6: 함수 내에서 범주형 변수 재정의 막대그래프
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -932,9 +940,13 @@ ga('send', {
 <span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">draw_bar_chart</span><span class="op">(</span><span class="va">species</span>, <span class="st">"Adelie"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="functions_ds_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="functions_ds_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-function-label-graph" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-label-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="functions_ds_files/figure-html/fig-function-label-graph-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="functions_ds_files/figure-html/fig-function-label-graph-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-label-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;17.7: 변수명과 문자열을 함수로 전달하여 그래프 제작
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -948,7 +960,11 @@ ga('send', {
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;17.1: 데이터프레임 처리에 중점을 둔 함수</span>
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;17.2: 그룹 평균을 구하는 함수 사례</span>
-<span class="glightbox-desc lightbox-desc-5">그림&nbsp;17.3: 함수 인자를 달리하여 제작하는 그래프</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;17.3: 범주형 변수를 막대그래프로 시각화</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;17.4: 함수 인자를 달리하여 제작하는 그래프</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;17.5: 함수 인자를 달리하여 막대그래프 제작</span>
+<span class="glightbox-desc lightbox-desc-6">그림&nbsp;17.6: 함수 내에서 범주형 변수 재정의 막대그래프</span>
+<span class="glightbox-desc lightbox-desc-7">그림&nbsp;17.7: 변수명과 문자열을 함수로 전달하여 그래프 제작</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-becker2018new" class="csl-entry" role="listitem">
@@ -1428,7 +1444,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

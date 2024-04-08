@@ -509,9 +509,11 @@ window.Quarto = {
   
 
 
-</header><p>많은 회귀모형(Many models)은 데이터 과학에서 흔히 관찰되는 다양한 소그룹이나 개별 요소에 대해 단순한 모형을 독립적으로 적용하는 데이터 분석 방식이다. 복잡한 데이터셋 내에서 각 세부 요소를 분석함으로써 전체 데이터의 이해도를 높이는 데 도움이 되고, 각 모형을 통해 특정 그룹이나 요소의 고유한 특성과 변동성을 파악할 수 있어 데이터 내 숨겨진 패턴이나 관계를 발견할 수 있다. 예를 들어, 시도 단위로 나뉜 행정구역 데이터의 숨겨진 패턴과 관계를 시도 단위로 나누고 단순한 회귀모형을 적합시켜 회귀모형에 담긴 정보를 <code>broom</code> 패키지를 통해 추출하여 시각화하거나 요약통계량을 구함으로써 다른 모형으로는 찾기 어려운 시도별 숨겨진 패턴을 발견할 수 있고 리스트 칼럼(list column) 자료형으로 수월한 커뮤니케이션도 가능하다.</p>
+</header><p> </p>
+<p>많은 회귀모형(Many models)은 데이터 과학에서 흔히 관찰되는 다양한 소그룹이나 개별 요소에 대해 단순한 모형을 독립적으로 적용하는 데이터 분석 방식이다. 복잡한 데이터셋 내에서 각 세부 요소를 분석함으로써 전체 데이터의 이해도를 높이는 데 도움이 되고, 각 모형을 통해 특정 그룹이나 요소의 고유한 특성과 변동성을 파악할 수 있어 데이터 내 숨겨진 패턴이나 관계를 발견할 수 있다. 예를 들어, 시도 단위로 나뉜 행정구역 데이터의 숨겨진 패턴과 관계를 시도 단위로 나누고 단순한 회귀모형을 적합시켜 회귀모형에 담긴 정보를 <code>broom</code> 패키지를 통해 추출하여 시각화하거나 요약통계량을 구함으로써 다른 모형으로는 찾기 어려운 시도별 숨겨진 패턴을 발견할 수 있고 리스트 칼럼(list column) 자료형으로 수월한 커뮤니케이션도 가능하다.</p>
 <section id="model-reg-viz-data" class="level3" data-number="13.0.1"><h3 data-number="13.0.1" class="anchored" data-anchor-id="model-reg-viz-data">
 <span class="header-section-number">13.0.1</span> 기대수명 데이터</h3>
+<p> </p>
 <p>many models를 적용할 수 있는 데이터는 흔히 주변에서 찾을 수 있다. 여기서는 <code>gapminder</code> 데이터셋을 사용하여 다양한 국가별 기대수명 데이터를 활용하여 회귀모형을 구축하고 시각화하는 방법을 알아본다. <code>gapminder</code> 데이터를 가지고 회귀모형을 구축하고 모형을 활용하여 종속변수(기대수명, <code>lifeExp</code>)가 늘어나지 못한 국가를 찾아내고 어떠한 특징을 가지고 있는지 <code>broom</code> 패키지로 회귀모형 결과를 다시 데이터프레임으로 구축한 후 결정계수 <span class="math inline">\(R^2\)</span> 혹은 AIC/BIC/SBC와 같은 통계량을 통해 걸러낸 후 커뮤니케이션을 위해 시각화하는 방법을 살펴보자.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 0. 환경설정 -----</span></span>
@@ -522,23 +524,20 @@ window.Quarto = {
 <span><span class="co"># 1. 데이터 -----</span></span>
 <span><span class="va">gapminder</span></span>
 <span><span class="co">#&gt; # A tibble: 1,704 × 6</span></span>
-<span><span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
-<span><span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
-<span><span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
-<span><span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
-<span><span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
-<span><span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
-<span><span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
-<span><span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span></span>
-<span><span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span></span>
-<span><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span></span>
-<span><span class="co">#&gt; # ℹ 1,694 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   country     continent  year lifeExp      pop gdpPercap</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
+<span><span class="co">#&gt; 2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
+<span><span class="co">#&gt; 3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
+<span><span class="co">#&gt; 4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
+<span><span class="co">#&gt; 5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
+<span><span class="co">#&gt; 6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
+<span><span class="co">#&gt; # ℹ 1,698 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Gapminder 데이터셋<span class="citation" data-cites="rosling2019factfulness">(로슬링 2019)</span>은 전 세계 국가들의 건강, 교육, 경제 등 다양한 지표에 관한 통계 데이터를 연도별로 제공하여 국가 간 발전 격차와 시간에 따른 변화 정보를 담고 있다. 한스 로슬링의 TED 강연을 통해 대중들의 국가 간 격차와 발전에 대한 인식을 변화시켰을 뿐만 아니라, 혁신적인 데이터 시각화 기법을 사용하여 데이터 시각화 분야의 발전에 영감을 주었으며, 학생들과 연구자들에게 실제 데이터를 활용한 분석 및 시각화 연습의 기회를 제공하고 있다. 제니 브라이언이 만든 <a href="https://github.com/jennybc/gapminder">gapminer</a> 데이터 패키지는 gapminder 데이터셋을 R에서 쉽게 활용할 수 있도록 제공되어 <code>gganimate</code>, <code>ggplot</code> 등 다양한 R 패키지와 결합하여 펭귄 데이터와 함께 데이터 과학의 기본 데이터로 자리매김하고 있다.</p>
 </section><section id="model-reg-viz-model" class="level3" data-number="13.0.2"><h3 data-number="13.0.2" class="anchored" data-anchor-id="model-reg-viz-model">
 <span class="header-section-number">13.0.2</span> 기대수명 회귀분석</h3>
+<p></p>
 <p>대륙과 국가를 그룹으로 잡아 회귀분석을 각각에 대해서 돌리고 나서, 모형 결과값을 데이터와 모형이 함께 위치하도록 티블(tibble)에 저장시켜 놓는다. 그리고 나서, 주요한 회귀모형 성능지표인 결정계수(<span class="math inline">\(R^2\)</span>)를 기준으로 정렬시킨다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. 모형 -----</span></span>
@@ -556,22 +555,19 @@ window.Quarto = {
 <span><span class="va">by_country</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">rsquare</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 142 × 6</span></span>
-<span><span class="co">#&gt;    country          continent data              model  model_glance      rsquare</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;            &lt;fct&gt;     &lt;list&gt;            &lt;list&gt; &lt;list&gt;              &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 Rwanda           Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0172</span></span>
-<span><span class="co">#&gt;  2 Botswana         Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0340</span></span>
-<span><span class="co">#&gt;  3 Zimbabwe         Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0562</span></span>
-<span><span class="co">#&gt;  4 Zambia           Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0598</span></span>
-<span><span class="co">#&gt;  5 Swaziland        Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0682</span></span>
-<span><span class="co">#&gt;  6 Lesotho          Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0849</span></span>
-<span><span class="co">#&gt;  7 Cote d'Ivoire    Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.283 </span></span>
-<span><span class="co">#&gt;  8 South Africa     Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.312 </span></span>
-<span><span class="co">#&gt;  9 Uganda           Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.342 </span></span>
-<span><span class="co">#&gt; 10 Congo, Dem. Rep. Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.348 </span></span>
-<span><span class="co">#&gt; # ℹ 132 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   country   continent data              model  model_glance      rsquare</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;list&gt;            &lt;list&gt; &lt;list&gt;              &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Rwanda    Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0172</span></span>
+<span><span class="co">#&gt; 2 Botswana  Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0340</span></span>
+<span><span class="co">#&gt; 3 Zimbabwe  Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0562</span></span>
+<span><span class="co">#&gt; 4 Zambia    Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0598</span></span>
+<span><span class="co">#&gt; 5 Swaziland Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0682</span></span>
+<span><span class="co">#&gt; 6 Lesotho   Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [1 × 12]&gt;  0.0849</span></span>
+<span><span class="co">#&gt; # ℹ 136 more rows</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="model-reg-viz-model-trelliscope" class="level3" data-number="13.0.3"><h3 data-number="13.0.3" class="anchored" data-anchor-id="model-reg-viz-model-trelliscope">
 <span class="header-section-number">13.0.3</span> 회귀모형 시각화</h3>
+<p> </p>
 <p>데이터셋 <code>by_country</code>를 이용하여 각 나라별로 회귀모형 <span class="math inline">\(R^2\)</span> (결정 계수) 값을 기반으로 “적합국”과 “비적합국”을 분류하고, 그 결과를 시각화한다. <span class="math inline">\(R^2\)</span> 값이 큰 나라 5개와 작은 나라 5개를 추출하여 기대수명 변화를 그래프로 시각화하면 국가별 차이를 명확히 보여준다.</p>
 <ol type="1">
 <li>
@@ -600,7 +596,6 @@ window.Quarto = {
 </ul>
 </li>
 </ol>
-<p>최종적으로는 각 국가별로 연도에 따른 기대수명 변화를 보여주는 그래프를 생성한다. <span class="math inline">\(R^2\)</span> 값이 높은 국가들은 빨간색으로, 낮은 국가들은 파란색으로 표시하고, 마지막으로 회귀모형이 얼마나 잘 적합되었는지에 따라 각 국가의 기대수명 변화 패턴을 비교한다. 파란색으로 회귀모형이 잘 적합된 경우에도 서로 다른 패턴이 확인된다. 즉, 선진국과 개발도상국 모두 제2차 세계대전 이후 기대수명이 증대했으나 선진국은 높은 기대수명에서, 개도국은 낮은 기대수명에서 시작해서 모두 기대수명이 높아진 것이 눈에 띈다. 하지만, 빨간색으로 회귀계수가 낮은 나라는 기대수명이 높아지다가 특정 사건으로 인해 기대수명이 제자리로 돌아온 이후 다시 기대수명이 높아지는 추세를 보여 비선형적 관계를 보여주고 있어 회귀계수가 전반적으로 낮게 나타났다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rsquare_max_countries</span> <span class="op">&lt;-</span> <span class="va">by_country</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">rsquare</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>  <span class="op">|&gt;</span> </span>
@@ -633,7 +628,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-gapminder-reg-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-reg-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_many_files/figure-html/fig-gapminder-reg-viz-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="models_many_files/figure-html/fig-gapminder-reg-viz-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_many_files/figure-html/fig-gapminder-reg-viz-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="models_many_files/figure-html/fig-gapminder-reg-viz-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-reg-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;13.1: 국가별 기대수명 회귀분석 결과 비교
@@ -641,8 +636,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>최종적으로는 각 국가별로 연도에 따른 기대수명 변화를 보여주는 그래프를 생성한다. <span class="math inline">\(R^2\)</span> 값이 높은 국가들은 빨간색으로, 낮은 국가들은 파란색으로 표시하고, 마지막으로 회귀모형이 얼마나 잘 적합되었는지에 따라 각 국가의 기대수명 변화 패턴을 비교한다. 파란색으로 회귀모형이 잘 적합된 경우에도 서로 다른 패턴이 확인된다. 즉, 선진국과 개발도상국 모두 제2차 세계대전 이후 기대수명이 증대했으나 선진국은 높은 기대수명에서, 개도국은 낮은 기대수명에서 시작해서 모두 기대수명이 높아진 것이 눈에 띈다. 하지만, 빨간색으로 회귀계수가 낮은 나라는 기대수명이 높아지다가 특정 사건으로 인해 기대수명이 제자리로 돌아온 이후 다시 기대수명이 높아지는 추세를 보여 비선형적 관계를 보여주고 있어 회귀계수가 전반적으로 낮게 나타났다.</p>
 </section><section id="모형식별" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="모형식별">
 <span class="header-section-number">13.1</span> 모형식별</h2>
+<p> </p>
 <p>회귀모형에서 모형 식별(model identification)은 적합한 회귀모형을 선택하는 과정으로 데이터에 가장 잘 맞는 변수들을 선택하고, 모형의 형태를 결정하는 매우 중요한 과정이다. 모형 식별은 주로 변수 선택, 모형 선형성, 오차의 독립성 및 등분산성, 변수 간의 다중공선성 문제 등을 종합적으로 고려하여 진행된다. 적절한 모형을 식별하는 작업은 예측 정확도를 높이고, 데이터에 내재된 본질적인 관계를 더 잘 이해하는 데 도움이 된다.</p>
 <p><code>purrr</code> 패키지를 활용하여 원본 모형 데이터와 모형을 하나의 데이터프레임(<code>tibble</code>)에 리스트 칼럼으로 담을 수 있다. 즉, 6가지 서로 다른 회귀모형을 일괄적으로 적합시키고 가장 AIC 값이 적은 회귀모형을 선택하는 코드<span class="citation" data-cites="ovando2018practical">(Ovando 2018)</span>를 다음과 같이 작성하여 many models 기법을 응용하여 모형식별에 적용할 수 있다.</p>
 <ol type="1">
@@ -709,6 +706,7 @@ window.Quarto = {
 </section><section id="cv-reg-model" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="cv-reg-model">
 <span class="header-section-number">13.2</span> 교차검증 <code>CV</code>
 </h2>
+<p> </p>
 <p>과거에는 컴퓨팅 자원이 부족하여 데이터에 회귀모형을 적합시키는 것이 어려운 일이었으나, 현재는 상황이 달라져 데이터 과학자, 즉 인적 자원의 가치가 높아졌다. 중요한 작업에서는 단순히 하나의 회귀모형을 적용하는 것이 아니라, 데이터를 여러 부분으로 나누고 교차검증을 통해 가장 낮은 RMSE 값을 가진 모형을 선정함으로써 위험도를 줄이고 신뢰성을 높일 수 있다. <code><a href="https://purrr.tidyverse.org/reference/cross.html">cross_df()</a></code> 함수를 사용하여 교차검증을 위한 데이터와 모형을 준비하고, <code>analysis()</code> 함수로 각 회귀모형을 적합시킨 뒤, <code>assessment()</code> 함수를 통해 모형의 성능을 평가한다. 마지막으로 RMSE 지표를 기준으로 최적의 모형을 선택한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## 교차검정 -----</span></span>
@@ -728,19 +726,15 @@ window.Quarto = {
 <span></span>
 <span><span class="va">cv_tbl</span></span>
 <span><span class="co">#&gt; # A tibble: 60 × 5</span></span>
-<span><span class="co">#&gt;    splits             id     model_name model_number reg_formula </span></span>
-<span><span class="co">#&gt;    &lt;list&gt;             &lt;chr&gt;  &lt;chr&gt;             &lt;int&gt; &lt;named list&gt;</span></span>
-<span><span class="co">#&gt;  1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  7 &lt;split [1534/170]&gt; Fold07 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  8 &lt;split [1534/170]&gt; Fold08 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt;  9 &lt;split [1534/170]&gt; Fold09 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt; 10 &lt;split [1534/170]&gt; Fold10 06_full               1 &lt;formula&gt;   </span></span>
-<span><span class="co">#&gt; # ℹ 50 more rows</span></span>
+<span><span class="co">#&gt;   splits             id     model_name model_number reg_formula </span></span>
+<span><span class="co">#&gt;   &lt;list&gt;             &lt;chr&gt;  &lt;chr&gt;             &lt;int&gt; &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;   </span></span>
+<span><span class="co">#&gt; 2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;   </span></span>
+<span><span class="co">#&gt; 3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;   </span></span>
+<span><span class="co">#&gt; 4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;   </span></span>
+<span><span class="co">#&gt; 5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;   </span></span>
+<span><span class="co">#&gt; 6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;   </span></span>
+<span><span class="co">#&gt; # ℹ 54 more rows</span></span>
 <span></span>
 <span><span class="co">## 교차검정 analysis, assessment -----</span></span>
 <span><span class="va">cv_fit_tbl</span> <span class="op">&lt;-</span> <span class="va">cv_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -749,19 +743,15 @@ window.Quarto = {
 <span></span>
 <span><span class="va">cv_fit_tbl</span></span>
 <span><span class="co">#&gt; # A tibble: 60 × 7</span></span>
-<span><span class="co">#&gt;    splits             id     model_name model_number reg_formula  fit       RMSE</span></span>
-<span><span class="co">#&gt;    &lt;list&gt;             &lt;chr&gt;  &lt;chr&gt;             &lt;int&gt; &lt;named list&gt; &lt;named &gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.32</span></span>
-<span><span class="co">#&gt;  2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.34</span></span>
-<span><span class="co">#&gt;  3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.93</span></span>
-<span><span class="co">#&gt;  4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.78</span></span>
-<span><span class="co">#&gt;  5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.46</span></span>
-<span><span class="co">#&gt;  6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.25</span></span>
-<span><span class="co">#&gt;  7 &lt;split [1534/170]&gt; Fold07 06_full               1 &lt;formula&gt;    &lt;lm&gt;      3.17</span></span>
-<span><span class="co">#&gt;  8 &lt;split [1534/170]&gt; Fold08 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.24</span></span>
-<span><span class="co">#&gt;  9 &lt;split [1534/170]&gt; Fold09 06_full               1 &lt;formula&gt;    &lt;lm&gt;      2.87</span></span>
-<span><span class="co">#&gt; 10 &lt;split [1534/170]&gt; Fold10 06_full               1 &lt;formula&gt;    &lt;lm&gt;      1.95</span></span>
-<span><span class="co">#&gt; # ℹ 50 more rows</span></span>
+<span><span class="co">#&gt;   splits             id     model_name model_number reg_formula  fit     RMSE</span></span>
+<span><span class="co">#&gt;   &lt;list&gt;             &lt;chr&gt;  &lt;chr&gt;             &lt;int&gt; &lt;named list&gt; &lt;name&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 &lt;split [1533/171]&gt; Fold01 06_full               1 &lt;formula&gt;    &lt;lm&gt;    2.71</span></span>
+<span><span class="co">#&gt; 2 &lt;split [1533/171]&gt; Fold02 06_full               1 &lt;formula&gt;    &lt;lm&gt;    2.32</span></span>
+<span><span class="co">#&gt; 3 &lt;split [1533/171]&gt; Fold03 06_full               1 &lt;formula&gt;    &lt;lm&gt;    2.60</span></span>
+<span><span class="co">#&gt; 4 &lt;split [1533/171]&gt; Fold04 06_full               1 &lt;formula&gt;    &lt;lm&gt;    2.58</span></span>
+<span><span class="co">#&gt; 5 &lt;split [1534/170]&gt; Fold05 06_full               1 &lt;formula&gt;    &lt;lm&gt;    2.63</span></span>
+<span><span class="co">#&gt; 6 &lt;split [1534/170]&gt; Fold06 06_full               1 &lt;formula&gt;    &lt;lm&gt;    2.31</span></span>
+<span><span class="co">#&gt; # ℹ 54 more rows</span></span>
 <span></span>
 <span><span class="co">## 시각화 -----</span></span>
 <span><span class="va">cv_fit_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -771,7 +761,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-gapminder-cv-reg" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-cv-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="models_many_files/figure-html/fig-gapminder-cv-reg-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="models_many_files/figure-html/fig-gapminder-cv-reg-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="models_many_files/figure-html/fig-gapminder-cv-reg-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="models_many_files/figure-html/fig-gapminder-cv-reg-1.png" class="img-fluid figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-cv-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;13.2: 교차검증을 통한 회귀모형 선택
@@ -779,10 +769,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p><a href="#fig-gapminder-cv-reg%EB%A5%BC" class="quarto-xref">그림&nbsp;<span class="quarto-unresolved-ref">fig-gapminder-cv-reg를</span></a> 통해 교차검증 RMSE 시각화 결과를 해석하면, 모형 ‘06_full’이 일관적으로 낮은 RMSE 값을 가지고 있어 가장 성능이 우수한 것으로 보인다. 다른 모형에 비해 ’06_full’ 모형의 RMSE 분포가 좁고 낮게 유지되고 있어 일관적이고 정확한 예측 능력을 의미하고 있다. 반면, ‘03_simple’, ‘02_gdppercap’, ‘01_pop’ 같은 모형들은 상대적으로 높은 RMSE 값을 보여주고 있어, 예측 정확도가 더 낮은 것으로 해석된다. 따라서 ‘06_full’ 모형을 최적 회귀모형으로 선택해도 무방하다.</p>
+<p><a href="#fig-gapminder-cv-reg" class="quarto-xref">그림&nbsp;<span>13.2</span></a>를 통해 교차검증 RMSE 시각화 결과를 해석하면, 모형 ‘06_full’이 일관적으로 낮은 RMSE 값을 가지고 있어 가장 성능이 우수한 것으로 보인다. 다른 모형에 비해 ’06_full’ 모형의 RMSE 분포가 좁고 낮게 유지되고 있어 일관적이고 정확한 예측 능력을 의미하고 있다. 반면, ‘03_simple’, ‘02_gdppercap’, ‘01_pop’ 같은 모형들은 상대적으로 높은 RMSE 값을 보여주고 있어, 예측 정확도가 더 낮은 것으로 해석된다. 따라서 ‘06_full’ 모형을 최적 회귀모형으로 선택해도 무방하다.</p>
 </section><section id="cv-reg-model-furrr" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="cv-reg-model-furrr">
 <span class="header-section-number">13.3</span> 병렬처리 - <code>furrr</code>
 </h2>
+<p> </p>
 <p><code>furrr</code> 패키지를 사용하는 주된 이유는 <code>purrr</code>의 기능을 확장하여 병렬 처리를 가능하게 하기 위함이다. <code>purrr</code>는 강력한 함수형 프로그래밍 기능을 제공하지만, 기본적으로 순차적으로 작업을 처리한다. 반면, <code>furrr</code>는 <code>future</code> 패키지와 결합되어 <code>purrr</code>의 함수형 패턴을 유지하면서도 작업을 여러 코어 또는 컴퓨터에 분산시켜 실행할 수 있게 해준다. 이를 통해 데이터 처리 및 모형 개발 작업에서 처리 시간을 크게 단축할 수 있다. 특히, <code>furrr</code>는 대용량 데이터를 다룰 때나 복잡한 통계모형, 기계학습 모형과 같은 계산 집약적인 작업에 유용하게 사용될 수 있다.</p>
 <p>앞서 작성한 교차검증 코드를 <code>furrr</code> 패키지를 활용하여 병렬처리하는 방법을 살펴보자. 먼저, <code><a href="https://rdrr.io/r/parallel/detectCores.html">parallel::detectCores()</a></code> 함수를 사용하여 전체 코어 수를 파악하고, <code>future</code> 패키지를 활용하여 교차검증 과정을 병렬 처리함으로써 처리 시간을 상당히 줄일 수 있다. 시간 절약 효과를 측정하기 위해 <code>tictoc</code> 패키지가 사용된다. 이 방법은 효율적인 자원 활용을 통해 데이터 처리 과정을 최적화한다.</p>
 <div class="cell">
@@ -814,7 +805,7 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fit <span class="op">=</span> <span class="fu"><a href="https://furrr.futureverse.org/reference/future_map2.html">future_map2</a></span><span class="op">(</span><span class="va">reg_formula</span>, <span class="va">splits</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">.x</span>, data <span class="op">=</span> <span class="fu">rsample</span><span class="fu">::</span><span class="fu"><a href="https://rsample.tidymodels.org/reference/as.data.frame.rsplit.html">analysis</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span>, .progress<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 27.17 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 19.74 sec elapsed</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1307,7 +1298,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

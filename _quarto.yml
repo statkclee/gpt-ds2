@@ -45,58 +45,57 @@ book:
 
     - part: "**1부** 들어가며"
       chapters:
-        - intro.qmd                    # OK
-        - intro_whole_game.qmd         # OK
-        - intro_penguins.qmd           # OK
+        - intro.qmd                    # OK+
+        - intro_whole_game.qmd         # OK+
+        - intro_penguins.qmd           # OK+
 
     - part: "**2부** 데이터 다루기"
       chapters:
-        - data_structure.qmd          # OK
-        - dataframe.qmd               # OK
-        - data_dplyr.qmd              # OK
-        - data_tidyr.qmd              # OK
+        - data_structure.qmd          # OK+
+        - dataframe.qmd               # OK+
+        - data_dplyr.qmd              # OK+
+        - data_tidyr.qmd              # OK+
 
     - part: "**3부** 시각화"
       chapters:
-        - ggplot2_concept.qmd         # OK
-        - ggplot2.qmd                 # OK
-        - ggplot2_pattern.qmd         # OK
+        - ggplot2_concept.qmd         # OK+
+        - ggplot2.qmd                 # OK+
+        - ggplot2_pattern.qmd         # OK+
 
     - part: "**4부** 모형"
       chapters:
-        - models.qmd                  # OK
-        - models_building.qmd         # OK
-        - models_many.qmd             # OK
-        - models_case_study.qmd       # OK
+        - models.qmd                  # OK+
+        - models_building.qmd         # OK+
+        - models_many.qmd             # OK+
+        - models_case_study.qmd       # OK+
 
     - part: "**5부** 프로그래밍"
       chapters:
-        - functions.qmd               # OK
-        - function_plyr.qmd           # OK
-        - functions_ds.qmd            # OK
-        - functions_purrr.qmd         # OK
+        - functions.qmd               # OK+
+        - function_plyr.qmd           # OK+
+        - functions_ds.qmd            # OK+
+        - functions_purrr.qmd         # OK+
 
     - part: "**6부** 커뮤니케이션"
       chapters:
-        - comm_quarto.qmd             # OK
-        - comm_knitr.qmd              # OK
-        - comm_export.qmd             # OK
-        - comm_map.qmd                # OK
+        - comm_quarto.qmd             # OK+
+        - comm_knitr.qmd              # OK+
+        - comm_export.qmd             # OK+
+        - comm_map.qmd                # OK+
 
     - part: "**7부** 가져오기"
       chapters:
         - ingest_database.qmd
-        - ingest_file.qmd             # OK
-        - ingest_web.qmd              # OK
-        - ingest_spreadsheet.qmd      # OK
-
+        - ingest_file.qmd             # OK+
+        - ingest_web.qmd              # OK+
+        - ingest_spreadsheet.qmd      # OK+
 
     - part: "**8부** 챗GPT"
       chapters:
-        - gpt_python.qmd              # OK
-        - gpt_prompt_ds.qmd           # OK
-        - gpt_interpreter.qmd         # OK
-        - gpt_rtutor.qmd              # OK
+        - gpt_python.qmd              # OK+
+        - gpt_prompt_ds.qmd           # OK+
+        - gpt_interpreter.qmd         # OK+
+        - gpt_rtutor.qmd              # OK+
 
     - references.qmd
 

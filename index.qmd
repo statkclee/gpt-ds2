@@ -15,12 +15,13 @@
 
 ## 책의 구성 {.unnumbered}
 
-"챗GPT 데이터 과학"은 데이터 과학의 모든 단계를 아우르는 포괄적인 안내서로 데이터 과학 기초 개념부터 최신 인공지능 기술과 융합까지, 데이터 과학 프로젝트 전반에 걸쳐 필요한 지식과 기술을 체계적으로 정리하고 있다. 데이터 수집, 정제, 탐색, 시각화, 모형, 프로그래밍, 커뮤니케이션 등 데이터 과학의 핵심 영역을 깊이 있게 다루고 있으며, 특히 챗GPT로 대표되는 최신 AI 기술을 데이터 과학에 접목하는 방법도 소개한다. 
+"챗GPT 데이터 과학"은 데이터 과학의 모든 단계를 아우르는 포괄적인 안내서로 데이터 과학 기초 개념부터 최신 인공지능 기술과 융합까지, 데이터 과학 프로젝트 전반에 걸쳐 필요한 지식과 기술을 체계적으로 정리하고 있다. 데이터 수집, 정제, 탐색, 시각화, 모형, 프로그래밍, 커뮤니케이션 등 데이터 과학의 핵심 영역을 깊이 있게 다루고 있으며, 특히 챗GPT로 대표되는 최신 AI 기술을 데이터 과학에 접목하는 방법도 소개한다. 특히, 소프트웨어 카펜트리 워크샵 콘텐츠[@zimmerman2019software]와 R4DS[@wickham2023r]는 데이터 과학의 기본 개념과 기술을 익히는 데 뼈대를 이루고 있다.
 
 ```{mermaid}
-%%| fig-align: center
+%%| label: fig-book-structure-index
 %%| fig-cap: 챗GPT 데이터 과학 구성
-%%| label: fig-book-structure
+%%| fig-width: 5
+%%| fig-align: center
 
 graph TB
     subgraph Software["<strong>좋은 소프트웨어 개발(사람) + 챗GPT(인공지능)</strong>"]
@@ -37,13 +38,9 @@ graph TB
 
     end
     
-    classDef modern fill:#fff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:12px;
     classDef emphasize fill:#8CBDE3,stroke:#333,stroke-width:3px,color:#333,font-family:MaruBuri,font-size:15px,font-weight:bold;
-    classDef subgraphStyle fill:#f0f8ff,stroke:#333,stroke-width:2px,color:#333,font-family:MaruBuri,font-size:15px;
-    
-    class 가져오기,깔끔화,변환,모형,시각화,의사소통 modern
+
     class AI emphasize
-    class 이해하기 subgraphStyle
 ```
 
 1부 "들어가며"에서는 데이터 과학의 기본 개념과 운영체제, 예제 데이터셋 등을 소개하며 독자들을 데이터 과학의 세계로 인도한다. 이 부분에서는 챗GPT 활용만 제외하고 데이터 과학의 기본 개념과 기술을 전체적으로 조망하는데 초점을 맞춘다.

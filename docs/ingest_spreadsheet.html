@@ -475,7 +475,7 @@ ga('send', {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_database.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_spreadsheet.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></h1>
+<h1 class="title"><span id="sec-spreadsheet-intro" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></h1>
 </div>
 
 
@@ -489,11 +489,12 @@ ga('send', {
   
 
 
-</header><p>R에서는 CSV 파일, 스프레드시트(엑셀, 구글시트), 데이터베이스, 통계 패키지(SPSS, SAS, STATA), 웹 데이터 등 다양한 출처에서 데이터를 가져올 수 있다. 상용 파일 형식 데이터는 크게 통계 패키지 계열과 스프레드시트 계열로 나눠볼 수 있다.</p>
+</header><p> </p>
+<p>R에서는 CSV 파일, 스프레드시트(엑셀, 구글시트), 데이터베이스, 통계 패키지(SPSS, SAS, STATA), 웹 데이터 등 다양한 출처에서 데이터를 가져올 수 있다. 상용 파일 형식 데이터는 크게 통계 패키지 계열과 스프레드시트 계열로 나눠볼 수 있다.</p>
 <p>통계 패키지의 데이터 파일은 과거 다양한 R 패키지가 존재하였으나 해들리 위컴이 저작한 <code>haven</code> 패키지에서 제공하는 함수(<code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss()</a></code>, <code><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas()</a></code>, <code><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta()</a></code> 등)를 사용하여 불러온다. 한국보건사회연구원에서 조사하여 발표하는 한국복지패널데이터(KoWeP)는 오픈 파일 형식을 제외하고 SAS, SPSS, STATA 3가지 형식으로 제공되는데 <code>haven</code> 패키지를 사용하여 불러올 경우 함수명은 다르지만 동일한 방식으로 일관성을 갖는다는 점에서 장점이 있다.</p>
 <p>엑셀로 대표되는 스프레드시트 파일은 로컬 파일로 작업할 때는 <code>readxl</code> 패키지의 <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code>, 원격 스프레드시트 파일을 구글시트(Google Sheets)로 작업할 때는 <code>googlesheets4</code> 패키지의 <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> 함수를 사용한다.</p>
 <p>엑셀, 구글 드라이브와 연결된 구글시트, 통계패키지 파일은 유료 상용 소프트웨어로 원칙적으로 해당 파일을 R 혹은 파이썬 등 다른 작업환경으로 가져오는 것은 해당 소프트웨어가 없다면 불가능하다. 물론 상용 소프트웨어가 개방형 파일 형태(<code>.csv</code> 등)로 내보내는 기능을 제공하지만 이러한 경우 메타데이터가 손실되는 것은 불가피하고 데이터 일부가 손실될 수 있다.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-import-data" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -542,6 +543,7 @@ class 핸들러_가져오기 modern
 </div>
 <section id="통계패키지" class="level2" data-number="26.1"><h2 data-number="26.1" class="anchored" data-anchor-id="통계패키지">
 <span class="header-section-number">26.1</span> 통계패키지</h2>
+<p> </p>
 <p>SPSS, SAS, STATA는 널리 사용되는 통계 분석 소프트웨어 패키지로, 각각 고유한 파일 형식을 사용한다. 고유한 파일 형식을 갖게 되면 데이터가 통계 패키지 내부에서 원활히 동작할 수 있는 메타 정보를 담을 수 있고 속도 향상도 기대할 수 있다. 그러나 이러한 독점적인 파일 형식은 다른 통계 패키지와의 상호 운용성을 제한할 수 있고, 장기적으로 데이터 보존 및 이식성에 문제를 일으킬 수 있다.</p>
 <p>SPSS는 <code>.sav</code> 확장자를 사용하는 이진 파일 형식을 사용한다. <code>.sav</code> 파일은 데이터, 변수 레이블, 값 레이블 등의 메타데이터를 포함하고 있다. SPSS의 <code>.por</code> 확장자를 가진 파일은 다른 시스템으로 이식도 가능하다.</p>
 <p>SAS는 <code>.sas7bdat</code> 확장자를 사용하는 이진 파일 형식을 사용한다. <code>.sas7bdat</code> 파일은 데이터와 메타데이터를 모두 포함하며, SAS에서만 읽을 수 있다. SAS도 SPSS <code>.por</code>처럼 <code>.xpt</code> 확장자를 가진 다른 시스템에 이식 가능한 파일 형식을 지원한다.</p>
@@ -676,10 +678,11 @@ class 핸들러_가져오기 modern
 </div>
 </section></section><section id="엑셀" class="level2" data-number="26.2"><h2 data-number="26.2" class="anchored" data-anchor-id="엑셀">
 <span class="header-section-number">26.2</span> 엑셀</h2>
+<p> </p>
 <p>엑셀에서 복잡한 데이터를 관리하는 방법 중 하나는 여러 시트에 데이터를 나누어 저장하는 것이다. <code>readxl</code> 패키지를 사용하여 엑셀 파일을 불러올 때 <code><a href="https://readxl.tidyverse.org/reference/excel_sheets.html">excel_sheets()</a></code> 함수를 사용하여 엑셀 파일에 저장된 시트 이름을 확인할 수 있다. 이후 <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> 함수를 사용하여 원하는 시트를 불러올 수 있다. 제20대 국회의원 선거 지역구와 비례대표 당선자 명단을 담은 엑셀 파일을 불러오는 예제를 살펴보자. 국회의원 정수는 총 300명이기 때문에 지역구 당선자와 비례 당선자를 하나로 묶어 각 당별로 당선자가 몇 명인지 확인할 수 있다.</p>
-<div id="fig-excel-sheets" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-excel-sheets" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-excel-sheets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/excel_sheets.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/excel_sheets.jpg" class="img-fluid figure-img"></a>
+<a href="images/excel_sheets.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/excel_sheets.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="469"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-excel-sheets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;26.2: 제20대 국회의원 선거 당선자 명단
@@ -717,10 +720,11 @@ class 핸들러_가져오기 modern
 </div>
 </section><section id="구글시트" class="level2" data-number="26.3"><h2 data-number="26.3" class="anchored" data-anchor-id="구글시트">
 <span class="header-section-number">26.3</span> 구글시트</h2>
+<p> </p>
 <p>스프레드시트는 데이터 입력, 저장, 분석 및 시각화를 위해 널리 사용되는 소프트웨어 도구다. 하지만, 데이터 입력과 저장 측면에 초점을 맞추어 보면 오류도 많다. 흔히 보게 되는 엑셀 파일의 문제점 중 하나는 엉망진창(messy) 데이터다. 논문<span class="citation" data-cites="Broman2018">(Broman 와/과 Woo 2018)</span>에 제시된 엉망진창 데이터 중 하나를 뽑아 깔끔한 데이터로 변환해보자.</p>
-<div id="fig-googlesheet-messytidy" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-googlesheet-messytidy" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-googlesheet-messytidy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/googlesheet_messytidy.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/googlesheet_messytidy.jpg" class="img-fluid figure-img"></a>
+<a href="images/googlesheet_messytidy.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/googlesheet_messytidy.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-googlesheet-messytidy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;26.3: 엉망진창(messy) 데이터를 깔끔한(tidy) 데이터 변환
@@ -774,10 +778,10 @@ class 핸들러_가져오기 modern
 <span><span class="co">#&gt; 14 3499     F     6     1/19/2007  556.9   36.6  </span></span>
 <span><span class="co">#&gt; 15 3499     F     8     2/2/2007   446     43.6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>깔끔한 데이터를 구글시트의 <code>tidy_data</code> 시트에 저장한다. <code><a href="https://googlesheets4.tidyverse.org/reference/sheet_write.html">sheet_write()</a></code> 함수를 사용하여 깔끔한 데이터를 구글시트에 저장한다. 이때 해당 시트에 권한이 부여되어야만 데이터를 저장할 수 있다. 권한이 부여되지 않은 경우에는 <a href="#fig-googlesheet-auth%EC%99%80" class="quarto-xref">그림&nbsp;<span class="quarto-unresolved-ref">fig-googlesheet-auth와</span></a> 같이 <strong>편집자</strong> 권한을 부여하면 깔끔한 데이터가 구글시트에 저장된다.</p>
+<p>깔끔한 데이터를 구글시트의 <code>tidy_data</code> 시트에 저장한다. <code><a href="https://googlesheets4.tidyverse.org/reference/sheet_write.html">sheet_write()</a></code> 함수를 사용하여 깔끔한 데이터를 구글시트에 저장한다. 이때 해당 시트에 권한이 부여되어야만 데이터를 저장할 수 있다. 권한이 부여되지 않은 경우에는 <a href="#fig-googlesheet-auth" class="quarto-xref">그림&nbsp;<span>26.4</span></a>와 같이 <strong>편집자</strong> 권한을 부여하면 깔끔한 데이터가 구글시트에 저장된다.</p>
 <div id="fig-googlesheet-auth" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-googlesheet-auth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/googlesheet_auth.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/googlesheet_auth.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="292"></a>
+<a href="images/googlesheet_auth.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/googlesheet_auth.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="234"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-googlesheet-auth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;26.4: 구글시트 messy_data 권한부여
@@ -1275,7 +1279,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

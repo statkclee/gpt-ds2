@@ -490,7 +490,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ingest_database.html"><strong>7부</strong> 가져오기</a></li><li class="breadcrumb-item"><a href="./ingest_file.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></h1>
+<h1 class="title"><span id="sec-file" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></h1>
 </div>
 
 
@@ -504,14 +504,16 @@ window.Quarto = {
   
 
 
-</header><section id="유니코드와-utf-8" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="유니코드와-utf-8">
+</header><p></p>
+<section id="유니코드와-utf-8" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="유니코드와-utf-8">
 <span class="header-section-number">24.1</span> 유니코드와 UTF-8</h2>
+<p> </p>
 <p>사람 간의 의사소통은 다양한 기호 체계를 통해 이루어진다. 영어 알파벳, 한글, 한자 등의 문자가 의사소통에 사용되는 좋은 예이다. 디지털 환경에서 이러한 의사소통을 가능하게 하는 기술적 장치가 바로 문자 집합과 문자 인코딩 및 디코딩이다.</p>
 <p>컴퓨터 시스템은 이진수 바이트를 기본 단위로 사용한다. 바이트는 파일 형태로 묶이거나 네트워크를 통해 전송되어 다른 시스템에 도달한다. 이 데이터가 사람에게 의미 있는 정보로 전달되기 위해서는 인코딩(부호화)과 디코딩(복호화) 과정을 거쳐야 한다.</p>
 <p>컴퓨터 시스템은 데이터를 바이트(Byte) 형태로 처리한다. 이 바이트 데이터는 이진수, 즉 010101과 같은 형태로 표현되고, 바이트 데이터를 사람이 읽을 수 있는 문자로 변환하는 최초의 표준이 ASCII(아스키)다. 하지만 ASCII는 256개 문자만을 지원하기 때문에, CJK(중국, 일본, 한국)와 같은 동아시아 문화권에서는 그 한계가 명확하다. 이러한 한계를 해결하기 위해 유니코드(Unicode)가 도입되었다. 유니코드는 영문자는 물론이고 지구상의 거의 모든 문자와 기호를 디지털로 표현할 수 있는 방법을 제공한다.</p>
 <p><strong>유니코드(Unicode)</strong>는 글자와 코드가 1:1로 매핑되어 있는 단순한 코드표에 불과하며 산업 표준으로서 일종의 국가 간 약속이다. 한글이 표현된 유니코드 영역도 <a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C_%EC%98%81%EC%97%AD">위키백과 유니코드 영역</a>에서 찾을 수 있다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/auth-unicode-utf-8.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="유니코드와 UTF-8"><img src="images/auth-unicode-utf-8.png" class="img-fluid figure-img" alt="유니코드와 UTF-8"></a></p>
+<figure class="figure"><p><a href="images/auth-unicode-utf-8.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="유니코드와 UTF-8"><img src="images/auth-unicode-utf-8.png" class="img-fluid figure-img" alt="유니코드와 UTF-8"></a></p>
 <figcaption>유니코드와 UTF-8</figcaption></figure>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -524,6 +526,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p> </p>
 <p><strong>문자 인코딩(character encoding)</strong>, 줄여서 인코딩은 사용자가 입력한 문자나 기호들을 컴퓨터가 이용할 수 있는 신호로 변환하는 것을 말한다. 넓은 의미의 컴퓨터는 이러한 신호를 입력받고 처리하는 기계를 뜻하며, 신호 처리 시스템을 통해 이렇게 처리된 정보를 사용자가 이해할 수 있게 된다.</p>
 <blockquote class="blockquote">
 <p>All text has a character encoding.</p>
@@ -532,26 +535,30 @@ window.Quarto = {
 </div>
 <section id="인코딩-문제" class="level3" data-number="24.1.1"><h3 data-number="24.1.1" class="anchored" data-anchor-id="인코딩-문제">
 <span class="header-section-number">24.1.1</span> 인코딩 문제</h3>
+<p> </p>
 <p>문자 인코딩은 컴퓨터가 텍스트를 바이트로 변환하거나 바이트를 텍스트로 변환하는 방법이다. 인코딩 과정에서는 다양한 문제가 발생할 수 있고, 그중 세 가지 문제가 많이 알려져 있다. 첫 번째는 ’두부(Tofu)’라 불리는 상황으로, 컴퓨터가 어떤 문자를 표현해야 할지 알지만, 화면에 어떻게 출력해야 할지 모르기 때문에 빈 사각형 상자로 표시된다. 두 번째는 ’문자 깨짐(Mojibake, 文字化け)’이다. 특히 일본어에서 자주 발생하며, 한 인코딩 방식으로 작성된 텍스트가 다른 인코딩 방식으로 해석될 때 문자가 깨지는 현상을 의미한다. 세 번째는 ’물음표(Question Marks)’로, 특정 문자가 다른 문자로 변환될 때 발생한다. 문자 집합과 인코딩이 맞지 않을 때 발생하며, 데이터 손실과 오류도 야기된다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/common-encoding-problem.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="세 가지 인코딩 문제"><img src="images/common-encoding-problem.png" class="img-fluid figure-img" alt="세 가지 인코딩 문제"></a></p>
+<figure class="figure"><p><a href="images/common-encoding-problem.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="세 가지 인코딩 문제"><img src="images/common-encoding-problem.png" class="img-fluid figure-img" alt="세 가지 인코딩 문제"></a></p>
 <figcaption>세 가지 인코딩 문제</figcaption></figure>
 </div>
 </section><section id="문자-집합" class="level3" data-number="24.1.2"><h3 data-number="24.1.2" class="anchored" data-anchor-id="문자-집합">
 <span class="header-section-number">24.1.2</span> 문자 집합</h3>
+<p> </p>
 <section id="아스키-코드" class="level4"><h4 class="anchored" data-anchor-id="아스키-코드">아스키 코드</h4>
+<p> </p>
 <p>디지털 글쓰기는 내용과 상관없이 결국 텍스트로 표현되고, 텍스트는 단지 문자이다. 하지만, 컴퓨터가 문자 하나를 어떻게 표현할까?</p>
 <p>1960년대 미국식 영문자를 컴퓨터로 표현하는 해결책은 간단했다. 알파벳 26개(대문자, 소문자), 숫자 10개, 구두점 몇 개, 그리고 전신을 보내던 시절에 제어를 위해 사용된 몇 개의 특수 문자(“새줄로 이동”, “본문 시작”, “경고음” 등)가 전부였다. 모두 합쳐도 128개보다 적어서, 아스키(ASCII) 위원회가 문자마다 7비트( <span class="math inline">\(2^7\)</span> = 128)를 사용하는 인코딩으로 표준화했다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div id="fig-ascii" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ascii-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/ascii_gt.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/ascii_gt.png" class="img-fluid figure-img"></a>
+<a href="images/ascii_gt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/ascii_gt.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ascii-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;24.1: 제어 문자와 출력 가능한 아스키 문자표 알파벳 예시
 </figcaption></figure>
 </div>
-<p><a href="#fig-ascii%EB%8A%94" class="quarto-xref">그림&nbsp;<span class="quarto-unresolved-ref">fig-ascii는</span></a> 아스키 문자표에서 제어 문자 10개와 출력 가능한 아스키 문자표 중 영문 대문자 A-I까지 10개를 뽑아 사례로 보여준다. 즉, 문자표는 어떤 문자가 어떤 숫자에 해당하는지를 정의하고 있다.</p>
+<p><a href="#fig-ascii" class="quarto-xref">그림&nbsp;<span>24.1</span></a>는 아스키 문자표에서 제어 문자 10개와 출력 가능한 아스키 문자표 중 영문 대문자 A-I까지 10개를 뽑아 사례로 보여준다. 즉, 문자표는 어떤 문자가 어떤 숫자에 해당하는지를 정의하고 있다.</p>
 </section><section id="ascii-extension" class="level4"><h4 class="anchored" data-anchor-id="ascii-extension">확장 아스키</h4>
+<p> </p>
 <p>아스키(ASCII) 방식으로 숫자 <code>2</code>, 문자 <code>q</code>, 혹은 곡절 악센트 <code>^</code>를 표현하는 데 충분하다. 하지만, 투르크어족 추바시어 <code>ĕ</code>, 그리스 문자 <code>β</code>, 러시아 키릴 문자 <code>Я</code>는 어떻게 저장하고 표현해야 할까? 7비트를 사용하면 0에서 127까지 숫자를 부여할 수 있지만, 8비트(즉, 1바이트)를 사용하게 되면 255까지 표현할 수 있다. 그렇다면, ASCII 표준을 확장해서 추가되는 128개 숫자에 대해 추가로 문자를 표현할 수 있게 된다.</p>
 <ul>
 <li>아스키: 0…127</li>
@@ -559,6 +566,7 @@ window.Quarto = {
 </ul>
 <p>불행하게도, 영어 문자를 사용하지 않는 세계 곳곳에서 많은 사람들이 시도했지만, 방식도 다르고, 호환되지 않는 방식으로 작업이 되어, 결과는 엉망진창이 되었다. 예를 들어, 실제 텍스트가 불가리아어로 인코딩되었는데 스페인어 규칙을 사용해서 인코딩한 것으로 프로그램이 간주하고 처리될 경우 결과는 무의미한 횡설수설 값이 출력된다. 이와는 별도로 한중일(CJK) 동아시아 국가들을 비롯한 많은 국가에서는 256개 이상의 기호를 사용한다. 왜냐하면 8비트로는 특히 동아시아 국가 문자를 표현하는 데 부족하기 때문이다.</p>
 </section><section id="한글-완성형과-조합형" class="level4"><h4 class="anchored" data-anchor-id="한글-완성형과-조합형">한글 완성형과 조합형</h4>
+<p> </p>
 <p>1980년대부터 컴퓨터를 사용하신 분이라면 완성형과 조합형의 표준화 전쟁을 지켜봤을 것이고, 그 이면에는 한글 워드프로세서에 대한 주도권 쟁탈전이 있었던 것을 기억할 것이다. 결국 완성형과 조합형을 모두 포용하는 것으로 마무리되었지만, 여기서 끝난 게 아니다. 유닉스 계열에서 <code>KSC5601</code>을 표준으로 받아들인 <code>EUC-KR</code>과 90년대와 2000년대를 호령한 마이크로소프트 <code>CP949</code>가 있었다. 결국 대한민국 정부에서 주도한 표준화 전쟁은 유닉스/리눅스, 마이크로소프트 모두를 녹여내는 것으로 마무리되었고, 웹과 모바일 시대는 유니코드로 넘어가서 <code>KSC5601</code>이 유니코드의 원소로 들어가는 것으로 마무리되었다.</p>
 <p>이제 신경 쓸 것은 인코딩, 즉 <code>utf-8</code>만 신경 쓰면 된다. 그리고 남은 디지털 레거시 유산을 잘 처리하면 된다.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -575,13 +583,14 @@ window.Quarto = {
 </div>
 </div>
 </section><section id="ascii-unicode" class="level4"><h4 class="anchored" data-anchor-id="ascii-unicode">유니코드</h4>
+<p> </p>
 <p>1990년대에 나타나기 시작한 해결책을 <strong>유니코드(Unicode)</strong>라고 부른다. 예를 들어, 영어 A 대문자는 1바이트, 한글 가는 3바이트다. 유니코드는 정수값을 서로 다른 수만 개의 문자와 기호를 표현하는 데 정의한다. ’A’는 <code>U+0041</code>, ’가’는 <code>U+AC00</code>과 같이 고유한 코드 포인트를 가진다. 하지만, 파일이나 메모리에 문자열로 정수값을 저장하는 방식을 정의하지는 않는다.</p>
 <p>각 문자마다 8비트를 사용하던 방식에서 32비트 정수를 사용하는 방식으로 전환하면 되지만, 영어, 에스토니아어, 브라질 포르투갈어 같은 알파벳 언어권에는 상당한 공간 낭비가 발생한다. 접근 속도가 중요한 경우 메모리에 문자당 32비트를 종종 사용한다. 하지만, 파일에 데이터를 저장하거나 인터넷을 통해 전송하는 경우 대부분의 프로그램과 프로그래머는 이와는 다른 방식을 사용한다.</p>
 <p>다른 방식은 (거의) 항상 <strong>UTF-8</strong>으로 불리는 인코딩으로, 문자마다 가변 바이트를 사용한다. 하위 호환성을 위해, 첫 128개 문자(즉, 구 아스키 문자 집합)는 1바이트에 저장된다. 다음 1920개 문자는 2바이트를 사용해서 저장된다. 다음 61,000개는 3바이트를 사용해서 저장해 나간다.</p>
 <p>궁금하다면, 동작 방식이 다음 표에 나타나 있다. “전통적” 문자열은 문자마다 1바이트를 사용한다. 반대로, “유니코드” 문자열은 문자마다 충분한 메모리를 사용해서 어떤 텍스트 유형이든 저장한다. R, 파이썬 3.x에서 모든 문자열은 유니코드다. 엄청난 바이트를 읽어오거나 저장하여 내보내려고 할 때, 인코딩을 지정하는 것은 엄청난 고통이다.</p>
 <p>유니코드 문자열은 여는 인용부호 앞에 소문자 <code>U</code>를 붙여 표시한다. 유니코드 문자열을 바이트 문자열로 전환하려면, 인코딩을 명시해야만 한다. 항상 UTF-8을 사용해야 하고, 그 밖의 인코딩을 사용하는 경우 매우, 매우 특별히 좋은 이유가 있어야만 한다. 특별한 인코딩을 사용하는 경우 두 번 생각해 보라.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/ascii_evolution.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4" title="아스키에서 유니코드로 진화 과정"><img src="images/ascii_evolution.jpg" class="img-fluid figure-img" alt="아스키에서 유니코드로 진화 과정"></a></p>
+<figure class="figure"><p><a href="images/ascii_evolution.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="아스키에서 유니코드로 진화 과정"><img src="images/ascii_evolution.jpg" class="img-fluid figure-img" alt="아스키에서 유니코드로 진화 과정"></a></p>
 <figcaption>아스키에서 유니코드로 진화 과정</figcaption></figure>
 </div>
 <p>컴퓨터가 처음 등장할 때 미국 영어권 중심 아스키가 아니고 4바이트로 전 세계 모든 글자를 표현할 수 있는 유니코드가 사용되었다면 한글을 컴퓨터에 표현하기 위한 지금과 같은 번거로움은 없었을 것이다. 돌이켜보면 초기 컴퓨터가 저장 용량 한계로 인해 유니코드가 표준으로 자리를 잡더라도 실용적인 이유로 인해서 한글을 컴퓨터에 표현하기 위한 다른 대안이 제시됐을 것도 분명해 보인다. 초창기 영어권을 중심으로 아스키 표준이 정립되어 현재까지 내려오고, 유니코드와 UTF-8 인코딩이 사실상 표준으로 자리 잡았으며, 그 사이 유닉스/리눅스 EUC-KR, 윈도우즈 CP949가 빈틈을 한동안 메우면서 역할을 담당했다.</p>
@@ -659,19 +668,21 @@ window.Quarto = {
 </tr>
 </tbody>
 </table></section><section id="utf-8" class="level4"><h4 class="anchored" data-anchor-id="utf-8">UTF-8</h4>
+<p></p>
 <p>UTF-8(Universal Coded Character Set + Transformation Format – 8-bit의 약자)은 유니코드 중에서 가장 널리 쓰이는 인코딩으로, 유니코드를 위한 가변 길이 문자 인코딩 방식 중 하나로 켄 톰프슨과 롭 파이크가 제작했다.</p>
 <p>UTF-8 인코딩의 가장 큰 장점은 아스키(ASCII), 라틴-1(ISO-8859-1)과 호환되어, 문서를 처리하는 경우 아스키, 라틴-1 문서를 변환 없이 그대로 처리할 수 있고 영어를 비롯한 라틴계열 문서로 저장할 때 용량이 매우 작다. 이러한 이유로 많은 오픈소스 소프트웨어와 데이터를 생산하는 미국을 비롯한 유럽 언어권에서 UTF-8이 많이 사용되고 있지만, 한글은 한 글자당 3바이트 용량을 차지한다.</p>
 </section><section id="웹-표준-인코딩" class="level4"><h4 class="anchored" data-anchor-id="웹-표준-인코딩">웹 표준 인코딩</h4>
+<p></p>
 <p>스마트폰의 대중화에 따라 더 이상 윈도우 운영체제에서 사용되는 문자체계가 표준이 되지 못하고 여러 문제점을 야기함에 따라 <strong>유니코드 + UTF-8</strong> 체제가 대세로 자리잡고 있는 것이 확연히 나타나고 있다.</p>
 <p>2010년 구글에서 <a href="https://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html">발표</a>한 자료에 의하면 2010년 UTF-8 인코딩이 웹에서 주류로 부상하기 시작한 것이 확인되었다. <span class="citation" data-cites="unicode2010">(<strong>unicode2010?</strong>)</span> 웹 기반 플롯 디지털 도구를 활용하여 그래프(<a href="https://apps.automeris.io/wpd/">WebPlotDigitizer</a>)에서 데이터를 추출하여 시각화하면 유사한 결과를 시각적으로 표현할 수 있다. 2010년 이후 웹에서 가장 점유율이 높은 인코딩 방식은 UTF-8으로 W3Tech 웹 기술 조사(Web Technology Surveys)를 통해 확인할 수 있다. 여기서 주목할 점은, 프랑스어, 독일어, 스페인어와 같은 서유럽 언어의 문자와 기호를 표현하는 ISO-8859-1 인코딩, 종종 “Latin-1”으로 불리는 8비트 문자 인코딩이 현저히 줄고 있다는 점이다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/encoding_utf_gg.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5" title="2010 ~ 2012 웹에서 UTF-8 성장세"><img src="images/encoding_utf_gg.jpg" class="img-fluid figure-img" alt="2010 ~ 2012 웹에서 UTF-8 성장세"></a></p>
+<figure class="figure"><p><a href="images/encoding_utf_gg.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="2010 ~ 2012 웹에서 UTF-8 성장세"><img src="images/encoding_utf_gg.jpg" class="img-fluid figure-img" alt="2010 ~ 2012 웹에서 UTF-8 성장세"></a></p>
 <figcaption>2010 ~ 2012 웹에서 UTF-8 성장세</figcaption></figure>
 </div>
 </section></section></section><section id="아스키-파일" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="아스키-파일">
 <span class="header-section-number">24.2</span> 아스키 파일</h2>
 <p>아스키 파일은 텍스트 파일로, 데이터를 저장하는 가장 기본적인 형태이다. R에서 데이터프레임으로 다양한 데이터를 가져올 때, 아스키 파일은 CSV(Comma-Separated Values) 파일, TSV(Tab-Separated Values) 파일, 고정 길이 파일 등 다양한 형식으로 존재한다. CSV 파일은 쉼표로 구분된 값들로 이루어진 텍스트 파일이며, TSV 파일은 탭으로 구분된 값들로 이루어진 텍스트 파일이다. 고정 길이 파일은 각 필드가 고정된 길이를 가지는 텍스트 파일이다. 또한, R에서는 데이터를 직접 입력하여 데이터프레임을 생성할 수도 있다. 아스키 파일을 데이터프레임으로 가져올 때는 <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>, <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>, <code><a href="https://rdrr.io/r/utils/read.fwf.html">read.fwf()</a></code> 등의 함수를 사용하며, 데이터를 직접 입력할 때는 열 중심 혹은 행 중심에 따라 <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>, <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> 함수를 사용한다.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-import-data" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-import-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -788,11 +799,8 @@ class 아스키,가져오기 subgraphStyle
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spec</span><span class="op">(</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/file/nine_penguins.csv"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="co">#&gt; cols(</span></span>
 <span><span class="co">#&gt;   species = col_character(),</span></span>
-<span><span class="co">#&gt;   island = col_character(),</span></span>
 <span><span class="co">#&gt;   bill_length_mm = col_double(),</span></span>
-<span><span class="co">#&gt;   flipper_length_mm = col_double(),</span></span>
 <span><span class="co">#&gt;   body_mass_g = col_double(),</span></span>
-<span><span class="co">#&gt;   sex = col_character(),</span></span>
 <span><span class="co">#&gt;   year = col_double()</span></span>
 <span><span class="co">#&gt; )</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -812,21 +820,22 @@ class 아스키,가져오기 subgraphStyle
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">penguins_tbl</span></span>
-<span><span class="co">#&gt; # A tibble: 9 × 7</span></span>
-<span><span class="co">#&gt;   species   island    bill_length_mm flipper_length_mm body_mass_g sex     year</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;     &lt;chr&gt;              &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Adelie    Biscoe              35.3               187        3800 female  2007</span></span>
-<span><span class="co">#&gt; 2 Adelie    Torgersen           34.4               184        3325 female  2007</span></span>
-<span><span class="co">#&gt; 3 Adelie    Biscoe              43.2               197        4775 male    2009</span></span>
-<span><span class="co">#&gt; 4 Gentoo    Biscoe              48.8               222        6000 male    2009</span></span>
-<span><span class="co">#&gt; 5 Gentoo    Biscoe              45.3               208        4200 female  2008</span></span>
-<span><span class="co">#&gt; 6 Gentoo    Biscoe              43.4               218        4600 female  2009</span></span>
-<span><span class="co">#&gt; 7 Chinstrap Dream               50.2               198        3775 female  2009</span></span>
-<span><span class="co">#&gt; 8 Chinstrap Dream               51.3               197        3750 male    2007</span></span>
-<span><span class="co">#&gt; 9 Chinstrap Dream               50.3               197        3300 male    2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 9 × 4</span></span>
+<span><span class="co">#&gt;   species   bill_length_mm body_mass_g  year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;              &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie              37          3000  2007</span></span>
+<span><span class="co">#&gt; 2 Adelie              40.2        3400  2009</span></span>
+<span><span class="co">#&gt; 3 Adelie              40.6        3475  2009</span></span>
+<span><span class="co">#&gt; 4 Gentoo              42          4150  2007</span></span>
+<span><span class="co">#&gt; 5 Gentoo              55.9        5600  2009</span></span>
+<span><span class="co">#&gt; 6 Gentoo              46.5        4550  2007</span></span>
+<span><span class="co">#&gt; 7 Chinstrap           46.4        3450  2007</span></span>
+<span><span class="co">#&gt; 8 Chinstrap           50.3        3300  2007</span></span>
+<span><span class="co">#&gt; 9 Chinstrap           46.2        3650  2008</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="다양한-파일-형태" class="level2" data-number="24.5"><h2 data-number="24.5" class="anchored" data-anchor-id="다양한-파일-형태">
 <span class="header-section-number">24.5</span> 다양한 파일 형태</h2>
+<p> </p>
 <section id="파일-저장" class="level3" data-number="24.5.1"><h3 data-number="24.5.1" class="anchored" data-anchor-id="파일-저장">
 <span class="header-section-number">24.5.1</span> 파일 저장</h3>
 <p>펭귄 데이터에서 종별로 3마리를 무작위로 추출해서 <code>nine_penguins</code> 데이터프레임을 만든 후에 다양한 형식의 아스키 파일로 저장한다. 펭귄 9마리 데이터프레임으로 아스키 파일 형식으로 저장된 다양한 형태(탭 구분자, 콤마 구분자, 고정 길이)의 데이터를 불러오는 방법을 살펴본다. 구분자로 탭과 콤마가 가장 많이 사용되지만 경우에 따라서는 “;”, “:”, “|” 등 다양한 구분자를 사용할 수 있다.</p>
@@ -836,7 +845,7 @@ class 아스키,가져오기 subgraphStyle
 <span><span class="va">nine_penguins</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, replace <span class="op">=</span> <span class="cn">FALSE</span>, by <span class="op">=</span> <span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">bill_depth_mm</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">island</span>, <span class="op">-</span><span class="va">bill_depth_mm</span>, <span class="op">-</span><span class="va">sex</span>, <span class="op">-</span><span class="va">flipper_length_mm</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="탭-구분자" class="level4"><h4 class="anchored" data-anchor-id="탭-구분자">탭 구분자</h4>
 <p><code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_delim()</a></code> 함수에 <code>delim</code> 인자를 <strong>탭</strong>으로 명시하여 탭 구분자 아스키 파일로 저장하는 방법과 <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_tsv()</a></code> 함수를 사용하는 방법이 있다. 탭 구분자 파일로 저장하는 동일한 기능을 수행하지만 함수명에서 차이가 난다.</p>
@@ -845,32 +854,32 @@ class 아스키,가져오기 subgraphStyle
 <span>    <span class="co"># write_tsv("data/file/ASCII/nine_penguins.tsv") |&gt; </span></span>
 <span>    <span class="fu">write_delim</span><span class="op">(</span><span class="st">"data/file/nine_penguins.txt"</span>, delim <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>species	island	bill_length_mm	flipper_length_mm	body_mass_g	sex	year</span>
-<span id="cb8-2"><a href="#cb8-2"></a>Adelie	Torgersen	<span class="fl">35.5</span>	<span class="dv">190</span>	<span class="dv">3700</span>	female	<span class="dv">2008</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>Adelie	Torgersen	<span class="fl">38.8</span>	<span class="dv">191</span>	<span class="dv">3275</span>	female	<span class="dv">2009</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>Adelie	Dream	<span class="fl">39.5</span>	<span class="dv">188</span>	<span class="dv">3300</span>	female	<span class="dv">2007</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>Gentoo	Biscoe	<span class="fl">47.8</span>	<span class="dv">215</span>	<span class="dv">5650</span>	male	<span class="dv">2007</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>Gentoo	Biscoe	<span class="fl">47.4</span>	<span class="dv">212</span>	<span class="dv">4725</span>	female	<span class="dv">2009</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>Gentoo	Biscoe	<span class="fl">46.1</span>	<span class="dv">211</span>	<span class="dv">4500</span>	female	<span class="dv">2007</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>Chinstrap	Dream	<span class="fl">42.5</span>	<span class="dv">187</span>	<span class="dv">3350</span>	female	<span class="dv">2008</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>Chinstrap	Dream	<span class="fl">49.3</span>	<span class="dv">203</span>	<span class="dv">4050</span>	male	<span class="dv">2009</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>Chinstrap	Dream	<span class="fl">50.2</span>	<span class="dv">198</span>	<span class="dv">3775</span>	female	<span class="dv">2009</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>species	bill_length_mm	body_mass_g	year</span>
+<span id="cb8-2"><a href="#cb8-2"></a>Adelie	<span class="fl">39.6</span>	<span class="dv">3550</span>	<span class="dv">2008</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>Adelie	<span class="fl">42.5</span>	<span class="dv">4500</span>	<span class="dv">2007</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>Adelie	<span class="fl">36.5</span>	<span class="dv">3150</span>	<span class="dv">2007</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>Gentoo	<span class="fl">41.7</span>	<span class="dv">4700</span>	<span class="dv">2009</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>Gentoo	<span class="fl">45.2</span>	<span class="dv">4750</span>	<span class="dv">2008</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>Gentoo	<span class="fl">40.9</span>	<span class="dv">4650</span>	<span class="dv">2007</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>Chinstrap	<span class="fl">42.5</span>	<span class="dv">3350</span>	<span class="dv">2008</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>Chinstrap	<span class="fl">46.4</span>	<span class="dv">3450</span>	<span class="dv">2007</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>Chinstrap	<span class="fl">49.2</span>	<span class="dv">4400</span>	<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="csv-구분자" class="level4"><h4 class="anchored" data-anchor-id="csv-구분자">CSV 구분자</h4>
 <p>CSV(Comma-Separated Values) 파일은 콤마 구분자를 사용하여 데이터를 저장하는 형식으로 모든 운영체제에서 특별한 별도 프로그램 없이 열어볼 수 있다는 장점이 있어 호환성에서 큰 장점이 있지만 파일에 많은 정보가 담기게 되면 파일 크기가 커져서 저장 공간을 많이 차지한다는 단점이 있다. <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> 함수를 사용하여 콤마 구분자 아스키 파일로 저장하는 방법과 <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_delim()</a></code> 함수를 사용하는 방법이 있다. 콤마 구분자 파일로 저장하는 동일한 기능을 수행하지만 함수명에서 차이가 난다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nine_penguins</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">write_csv</span><span class="op">(</span><span class="st">"data/file/nine_penguins.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>species,island,bill_length_mm,flipper_length_mm,body_mass_g,sex,year</span>
-<span id="cb10-2"><a href="#cb10-2"></a>Adelie,Torgersen,<span class="fl">35.5</span>,<span class="dv">190</span>,<span class="dv">3700</span>,female,<span class="dv">2008</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>Adelie,Torgersen,<span class="fl">38.8</span>,<span class="dv">191</span>,<span class="dv">3275</span>,female,<span class="dv">2009</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>Adelie,Dream,<span class="fl">39.5</span>,<span class="dv">188</span>,<span class="dv">3300</span>,female,<span class="dv">2007</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>Gentoo,Biscoe,<span class="fl">47.8</span>,<span class="dv">215</span>,<span class="dv">5650</span>,male,<span class="dv">2007</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>Gentoo,Biscoe,<span class="fl">47.4</span>,<span class="dv">212</span>,<span class="dv">4725</span>,female,<span class="dv">2009</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a>Gentoo,Biscoe,<span class="fl">46.1</span>,<span class="dv">211</span>,<span class="dv">4500</span>,female,<span class="dv">2007</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>Chinstrap,Dream,<span class="fl">42.5</span>,<span class="dv">187</span>,<span class="dv">3350</span>,female,<span class="dv">2008</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>Chinstrap,Dream,<span class="fl">49.3</span>,<span class="dv">203</span>,<span class="dv">4050</span>,male,<span class="dv">2009</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>Chinstrap,Dream,<span class="fl">50.2</span>,<span class="dv">198</span>,<span class="dv">3775</span>,female,<span class="dv">2009</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>species,bill_length_mm,body_mass_g,year</span>
+<span id="cb10-2"><a href="#cb10-2"></a>Adelie,<span class="fl">39.6</span>,<span class="dv">3550</span>,<span class="dv">2008</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>Adelie,<span class="fl">42.5</span>,<span class="dv">4500</span>,<span class="dv">2007</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>Adelie,<span class="fl">36.5</span>,<span class="dv">3150</span>,<span class="dv">2007</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>Gentoo,<span class="fl">41.7</span>,<span class="dv">4700</span>,<span class="dv">2009</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>Gentoo,<span class="fl">45.2</span>,<span class="dv">4750</span>,<span class="dv">2008</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>Gentoo,<span class="fl">40.9</span>,<span class="dv">4650</span>,<span class="dv">2007</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>Chinstrap,<span class="fl">42.5</span>,<span class="dv">3350</span>,<span class="dv">2008</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>Chinstrap,<span class="fl">46.4</span>,<span class="dv">3450</span>,<span class="dv">2007</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>Chinstrap,<span class="fl">49.2</span>,<span class="dv">4400</span>,<span class="dv">2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="고정-길이-파일" class="level4"><h4 class="anchored" data-anchor-id="고정-길이-파일">고정 길이 파일</h4>
 <p>고정 길이 아스키 파일(Fixed-width ASCII file, FWF)은 데이터 저장 및 교환을 위해 초기 컴퓨팅 시대에 개발되었다. 당시에는 데이터 저장 공간이 제한적이었기 때문에 고정 길이 파일은 구분자를 사용하지 않고 데이터를 더 촘촘하게 저장할 수 있었고, 하드웨어와 소프트웨어도 고정 길이 레코드 처리에 최적화되어 있었다.</p>
 <p>현재까지도 고정 길이 파일은 레거시 시스템과의 호환성, 데이터 무결성 유지, 데이터 밀도 향상, 대용량 데이터 처리 성능 개선 등의 이유로 명맥을 유지하고 있으며, 의료 및 금융 분야에서 고정 길이 파일을 데이터 교환 표준으로 활용하기도 한다.</p>
@@ -923,6 +932,7 @@ class 아스키,가져오기 subgraphStyle
 </div>
 </section></section></section><section id="공공-데이터" class="level2" data-number="24.6"><h2 data-number="24.6" class="anchored" data-anchor-id="공공-데이터">
 <span class="header-section-number">24.6</span> 공공 데이터</h2>
+<p> </p>
 <p>공공데이터포털을 비롯한 많은 정부기관에서 제공하는 데이터는 대부분 <code>EUC-KR</code>로 인코딩되어 있다. 이유는 여러 가지가 있겠지만 가장 큰 이유는 아마도 엑셀에서 <code>.csv</code> 파일을 열었을 때 한글이 깨지는 민원을 처리하기 위함이 아닐까 싶다. 정형 <code>.csv</code> 파일 형태로 데이터를 받게 되면 먼저 인코딩을 확인해야 한다. <code>readr</code> 패키지의 <code><a href="https://readr.tidyverse.org/reference/encoding.html">guess_encoding()</a></code> 함수를 사용하면 파일의 인코딩을 확인할 수 있다.</p>
 <p>공공데이터포털 <a href="https://www.data.go.kr/data/15048264/fileData.do">인천광역시_정류장별 이용승객 현황</a> 데이터를 다운로드받아 로컬 파일로 저장한 후 인코딩을 확인한다.</p>
 <div class="cell">
@@ -990,8 +1000,8 @@ class 아스키,가져오기 subgraphStyle
 <span><span class="co">#&gt; # ℹ 3 more variables: 하차건수_카드 &lt;dbl&gt;, 승차건수_현금 &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   일평균_승하차건수 &lt;dbl&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>지금까지 작업한 전반적인 작업 흐름은 <a href="#fig-public-data-ingest%EC%97%90" class="quarto-xref">그림&nbsp;<span class="quarto-unresolved-ref">fig-public-data-ingest에</span></a> 대략적으로 나와 있다. 공공데이터포털에서 다운로드받은 <code>인천광역시_정류장별 이용승객 현황_20220630.csv</code>는 EUC-KR로 인코딩되어 있고 헤더를 갖고 있으며 쉼표로 구분되어 있다. 결측치는 없으나 임의로 <code>---</code>으로 정류장 한 곳을 달리 표현하여 <code>na = c("---", "")</code>로 결측값 처리를 하였다.</p>
-<div class="cell" data-layout-align="default">
+<p>지금까지 작업한 전반적인 작업 흐름은 <a href="#fig-public-data-ingest" class="quarto-xref">그림&nbsp;<span>24.3</span></a>에 대략적으로 나와 있다. 공공데이터포털에서 다운로드받은 <code>인천광역시_정류장별 이용승객 현황_20220630.csv</code>는 EUC-KR로 인코딩되어 있고 헤더를 갖고 있으며 쉼표로 구분되어 있다. 결측치는 없으나 임의로 <code>---</code>으로 정류장 한 곳을 달리 표현하여 <code>na = c("---", "")</code>로 결측값 처리를 하였다.</p>
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-public-data-ingest" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-public-data-ingest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1056,18 +1066,18 @@ style H fill:#c0c0c0,stroke:#333,stroke-width:2px
 <span><span class="va">penguins_tbl</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">csv_files</span>, <span class="va">read_csv</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">penguins_tbl</span></span>
-<span><span class="co">#&gt; # A tibble: 9 × 7</span></span>
-<span><span class="co">#&gt;   species   island    bill_length_mm flipper_length_mm body_mass_g sex     year</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Adelie    Torgersen           35.5               190        3700 female  2008</span></span>
-<span><span class="co">#&gt; 2 Adelie    Torgersen           38.8               191        3275 female  2009</span></span>
-<span><span class="co">#&gt; 3 Adelie    Dream               39.5               188        3300 female  2007</span></span>
-<span><span class="co">#&gt; 4 Chinstrap Dream               42.5               187        3350 female  2008</span></span>
-<span><span class="co">#&gt; 5 Chinstrap Dream               49.3               203        4050 male    2009</span></span>
-<span><span class="co">#&gt; 6 Chinstrap Dream               50.2               198        3775 female  2009</span></span>
-<span><span class="co">#&gt; 7 Gentoo    Biscoe              47.8               215        5650 male    2007</span></span>
-<span><span class="co">#&gt; 8 Gentoo    Biscoe              47.4               212        4725 female  2009</span></span>
-<span><span class="co">#&gt; 9 Gentoo    Biscoe              46.1               211        4500 female  2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 9 × 4</span></span>
+<span><span class="co">#&gt;   species   bill_length_mm body_mass_g  year</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie              39.6        3550  2008</span></span>
+<span><span class="co">#&gt; 2 Adelie              42.5        4500  2007</span></span>
+<span><span class="co">#&gt; 3 Adelie              36.5        3150  2007</span></span>
+<span><span class="co">#&gt; 4 Chinstrap           42.5        3350  2008</span></span>
+<span><span class="co">#&gt; 5 Chinstrap           46.4        3450  2007</span></span>
+<span><span class="co">#&gt; 6 Chinstrap           49.2        4400  2007</span></span>
+<span><span class="co">#&gt; 7 Gentoo              41.7        4700  2009</span></span>
+<span><span class="co">#&gt; 8 Gentoo              45.2        4750  2008</span></span>
+<span><span class="co">#&gt; 9 Gentoo              40.9        4650  2007</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="요약" class="level2" data-number="24.8"><h2 data-number="24.8" class="anchored" data-anchor-id="요약">
 <span class="header-section-number">24.8</span> 요약</h2>
@@ -1557,7 +1567,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+</footer><script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

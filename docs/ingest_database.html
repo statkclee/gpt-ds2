@@ -443,7 +443,13 @@ ga('send', {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#챗gpt-sql" id="toc-챗gpt-sql" class="nav-link active" data-scroll-target="#챗gpt-sql"><span class="header-section-number">23.1</span> 챗GPT SQL</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_database.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -467,13 +473,14 @@ ga('send', {
 </header>
 
 
-<div class="cell" data-layout-align="center">
+<p> </p>
+<div class="cell" data-fig-width="5" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-workflow-database" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-workflow-database-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-workflow">graph LR
+<pre class="mermaid mermaid-js" data-label="fig-workflow-database">graph LR
     subgraph 가져오기["가져오기"]
         ascii[아스키 파일] --&gt; 핸들러_가져오기
         스프레드시트["스프레드시트/통계패키지"] --&gt; 핸들러_가져오기
@@ -504,13 +511,15 @@ class 이해하기,가져오기 subgraphStyle;
 </pre>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-database-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;23.1: 데이터 과학 작업흐름도
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<section id="챗gpt-sql" class="level2" data-number="23.1">
+<h2 data-number="23.1" class="anchored" data-anchor-id="챗gpt-sql"><span class="header-section-number">23.1</span> 챗GPT SQL</h2>
 <div class="grid">
 <div class="g-col-8">
 <p>파일 형태 데이터는 로컬 컴퓨터에 저장되어 있어 데이터를 불러오기 쉽지만, 데이터의 크기가 커지면 로컬 컴퓨터 저장공간이 부족하여 서버에 데이터를 저장하게 된다. 데이터베이스에 저장된 데이터는 데이터베이스 관리 시스템(DBMS)을 통해 관리되며, 여러 사용자와 개발자들에게 데이터 관련 서비스를 제공하기 위해 인증단계와 권한을 달리 부여하여 활용된다.</p>
@@ -545,6 +554,7 @@ class 이해하기,가져오기 subgraphStyle;
 이광춘. 2024. <em>챗GPT SQL</em>. 한국 R 사용자회.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1015,13 +1025,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_database.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/ingest_database.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

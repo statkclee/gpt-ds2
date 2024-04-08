@@ -1,9 +1,11 @@
 # 데이터베이스 {#sec-ingest-database}
+\index{데이터베이스} \index{SQL}
 
 ```{mermaid}
-%%| label: fig-workflow
+%%| label: fig-workflow-database
 %%| fig-cap: 데이터 과학 작업흐름도
 %%| fig-align: center
+%%| fig-width: 5
 
 graph LR
     subgraph 가져오기["가져오기"]
@@ -35,6 +37,7 @@ class 이해하기,가져오기 subgraphStyle;
 
 ```
 
+## 챗GPT SQL
 
 ::: grid
 ::: g-col-8
@@ -47,12 +50,12 @@ class 이해하기,가져오기 subgraphStyle;
 
 데이터베이스에서 R로 데이터를 가져오는 자세한 기술적인 사항은 "챗GPT SQL" 책[@lee2024sql]을 참조한다. 대표적인 정형 데이터베이스에서 데이터를 가져오는 방법을 주로 다루고 있고,
 특히 `DuckDB`는 속도를 중요시하는 데이터 과학자에게 추천한다.
-
 :::
 
 ::: g-col-4
 ![](images/cover_sql.jpg){fig-align="center" width="261"}
 :::
+
 :::
 
 ::: callout-tip
