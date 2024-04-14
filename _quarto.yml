@@ -26,8 +26,8 @@ book:
     right: |
       순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.
 
-  cover-image: images/logo.png
-  favicon: images/logo.png
+  cover-image: images/logo.jpg
+  favicon: images/logo_old.png
   site-url: https://r2bit.com/gpt-ds/
   repo-url: https://github.com/bit2r/gpt-ds
   repo-branch: main
@@ -103,6 +103,8 @@ book:
 
 format:
   html:
+    resources:
+      - shinylive-sw.js
     theme:
       light: [cosmo, r2bit.scss]
     mermaid:
