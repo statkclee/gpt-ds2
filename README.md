@@ -1,4 +1,4 @@
-# 챗GPT 데이터 과학 <img src="images/logo.png" align="right" height="150" width="150"/>
+# 챗GPT 데이터 과학 <img src="images/logo_old.png" align="right" height="150" width="150"/>
 
 AI와의 협업, 데이터 과학의 새 지평을 열다!
 
