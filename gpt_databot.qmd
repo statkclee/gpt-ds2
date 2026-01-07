@@ -3,18 +3,18 @@ engine: knitr
 ---
 
 # Databot {#sec-gpt-databot}
-\index{Databot} \index{Claude 3.5 Sonnet} \index{탐색적 데이터 분석}
+\index{Databot} \index{Claude Sonnet 4.5} \index{탐색적 데이터 분석}
 \index{AI 부조종사}
 
 ## Databot 소개 {#sec-gpt-databot-intro}
 
 \index{Posit}Posit CTO 조 쳉(Joe Cheng)이 개발한 [Databot](https://github.com/jcheng5/databot)은 R 세션 내에서 작동하는 실험적 AI 부조종사(copilot)다. 데이터를 가리키면 어떻게 분석할지 아이디어를 제안하고, 사용자가 선택한 방향에 따라 R 코드를 생성하여 실행한다. 기존 AI 도구들이 별도 환경에서 작동하는 것과 달리, Databot은 사용자의 R 세션 안에서 직접 코드를 실행하고 결과를 보여준다.
 
-Databot은 \index{Claude 3.5 Sonnet}Claude 3.5 Sonnet을 백엔드로 사용하여 데이터의 특성을 파악하고 적절한 분석 질문을 생성한다. 사용자는 제안된 질문 중 하나를 클릭하거나 직접 질문을 입력하면, Databot이 코드를 작성하고 실행하여 시각화, 통계량, 표 등의 결과를 제공한다.
+Databot은 \index{Claude Sonnet 4.5}Claude Sonnet 4.5를 백엔드로 사용하여 데이터의 특성을 파악하고 적절한 분석 질문을 생성한다. 사용자는 제안된 질문 중 하나를 클릭하거나 직접 질문을 입력하면, Databot이 코드를 작성하고 실행하여 시각화, 통계량, 표 등의 결과를 제공한다.
 
 ![Databot 아키텍처](images/databot-architecture.svg){#fig-databot-architecture fig-align="center" width="90%"}
 
-@fig-databot-architecture 는 Databot의 전체 구조를 보여준다. 사용자 인터페이스 계층에서 입력을 받아 Databot 코어가 자연어를 처리하고 R 코드로 변환한다. 생성된 코드는 현재 R 세션에서 직접 실행되며, 결과는 다시 사용자에게 표시된다. Claude 3.5 Sonnet이 AI 백엔드로 작동하며, R 환경의 모든 객체와 패키지에 접근할 수 있다.
+@fig-databot-architecture 는 Databot의 전체 구조를 보여준다. 사용자 인터페이스 계층에서 입력을 받아 Databot 코어가 자연어를 처리하고 R 코드로 변환한다. 생성된 코드는 현재 R 세션에서 직접 실행되며, 결과는 다시 사용자에게 표시된다. Claude Sonnet 4.5가 AI 백엔드로 작동하며, R 환경의 모든 객체와 패키지에 접근할 수 있다.
 
 :::{.callout-warning}
 ## Databot의 현재 상태 및 알려진 문제
@@ -22,7 +22,7 @@ Databot은 \index{Claude 3.5 Sonnet}Claude 3.5 Sonnet을 백엔드로 사용하�
 Databot은 연구 단계(research preview)의 실험적 도구다. GitHub 저장소에는 "Pretty fragile currently"(현재 상당히 불안정함)라고 명시되어 있다.
 
 **알려진 주요 문제:**
-- **HTTP 404 오류**: 잘못된 모델명(`claude-3-5-sonnet-latest`) 사용으로 실행 불가
+- **HTTP 404 오류**: 일부 버전에서 잘못된 모델명 사용으로 실행 불가 (해결: `claude-sonnet-4-5` 사용)
 - **안정성**: Shiny 인터페이스가 자주 응답 중단
 - **세션 복구**: 오류 발생 시 세션 복구 불가능
 
@@ -35,11 +35,11 @@ Databot은 연구 단계(research preview)의 실험적 도구다. GitHub 저장
 :::{.callout-tip}
 ## 대안: ellmer 직접 사용
 
-Databot 대신 ellmer를 직접 사용하면 더 안정적이다. Databot의 Shiny UI는 없지만, Claude 3.5 Sonnet과 문제없이 대화할 수 있다.
+Databot 대신 ellmer를 직접 사용하면 더 안정적이다. Databot의 Shiny UI는 없지만, Claude Sonnet 4.5와 문제없이 대화할 수 있다.
 
 ```r
 library(ellmer)
-chat <- chat_anthropic(model = "claude-3-5-sonnet-20241022")
+chat <- chat_anthropic(model = "claude-sonnet-4-5")
 live_console(chat)
 ```
 :::
@@ -125,7 +125,7 @@ credentials::set_github_pat()
 
 ### API 키 설정
 
-Databot은 Anthropic의 Claude 3.5 Sonnet을 사용하므로 \index{ANTHROPIC_API_KEY}`ANTHROPIC_API_KEY` 환경 변수가 필요하다. [Anthropic 콘솔](https://console.anthropic.com/)에서 API 키를 발급받은 후 `.Renviron` 파일에 저장한다.
+Databot은 Anthropic의 Claude Sonnet 4.5를 사용하므로 \index{ANTHROPIC_API_KEY}`ANTHROPIC_API_KEY` 환경 변수가 필요하다. [Anthropic 콘솔](https://console.anthropic.com/)에서 API 키를 발급받은 후 `.Renviron` 파일에 저장한다.
 
 ```{r}
 #| eval: false
@@ -163,7 +163,7 @@ API 키는 절대 GitHub이나 공개 저장소에 커밋하지 말아야 한다
 
 ### Claude API 사용료 {#sec-gpt-databot-pricing}
 
-Databot은 Claude 3.5 Sonnet을 사용하므로 API 호출마다 비용이 발생한다. 2025년 1월 7일 기준 Anthropic 공식 가격은 다음과 같다.
+Databot은 Claude Sonnet 4.5를 사용하므로 API 호출마다 비용이 발생한다. 2025년 1월 7일 기준 Anthropic 공식 가격은 다음과 같다.
 
 ```{r}
 #| echo: false
@@ -444,18 +444,18 @@ TukeyHSD(penguin_anova)
 Databot은 CRAN에 등록되지 않았으므로 `install.packages()`로 설치할 수 없다. GitHub에서만 설치 가능하며, 개발 도구(Rtools, Command Line Tools 등)가 필요할 수 있다.
 
 **API 키 필수:**
-Anthropic API 키가 없으면 Databot을 사용할 수 없다. 무료 체험판이 없으므로 API 사용 요금이 발생한다. Claude 3.5 Sonnet 사용료는 입력 토큰 백만 개당 $3, 출력 토큰 백만 개당 $15다 (2025년 1월 7일 기준).
+Anthropic API 키가 없으면 Databot을 사용할 수 없다. 무료 체험판이 없으므로 API 사용 요금이 발생한다. Claude Sonnet 4.5 사용료는 입력 토큰 백만 개당 $3, 출력 토큰 백만 개당 $15다 (2025년 1월 7일 기준).
 
 **RStudio/Positron 권장:**
 Databot은 RStudio나 Positron IDE에서 최적화되어 있다. 일반 R 콘솔에서는 Shiny 앱이 별도 브라우저에서 열린다.
 
 ### 모델 이름 오류 (HTTP 404 Not Found)
 
-Databot의 현재 버전은 `claude-3-5-sonnet-latest`라는 잘못된 모델명을 사용할 수 있다. Anthropic API는 이 모델명을 인식하지 못하여 HTTP 404 오류가 발생한다.
+일부 Databot 버전에서 잘못된 모델명을 사용하여 HTTP 404 오류가 발생할 수 있다. Anthropic API의 현재 모델명은 `claude-sonnet-4-5`다.
 
 **해결 방법:**
 
-현재로서는 Databot 패키지를 직접 수정하거나, Posit에서 업데이트를 기다려야 한다. 또는 ellmer 패키지를 직접 사용하여 정확한 모델명을 지정할 수 있다.
+Databot 패키지를 업데이트하거나, ellmer 패키지를 직접 사용하여 정확한 모델명을 지정한다.
 
 ```{r}
 #| eval: false
@@ -463,7 +463,7 @@ library(ellmer)
 
 # 정확한 모델명 사용
 chat <- chat_anthropic(
-  model = "claude-3-5-sonnet-20241022",
+  model = "claude-sonnet-4-5",
   system_prompt = "간결하게 답변하세요"
 )
 
@@ -471,7 +471,7 @@ chat <- chat_anthropic(
 live_console(chat)
 ```
 
-ellmer를 사용하면 Databot의 UI는 없지만, Claude 3.5 Sonnet과 안정적으로 대화할 수 있다. ellmer 사용법은 @sec-gpt-posit-ai 를 참조한다.
+ellmer를 사용하면 Databot의 UI는 없지만, Claude Sonnet 4.5와 안정적으로 대화할 수 있다. ellmer 사용법은 @sec-gpt-posit-ai 를 참조한다.
 
 ### 안정성 문제
 
@@ -483,7 +483,7 @@ Databot은 실험 단계의 도구로, Shiny 인터페이스가 응답하지 않
 
 ### 컨텍스트 제한
 
-\index{컨텍스트 윈도우}Claude 3.5 Sonnet의 입력 토큰 제한은 200,000개다. 긴 대화 세션이나 대용량 데이터 출력이 누적되면 컨텍스트 제한에 도달할 수 있다. 이 경우 새 세션을 시작해야 한다.
+\index{컨텍스트 윈도우}Claude Sonnet 4.5의 기본 컨텍스트 윈도우는 200,000 토큰이다 (최대 1백만 토큰까지 지원). 긴 대화 세션이나 대용량 데이터 출력이 누적되면 컨텍스트 제한에 도달할 수 있다. 이 경우 새 세션을 시작해야 한다.
 
 ### 코드 검토 필요
 
