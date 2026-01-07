@@ -271,6 +271,26 @@ databot::chat()
 
 Shiny 기반 대화형 인터페이스가 브라우저 또는 뷰어 창에 열린다.
 
+:::{.callout-note}
+## 모델 설정 변경 불가
+
+현재 Databot은 모델을 직접 선택하거나 변경할 수 있는 옵션을 제공하지 않는다. Claude Sonnet 4.5가 고정되어 있으며, 다른 모델(Opus 4.5, Haiku 4.5 등)을 사용하려면 ellmer 패키지를 직접 사용해야 한다.
+
+```r
+# ellmer로 다른 모델 사용
+library(ellmer)
+
+# Haiku 4.5 (저렴하고 빠름)
+chat <- chat_anthropic(model = "claude-haiku-4-5")
+
+# Opus 4.5 (고성능)
+chat <- chat_anthropic(model = "claude-opus-4-5")
+
+# 대화형 콘솔
+live_console(chat)
+```
+:::
+
 ### 데이터 분석 워크플로우
 
 ![Databot 작업 흐름도](images/databot-workflow.svg){#fig-databot-workflow fig-align="center" width="85%"}
