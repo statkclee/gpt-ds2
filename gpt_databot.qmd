@@ -473,41 +473,30 @@ Databot은 RStudio나 Positron IDE에서 최적화되어 있다. 일반 R 콘솔
 
 일부 Databot 버전에서 잘못된 모델명을 사용하여 HTTP 404 오류가 발생할 수 있다. Anthropic API의 현재 모델명은 `claude-sonnet-4-5`다.
 
-**해결 방법 1: 패키지 파일 직접 수정 (고급)**
+**해결 방법 1: 소스 코드 수정 후 재설치 (고급)**
 
-Databot 패키지가 설치된 위치를 찾아 모델명을 직접 수정할 수 있다.
+설치된 패키지는 컴파일된 `.rdb` 형식이라 직접 수정이 어렵다. 대신 GitHub 소스를 다운로드하여 수정한 후 재설치한다.
 
-**1단계: 패키지 경로 찾기**
+**1단계: GitHub 소스 클론**
 
-```{r}
-#| eval: false
-# 패키지 설치 경로 확인
-pkg_path <- system.file(package = "databot")
-print(pkg_path)
-
-# R 스크립트가 있는 디렉토리
-r_dir <- file.path(pkg_path, "R")
-print(r_dir)
+```{bash}
+# 터미널에서 실행
+cd ~/Downloads
+git clone https://github.com/jcheng5/databot.git
+cd databot
 ```
 
-**2단계: 모델명이 포함된 파일 검색**
+**2단계: 소스 코드에서 모델명 검색 및 수정**
 
-```{r}
-#| eval: false
-# 패키지 내 모든 R 파일 확인
-list.files(file.path(pkg_path, "R"), pattern = "\\.R$", full.names = TRUE)
+```{bash}
+# 모델명이 포함된 파일 검색
+grep -r "claude-3-5-sonnet" R/
 
-# grep으로 모델명 검색 (bash 사용)
-# macOS/Linux:
-# grep -r "claude-3-5-sonnet" ~/Library/R/*/library/databot/
-
-# Windows (PowerShell):
-# Select-String -Path "C:\Users\*\R\*\library\databot\R\*" -Pattern "claude-3-5-sonnet"
+# 또는
+grep -r "claude.*sonnet" R/
 ```
 
-**3단계: 파일 수정**
-
-일반적으로 모델명은 `databot.R` 또는 `chat.R` 파일에 있다. 텍스트 에디터로 파일을 열어 다음과 같이 수정한다.
+찾은 파일(예: `R/chat.R` 또는 `R/ui.R`)을 텍스트 에디터로 열어 다음과 같이 수정한다.
 
 ```r
 # 수정 전
@@ -517,21 +506,32 @@ model = "claude-3-5-sonnet-latest"
 model = "claude-sonnet-4-5"
 ```
 
-**4단계: R 재시작**
+**3단계: 수정된 소스로 재설치**
 
 ```{r}
 #| eval: false
-# R 세션 재시작 (RStudio)
-.rs.restartR()
+# 현재 databot 제거
+remove.packages("databot")
 
-# 또는 수동으로 R 종료 후 재실행
+# 수정된 로컬 소스에서 설치
+pak::pak("~/Downloads/databot")
+
+# 또는 remotes 사용
+remotes::install_local("~/Downloads/databot")
+```
+
+**4단계: 설치 확인**
+
+```{r}
+#| eval: false
+library(databot)
+databot::chat()
 ```
 
 **주의사항:**
-- 패키지 파일을 직접 수정하면 패키지 재설치 시 변경사항이 사라진다
-- 백업 복사본을 만들어두는 것이 안전하다
-- 패키지 업데이트 전에 다시 수정해야 할 수 있다
-- GitHub 저장소에 이슈를 보고하거나 Pull Request를 제출하는 것이 장기적 해결책이다
+- 로컬 소스 수정본이므로 원본 저장소 업데이트가 반영되지 않음
+- GitHub에 Pull Request를 제출하여 공식 수정을 요청하는 것이 좋음
+- 또는 개인 GitHub에 Fork하여 수정본 유지 관리
 
 **해결 방법 2: ellmer 직접 사용**
 
