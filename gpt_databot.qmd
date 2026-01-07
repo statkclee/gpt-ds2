@@ -473,26 +473,65 @@ Databot은 RStudio나 Positron IDE에서 최적화되어 있다. 일반 R 콘솔
 
 일부 Databot 버전에서 잘못된 모델명을 사용하여 HTTP 404 오류가 발생할 수 있다. Anthropic API의 현재 모델명은 `claude-sonnet-4-5`다.
 
-**해결 방법 1: 패키지 파일 직접 수정**
+**해결 방법 1: 패키지 파일 직접 수정 (고급)**
 
 Databot 패키지가 설치된 위치를 찾아 모델명을 직접 수정할 수 있다.
+
+**1단계: 패키지 경로 찾기**
 
 ```{r}
 #| eval: false
 # 패키지 설치 경로 확인
-.libPaths()
-system.file(package = "databot")
+pkg_path <- system.file(package = "databot")
+print(pkg_path)
 
-# 패키지 내 R 파일 찾기
-# 일반적으로 다음 경로에 있음:
-# ~/R/win-library/4.x/databot/R/ (Windows)
-# ~/Library/R/x86_64/4.x/library/databot/R/ (macOS)
-# ~/R/x86_64-pc-linux-gnu-library/4.x/databot/R/ (Linux)
+# R 스크립트가 있는 디렉토리
+r_dir <- file.path(pkg_path, "R")
+print(r_dir)
 ```
 
-패키지 내 R 파일(`.R` 또는 `.rds`)에서 `claude-3-5-sonnet-latest` 또는 유사한 모델명을 찾아 `claude-sonnet-4-5`로 변경한다.
+**2단계: 모델명이 포함된 파일 검색**
 
-**주의:** 패키지 파일을 직접 수정하면 패키지 재설치 시 변경사항이 사라진다. GitHub 저장소에 이슈를 보고하거나 Pull Request를 제출하는 것이 장기적 해결책이다.
+```{r}
+#| eval: false
+# 패키지 내 모든 R 파일 확인
+list.files(file.path(pkg_path, "R"), pattern = "\\.R$", full.names = TRUE)
+
+# grep으로 모델명 검색 (bash 사용)
+# macOS/Linux:
+# grep -r "claude-3-5-sonnet" ~/Library/R/*/library/databot/
+
+# Windows (PowerShell):
+# Select-String -Path "C:\Users\*\R\*\library\databot\R\*" -Pattern "claude-3-5-sonnet"
+```
+
+**3단계: 파일 수정**
+
+일반적으로 모델명은 `databot.R` 또는 `chat.R` 파일에 있다. 텍스트 에디터로 파일을 열어 다음과 같이 수정한다.
+
+```r
+# 수정 전
+model = "claude-3-5-sonnet-latest"
+
+# 수정 후
+model = "claude-sonnet-4-5"
+```
+
+**4단계: R 재시작**
+
+```{r}
+#| eval: false
+# R 세션 재시작 (RStudio)
+.rs.restartR()
+
+# 또는 수동으로 R 종료 후 재실행
+```
+
+**주의사항:**
+- 패키지 파일을 직접 수정하면 패키지 재설치 시 변경사항이 사라진다
+- 백업 복사본을 만들어두는 것이 안전하다
+- 패키지 업데이트 전에 다시 수정해야 할 수 있다
+- GitHub 저장소에 이슈를 보고하거나 Pull Request를 제출하는 것이 장기적 해결책이다
 
 **해결 방법 2: ellmer 직접 사용**
 
