@@ -473,9 +473,30 @@ Databot은 RStudio나 Positron IDE에서 최적화되어 있다. 일반 R 콘솔
 
 일부 Databot 버전에서 잘못된 모델명을 사용하여 HTTP 404 오류가 발생할 수 있다. Anthropic API의 현재 모델명은 `claude-sonnet-4-5`다.
 
-**해결 방법:**
+**해결 방법 1: 패키지 파일 직접 수정**
 
-Databot 패키지를 업데이트하거나, ellmer 패키지를 직접 사용하여 정확한 모델명을 지정한다.
+Databot 패키지가 설치된 위치를 찾아 모델명을 직접 수정할 수 있다.
+
+```{r}
+#| eval: false
+# 패키지 설치 경로 확인
+.libPaths()
+system.file(package = "databot")
+
+# 패키지 내 R 파일 찾기
+# 일반적으로 다음 경로에 있음:
+# ~/R/win-library/4.x/databot/R/ (Windows)
+# ~/Library/R/x86_64/4.x/library/databot/R/ (macOS)
+# ~/R/x86_64-pc-linux-gnu-library/4.x/databot/R/ (Linux)
+```
+
+패키지 내 R 파일(`.R` 또는 `.rds`)에서 `claude-3-5-sonnet-latest` 또는 유사한 모델명을 찾아 `claude-sonnet-4-5`로 변경한다.
+
+**주의:** 패키지 파일을 직접 수정하면 패키지 재설치 시 변경사항이 사라진다. GitHub 저장소에 이슈를 보고하거나 Pull Request를 제출하는 것이 장기적 해결책이다.
+
+**해결 방법 2: ellmer 직접 사용**
+
+패키지를 수정하지 않고 ellmer를 사용하여 정확한 모델명을 지정한다.
 
 ```{r}
 #| eval: false
@@ -492,6 +513,13 @@ live_console(chat)
 ```
 
 ellmer를 사용하면 Databot의 UI는 없지만, Claude Sonnet 4.5와 안정적으로 대화할 수 있다. ellmer 사용법은 @sec-gpt-posit-ai 를 참조한다.
+
+**해결 방법 3: GitHub 이슈 보고**
+
+Databot GitHub 저장소에 이슈를 등록하여 모델명 업데이트를 요청한다.
+
+- 저장소: [https://github.com/jcheng5/databot/issues](https://github.com/jcheng5/databot/issues)
+- 제목 예시: "Update Claude model name to claude-sonnet-4-5"
 
 ### 안정성 문제
 
