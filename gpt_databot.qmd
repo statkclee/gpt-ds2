@@ -67,9 +67,39 @@ packageVersion("databot")
 
 설치에 성공하면 패키지가 로드되고 버전 정보가 표시된다. 설치 중 오류가 발생하면 다음을 확인한다.
 
+**개발 도구 확인:**
 - **Windows**: Rtools가 설치되어 있는지 확인
 - **macOS**: Command Line Tools가 설치되어 있는지 확인 (`xcode-select --install`)
 - **Linux**: 컴파일러와 개발 라이브러리가 설치되어 있는지 확인
+
+**GitHub 인증 문제 (HTTP 401 Unauthorized):**
+
+GitHub API 호출 제한으로 인해 인증 없이는 설치가 실패할 수 있다. 이 경우 GitHub Personal Access Token(PAT)을 설정한다.
+
+```{r}
+#| eval: false
+# usethis 패키지로 GitHub 토큰 설정
+install.packages("usethis")
+
+# 브라우저에서 GitHub 토큰 생성 페이지 열기
+usethis::create_github_token()
+
+# 생성된 토큰을 .Renviron에 저장
+usethis::edit_r_environ()
+# 파일에 다음 줄 추가:
+# GITHUB_PAT=ghp_your_token_here
+```
+
+R을 재시작한 후 다시 설치를 시도한다.
+
+또는 `credentials` 패키지를 사용할 수도 있다.
+
+```{r}
+#| eval: false
+# credentials 패키지로 GitHub 토큰 설정
+install.packages("credentials")
+credentials::set_github_pat()
+```
 
 ### API 키 설정
 
