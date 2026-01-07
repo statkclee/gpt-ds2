@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <defs>
+    <style>
+      .tufte-text {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #333;
+        font-size: 13px;
+      }
+      .tufte-title {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #333;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .tufte-subtitle {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #666;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .tufte-small {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #666;
+        font-size: 11px;
+      }
+      .tool-box {
+        fill: #fff;
+        stroke: #333;
+        stroke-width: 2;
+      }
+      .feature-box {
+        fill: #f5f5f5;
+        stroke: #999;
+        stroke-width: 1;
+      }
+      .highlight {
+        fill: #e8e8e8;
+        stroke: #333;
+        stroke-width: 1.5;
+      }
+      .arrow {
+        stroke: #999;
+        stroke-width: 1;
+        fill: none;
+        stroke-dasharray: 3,3;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="900" height="600" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="450" y="30" class="tufte-title" text-anchor="middle">AI 데이터 분석 도구 비교</text>
+  <text x="450" y="50" class="tufte-small" text-anchor="middle">R 사용자 관점</text>
+
+  <!-- Column Headers -->
+  <text x="150" y="85" class="tufte-subtitle" text-anchor="middle">RTutor</text>
+  <text x="450" y="85" class="tufte-subtitle" text-anchor="middle">Databot</text>
+  <text x="750" y="85" class="tufte-subtitle" text-anchor="middle">ChatGPT</text>
+
+  <!-- Tool boxes -->
+  <rect x="50" y="100" width="200" height="60" class="tool-box" rx="5"/>
+  <text x="150" y="125" class="tufte-text" text-anchor="middle">웹 기반</text>
+  <text x="150" y="145" class="tufte-text" text-anchor="middle">Shiny 앱</text>
+
+  <rect x="350" y="100" width="200" height="60" class="highlight" rx="5"/>
+  <text x="450" y="125" class="tufte-text" text-anchor="middle">R 세션 내부</text>
+  <text x="450" y="145" class="tufte-text" text-anchor="middle">IDE 통합</text>
+
+  <rect x="650" y="100" width="200" height="60" class="tool-box" rx="5"/>
+  <text x="750" y="125" class="tufte-text" text-anchor="middle">웹 브라우저</text>
+  <text x="750" y="145" class="tufte-text" text-anchor="middle">별도 환경</text>
+
+  <!-- Feature comparison rows -->
+  <!-- Row 1: 실행 환경 -->
+  <text x="20" y="200" class="tufte-small">실행 환경</text>
+  <rect x="50" y="180" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="200" class="tufte-small" text-anchor="middle">독립 웹앱</text>
+
+  <rect x="350" y="180" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="200" class="tufte-small" text-anchor="middle">현재 R 세션</text>
+
+  <rect x="650" y="180" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="200" class="tufte-small" text-anchor="middle">샌드박스 Python</text>
+
+  <!-- Row 2: 데이터 접근 -->
+  <text x="20" y="240" class="tufte-small">데이터 접근</text>
+  <rect x="50" y="220" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="240" class="tufte-small" text-anchor="middle">파일 업로드 필요</text>
+
+  <rect x="350" y="220" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="240" class="tufte-small" text-anchor="middle">환경 객체 직접 접근</text>
+
+  <rect x="650" y="220" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="240" class="tufte-small" text-anchor="middle">파일 업로드 필요</text>
+
+  <!-- Row 3: AI 모델 -->
+  <text x="20" y="280" class="tufte-small">AI 모델</text>
+  <rect x="50" y="260" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="280" class="tufte-small" text-anchor="middle">GPT-4 Turbo</text>
+
+  <rect x="350" y="260" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="280" class="tufte-small" text-anchor="middle">Claude 3.5 Sonnet</text>
+
+  <rect x="650" y="260" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="280" class="tufte-small" text-anchor="middle">GPT-4o</text>
+
+  <!-- Row 4: 코드 삽입 -->
+  <text x="20" y="320" class="tufte-small">코드 통합</text>
+  <rect x="50" y="300" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="320" class="tufte-small" text-anchor="middle">수동 복사</text>
+
+  <rect x="350" y="300" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="320" class="tufte-small" text-anchor="middle">스크립트 직접 삽입</text>
+
+  <rect x="650" y="300" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="320" class="tufte-small" text-anchor="middle">수동 복사</text>
+
+  <!-- Row 5: 세션 지속성 -->
+  <text x="20" y="360" class="tufte-small">세션 유지</text>
+  <rect x="50" y="340" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="360" class="tufte-small" text-anchor="middle">독립 세션</text>
+
+  <rect x="350" y="340" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="360" class="tufte-small" text-anchor="middle">R 환경 공유</text>
+
+  <rect x="650" y="340" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="360" class="tufte-small" text-anchor="middle">독립 세션</text>
+
+  <!-- Row 6: 보고서 생성 -->
+  <text x="20" y="400" class="tufte-small">보고서</text>
+  <rect x="50" y="380" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="400" class="tufte-small" text-anchor="middle">R Markdown</text>
+
+  <rect x="350" y="380" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="400" class="tufte-small" text-anchor="middle">Quarto 문서</text>
+
+  <rect x="650" y="380" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="400" class="tufte-small" text-anchor="middle">없음</text>
+
+  <!-- Row 7: 설치 필요 -->
+  <text x="20" y="440" class="tufte-small">설치</text>
+  <rect x="50" y="420" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="150" y="440" class="tufte-small" text-anchor="middle">웹 접속만</text>
+
+  <rect x="350" y="420" width="200" height="30" class="highlight" rx="3"/>
+  <text x="450" y="440" class="tufte-small" text-anchor="middle">R 패키지 설치</text>
+
+  <rect x="650" y="420" width="200" height="30" class="feature-box" rx="3"/>
+  <text x="750" y="440" class="tufte-small" text-anchor="middle">웹 접속만</text>
+
+  <!-- Advantages -->
+  <text x="150" y="490" class="tufte-subtitle" text-anchor="middle">장점</text>
+  <text x="450" y="490" class="tufte-subtitle" text-anchor="middle">장점</text>
+  <text x="750" y="490" class="tufte-subtitle" text-anchor="middle">장점</text>
+
+  <text x="150" y="510" class="tufte-small" text-anchor="middle">쉬운 시작</text>
+  <text x="150" y="525" class="tufte-small" text-anchor="middle">R/Python 지원</text>
+
+  <text x="450" y="510" class="tufte-small" text-anchor="middle">워크플로우 통합</text>
+  <text x="450" y="525" class="tufte-small" text-anchor="middle">환경 인식</text>
+  <text x="450" y="540" class="tufte-small" text-anchor="middle">재현성</text>
+
+  <text x="750" y="510" class="tufte-small" text-anchor="middle">강력한 모델</text>
+  <text x="750" y="525" class="tufte-small" text-anchor="middle">멀티모달</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="575" class="tufte-small" text-anchor="middle">Databot: R 워크플로우를 방해하지 않는 자연스러운 통합</text>
+</svg>

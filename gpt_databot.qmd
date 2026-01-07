@@ -12,6 +12,10 @@ engine: knitr
 
 Databot은 \index{Claude 3.5 Sonnet}Claude 3.5 Sonnet을 백엔드로 사용하여 데이터의 특성을 파악하고 적절한 분석 질문을 생성한다. 사용자는 제안된 질문 중 하나를 클릭하거나 직접 질문을 입력하면, Databot이 코드를 작성하고 실행하여 시각화, 통계량, 표 등의 결과를 제공한다.
 
+![Databot 아키텍처](images/databot-architecture.svg){#fig-databot-architecture fig-align="center" width="90%"}
+
+@fig-databot-architecture 는 Databot의 전체 구조를 보여준다. 사용자 인터페이스 계층에서 입력을 받아 Databot 코어가 자연어를 처리하고 R 코드로 변환한다. 생성된 코드는 현재 R 세션에서 직접 실행되며, 결과는 다시 사용자에게 표시된다. Claude 3.5 Sonnet이 AI 백엔드로 작동하며, R 환경의 모든 객체와 패키지에 접근할 수 있다.
+
 :::{.callout-note}
 ## Databot의 현재 상태
 
@@ -22,12 +26,50 @@ Databot은 연구 단계(research preview)의 실험적 도구다. GitHub 저장
 
 ### 패키지 설치
 
+:::{.callout-important}
+## GitHub 설치 필수
+
+Databot은 CRAN에 등록되어 있지 않다. `install.packages("databot")`은 작동하지 않으며, 반드시 GitHub에서 직접 설치해야 한다.
+:::
+
 \index{pak}pak 패키지 관리자를 사용하여 GitHub에서 직접 설치한다.
 
 ```{r}
 #| eval: false
+# pak 패키지가 없다면 먼저 설치
+install.packages("pak")
+
+# GitHub에서 databot 설치
 pak::pak("jcheng5/databot")
 ```
+
+또는 remotes 패키지를 사용할 수도 있다.
+
+```{r}
+#| eval: false
+# remotes 패키지가 없다면 먼저 설치
+install.packages("remotes")
+
+# GitHub에서 databot 설치
+remotes::install_github("jcheng5/databot")
+```
+
+**설치 확인:**
+
+```{r}
+#| eval: false
+# 패키지가 제대로 설치되었는지 확인
+library(databot)
+
+# 설치된 버전 확인
+packageVersion("databot")
+```
+
+설치에 성공하면 패키지가 로드되고 버전 정보가 표시된다. 설치 중 오류가 발생하면 다음을 확인한다.
+
+- **Windows**: Rtools가 설치되어 있는지 확인
+- **macOS**: Command Line Tools가 설치되어 있는지 확인 (`xcode-select --install`)
+- **Linux**: 컴파일러와 개발 라이브러리가 설치되어 있는지 확인
 
 ### API 키 설정
 
@@ -82,27 +124,9 @@ Shiny 기반 대화형 인터페이스가 브라우저 또는 뷰어 창에 열�
 
 ### 데이터 분석 워크플로우
 
-```{mermaid}
-%%| label: fig-databot-workflow
-%%| fig-cap: Databot 작업 흐름도
-%%| fig-width: 6
-%%| fig-align: center
+![Databot 작업 흐름도](images/databot-workflow.svg){#fig-databot-workflow fig-align="center" width="85%"}
 
-graph TD
-   classDef default fill:#fff, stroke:#333, stroke-width:1px;
-
-   A[데이터 로드] --> B[databot::chat\(\) 실행]
-   B --> C[Databot이 데이터 탐색]
-   C --> D[분석 아이디어 제안]
-   D --> E{사용자 선택}
-   E -->|제안 클릭| F[R 코드 생성]
-   E -->|직접 질문| F
-   F --> G[코드 실행]
-   G --> H[결과 표시]
-   H --> I{추가 분석?}
-   I -->|예| D
-   I -->|아니오| J[Quarto 보고서 생성]
-```
+@fig-databot-workflow 는 Databot을 사용한 데이터 분석 과정을 보여준다. 데이터를 로드한 후 `databot::chat()`을 실행하면 Databot이 자동으로 데이터를 탐색하고 분석 아이디어를 제안한다. 사용자는 제안된 질문을 클릭하거나 직접 질문을 입력할 수 있으며, Databot은 R 코드를 생성하고 실행하여 결과를 보여준다. 추가 분석이 필요하면 대화를 계속 이어가고, 완료 시 Quarto 보고서로 정리할 수 있다.
 
 ### 실전 예제: 펭귄 데이터 분석
 
@@ -265,6 +289,17 @@ TukeyHSD(penguin_anova)
 
 ## 제약 사항 및 주의점 {#sec-gpt-databot-limitations}
 
+### 설치 및 환경 문제
+
+**CRAN 미등록:**
+Databot은 CRAN에 등록되지 않았으므로 `install.packages()`로 설치할 수 없다. GitHub에서만 설치 가능하며, 개발 도구(Rtools, Command Line Tools 등)가 필요할 수 있다.
+
+**API 키 필수:**
+Anthropic API 키가 없으면 Databot을 사용할 수 없다. 무료 체험판이 없으므로 API 사용 요금이 발생한다.
+
+**RStudio/Positron 권장:**
+Databot은 RStudio나 Positron IDE에서 최적화되어 있다. 일반 R 콘솔에서는 Shiny 앱이 별도 브라우저에서 열린다.
+
 ### 안정성 문제
 
 Databot은 실험 단계의 도구로, Shiny 인터페이스가 응답하지 않을 경우 세션을 복구할 방법이 없다. 중요한 분석 과정은 별도로 코드를 저장해두는 것이 안전하다.
@@ -289,20 +324,22 @@ Databot은 탐색적 분석과 학습에 적합하지만, 프로덕션 환경이
 
 ## Databot vs. 다른 AI 도구 {#sec-gpt-databot-comparison}
 
-### RTutor와의 비교
+![AI 데이터 분석 도구 비교](images/databot-vs-others.svg){#fig-databot-comparison fig-align="center" width="95%"}
 
-\index{RTutor}RTutor는 웹 기반 Shiny 앱으로, 데이터를 업로드하고 분석하는 독립 실행형 도구다. 반면 Databot은 사용자의 R 세션 내에서 작동하여 현재 환경의 모든 객체와 패키지에 접근할 수 있다.
+@fig-databot-comparison 은 R 사용자 관점에서 주요 AI 데이터 분석 도구들을 비교한다. RTutor와 ChatGPT Data Analyst는 별도 환경에서 작동하며 파일 업로드가 필요한 반면, Databot은 R 세션 내부에서 작동하여 현재 환경의 모든 객체에 직접 접근할 수 있다.
 
-| 특성 | Databot | RTutor |
-|------|---------|--------|
-| 실행 환경 | R 세션 내부 | 독립 웹앱 |
-| 백엔드 모델 | Claude 3.5 Sonnet | GPT-4 Turbo |
-| 세션 지속성 | 현재 R 환경 유지 | 독립 세션 |
-| 보고서 생성 | Quarto 문서 | R Markdown |
+### 주요 차이점
 
-### ChatGPT Data Analyst와의 비교
+**실행 환경:**
+- \index{RTutor}**RTutor**: 웹 기반 Shiny 앱, 독립 세션
+- **Databot**: R 세션 내부, IDE 통합
+- \index{ChatGPT!Data Analyst}**ChatGPT**: 웹 브라우저, 샌드박스 Python 환경
 
-\index{ChatGPT!Data Analyst}ChatGPT의 \index{고급 데이터 분석}고급 데이터 분석(Advanced Data Analysis) 기능은 샌드박스 Python 환경에서 작동하며, 파일 업로드가 필요하다. Databot은 R 환경에 이미 로드된 데이터를 직접 참조하므로 워크플로우가 더 자연스럽다.
+**워크플로우 통합:**
+Databot은 현재 R 환경을 그대로 유지하면서 작동하므로 데이터를 다시 업로드하거나 환경을 전환할 필요가 없다. 생성된 코드를 스크립트에 직접 삽입할 수 있어 워크플로우가 끊기지 않는다.
+
+**보고서 생성:**
+Databot은 대화 세션을 재현 가능한 Quarto 문서로 자동 변환하여, 분석 과정을 문서화하고 공유하기 쉽다.
 
 R 사용자에게는 Databot이, Python 사용자에게는 ChatGPT Data Analyst가 각각 유리하다.
 

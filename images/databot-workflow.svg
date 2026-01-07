@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .tufte-text {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #333;
+        font-size: 14px;
+      }
+      .tufte-title {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #333;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .tufte-small {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #666;
+        font-size: 12px;
+      }
+      .box {
+        fill: #fff;
+        stroke: #333;
+        stroke-width: 2;
+      }
+      .decision-box {
+        fill: #f5f5f5;
+        stroke: #333;
+        stroke-width: 2;
+      }
+      .arrow {
+        stroke: #333;
+        stroke-width: 2;
+        fill: none;
+        marker-end: url(#arrowhead);
+      }
+      .label {
+        font-family: Palatino, 'Book Antiqua', Georgia, serif;
+        fill: #666;
+        font-size: 11px;
+      }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="600" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="30" class="tufte-title" text-anchor="middle">Databot 작업 흐름도</text>
+
+  <!-- Step 1: 데이터 로드 -->
+  <rect x="300" y="60" width="200" height="50" class="box" rx="5"/>
+  <text x="400" y="90" class="tufte-text" text-anchor="middle">1. 데이터 로드</text>
+
+  <!-- Arrow -->
+  <path d="M 400 110 L 400 140" class="arrow"/>
+
+  <!-- Step 2: databot::chat() 실행 -->
+  <rect x="300" y="140" width="200" height="50" class="box" rx="5"/>
+  <text x="400" y="165" class="tufte-text" text-anchor="middle">2. databot::chat()</text>
+  <text x="400" y="180" class="tufte-text" text-anchor="middle">실행</text>
+
+  <!-- Arrow -->
+  <path d="M 400 190 L 400 220" class="arrow"/>
+
+  <!-- Step 3: Databot 데이터 탐색 -->
+  <rect x="300" y="220" width="200" height="50" class="box" rx="5"/>
+  <text x="400" y="245" class="tufte-text" text-anchor="middle">3. Databot이</text>
+  <text x="400" y="260" class="tufte-text" text-anchor="middle">데이터 탐색</text>
+
+  <!-- Arrow -->
+  <path d="M 400 270 L 400 300" class="arrow"/>
+
+  <!-- Step 4: 분석 아이디어 제안 -->
+  <rect x="300" y="300" width="200" height="50" class="box" rx="5"/>
+  <text x="400" y="325" class="tufte-text" text-anchor="middle">4. 분석 아이디어</text>
+  <text x="400" y="340" class="tufte-text" text-anchor="middle">제안</text>
+
+  <!-- Arrow -->
+  <path d="M 400 350 L 400 380" class="arrow"/>
+
+  <!-- Decision: 사용자 선택 -->
+  <polygon points="400,380 500,410 400,440 300,410" class="decision-box"/>
+  <text x="400" y="410" class="tufte-text" text-anchor="middle">사용자</text>
+  <text x="400" y="425" class="tufte-text" text-anchor="middle">선택</text>
+
+  <!-- Left branch: 제안 클릭 -->
+  <path d="M 300 410 L 150 410 L 150 470 L 250 470" class="arrow"/>
+  <text x="150" y="405" class="label">제안 클릭</text>
+
+  <!-- Right branch: 직접 질문 -->
+  <path d="M 500 410 L 650 410 L 650 470 L 550 470" class="arrow"/>
+  <text x="580" y="405" class="label">직접 질문</text>
+
+  <!-- Step 5: R 코드 생성 -->
+  <rect x="250" y="450" width="300" height="40" class="box" rx="5"/>
+  <text x="400" y="475" class="tufte-text" text-anchor="middle">5. R 코드 생성 및 실행</text>
+
+  <!-- Arrow -->
+  <path d="M 400 490 L 400 515" class="arrow"/>
+
+  <!-- Step 6: 결과 표시 -->
+  <rect x="300" y="515" width="200" height="40" class="box" rx="5"/>
+  <text x="400" y="540" class="tufte-text" text-anchor="middle">6. 결과 표시</text>
+
+  <!-- Arrow back or forward -->
+  <path d="M 300 535 L 80 535 L 80 325 L 300 325" class="arrow"/>
+  <text x="50" y="430" class="label">추가 분석</text>
+
+  <path d="M 500 535 L 700 535" class="arrow"/>
+  <text x="610" y="530" class="label">완료</text>
+
+  <!-- Step 7: Quarto 보고서 -->
+  <rect x="700" y="515" width="80" height="40" class="box" rx="5"/>
+  <text x="740" y="530" class="tufte-small" text-anchor="middle">Quarto</text>
+  <text x="740" y="545" class="tufte-small" text-anchor="middle">보고서</text>
+
+  <!-- Note -->
+  <text x="400" y="585" class="tufte-small" text-anchor="middle">현재 R 세션 내에서 모든 작업이 이루어짐</text>
+</svg>
