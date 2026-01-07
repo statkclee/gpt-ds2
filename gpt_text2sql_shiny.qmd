@@ -1,0 +1,944 @@
+# Text-to-SQL + Shiny 사례 연구 {#sec-text2sql-shiny}
+
+## 학습 목표 {.unnumbered}
+
+이번 장에서는 실제 업무에 바로 적용할 수 있는 Text-to-SQL과 Shiny 애플리케이션 통합 사례를 다룬다.
+
+- 자연어로 SQL 쿼리를 생성하는 Text-to-SQL 시스템 구축
+- Shiny 대시보드에 챗GPT 기반 데이터베이스 인터페이스 통합
+- 사용자 친화적인 데이터 탐색 도구 개발
+- 실무에서 활용 가능한 프로덕션 레벨 애플리케이션 설계
+
+## 사례 배경: 비즈니스 문제 정의 {#sec-text2sql-shiny-background}
+
+데이터베이스에 저장된 방대한 데이터를 SQL에 익숙하지 않은 비즈니스 사용자가 자유롭게 탐색하고 분석할 수 있도록 하는 것은 많은 조직의 숙원 과제다. 전통적으로 이 문제를 해결하기 위해 대시보드를 만들거나 고정된 보고서를 제공했지만, 사용자의 다양한 질문에 유연하게 대응하기 어렵다는 한계가 있었다.
+
+챗GPT와 같은 거대 언어 모델(LLM)의 등장으로 자연어 질문을 SQL 쿼리로 변환하는 Text-to-SQL 기술이 비약적으로 발전했다. Shiny와 결합하면 다음과 같은 강력한 시스템을 구축할 수 있다:
+
+- **자연어 인터페이스**: "지난달 매출이 가장 높았던 제품 5개는?"
+- **실시간 쿼리 실행**: 생성된 SQL을 즉시 실행하고 결과 표시
+- **시각화 자동 생성**: 쿼리 결과를 적절한 차트로 자동 변환
+- **쿼리 이력 관리**: 자주 사용하는 질문을 저장하고 재사용
+
+## 시스템 아키텍처 {#sec-text2sql-shiny-architecture}
+
+전체 시스템은 다음과 같은 구조로 설계한다:
+
+```{mermaid}
+%%| label: fig-text2sql-architecture
+%%| fig-cap: Text-to-SQL + Shiny 시스템 아키텍처
+%%| fig-width: 8
+
+flowchart LR
+    User[사용자] -->|자연어 질문| UI[Shiny UI]
+    UI -->|질문 전송| Server[Shiny Server]
+    Server -->|스키마 + 질문| LLM[GPT-4/Claude]
+    LLM -->|SQL 쿼리| Server
+    Server -->|쿼리 실행| DB[(데이터베이스)]
+    DB -->|결과| Server
+    Server -->|데이터 + 차트| UI
+    UI -->|결과 표시| User
+
+    style LLM fill:#8CBDE3
+    style DB fill:#f5f5f5
+```
+
+핵심 컴포넌트는 다음과 같다:
+
+1. **데이터베이스 스키마 파서**: 테이블 구조를 LLM이 이해할 수 있는 형태로 변환
+2. **프롬프트 엔지니어링**: 정확한 SQL 생성을 위한 컨텍스트 제공
+3. **SQL 생성 및 검증**: LLM으로 쿼리 생성 후 안전성 검증
+4. **쿼리 실행 엔진**: 생성된 SQL을 데이터베이스에서 실행
+5. **결과 시각화**: 데이터 특성에 맞는 차트 자동 선택
+
+## 데이터베이스 준비 {#sec-text2sql-shiny-database}
+
+실습을 위해 가상의 전자상거래 데이터베이스를 준비한다. SQLite를 사용하여 로컬에서 쉽게 재현할 수 있도록 구성한다.
+
+### 샘플 데이터베이스 생성
+
+```{r}
+#| eval: false
+#| label: create-ecommerce-db
+
+library(DBI)
+library(RSQLite)
+library(dplyr)
+library(lubridate)
+
+# 데이터베이스 연결
+con <- dbConnect(SQLite(), "data/ecommerce.db")
+
+# 고객 테이블
+customers <- tibble(
+  customer_id = 1:100,
+  name = paste0("고객", 1:100),
+  city = sample(c("서울", "부산", "대구", "인천", "광주"), 100, replace = TRUE),
+  join_date = sample(seq(as.Date("2022-01-01"), as.Date("2024-01-01"), by = "day"), 100)
+)
+
+# 제품 테이블
+products <- tibble(
+  product_id = 1:50,
+  product_name = paste0("제품", 1:50),
+  category = sample(c("전자기기", "의류", "식품", "도서", "가구"), 50, replace = TRUE),
+  price = round(runif(50, 10000, 500000), -3)
+)
+
+# 주문 테이블
+set.seed(42)
+orders <- tibble(
+  order_id = 1:500,
+  customer_id = sample(1:100, 500, replace = TRUE),
+  order_date = sample(seq(as.Date("2023-01-01"), as.Date("2024-12-31"), by = "day"), 500),
+  total_amount = round(runif(500, 20000, 1000000), -3)
+)
+
+# 주문 상세 테이블
+order_details <- tibble(
+  detail_id = 1:1000,
+  order_id = sample(1:500, 1000, replace = TRUE),
+  product_id = sample(1:50, 1000, replace = TRUE),
+  quantity = sample(1:5, 1000, replace = TRUE),
+  unit_price = round(runif(1000, 10000, 500000), -3)
+)
+
+# 테이블 저장
+dbWriteTable(con, "customers", customers, overwrite = TRUE)
+dbWriteTable(con, "products", products, overwrite = TRUE)
+dbWriteTable(con, "orders", orders, overwrite = TRUE)
+dbWriteTable(con, "order_details", order_details, overwrite = TRUE)
+
+dbDisconnect(con)
+```
+
+### 스키마 정보 추출
+
+LLM이 정확한 SQL을 생성하려면 데이터베이스 스키마를 이해해야 한다. 스키마 정보를 텍스트로 변환하는 함수를 작성한다.
+
+```{r}
+#| eval: false
+#| label: extract-schema
+
+library(DBI)
+library(RSQLite)
+
+# 스키마 정보를 텍스트로 변환
+get_schema_description <- function(con) {
+  tables <- dbListTables(con)
+
+  schema_text <- "# 데이터베이스 스키마\n\n"
+
+  for (table in tables) {
+    # 테이블 구조
+    fields <- dbListFields(con, table)
+
+    # 샘플 데이터 (처음 3행)
+    sample_data <- dbGetQuery(con, sprintf("SELECT * FROM %s LIMIT 3", table))
+
+    schema_text <- paste0(schema_text, sprintf(
+      "## 테이블: %s\n열: %s\n샘플:\n%s\n\n",
+      table,
+      paste(fields, collapse = ", "),
+      paste(capture.output(print(sample_data)), collapse = "\n")
+    ))
+  }
+
+  return(schema_text)
+}
+
+# 사용 예시
+con <- dbConnect(SQLite(), "data/ecommerce.db")
+schema_desc <- get_schema_description(con)
+cat(schema_desc)
+dbDisconnect(con)
+```
+
+출력 결과:
+
+```
+# 데이터베이스 스키마
+
+## 테이블: customers
+열: customer_id, name, city, join_date
+샘플:
+  customer_id   name city  join_date
+1           1 고객1 서울 2023-03-15
+2           2 고객2 부산 2022-11-20
+3           3 고객3 대구 2023-07-08
+
+## 테이블: products
+열: product_id, product_name, category, price
+샘플:
+  product_id product_name category  price
+1          1       제품1 전자기기 250000
+2          2       제품2     의류  45000
+3          3       제품3     식품  18000
+
+## 테이블: orders
+열: order_id, customer_id, order_date, total_amount
+샘플:
+  order_id customer_id order_date total_amount
+1        1          45 2024-05-12       450000
+2        2          23 2023-09-18       120000
+3        3          67 2024-02-28       680000
+
+## 테이블: order_details
+열: detail_id, order_id, product_id, quantity, unit_price
+샘플:
+  detail_id order_id product_id quantity unit_price
+1         1      245         12        2     180000
+2         2      189         34        1      95000
+3         3      412         08        3      42000
+```
+
+## Text-to-SQL 프롬프트 엔지니어링 {#sec-text2sql-shiny-prompt}
+
+정확한 SQL을 생성하기 위해서는 체계적인 프롬프트 구성이 필수다. Few-shot 학습 방식으로 예제를 제공하여 성능을 높인다.
+
+### 프롬프트 템플릿
+
+```{r}
+#| eval: false
+#| label: text2sql-prompt
+
+create_text2sql_prompt <- function(schema_desc, user_question, examples = NULL) {
+
+  system_prompt <- "당신은 데이터베이스 전문가입니다. 사용자의 자연어 질문을 정확한 SQL 쿼리로 변환합니다.
+
+규칙:
+1. SELECT 문만 생성합니다 (INSERT, UPDATE, DELETE 금지)
+2. 테이블명과 열명은 정확히 스키마에 명시된 이름을 사용합니다
+3. 한글 컬럼명은 백틱(`)으로 감싸지 않습니다
+4. 날짜 필터링 시 DATE() 함수를 사용합니다
+5. 집계 함수 사용 시 적절한 GROUP BY를 추가합니다
+6. 결과는 의미 있는 순서로 정렬합니다 (ORDER BY)
+7. SQL 쿼리만 반환하고, 설명이나 마크다운 코드 블록은 제외합니다"
+
+  few_shot_examples <- "
+## 예제 질문과 SQL
+
+질문: 2024년 총 주문 금액은?
+SQL: SELECT SUM(total_amount) AS total_sales FROM orders WHERE strftime('%Y', order_date) = '2024'
+
+질문: 고객별 주문 횟수를 많은 순으로 보여줘
+SQL: SELECT c.name, COUNT(o.order_id) AS order_count FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id, c.name ORDER BY order_count DESC
+
+질문: 가장 인기 있는 제품 카테고리 5개는?
+SQL: SELECT p.category, COUNT(od.detail_id) AS sales_count FROM products p JOIN order_details od ON p.product_id = od.product_id GROUP BY p.category ORDER BY sales_count DESC LIMIT 5
+"
+
+  user_prompt <- sprintf("
+# 데이터베이스 스키마
+%s
+
+# 사용자 질문
+%s
+
+# SQL 쿼리를 생성하세요 (쿼리만 반환, 추가 설명 없음):
+", schema_desc, user_question)
+
+  return(list(
+    system = system_prompt,
+    few_shot = few_shot_examples,
+    user = user_prompt
+  ))
+}
+```
+
+### OpenAI API를 통한 SQL 생성
+
+```{r}
+#| eval: false
+#| label: generate-sql-openai
+
+library(httr)
+library(jsonlite)
+
+generate_sql_query <- function(schema_desc, user_question, api_key = Sys.getenv("OPENAI_API_KEY")) {
+
+  prompts <- create_text2sql_prompt(schema_desc, user_question)
+
+  # OpenAI API 호출
+  response <- POST(
+    url = "https://api.openai.com/v1/chat/completions",
+    add_headers(
+      "Authorization" = paste("Bearer", api_key),
+      "Content-Type" = "application/json"
+    ),
+    body = toJSON(list(
+      model = "gpt-4-turbo-preview",
+      messages = list(
+        list(role = "system", content = prompts$system),
+        list(role = "user", content = paste(prompts$few_shot, prompts$user, sep = "\n"))
+      ),
+      temperature = 0.1,
+      max_tokens = 500
+    ), auto_unbox = TRUE),
+    encode = "json"
+  )
+
+  # 응답 파싱
+  content <- content(response, as = "text", encoding = "UTF-8")
+  result <- fromJSON(content)
+
+  sql_query <- result$choices$message$content[1]
+
+  # SQL 정제 (코드 블록 제거)
+  sql_query <- gsub("```sql\\n|```\\n|```", "", sql_query)
+  sql_query <- trimws(sql_query)
+
+  return(sql_query)
+}
+
+# 사용 예시
+con <- dbConnect(SQLite(), "data/ecommerce.db")
+schema_desc <- get_schema_description(con)
+
+question <- "서울에 사는 고객들의 총 주문 금액은?"
+sql <- generate_sql_query(schema_desc, question)
+cat("생성된 SQL:\n", sql, "\n\n")
+
+# 쿼리 실행
+result <- dbGetQuery(con, sql)
+print(result)
+
+dbDisconnect(con)
+```
+
+## Shiny 애플리케이션 구축 {#sec-text2sql-shiny-app}
+
+이제 모든 컴포넌트를 통합하여 실제 동작하는 Shiny 애플리케이션을 만든다.
+
+### 기본 UI 구성
+
+```{r}
+#| eval: false
+#| label: shiny-ui
+
+library(shiny)
+library(bslib)
+library(DT)
+library(ggplot2)
+
+ui <- page_sidebar(
+  title = "Text-to-SQL 데이터 탐색기",
+  theme = bs_theme(version = 5, bootswatch = "cosmo"),
+
+  sidebar = sidebar(
+    width = 350,
+
+    h4("자연어로 데이터 질문하기"),
+
+    textAreaInput(
+      "question",
+      "질문을 입력하세요:",
+      placeholder = "예: 2024년 매출이 가장 높은 제품 카테고리는?",
+      rows = 3,
+      width = "100%"
+    ),
+
+    actionButton(
+      "submit",
+      "SQL 생성 및 실행",
+      class = "btn-primary w-100 mb-3",
+      icon = icon("play")
+    ),
+
+    hr(),
+
+    h5("생성된 SQL 쿼리"),
+    verbatimTextOutput("generated_sql", placeholder = TRUE),
+
+    hr(),
+
+    h5("쿼리 이력"),
+    uiOutput("query_history")
+  ),
+
+  navset_card_tab(
+    nav_panel(
+      "테이블 결과",
+      DTOutput("result_table")
+    ),
+    nav_panel(
+      "시각화",
+      plotOutput("result_plot", height = "500px")
+    ),
+    nav_panel(
+      "데이터베이스 스키마",
+      verbatimTextOutput("schema_info")
+    )
+  )
+)
+```
+
+### 서버 로직 구현
+
+```{r}
+#| eval: false
+#| label: shiny-server
+
+server <- function(input, output, session) {
+
+  # 데이터베이스 연결 (앱 시작 시)
+  con <- dbConnect(SQLite(), "data/ecommerce.db")
+  schema_desc <- get_schema_description(con)
+
+  # 앱 종료 시 연결 해제
+  onStop(function() {
+    dbDisconnect(con)
+  })
+
+  # 반응형 값 저장
+  rv <- reactiveValues(
+    sql_query = NULL,
+    result_data = NULL,
+    history = list()
+  )
+
+  # 스키마 정보 표시
+  output$schema_info <- renderText({
+    schema_desc
+  })
+
+  # SQL 생성 및 실행
+  observeEvent(input$submit, {
+    req(input$question)
+
+    # 진행 표시
+    withProgress(message = "SQL 생성 중...", value = 0.3, {
+
+      # SQL 생성
+      sql <- generate_sql_query(schema_desc, input$question)
+      rv$sql_query <- sql
+
+      setProgress(value = 0.6, message = "쿼리 실행 중...")
+
+      # SQL 실행
+      tryCatch({
+        result <- dbGetQuery(con, sql)
+        rv$result_data <- result
+
+        # 이력 추가
+        rv$history <- c(
+          list(list(question = input$question, sql = sql, timestamp = Sys.time())),
+          rv$history
+        )
+
+        # 최대 10개까지만 유지
+        if (length(rv$history) > 10) {
+          rv$history <- rv$history[1:10]
+        }
+
+        setProgress(value = 1, message = "완료!")
+
+      }, error = function(e) {
+        showNotification(
+          paste("SQL 실행 오류:", e$message),
+          type = "error",
+          duration = 5
+        )
+      })
+    })
+  })
+
+  # 생성된 SQL 표시
+  output$generated_sql <- renderText({
+    req(rv$sql_query)
+    rv$sql_query
+  })
+
+  # 결과 테이블 표시
+  output$result_table <- renderDT({
+    req(rv$result_data)
+
+    datatable(
+      rv$result_data,
+      options = list(
+        pageLength = 25,
+        scrollX = TRUE,
+        dom = 'Bfrtip',
+        buttons = c('copy', 'csv', 'excel')
+      ),
+      extensions = 'Buttons',
+      rownames = FALSE
+    )
+  })
+
+  # 자동 시각화
+  output$result_plot <- renderPlot({
+    req(rv$result_data)
+
+    df <- rv$result_data
+
+    # 데이터 특성에 따라 차트 자동 선택
+    if (ncol(df) == 2) {
+      # 2열: 막대 차트 또는 선 그래프
+      col1_type <- class(df[[1]])[1]
+      col2_type <- class(df[[2]])[1]
+
+      if (col2_type %in% c("numeric", "integer")) {
+        # 막대 차트
+        ggplot(df, aes(x = .data[[names(df)[1]]], y = .data[[names(df)[2]]])) +
+          geom_col(fill = "#8CBDE3") +
+          theme_minimal(base_size = 14) +
+          labs(
+            title = "쿼리 결과 시각화",
+            x = names(df)[1],
+            y = names(df)[2]
+          ) +
+          theme(axis.text.x = element_text(angle = 45, hjust = 1))
+      } else {
+        # 기본 텍스트 출력
+        ggplot() +
+          annotate("text", x = 0.5, y = 0.5,
+                   label = "시각화를 생성할 수 없습니다.\n테이블 결과를 확인하세요.",
+                   size = 6) +
+          theme_void()
+      }
+
+    } else if (ncol(df) == 1 && nrow(df) == 1) {
+      # 단일 값: 큰 숫자 표시
+      value <- df[[1]]
+      ggplot() +
+        annotate("text", x = 0.5, y = 0.5,
+                 label = format(value, big.mark = ","),
+                 size = 24, color = "#8CBDE3") +
+        theme_void()
+
+    } else {
+      # 복잡한 결과: 안내 메시지
+      ggplot() +
+        annotate("text", x = 0.5, y = 0.5,
+                 label = "테이블 결과를 확인하세요.",
+                 size = 6) +
+        theme_void()
+    }
+  })
+
+  # 쿼리 이력 표시
+  output$query_history <- renderUI({
+    if (length(rv$history) == 0) {
+      return(p("아직 실행한 쿼리가 없습니다.", class = "text-muted"))
+    }
+
+    history_items <- lapply(seq_along(rv$history), function(i) {
+      item <- rv$history[[i]]
+
+      div(
+        class = "border rounded p-2 mb-2",
+        p(strong(item$question), class = "mb-1"),
+        p(class = "small text-muted mb-1",
+          format(item$timestamp, "%Y-%m-%d %H:%M:%S")),
+        actionButton(
+          paste0("rerun_", i),
+          "다시 실행",
+          class = "btn-sm btn-outline-primary",
+          onclick = sprintf("Shiny.setInputValue('question', '%s'); $('#submit').click();",
+                          gsub("'", "\\\\'", item$question))
+        )
+      )
+    })
+
+    tagList(history_items)
+  })
+}
+
+# 앱 실행
+shinyApp(ui, server)
+```
+
+## 안전성 강화 {#sec-text2sql-shiny-security}
+
+Text-to-SQL 시스템에서 가장 중요한 것은 보안이다. SQL 인젝션과 위험한 쿼리를 방지하기 위한 검증 레이어를 추가한다.
+
+### SQL 검증 함수
+
+```{r}
+#| eval: false
+#| label: sql-validation
+
+validate_sql_query <- function(sql) {
+
+  errors <- c()
+
+  # 1. SELECT만 허용
+  if (!grepl("^\\s*SELECT", sql, ignore.case = TRUE)) {
+    errors <- c(errors, "SELECT 문만 허용됩니다.")
+  }
+
+  # 2. 위험한 키워드 차단
+  dangerous_keywords <- c(
+    "DROP", "DELETE", "INSERT", "UPDATE", "ALTER", "CREATE",
+    "GRANT", "REVOKE", "TRUNCATE", "EXEC", "EXECUTE"
+  )
+
+  for (keyword in dangerous_keywords) {
+    if (grepl(keyword, sql, ignore.case = TRUE)) {
+      errors <- c(errors, paste0("금지된 키워드가 포함되어 있습니다: ", keyword))
+    }
+  }
+
+  # 3. 세미콜론 중복 차단 (다중 쿼리 실행 방지)
+  if (grepl(";.*SELECT", sql, ignore.case = TRUE)) {
+    errors <- c(errors, "다중 쿼리 실행은 허용되지 않습니다.")
+  }
+
+  # 4. 주석 패턴 차단
+  if (grepl("--", sql) || grepl("/\\*", sql)) {
+    errors <- c(errors, "주석 패턴이 감지되었습니다.")
+  }
+
+  if (length(errors) > 0) {
+    return(list(valid = FALSE, errors = errors))
+  } else {
+    return(list(valid = TRUE, errors = NULL))
+  }
+}
+
+# 사용 예시
+safe_sql <- "SELECT * FROM customers WHERE city = '서울'"
+unsafe_sql <- "SELECT * FROM customers; DROP TABLE orders; --"
+
+validate_sql_query(safe_sql)
+# $valid: TRUE
+
+validate_sql_query(unsafe_sql)
+# $valid: FALSE
+# $errors: "금지된 키워드가 포함되어 있습니다: DROP", "다중 쿼리 실행은 허용되지 않습니다."
+```
+
+검증 함수를 Shiny 앱의 `observeEvent` 내부에 통합한다:
+
+```{r}
+#| eval: false
+#| label: integrate-validation
+
+# SQL 생성 후 검증 추가
+observeEvent(input$submit, {
+  req(input$question)
+
+  withProgress(message = "SQL 생성 중...", value = 0.3, {
+
+    sql <- generate_sql_query(schema_desc, input$question)
+
+    # 검증
+    validation <- validate_sql_query(sql)
+
+    if (!validation$valid) {
+      showNotification(
+        paste("보안 검증 실패:", paste(validation$errors, collapse = "; ")),
+        type = "error",
+        duration = 10
+      )
+      return()
+    }
+
+    rv$sql_query <- sql
+
+    # 이하 동일...
+  })
+})
+```
+
+## 성능 최적화 {#sec-text2sql-shiny-performance}
+
+프로덕션 환경에서는 성능이 중요하다. 캐싱과 쿼리 최적화를 통해 응답 속도를 개선한다.
+
+### 스키마 캐싱
+
+데이터베이스 스키마는 자주 변경되지 않으므로 앱 시작 시 한 번만 추출하여 메모리에 저장한다. 위 예제에서 이미 적용되어 있다:
+
+```{r}
+#| eval: false
+
+# 앱 시작 시 한 번만 실행
+con <- dbConnect(SQLite(), "data/ecommerce.db")
+schema_desc <- get_schema_description(con)
+```
+
+### 쿼리 결과 캐싱
+
+동일한 질문에 대해 반복 실행을 방지하기 위해 결과를 캐싱한다.
+
+```{r}
+#| eval: false
+#| label: result-caching
+
+library(memoise)
+library(digest)
+
+# 캐싱 함수 생성
+cached_query <- memoise(function(con, sql) {
+  dbGetQuery(con, sql)
+})
+
+# 사용
+result <- cached_query(con, sql)
+```
+
+Shiny 앱에서는 `reactiveValues`를 활용하여 세션별 캐시를 구현할 수 있다:
+
+```{r}
+#| eval: false
+
+rv <- reactiveValues(
+  query_cache = list()
+)
+
+observeEvent(input$submit, {
+  # 캐시 키 생성
+  cache_key <- digest::digest(list(input$question), algo = "md5")
+
+  # 캐시 확인
+  if (!is.null(rv$query_cache[[cache_key]])) {
+    rv$result_data <- rv$query_cache[[cache_key]]
+    showNotification("캐시된 결과를 불러왔습니다.", type = "message")
+    return()
+  }
+
+  # 쿼리 실행
+  result <- dbGetQuery(con, sql)
+
+  # 캐시 저장
+  rv$query_cache[[cache_key]] <- result
+  rv$result_data <- result
+})
+```
+
+## 고급 기능: 자동 시각화 추천 {#sec-text2sql-shiny-viz}
+
+쿼리 결과의 특성을 분석하여 가장 적합한 차트를 자동으로 선택하는 로직을 구현한다.
+
+### 차트 선택 로직
+
+```{r}
+#| eval: false
+#| label: auto-viz
+
+library(ggplot2)
+library(scales)
+
+auto_visualize <- function(df) {
+
+  # 데이터 특성 분석
+  n_cols <- ncol(df)
+  n_rows <- nrow(df)
+
+  if (n_rows == 0) {
+    return(ggplot() +
+             annotate("text", x = 0.5, y = 0.5, label = "결과가 없습니다.", size = 6) +
+             theme_void())
+  }
+
+  # 단일 값
+  if (n_cols == 1 && n_rows == 1) {
+    value <- df[[1]]
+    return(
+      ggplot() +
+        annotate("text", x = 0.5, y = 0.5,
+                 label = format(value, big.mark = ","),
+                 size = 32, color = "#8CBDE3", fontface = "bold") +
+        annotate("text", x = 0.5, y = 0.3,
+                 label = names(df)[1],
+                 size = 8, color = "#666") +
+        theme_void()
+    )
+  }
+
+  # 2열: X축, Y축
+  if (n_cols == 2) {
+    col1 <- names(df)[1]
+    col2 <- names(df)[2]
+
+    col1_type <- class(df[[1]])[1]
+    col2_type <- class(df[[2]])[1]
+
+    # Y축이 숫자형
+    if (col2_type %in% c("numeric", "integer")) {
+
+      # X축이 날짜형 → 선 그래프
+      if (col1_type %in% c("Date", "POSIXct", "POSIXt")) {
+        return(
+          ggplot(df, aes(x = .data[[col1]], y = .data[[col2]])) +
+            geom_line(color = "#8CBDE3", size = 1.2) +
+            geom_point(color = "#8CBDE3", size = 3) +
+            scale_y_continuous(labels = comma) +
+            theme_minimal(base_size = 14) +
+            labs(title = "시계열 추이", x = col1, y = col2)
+        )
+      }
+
+      # X축이 범주형 → 막대 차트
+      if (n_rows <= 20) {
+        return(
+          ggplot(df, aes(x = reorder(.data[[col1]], .data[[col2]]),
+                        y = .data[[col2]])) +
+            geom_col(fill = "#8CBDE3") +
+            coord_flip() +
+            scale_y_continuous(labels = comma) +
+            theme_minimal(base_size = 14) +
+            labs(title = "막대 차트", x = col1, y = col2)
+        )
+      } else {
+        # 너무 많으면 상위 20개만
+        df_top <- df %>%
+          arrange(desc(.data[[col2]])) %>%
+          head(20)
+
+        return(
+          ggplot(df_top, aes(x = reorder(.data[[col1]], .data[[col2]]),
+                            y = .data[[col2]])) +
+            geom_col(fill = "#8CBDE3") +
+            coord_flip() +
+            scale_y_continuous(labels = comma) +
+            theme_minimal(base_size = 14) +
+            labs(title = "상위 20개", x = col1, y = col2)
+        )
+      }
+    }
+  }
+
+  # 3열 이상: 히트맵 또는 테이블 안내
+  if (n_cols >= 3) {
+    return(
+      ggplot() +
+        annotate("text", x = 0.5, y = 0.5,
+                 label = "복잡한 결과입니다.\n테이블 탭에서 확인하세요.",
+                 size = 6) +
+        theme_void()
+    )
+  }
+
+  # 기본 반환
+  return(ggplot() + theme_void())
+}
+```
+
+Shiny 앱의 `renderPlot`을 다음과 같이 간소화한다:
+
+```{r}
+#| eval: false
+
+output$result_plot <- renderPlot({
+  req(rv$result_data)
+  auto_visualize(rv$result_data)
+})
+```
+
+## 배포 및 프로덕션 고려사항 {#sec-text2sql-shiny-deployment}
+
+실제 서비스로 배포할 때 고려해야 할 사항들이다.
+
+### 환경 변수 관리
+
+API 키와 데이터베이스 연결 정보는 환경 변수로 관리한다:
+
+```{r}
+#| eval: false
+
+# .Renviron 파일
+OPENAI_API_KEY=sk-proj-...
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=ecommerce
+DB_USER=user
+DB_PASSWORD=password
+```
+
+앱에서 사용:
+
+```{r}
+#| eval: false
+
+api_key <- Sys.getenv("OPENAI_API_KEY")
+db_host <- Sys.getenv("DB_HOST")
+
+con <- dbConnect(
+  RPostgres::Postgres(),
+  host = db_host,
+  port = as.integer(Sys.getenv("DB_PORT")),
+  dbname = Sys.getenv("DB_NAME"),
+  user = Sys.getenv("DB_USER"),
+  password = Sys.getenv("DB_PASSWORD")
+)
+```
+
+### 로깅 및 모니터링
+
+사용자 질문과 생성된 SQL을 로그로 남겨 품질 개선에 활용한다:
+
+```{r}
+#| eval: false
+
+library(logger)
+
+log_threshold(INFO)
+
+observeEvent(input$submit, {
+  log_info("사용자 질문: {input$question}")
+
+  sql <- generate_sql_query(schema_desc, input$question)
+  log_info("생성된 SQL: {sql}")
+
+  tryCatch({
+    result <- dbGetQuery(con, sql)
+    log_info("쿼리 성공: {nrow(result)}행 반환")
+  }, error = function(e) {
+    log_error("쿼리 실패: {e$message}")
+  })
+})
+```
+
+### 사용자 피드백 수집
+
+생성된 SQL이 정확한지 사용자에게 피드백을 받는 UI를 추가한다:
+
+```{r}
+#| eval: false
+
+# UI에 추가
+actionButton("feedback_good", "정확함 👍", class = "btn-sm btn-success"),
+actionButton("feedback_bad", "부정확함 👎", class = "btn-sm btn-danger")
+
+# 서버에 추가
+observeEvent(input$feedback_good, {
+  # 피드백 저장 (파일 또는 데이터베이스)
+  feedback <- data.frame(
+    timestamp = Sys.time(),
+    question = input$question,
+    sql = rv$sql_query,
+    rating = "good"
+  )
+  write.csv(feedback, "feedback.csv", append = TRUE, row.names = FALSE)
+
+  showNotification("피드백 감사합니다!", type = "message")
+})
+```
+
+## 실습 과제 {#sec-text2sql-shiny-exercises}
+
+1. **다국어 지원**: 영어 질문도 처리할 수 있도록 프롬프트를 확장하라.
+
+2. **쿼리 템플릿**: 자주 사용하는 질문을 버튼으로 제공하는 기능을 추가하라.
+
+3. **결과 내보내기**: 쿼리 결과를 Excel 또는 CSV로 다운로드하는 기능을 구현하라.
+
+4. **차트 커스터마이징**: 사용자가 차트 유형을 수동으로 선택할 수 있는 UI를 추가하라.
+
+5. **다중 데이터베이스**: 여러 데이터베이스 중 하나를 선택할 수 있도록 확장하라.
+
+## 정리하며 {#sec-text2sql-shiny-summary}
+
+Text-to-SQL과 Shiny를 결합한 시스템은 데이터 접근성을 혁신적으로 개선한다. SQL을 모르는 비즈니스 사용자도 자연어로 질문하여 필요한 데이터를 즉시 얻을 수 있다.
+
+핵심 요소는 다음과 같다:
+
+1. **정확한 스키마 컨텍스트**: 데이터베이스 구조를 LLM이 이해할 수 있게 전달
+2. **Few-shot 프롬프트**: 예제를 통해 SQL 생성 품질 향상
+3. **보안 검증**: SQL 인젝션과 위험한 쿼리 차단
+4. **자동 시각화**: 결과 특성에 맞는 차트 자동 생성
+5. **사용자 피드백**: 지속적인 품질 개선
+
+챗GPT와 Shiny의 조합은 데이터 분석 도구의 새로운 패러다임을 제시한다. 다음 장에서는 이러한 시스템을 확장하여 대규모 엔터프라이즈 환경에 배포하는 방법을 다룬다.

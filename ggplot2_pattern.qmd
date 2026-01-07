@@ -480,6 +480,7 @@ ratings_dumbbell_df %>%
 #| fig-width: 6
 #| fig-height: 4
 #| out-width: "100%"
+#| eval: false
 # devtools::install_github("leeper/slopegraph")
 library(slopegraph)
 
@@ -506,6 +507,7 @@ ratings_dumbbell_df %>%
 #| fig-width: 6
 #| fig-height: 4
 #| out-width: "70%"
+#| eval: false
 ratings_dumbbell_df %>% 
   pivot_wider(names_from = episode, values_from = viewers_7day) %>% 
   as.data.frame() %>% 

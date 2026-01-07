@@ -123,11 +123,12 @@ py_config()
 사전 학습된 모델을 활용하여 자연어 처리 감성분석 작업을 수행하는 방법이 앞서 구축한 파이썬 가상환경에서 수행되고 있다.
 
 ```{python}
+#| eval: false
 from transformers import pipeline
 
 prompt = "분위기도 좋았고 음식도 아주 훌륭했어."
 
-classifier = pipeline("text-classification", 
+classifier = pipeline("text-classification",
                       model='nlptown/bert-base-multilingual-uncased-sentiment')
 
 prediction = classifier(prompt)

@@ -158,6 +158,7 @@ SPSS 패키지가 없더라도 R 환경에서 `haven` 패키지와 `janitor` 패
 언어 R로 수행할 준비가 되었다.
 
 ```{r}
+#| eval: false
 library(haven) # install.packages("foreign")
 
 # Read the .sav file
@@ -165,16 +166,16 @@ welfare_raw <- read_spss("data/file/SPSS/koweps_hpwc17_2022_Beta1.sav")
 
 ## 관심 변수 추출
 demo_vars <- welfare_raw %>%
-  map_chr(~attributes(.x)$label) |> 
-    enframe() |> 
-    filter(str_detect(value, "성별|종교|(태어난 연도)|혼인상태|가구원수")) |> 
-    pull(name) |> 
+  map_chr(~attributes(.x)$label) |>
+    enframe() |>
+    filter(str_detect(value, "성별|종교|(태어난 연도)|혼인상태|가구원수")) |>
+    pull(name) |>
     setdiff("h1707_6aq6") # 기타소비-종교관련비 변수 제거
 
 ## 인구통계학적 변수로 구성된 데이터셋
 welfare_raw %>%
-  select(all_of(demo_vars)) |> 
-    set_names(str_split("성별|종교|(태어난 연도)|혼인상태|가구원수", "\\|")[[1]] |> dput()) |> 
+  select(all_of(demo_vars)) |>
+    set_names(str_split("성별|종교|(태어난 연도)|혼인상태|가구원수", "\\|")[[1]] |> dput()) |>
     janitor::clean_names(ascii = FALSE)
 ```
 
@@ -187,6 +188,7 @@ SAS 통계패키지 `koweps_hpwc17_2022_beta1.sas7bdat` 파일은 앞서 작성�
 것과 동일한 방법으로 진행된다. 즉, 코드를 재사용하게 된다.
 
 ```{r}
+#| eval: false
 library(haven) # install.packages("foreign")
 
 sas_raw <- read_sas("data/file/SAS/koweps_hpwc17_2022_Beta1.sas7bdat")
@@ -216,6 +218,7 @@ SPSS, SAS 데이터를 R로 가져와 인구통계 데이터프레임으로 변�
 있다.
 
 ```{r}
+#| eval: false
 library(haven) # install.packages("haven")
 
 # STATA 파일 불러오기
@@ -317,10 +320,13 @@ fig-align="center" width="500"}
 ```{r}
 library(googlesheets4)
 
+# Non-interactive session에서 공개 시트 읽기를 위한 인증 해제
+gs4_deauth()
+
 # messy 데이터 불러오기
 sheet_url <- "https://docs.google.com/spreadsheets/d/19L3ASfmWTCd1YikWHIHeWKdK29nXz-hhwktFU8qLAYc/"
 
-messy_import <- read_sheet(sheet_url, skip = 1, 
+messy_import <- read_sheet(sheet_url, skip = 1,
                          col_types = "ccccccccccc" )
 messy_data <- messy_import |> 
   set_names(c("Mouse_ID", "SEX", "week_4_date", "week_4_weight", 

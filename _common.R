@@ -18,6 +18,7 @@ library(JuliaCall)
 
 conflicted::conflicts_prefer(dplyr::filter)
 conflicted::conflicts_prefer(dplyr::lag)
+conflicted::conflicts_prefer(palmerpenguins::penguins)
 
 # 2. fonts ----------------------------------------------------------------
 
@@ -26,7 +27,7 @@ library(showtext)
 
 extrafont::loadfonts(quiet = TRUE)
 
-font_add("NanumGothic", regular = "C:/Windows/Fonts/NanumGothic.ttf  ")
+# font_add("NanumGothic", regular = "C:/Windows/Fonts/NanumGothic.ttf  ")
 
 showtext_auto(enable = TRUE)
 
@@ -57,7 +58,7 @@ options(
 )
 
 # 1. ggplot 그래프 ------------------------
-extrafont::loadfonts("win")
+# extrafont::loadfonts("win")
 
 ## 테마 (글꼴) -----------------------------
 theme_korean <- function() {

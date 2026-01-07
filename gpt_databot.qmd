@@ -1,0 +1,325 @@
+---
+engine: knitr
+---
+
+# Databot {#sec-gpt-databot}
+\index{Databot} \index{Claude 3.5 Sonnet} \index{탐색적 데이터 분석}
+\index{AI 부조종사}
+
+## Databot 소개 {#sec-gpt-databot-intro}
+
+\index{Posit}Posit CTO 조 쳉(Joe Cheng)이 개발한 [Databot](https://github.com/jcheng5/databot)은 R 세션 내에서 작동하는 실험적 AI 부조종사(copilot)다. 데이터를 가리키면 어떻게 분석할지 아이디어를 제안하고, 사용자가 선택한 방향에 따라 R 코드를 생성하여 실행한다. 기존 AI 도구들이 별도 환경에서 작동하는 것과 달리, Databot은 사용자의 R 세션 안에서 직접 코드를 실행하고 결과를 보여준다.
+
+Databot은 \index{Claude 3.5 Sonnet}Claude 3.5 Sonnet을 백엔드로 사용하여 데이터의 특성을 파악하고 적절한 분석 질문을 생성한다. 사용자는 제안된 질문 중 하나를 클릭하거나 직접 질문을 입력하면, Databot이 코드를 작성하고 실행하여 시각화, 통계량, 표 등의 결과를 제공한다.
+
+:::{.callout-note}
+## Databot의 현재 상태
+
+Databot은 연구 단계(research preview)의 실험적 도구다. GitHub 저장소에는 "Pretty fragile currently"(현재 상당히 불안정함)라고 명시되어 있다. 따라서 프로덕션 환경보다는 탐색적 분석이나 학습 목적으로 사용하는 것이 적절하다.
+:::
+
+## 설치 및 설정 {#sec-gpt-databot-setup}
+
+### 패키지 설치
+
+\index{pak}pak 패키지 관리자를 사용하여 GitHub에서 직접 설치한다.
+
+```{r}
+#| eval: false
+pak::pak("jcheng5/databot")
+```
+
+### API 키 설정
+
+Databot은 Anthropic의 Claude 3.5 Sonnet을 사용하므로 \index{ANTHROPIC_API_KEY}`ANTHROPIC_API_KEY` 환경 변수가 필요하다. [Anthropic 콘솔](https://console.anthropic.com/)에서 API 키를 발급받은 후 `.Renviron` 파일에 저장한다.
+
+```{r}
+#| eval: false
+# .Renviron 파일 열기
+usethis::edit_r_environ()
+
+# 다음 줄 추가 후 저장
+# ANTHROPIC_API_KEY=your_api_key_here
+```
+
+R 세션을 재시작하면 환경 변수가 로드된다.
+
+:::{.callout-warning}
+## API 키 보안
+
+API 키는 절대 GitHub이나 공개 저장소에 커밋하지 말아야 한다. `.Renviron` 파일을 `.gitignore`에 추가하여 실수로 공유되지 않도록 한다.
+:::
+
+### 프로젝트 맥락 제공 (선택 사항)
+
+\index{llms.txt}프로젝트 루트에 `llms.txt` 파일을 생성하여 Databot에게 프로젝트별 맥락을 제공할 수 있다. 예를 들어 도메인 특화 용어, 변수 설명, 분석 목표 등을 기록하면 Databot이 더 적절한 제안을 생성한다.
+
+```markdown
+# llms.txt 예시
+
+이 프로젝트는 팔머 펭귄 데이터셋을 분석한다.
+주요 변수:
+- bill_length_mm: 부리 길이 (밀리미터)
+- bill_depth_mm: 부리 깊이 (밀리미터)
+- flipper_length_mm: 날개 길이 (밀리미터)
+- body_mass_g: 체중 (그램)
+
+분석 목표: 종(species)별 신체 특성 차이 탐색
+```
+
+## 기본 사용법 {#sec-gpt-databot-usage}
+
+### Databot 실행
+
+\index{databot!chat()}RStudio 또는 Positron IDE에서 다음 명령으로 Databot을 실행한다.
+
+```{r}
+#| eval: false
+databot::chat()
+```
+
+Shiny 기반 대화형 인터페이스가 브라우저 또는 뷰어 창에 열린다.
+
+### 데이터 분석 워크플로우
+
+```{mermaid}
+%%| label: fig-databot-workflow
+%%| fig-cap: Databot 작업 흐름도
+%%| fig-width: 6
+%%| fig-align: center
+
+graph TD
+   classDef default fill:#fff, stroke:#333, stroke-width:1px;
+
+   A[데이터 로드] --> B[databot::chat\(\) 실행]
+   B --> C[Databot이 데이터 탐색]
+   C --> D[분석 아이디어 제안]
+   D --> E{사용자 선택}
+   E -->|제안 클릭| F[R 코드 생성]
+   E -->|직접 질문| F
+   F --> G[코드 실행]
+   G --> H[결과 표시]
+   H --> I{추가 분석?}
+   I -->|예| D
+   I -->|아니오| J[Quarto 보고서 생성]
+```
+
+### 실전 예제: 펭귄 데이터 분석
+
+\index{palmerpenguins}palmerpenguins 패키지의 펭귄 데이터를 Databot으로 분석하는 과정을 살펴보자.
+
+```{r}
+#| eval: false
+library(palmerpenguins)
+library(databot)
+
+# 데이터 로드
+data(penguins)
+
+# Databot 실행
+chat()
+```
+
+Databot을 실행하면 다음과 같은 분석 제안을 받을 수 있다.
+
+**Databot의 제안 예시:**
+
+1. "종별 체중 분포를 상자 그림으로 비교해보는 것은 어떨까요?"
+2. "부리 길이와 깊이의 관계를 산점도로 살펴볼까요?"
+3. "성별, 종별 평균 체중을 표로 요약해드릴까요?"
+4. "연도별 관측 개체 수 변화를 확인해볼까요?"
+
+사용자가 첫 번째 제안을 선택하면 Databot은 다음과 같은 코드를 생성하고 실행한다.
+
+```{r}
+#| eval: false
+library(ggplot2)
+
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot() +
+  labs(
+    title = "종별 펭귄 체중 분포",
+    x = "종",
+    y = "체중 (g)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+Databot은 코드 실행 결과와 함께 해석도 제공한다.
+
+**Databot의 해석 예시:**
+
+> "젠투(Gentoo) 펭귄이 가장 무겁고, 아델리(Adelie)와 턱끈(Chinstrap) 펭귄은 비슷한 체중 범위를 보입니다. 젠투 펭귄의 체중 중앙값은 약 5,000g이며, 아델리와 턱끈은 3,000-4,000g 사이에 분포합니다."
+
+### 대화형 탐색
+
+Databot의 강점은 연속적인 대화를 통해 분석을 심화할 수 있다는 점이다. 첫 번째 분석 결과를 보고 추가 질문을 입력하면 맥락을 유지하며 분석을 이어간다.
+
+**사용자:** "성별로도 나눠서 보여줄래?"
+
+**Databot 생성 코드:**
+
+```{r}
+#| eval: false
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = sex)) +
+  geom_boxplot() +
+  labs(
+    title = "종별, 성별 펭귄 체중 분포",
+    x = "종",
+    y = "체중 (g)",
+    fill = "성별"
+  ) +
+  theme_minimal()
+```
+
+이처럼 자연스러운 대화를 통해 데이터 탐색을 진행할 수 있다.
+
+## 주요 기능 {#sec-gpt-databot-features}
+
+### 자동 분석 아이디어 생성
+
+\index{탐색적 데이터 분석!자동 제안}Databot에 데이터를 전달하면 데이터의 구조, 변수 타입, 결측값 패턴 등을 자동으로 파악하고 적절한 분석 질문을 생성한다. 초보자에게는 어떤 질문을 해야 할지 가이드를 제공하고, 숙련자에게는 놓칠 수 있는 분석 각도를 제시한다.
+
+### 클릭 가능한 제안
+
+Databot이 제시하는 후속 분석 제안은 클릭 가능한 버튼 형태로 표시된다. 사용자가 버튼을 클릭하면 해당 질문이 입력창에 자동으로 채워져 편리하다.
+
+### R 코드 생성 및 실행
+
+\index{코드 생성}사용자가 선택한 분석 방향에 따라 tidyverse 스타일의 깔끔한 R 코드를 생성한다. 생성된 코드는 현재 R 세션에서 즉시 실행되며, 결과는 사용자와 AI 모델 모두에게 표시된다. 따라서 Databot은 이전 분석 결과를 기억하고 다음 분석에 활용할 수 있다.
+
+### Quarto 보고서 생성
+
+\index{Quarto!보고서 자동 생성}유용한 인사이트를 얻은 대화 세션은 \index{재현 가능한 연구}재현 가능한 Quarto 문서로 변환할 수 있다. Databot에게 "지금까지의 분석을 보고서로 만들어줘"라고 요청하면 대화 내용을 정리하여 `.qmd` 파일로 저장한다.
+
+생성된 보고서는 다음을 포함한다.
+
+- 분석 질문과 답변
+- 실행한 R 코드 청크
+- 시각화 결과
+- 해석 및 결론
+
+## 실전 활용 사례 {#sec-gpt-databot-usecase}
+
+### 새로운 데이터셋 빠르게 파악하기
+
+처음 접하는 데이터셋을 분석할 때 Databot이 유용하다. 데이터를 로드하고 Databot을 실행하면 변수 요약, 결측값 패턴, 주요 변수 간 관계 등을 자동으로 탐색한다.
+
+```{r}
+#| eval: false
+# 새 데이터셋 로드
+library(readr)
+sales_data <- read_csv("data/sales_2024.csv")
+
+# Databot으로 탐색
+databot::chat()
+```
+
+Databot은 다음과 같은 질문을 제안할 수 있다.
+
+- "각 열의 데이터 타입과 결측값 개수를 요약해드릴까요?"
+- "수치형 변수들의 상관관계를 히트맵으로 시각화할까요?"
+- "카테고리 변수별 판매량 분포를 확인해볼까요?"
+
+### 데이터 품질 검토
+
+\index{데이터 품질}데이터 정제 작업 전 데이터 품질을 점검하는 데도 활용할 수 있다.
+
+**사용자:** "이상값이 있는지 확인해줘"
+
+**Databot:** 각 수치형 변수에 대해 \index{이상값}이상값을 탐지하고 시각화한다.
+
+```{r}
+#| eval: false
+# Databot이 생성한 코드 예시
+library(dplyr)
+
+penguins %>%
+  select(where(is.numeric)) %>%
+  tidyr::pivot_longer(everything(), names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = variable, y = value)) +
+  geom_boxplot() +
+  facet_wrap(~variable, scales = "free") +
+  theme_minimal() +
+  labs(title = "수치형 변수의 이상값 탐지")
+```
+
+### 가설 검증
+
+통계적 가설을 검증할 때도 Databot에게 질문 형태로 요청할 수 있다.
+
+**사용자:** "종별 부리 길이 평균이 통계적으로 유의미하게 다른지 검정해줘"
+
+**Databot 생성 코드:**
+
+```{r}
+#| eval: false
+# ANOVA 검정
+penguin_anova <- aov(bill_length_mm ~ species, data = penguins)
+summary(penguin_anova)
+
+# 사후 검정
+TukeyHSD(penguin_anova)
+```
+
+## 제약 사항 및 주의점 {#sec-gpt-databot-limitations}
+
+### 안정성 문제
+
+Databot은 실험 단계의 도구로, Shiny 인터페이스가 응답하지 않을 경우 세션을 복구할 방법이 없다. 중요한 분석 과정은 별도로 코드를 저장해두는 것이 안전하다.
+
+### HTML 위젯 미지원
+
+\index{htmlwidgets}Plotly, Leaflet, DT 같은 HTML 위젯은 현재 지원하지 않는다. 정적 ggplot2 그래프는 정상적으로 작동한다.
+
+### 컨텍스트 제한
+
+\index{컨텍스트 윈도우}Claude 3.5 Sonnet의 입력 토큰 제한은 200,000개다. 긴 대화 세션이나 대용량 데이터 출력이 누적되면 컨텍스트 제한에 도달할 수 있다. 이 경우 새 세션을 시작해야 한다.
+
+### 코드 검토 필요
+
+\index{AI 생성 코드!검토}AI가 생성한 코드가 항상 최적이거나 정확한 것은 아니다. 특히 복잡한 통계 분석이나 도메인 특화 작업의 경우 생성된 코드를 반드시 검토하고 검증해야 한다.
+
+:::{.callout-warning}
+## 프로덕션 환경 사용 주의
+
+Databot은 탐색적 분석과 학습에 적합하지만, 프로덕션 환경이나 중요한 의사결정에 사용하기 전에는 생성된 코드와 결과를 철저히 검증해야 한다.
+:::
+
+## Databot vs. 다른 AI 도구 {#sec-gpt-databot-comparison}
+
+### RTutor와의 비교
+
+\index{RTutor}RTutor는 웹 기반 Shiny 앱으로, 데이터를 업로드하고 분석하는 독립 실행형 도구다. 반면 Databot은 사용자의 R 세션 내에서 작동하여 현재 환경의 모든 객체와 패키지에 접근할 수 있다.
+
+| 특성 | Databot | RTutor |
+|------|---------|--------|
+| 실행 환경 | R 세션 내부 | 독립 웹앱 |
+| 백엔드 모델 | Claude 3.5 Sonnet | GPT-4 Turbo |
+| 세션 지속성 | 현재 R 환경 유지 | 독립 세션 |
+| 보고서 생성 | Quarto 문서 | R Markdown |
+
+### ChatGPT Data Analyst와의 비교
+
+\index{ChatGPT!Data Analyst}ChatGPT의 \index{고급 데이터 분석}고급 데이터 분석(Advanced Data Analysis) 기능은 샌드박스 Python 환경에서 작동하며, 파일 업로드가 필요하다. Databot은 R 환경에 이미 로드된 데이터를 직접 참조하므로 워크플로우가 더 자연스럽다.
+
+R 사용자에게는 Databot이, Python 사용자에게는 ChatGPT Data Analyst가 각각 유리하다.
+
+## 생각해볼 점 {#sec-gpt-databot-thoughts}
+
+Databot은 AI 부조종사 개념을 R 세션 내부로 가져온 혁신적 시도다. 사용자의 작업 환경을 떠나지 않고도 AI의 도움을 받을 수 있다는 점에서 기존 웹 기반 도구들과 차별화된다. 데이터 과학자가 분석 중 궁금한 점이 생겼을 때 즉시 질문하고, 생성된 코드를 현재 스크립트에 통합할 수 있어 작업 흐름이 매끄럽다.
+
+탐색적 데이터 분석 단계에서 Databot은 분석 방향을 제시하는 동료 역할을 한다. 특히 새로운 데이터셋을 처음 접했을 때 어디서부터 시작할지 막막한 경우, Databot이 제안하는 질문들이 좋은 출발점이 된다. 숙련된 분석가에게도 평소 시도하지 않던 각도에서 데이터를 바라볼 기회를 제공한다.
+
+현재 Databot은 실험 단계로 안정성 문제가 있다. 하지만 Posit의 CTO가 직접 개발하고 있으며, Positron IDE에 통합되고 있다는 점에서 향후 발전 가능성이 크다. Databot이 안정화되고 기능이 확장된다면, R 사용자의 표준 작업 도구로 자리잡을 수 있을 것이다.
+
+Databot을 사용하면서 주의할 점은 AI가 생성한 코드를 맹목적으로 신뢰하지 말아야 한다는 것이다. 코드 리뷰 습관을 유지하고, 통계적 가정과 분석 논리를 항상 검증해야 한다. AI는 강력한 보조 도구지만, 최종 판단과 책임은 데이터 과학자 본인에게 있다.
+
+앞으로 Databot과 같은 AI 부조종사 도구들이 더 많이 등장하고 발전하면서, 데이터 분석 워크플로우 자체가 변화할 것이다. 단순 반복 작업은 AI에게 맡기고, 인간은 문제 정의, 결과 해석, 의사결정에 더 집중하는 시대가 오고 있다.
+
+---
+
+**Sources:**
+- [GitHub - jcheng5/databot](https://github.com/jcheng5/databot)
+- [InfoWorld - Databot: AI-assisted data analysis in R or Python](https://www.infoworld.com/article/4050900/databot-ai-assisted-data-analysis-in-r-or-python.html)

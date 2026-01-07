@@ -2,130 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://r2bit.com/gpt-ds/index.html</loc>
-    <lastmod>2024-04-08T06:09:50.850Z</lastmod>
+    <lastmod>2026-01-07T09:14:16.234Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/intro.html</loc>
-    <lastmod>2024-04-08T03:33:09.507Z</lastmod>
+    <lastmod>2026-01-07T09:22:30.030Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/intro_whole_game.html</loc>
-    <lastmod>2024-04-08T03:48:52.709Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/intro_penguins.html</loc>
-    <lastmod>2024-04-08T14:36:50.759Z</lastmod>
+    <lastmod>2026-01-07T09:32:29.290Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/data_structure.html</loc>
-    <lastmod>2024-04-08T06:12:50.335Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.355Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/dataframe.html</loc>
-    <lastmod>2024-04-08T06:16:34.325Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.355Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/data_dplyr.html</loc>
-    <lastmod>2024-04-08T14:39:11.244Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.355Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/data_tidyr.html</loc>
-    <lastmod>2024-04-08T06:54:53.696Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.355Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ggplot2_concept.html</loc>
-    <lastmod>2024-04-08T07:28:52.283Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.508Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ggplot2.html</loc>
-    <lastmod>2024-04-08T07:54:03.282Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.508Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ggplot2_pattern.html</loc>
-    <lastmod>2024-04-08T08:36:25.717Z</lastmod>
+    <lastmod>2026-01-07T07:00:34.718Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/models.html</loc>
-    <lastmod>2024-04-08T14:40:12.380Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/models_building.html</loc>
-    <lastmod>2024-04-08T09:03:12.898Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/models_many.html</loc>
-    <lastmod>2024-04-08T14:41:49.975Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/models_case_study.html</loc>
-    <lastmod>2024-04-08T14:44:20.944Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/functions.html</loc>
-    <lastmod>2024-04-08T10:40:59.194Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.508Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/function_plyr.html</loc>
-    <lastmod>2024-04-08T10:43:08.543Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.508Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/functions_ds.html</loc>
-    <lastmod>2024-04-08T14:45:59.532Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.508Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/functions_purrr.html</loc>
-    <lastmod>2024-04-08T11:10:17.440Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.508Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/comm_quarto.html</loc>
-    <lastmod>2024-04-07T23:53:38.626Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.304Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/comm_knitr.html</loc>
-    <lastmod>2024-04-08T11:18:42.669Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.304Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/comm_export.html</loc>
-    <lastmod>2024-04-08T11:21:57.912Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.302Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/comm_map.html</loc>
-    <lastmod>2024-04-08T14:47:51.713Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.304Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_database.html</loc>
-    <lastmod>2024-04-08T11:58:14.173Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.662Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_file.html</loc>
-    <lastmod>2024-04-08T11:57:32.296Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.662Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_web.html</loc>
-    <lastmod>2024-04-08T12:38:54.399Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/ingest_spreadsheet.html</loc>
-    <lastmod>2024-04-08T12:18:58.126Z</lastmod>
+    <lastmod>2026-01-07T08:19:42.038Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/gpt_python.html</loc>
-    <lastmod>2024-04-08T13:19:15.251Z</lastmod>
+    <lastmod>2026-01-07T08:22:58.761Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/gpt_prompt_ds.html</loc>
-    <lastmod>2024-04-08T13:24:29.967Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.509Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/gpt_interpreter.html</loc>
-    <lastmod>2024-04-08T14:35:03.939Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.509Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/gpt_rtutor.html</loc>
-    <lastmod>2024-04-08T14:00:30.366Z</lastmod>
+    <lastmod>2026-01-07T08:34:51.502Z</lastmod>
   </url>
   <url>
     <loc>https://r2bit.com/gpt-ds/references.html</loc>
-    <lastmod>2023-08-01T09:56:54.411Z</lastmod>
+    <lastmod>2025-07-15T01:10:57.664Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/gpt-ds/ai_first_analysis.html</loc>
+    <lastmod>2026-01-07T09:16:12.903Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/gpt-ds/llm_comparison.html</loc>
+    <lastmod>2026-01-07T09:18:52.607Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/gpt-ds/gpt_databot.html</loc>
+    <lastmod>2026-01-07T09:20:37.973Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r2bit.com/gpt-ds/gpt_posit_ai.html</loc>
+    <lastmod>2026-01-07T09:32:16.673Z</lastmod>
   </url>
 </urlset>

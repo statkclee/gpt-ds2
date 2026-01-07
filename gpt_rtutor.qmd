@@ -1,5 +1,9 @@
+---
+engine: knitr
+---
+
 # AI 데이터 분석 {#sec-gpt-ai}
-\index{AI 데이터 분석} \index{RTutor} \index{OpenAI} 
+\index{AI 데이터 분석} \index{RTutor} \index{OpenAI}
 \index{데이터 과학}
 
 ## RTutor

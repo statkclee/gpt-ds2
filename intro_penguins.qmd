@@ -6,27 +6,240 @@ editor:
     wrap: 72
 ---
 
-# 펭귄 데이터셋
+# 펭귄 데이터로 배우는 AI-인간 협업 {#sec-penguins}
 
-\index{붓꽃 데이터} \index{펭귄 데이터} \index{팔머 펭귄}
-\index{R.A. 피셔}
+\index{팔머 펭귄} \index{AI 협업} \index{ChatGPT} \index{데이터 탐색}
 
-미국에서 "George Floyd"가 경찰에 의해 살해되면서 촉발된 ["Black Lives
-Matter"](https://ko.wikipedia.org/wiki/Black_Lives_Matter) 운동은
-아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다.
-한국에서도 소수 정당인 정의당에서 [여당 의원 176명 중 누가?...차별금지법
-발의할 '의인'을
-구합니다](http://www.hani.co.kr/arti/politics/assembly/949422.html)로
-기사를 내는 등 적극적으로 나서고 있다.
+## 학습 목표 {.unnumbered}
 
-데이터 과학에서 최근 R.A. Fisher의 과거 저술 "The genetical theory of
-natural selection" [@fisher1930genetical]의 우생학(Eugenics)에 대한
-관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 `iris`
-데이터를 다른 데이터, 즉 펭귄 데이터로 대체하려는 움직임이 활발히
-전개되고 있다.
-[`palmerpenguins`](https://github.com/allisonhorst/palmerpenguins)
-데이터셋 [@penguin2020; @AbdulMajedRaja2020; @Levy2019]이 대안으로 많은
-호응을 얻고 있다.
+- AI와 함께 실제 데이터셋 탐색하기
+- R 코드를 직접 실행하며 문법 이해하기
+- AI 생성 코드를 점진적으로 수정하는 방법
+- 펭귄 데이터를 통한 데이터 과학 전체 흐름 체험
+
+## 펭귄 vs 붓꽃: 윤리적 데이터 과학
+
+데이터 과학에서 최근 R.A. Fisher의 과거 저술 "The genetical theory of natural selection" [@fisher1930genetical]의 우생학(Eugenics)에 대한 관점이 논란이 되면서 R 데이터 과학의 전통적인 예제 데이터셋 `iris` (붓꽃)를 다른 데이터로 대체하려는 움직임이 활발히 전개되고 있다.
+
+[`palmerpenguins`](https://github.com/allisonhorst/palmerpenguins) 데이터셋 [@penguin2020; @AbdulMajedRaja2020; @Levy2019]이 대안으로 많은 호응을 얻고 있으며, 미국 Black Lives Matter 운동과 맞물려 데이터 과학 커뮤니티가 **윤리적 데이터 과학**을 실천하는 좋은 사례가 되었습니다.
+
+::: {.callout-note}
+## AI 시대의 윤리
+
+2026년 AI 시대에도 윤리는 더욱 중요합니다:
+- AI 모델의 편향(bias) 문제
+- 데이터 출처의 윤리성
+- AI 생성 콘텐츠의 저작권
+
+펭귄 데이터는 윤리적으로 수집되고 공개된 데이터의 좋은 예입니다.
+:::
+
+## AI와 함께 펭귄 데이터 첫 만남
+
+### 2장에서 배운 방법 적용
+
+2장에서 ChatGPT로 데이터 분석을 경험했습니다. 이제 **R을 실제로 설치하고** AI가 생성한 코드를 직접 실행해봅시다.
+
+::: {.callout-tip}
+## R 설치 가이드
+
+아직 R을 설치하지 않았다면:
+1. [R 다운로드](https://cran.r-project.org/)
+2. [RStudio 다운로드](https://posit.co/download/rstudio-desktop/)
+3. RStudio에서 `install.packages("tidyverse")` 실행
+4. `install.packages("palmerpenguins")` 실행
+
+설치 시간: 약 15-20분
+:::
+
+### AI에게 펭귄 데이터 탐색 요청
+
+ChatGPT에게 다음 프롬프트를 입력합니다:
+
+```markdown
+R의 palmerpenguins 패키지를 사용하여:
+1. 펭귄 데이터 불러오기
+2. 데이터 구조 확인 (행/열 개수, 변수명, 데이터 타입)
+3. 종(species)별 개체 수 확인
+4. 기본 통계 요약
+
+tidyverse 스타일로 R 코드 작성해줘.
+```
+
+### AI 생성 코드
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# 1. 데이터 불러오기
+data(penguins)
+
+# 2. 데이터 구조 확인
+glimpse(penguins)
+
+# 3. 종별 개체 수
+penguins %>%
+  count(species, name = "개체수")
+
+# 4. 기본 통계 요약
+penguins %>%
+  select(where(is.numeric)) %>%
+  summary()
+```
+
+### 코드 한 줄씩 이해하기 (AI와 함께)
+
+이제 각 줄이 무엇을 하는지 AI에게 물어봅시다:
+
+**질문 1**: "glimpse()는 무엇을 하나요?"
+
+**AI 답변**:
+> `glimpse()`는 데이터프레임의 구조를 요약해서 보여줍니다:
+> - 총 행과 열 개수
+> - 각 열의 이름과 데이터 타입
+> - 각 열의 첫 몇 개 값
+>
+> `str()`과 유사하지만 tidyverse 스타일로 보기 좋게 출력합니다.
+
+**질문 2**: "count(species, name = '개체수')는 무엇을 하나요?"
+
+**AI 답변**:
+> `count()`는 특정 변수의 빈도를 계산합니다:
+> - `species`: 어떤 변수를 세는지
+> - `name = "개체수"`: 결과 열의 이름 (기본은 "n")
+>
+> SQL의 `GROUP BY` + `COUNT(*)` 와 동일합니다.
+
+**질문 3**: "select(where(is.numeric))는 무엇을 하나요?"
+
+**AI 답변**:
+> - `select()`: 특정 열을 선택
+> - `where()`: 조건을 만족하는 열 선택
+> - `is.numeric`: 숫자형 열만
+>
+> 결과: 모든 숫자 열만 선택 (species, island 같은 문자열 제외)
+
+::: {.callout-important}
+## 학습 패턴
+
+**전통 방식**: 책에서 `glimpse()` 정의 찾기 → 예제 읽기 → 실습
+
+**AI 방식**: 코드 보기 → AI에게 질문 → 답변 이해 → 바로 수정 시도
+
+AI와 대화하며 배우면 **맥락(context)** 안에서 학습되어 기억에 오래 남습니다.
+:::
+
+## 직접 수정해보기: AI와 Pair Programming
+
+이제 AI 코드를 수정해봅시다. ChatGPT에게:
+
+```markdown
+위 코드를 수정해서:
+1. Adelie 펭귄만 필터링
+2. 부리 길이(bill_length_mm) 평균 계산
+3. 성별(sex)로 그룹화해서 비교
+
+코드 작성해줘.
+```
+
+AI가 제안한 수정:
+
+```{r}
+#| eval: false
+
+penguins %>%
+  filter(species == "Adelie") %>%
+  group_by(sex) %>%
+  summarize(
+    평균_부리길이 = mean(bill_length_mm, na.rm = TRUE),
+    개체수 = n()
+  ) %>%
+  drop_na(sex)
+```
+
+### 새로운 코드에서 배우기
+
+**새로 등장한 함수들**:
+
+1. `filter(species == "Adelie")`: Adelie만 선택
+2. `group_by(sex)`: 성별로 그룹화
+3. `summarize()`: 요약 통계 계산
+4. `mean(bill_length_mm, na.rm = TRUE)`: 평균 (결측치 제거)
+5. `n()`: 각 그룹의 개체 수
+6. `drop_na(sex)`: sex가 NA인 행 제거
+
+**직접 실행해보세요!** RStudio에서 위 코드를 복사하여 실행하면:
+
+```
+# A tibble: 2 × 3
+  sex    평균_부리길이 개체수
+  <fct>         <dbl>  <int>
+1 female         37.3     73
+2 male           40.4     73
+```
+
+**발견**: Adelie 수컷 펭귄의 부리가 암컷보다 약 3.1mm 더 깁니다!
+
+## 시각화: AI가 ggplot2 코드 생성
+
+이제 시각화를 요청합니다:
+
+```markdown
+Adelie 펭귄의 성별 부리 길이를 박스플롯으로 시각화해줘.
+ggplot2 사용.
+```
+
+AI 생성:
+
+```{r}
+#| eval: false
+#| fig-cap: "Adelie 펭귄의 성별 부리 길이 분포"
+
+penguins %>%
+  filter(species == "Adelie") %>%
+  drop_na(sex, bill_length_mm) %>%
+  ggplot(aes(x = sex, y = bill_length_mm, fill = sex)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(
+    title = "Adelie 펭귄 성별 부리 길이 비교",
+    x = "성별",
+    y = "부리 길이 (mm)",
+    fill = "성별"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+**ggplot2 문법 이해** (AI에게 질문):
+
+- `ggplot(aes(x = sex, y = bill_length_mm))`: 캔버스 + 매핑
+- `geom_boxplot()`: 박스플롯 그리기
+- `labs()`: 제목과 축 레이블
+- `theme_minimal()`: 깔끔한 테마
+- `theme(legend.position = "none")`: 범례 숨기기 (x축에 이미 있으므로)
+
+### 점진적 독립: 스스로 수정해보기
+
+이제 AI 도움 없이 작은 수정을 시도해봅시다:
+
+**과제 1**: 색상을 파란색과 분홍색으로 변경
+**힌트**: `scale_fill_manual(values = c("female" = "pink", "male" = "lightblue"))`
+
+**과제 2**: Chinstrap 펭귄으로 변경
+**힌트**: `filter()` 안의 종 이름만 바꾸기
+
+**과제 3**: 부리 깊이로 변경
+**힌트**: `bill_length_mm` → `bill_depth_mm`
+
+::: {.callout-tip}
+## 막히면 AI에게!
+
+수정이 어렵다면 언제든 AI에게 물어보세요:
+- "이 코드에서 색상을 바꾸려면?"
+- "에러가 났어요: [에러 메시지]"
+- "이 부분을 [원하는 것]으로 바꾸고 싶어요"
+:::
 
 ## 펭귄 공부 {#penguins-study}
 

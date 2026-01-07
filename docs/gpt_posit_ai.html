@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.18">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<title>11&nbsp; Posit AI 도구 – 챗GPT 데이터 과학</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data_structure.html" rel="next">
+<link href="./gpt_databot.html" rel="prev">
+<link href="./images/logo_old.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-180a25e629ca4b8367e4de4be7b566fe.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-5acb6d418f07ca0ca914d4ea7cec5f20.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm_comparison.html"><strong>2부</strong> 최신 AI 도구 마스터하기</a></li><li class="breadcrumb-item"><a href="./gpt_posit_ai.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Posit AI 도구</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">챗GPT 데이터 과학</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/bit2r/gpt-ds" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="리더 모드 전환">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="검색"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서문</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>1부</strong> AI 시대 데이터 과학 입문</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">2026년 데이터 과학 지형도</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ai_first_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">AI 부조종사와 함께하는 첫 데이터 분석</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터로 배우는 AI-인간 협업</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_whole_game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">데이터 과학 큰 그림</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>2부</strong> 최신 AI 도구 마스터하기</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llm_comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">차세대 LLM: GPT-4o, Claude 3.5, Gemini 2.0</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_prompt_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터 과학 프롬프트</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_interpreter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">데이터프레임 분석</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">챗GPT 환경 구축</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_rtutor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">AI 데이터 분석</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_databot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Databot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gpt_posit_ai.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Posit AI 도구</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>4부</strong> 데이터 다루기 (AI 협업 버전)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">자료구조</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><code>dplyr</code> 패키지</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><code>tidyr</code> 패키지</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataframe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">데이터프레임 탐색</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>5부</strong> 시각화 (AI 증강 버전)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">논문 품질 그래프 생성</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_concept.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">그래프 문법</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2_pattern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">시각화 패턴</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>6부</strong> 모형 (AI 시대 모델링)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">모형의 세계로</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">모형 개발</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_many.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">많은 회귀모형</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models_case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">사례: 시군구 소멸</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>9부</strong> 프로그래밍과 커뮤니케이션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_plyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">분할-적용-병합 전략</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">데이터 과학 함수</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions_purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">함수형 프로그래밍</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">쿼토</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_knitr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">데이터 분석 보고서</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">내보내기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comm_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">사례: 프로빅스 논문</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>10부</strong> 데이터 가져오기와 프로덕션</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_database.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">데이터베이스</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_file.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">파일 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">웹 데이터</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ingest_spreadsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">상용 데이터</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">참고문헌</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#sec-gpt-posit-ai-intro" id="toc-sec-gpt-posit-ai-intro" class="nav-link active" data-scroll-target="#sec-gpt-posit-ai-intro"><span class="header-section-number">11.1</span> Posit AI 생태계 소개</a>
+  <ul class="collapse">
+<li><a href="#posit-ai-%ED%95%B5%EC%8B%AC-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-posit-ai-핵심-패키지" class="nav-link" data-scroll-target="#posit-ai-%ED%95%B5%EC%8B%AC-%ED%8C%A8%ED%82%A4%EC%A7%80"><span class="header-section-number">11.1.1</span> Posit AI 핵심 패키지</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-gpt-posit-ai-ellmer" id="toc-sec-gpt-posit-ai-ellmer" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-ellmer"><span class="header-section-number">11.2</span> ellmer: LLM API 호출의 중심</a>
+  <ul class="collapse">
+<li><a href="#%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-llm-%EC%A0%9C%EA%B3%B5%EC%9E%90" id="toc-지원하는-llm-제공자" class="nav-link" data-scroll-target="#%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-llm-%EC%A0%9C%EA%B3%B5%EC%9E%90"><span class="header-section-number">11.2.1</span> 지원하는 LLM 제공자</a></li>
+  <li><a href="#%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95" id="toc-설치-및-설정" class="nav-link" data-scroll-target="#%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95"><span class="header-section-number">11.2.2</span> 설치 및 설정</a></li>
+  <li><a href="#%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95" id="toc-기본-사용법" class="nav-link" data-scroll-target="#%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="header-section-number">11.2.3</span> 기본 사용법</a></li>
+  <li><a href="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%82%AC%EC%9A%A9-%EB%AA%A8%EB%93%9C" id="toc-다양한-사용-모드" class="nav-link" data-scroll-target="#%EB%8B%A4%EC%96%91%ED%95%9C-%EC%82%AC%EC%9A%A9-%EB%AA%A8%EB%93%9C"><span class="header-section-number">11.2.4</span> 다양한 사용 모드</a></li>
+  <li><a href="#%EA%B5%AC%EC%A1%B0%ED%99%94%EB%90%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B6%94%EC%B6%9C" id="toc-구조화된-데이터-추출" class="nav-link" data-scroll-target="#%EA%B5%AC%EC%A1%B0%ED%99%94%EB%90%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B6%94%EC%B6%9C"><span class="header-section-number">11.2.5</span> 구조화된 데이터 추출</a></li>
+  <li><a href="#%EB%8F%84%EA%B5%AC-%ED%98%B8%EC%B6%9C-tool-calling" id="toc-도구-호출-tool-calling" class="nav-link" data-scroll-target="#%EB%8F%84%EA%B5%AC-%ED%98%B8%EC%B6%9C-tool-calling"><span class="header-section-number">11.2.6</span> 도구 호출 (Tool Calling)</a></li>
+  <li><a href="#%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%9E%85%EB%A0%A5" id="toc-이미지-입력" class="nav-link" data-scroll-target="#%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%9E%85%EB%A0%A5"><span class="header-section-number">11.2.7</span> 이미지 입력</a></li>
+  <li><a href="#%EB%B9%84%EB%8F%99%EA%B8%B0-api" id="toc-비동기-api" class="nav-link" data-scroll-target="#%EB%B9%84%EB%8F%99%EA%B8%B0-api"><span class="header-section-number">11.2.8</span> 비동기 API</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-gpt-posit-ai-chattr" id="toc-sec-gpt-posit-ai-chattr" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-chattr"><span class="header-section-number">11.3</span> chattr: RStudio 통합 AI 채팅</a>
+  <ul class="collapse">
+<li><a href="#%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95-1" id="toc-설치-및-설정-1" class="nav-link" data-scroll-target="#%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95-1"><span class="header-section-number">11.3.1</span> 설치 및 설정</a></li>
+  <li><a href="#%EC%A7%80%EC%9B%90-%EB%AA%A8%EB%8D%B8" id="toc-지원-모델" class="nav-link" data-scroll-target="#%EC%A7%80%EC%9B%90-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">11.3.2</span> 지원 모델</a></li>
+  <li><a href="#rstudio-addin-%EC%82%AC%EC%9A%A9%EB%B2%95" id="toc-rstudio-addin-사용법" class="nav-link" data-scroll-target="#rstudio-addin-%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="header-section-number">11.3.3</span> RStudio Addin 사용법</a></li>
+  <li><a href="#%EB%AA%A8%EB%8D%B8-%EC%84%A0%ED%83%9D-%EB%B0%8F-%EC%A0%84%ED%99%98" id="toc-모델-선택-및-전환" class="nav-link" data-scroll-target="#%EB%AA%A8%EB%8D%B8-%EC%84%A0%ED%83%9D-%EB%B0%8F-%EC%A0%84%ED%99%98"><span class="header-section-number">11.3.4</span> 모델 선택 및 전환</a></li>
+  <li><a href="#%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99-%EC%B6%94%EA%B0%80" id="toc-컨텍스트-자동-추가" class="nav-link" data-scroll-target="#%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%9E%90%EB%8F%99-%EC%B6%94%EA%B0%80"><span class="header-section-number">11.3.5</span> 컨텍스트 자동 추가</a></li>
+  <li><a href="#%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0" id="toc-프롬프트-미리보기" class="nav-link" data-scroll-target="#%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0"><span class="header-section-number">11.3.6</span> 프롬프트 미리보기</a></li>
+  <li><a href="#%ED%95%A8%EC%88%98-%ED%98%95%ED%83%9C%EB%A1%9C-%EC%82%AC%EC%9A%A9" id="toc-함수-형태로-사용" class="nav-link" data-scroll-target="#%ED%95%A8%EC%88%98-%ED%98%95%ED%83%9C%EB%A1%9C-%EC%82%AC%EC%9A%A9"><span class="header-section-number">11.3.7</span> 함수 형태로 사용</a></li>
+  <li><a href="#%EC%B1%84%ED%8C%85-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EA%B4%80%EB%A6%AC" id="toc-채팅-히스토리-관리" class="nav-link" data-scroll-target="#%EC%B1%84%ED%8C%85-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EA%B4%80%EB%A6%AC"><span class="header-section-number">11.3.8</span> 채팅 히스토리 관리</a></li>
+  <li><a href="#%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%B0%B1%EC%97%94%EB%93%9C-%ED%99%95%EC%9E%A5" id="toc-커스텀-백엔드-확장" class="nav-link" data-scroll-target="#%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%B0%B1%EC%97%94%EB%93%9C-%ED%99%95%EC%9E%A5"><span class="header-section-number">11.3.9</span> 커스텀 백엔드 확장</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-gpt-posit-ai-ecosystem" id="toc-sec-gpt-posit-ai-ecosystem" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-ecosystem"><span class="header-section-number">11.4</span> Posit AI 생태계의 다른 도구들</a>
+  <ul class="collapse">
+<li><a href="#chatlas-python" id="toc-chatlas-python" class="nav-link" data-scroll-target="#chatlas-python"><span class="header-section-number">11.4.1</span> chatlas (Python)</a></li>
+  <li><a href="#ragnar-rag" id="toc-ragnar-rag" class="nav-link" data-scroll-target="#ragnar-rag"><span class="header-section-number">11.4.2</span> ragnar (RAG)</a></li>
+  <li><a href="#shinychat-shiny-%EC%B1%84%ED%8C%85%EB%B4%87" id="toc-shinychat-shiny-채팅봇" class="nav-link" data-scroll-target="#shinychat-shiny-%EC%B1%84%ED%8C%85%EB%B4%87"><span class="header-section-number">11.4.3</span> shinychat (Shiny 채팅봇)</a></li>
+  <li><a href="#vitals-%ED%8F%89%EA%B0%80" id="toc-vitals-평가" class="nav-link" data-scroll-target="#vitals-%ED%8F%89%EA%B0%80"><span class="header-section-number">11.4.4</span> vitals (평가)</a></li>
+  <li><a href="#mcptools-mcp" id="toc-mcptools-mcp" class="nav-link" data-scroll-target="#mcptools-mcp"><span class="header-section-number">11.4.5</span> mcptools (MCP)</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-gpt-posit-ai-comparison" id="toc-sec-gpt-posit-ai-comparison" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-comparison"><span class="header-section-number">11.5</span> ellmer vs.&nbsp;chattr 비교</a></li>
+  <li>
+<a href="#sec-gpt-posit-ai-usecase" id="toc-sec-gpt-posit-ai-usecase" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-usecase"><span class="header-section-number">11.6</span> 실전 활용 사례</a>
+  <ul class="collapse">
+<li><a href="#%ED%83%90%EC%83%89%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D-%EA%B0%80%EC%86%8D%ED%99%94" id="toc-탐색적-데이터-분석-가속화" class="nav-link" data-scroll-target="#%ED%83%90%EC%83%89%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D-%EA%B0%80%EC%86%8D%ED%99%94"><span class="header-section-number">11.6.1</span> 탐색적 데이터 분석 가속화</a></li>
+  <li><a href="#%EB%8C%80%EB%9F%89-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B6%84%EC%84%9D" id="toc-대량-텍스트-분석" class="nav-link" data-scroll-target="#%EB%8C%80%EB%9F%89-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B6%84%EC%84%9D"><span class="header-section-number">11.6.2</span> 대량 텍스트 분석</a></li>
+  <li><a href="#%EA%B5%AC%EC%A1%B0%ED%99%94%EB%90%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B6%94%EC%B6%9C-1" id="toc-구조화된-데이터-추출-1" class="nav-link" data-scroll-target="#%EA%B5%AC%EC%A1%B0%ED%99%94%EB%90%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B6%94%EC%B6%9C-1"><span class="header-section-number">11.6.3</span> 구조화된 데이터 추출</a></li>
+  <li><a href="#rag-%EA%B8%B0%EB%B0%98-%EB%AC%B8%EC%84%9C-%EC%A7%88%EC%9D%98%EC%9D%91%EB%8B%B5" id="toc-rag-기반-문서-질의응답" class="nav-link" data-scroll-target="#rag-%EA%B8%B0%EB%B0%98-%EB%AC%B8%EC%84%9C-%EC%A7%88%EC%9D%98%EC%9D%91%EB%8B%B5"><span class="header-section-number">11.6.4</span> RAG 기반 문서 질의응답</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-gpt-posit-ai-limitations" id="toc-sec-gpt-posit-ai-limitations" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-limitations"><span class="header-section-number">11.7</span> 제약 사항 및 고려 사항</a>
+  <ul class="collapse">
+<li><a href="#api-%EB%B9%84%EC%9A%A9" id="toc-api-비용" class="nav-link" data-scroll-target="#api-%EB%B9%84%EC%9A%A9"><span class="header-section-number">11.7.1</span> API 비용</a></li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%84%EB%9D%BC%EC%9D%B4%EB%B2%84%EC%8B%9C" id="toc-데이터-프라이버시" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%84%EB%9D%BC%EC%9D%B4%EB%B2%84%EC%8B%9C"><span class="header-section-number">11.7.2</span> 데이터 프라이버시</a></li>
+  <li><a href="#%EC%9D%91%EB%8B%B5-%EC%9D%BC%EA%B4%80%EC%84%B1" id="toc-응답-일관성" class="nav-link" data-scroll-target="#%EC%9D%91%EB%8B%B5-%EC%9D%BC%EA%B4%80%EC%84%B1"><span class="header-section-number">11.7.3</span> 응답 일관성</a></li>
+  <li><a href="#%EC%BD%94%EB%93%9C-%EA%B2%80%EC%A6%9D-%ED%95%84%EC%9A%94" id="toc-코드-검증-필요" class="nav-link" data-scroll-target="#%EC%BD%94%EB%93%9C-%EA%B2%80%EC%A6%9D-%ED%95%84%EC%9A%94"><span class="header-section-number">11.7.4</span> 코드 검증 필요</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-gpt-posit-ai-thoughts" id="toc-sec-gpt-posit-ai-thoughts" class="nav-link" data-scroll-target="#sec-gpt-posit-ai-thoughts"><span class="header-section-number">11.8</span> 생각해볼 점</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/gpt_posit_ai.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm_comparison.html"><strong>2부</strong> 최신 AI 도구 마스터하기</a></li><li class="breadcrumb-item"><a href="./gpt_posit_ai.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Posit AI 도구</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-gpt-posit-ai" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Posit AI 도구</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p> </p>
+<section id="sec-gpt-posit-ai-intro" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="sec-gpt-posit-ai-intro">
+<span class="header-section-number">11.1</span> Posit AI 생태계 소개</h2>
+<p>Posit(구 RStudio)는 R과 Python 사용자가 대형 언어 모델(LLM)을 쉽게 활용할 수 있도록 일련의 오픈소스 패키지를 개발하고 있다. 2024년부터 본격적으로 공개된 Posit AI 생태계는 ellmer, chattr를 중심으로 LLM API 호출부터 대화형 인터페이스, RAG(Retrieval-Augmented Generation), 평가 도구까지 포괄한다.</p>
+<p>Posit AI 도구들의 공통 철학은 데이터 과학자의 워크플로우를 방해하지 않고 자연스럽게 통합되는 것이다. RStudio나 Positron IDE 안에서 코드를 작성하다가 필요할 때 AI 도움을 받고, 다시 코드 작성으로 돌아오는 흐름을 지원한다.</p>
+<section id="posit-ai-핵심-패키지" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="posit-ai-핵심-패키지">
+<span class="header-section-number">11.1.1</span> Posit AI 핵심 패키지</h3>
+<table class="table">
+<thead><tr class="header">
+<th>패키지</th>
+<th>역할</th>
+<th>언어</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>ellmer</td>
+<td>LLM API 호출 기반 패키지</td>
+<td>R</td>
+</tr>
+<tr class="even">
+<td>chatlas</td>
+<td>ellmer의 Python 버전</td>
+<td>Python</td>
+</tr>
+<tr class="odd">
+<td>chattr</td>
+<td>RStudio 통합 채팅 인터페이스</td>
+<td>R</td>
+</tr>
+<tr class="even">
+<td>ragnar</td>
+<td>RAG 기능 구현</td>
+<td>R</td>
+</tr>
+<tr class="odd">
+<td>shinychat</td>
+<td>Shiny 채팅봇 UI</td>
+<td>R</td>
+</tr>
+<tr class="even">
+<td>vitals</td>
+<td>LLM 평가 프레임워크</td>
+<td>R</td>
+</tr>
+<tr class="odd">
+<td>mcptools</td>
+<td>Model Context Protocol 통합</td>
+<td>R</td>
+</tr>
+</tbody>
+</table>
+<p>이 장에서는 R 사용자에게 가장 중요한 ellmer와 chattr를 중점적으로 다룬다.</p>
+</section></section><section id="sec-gpt-posit-ai-ellmer" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="sec-gpt-posit-ai-ellmer">
+<span class="header-section-number">11.2</span> ellmer: LLM API 호출의 중심</h2>
+<p>ellmer는 Posit AI 생태계의 핵심 패키지로, 다양한 LLM 제공자의 API를 통일된 인터페이스로 호출할 수 있게 한다. “ellmer makes it easy to use large language models from R”라는 모토처럼, 복잡한 API 호출을 단순화하고 일관된 방식으로 여러 모델을 사용할 수 있다.</p>
+<section id="지원하는-llm-제공자" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="지원하는-llm-제공자">
+<span class="header-section-number">11.2.1</span> 지원하는 LLM 제공자</h3>
+<p>ellmer는 2025년 현재 20개 이상의 LLM 제공자를 지원한다.</p>
+<p><strong>주요 제공자:</strong></p>
+<ul>
+<li>
+<strong>OpenAI</strong>: GPT-4o, GPT-4, GPT-3.5</li>
+<li>
+<strong>Anthropic</strong>: Claude 3.5 Sonnet, Claude 3 Opus/Haiku</li>
+<li>
+<strong>Google</strong>: Gemini Pro, Gemini Flash, Vertex AI</li>
+<li>
+<strong>AWS Bedrock</strong>: Claude, Llama, Mistral 등</li>
+<li>
+<strong>Azure OpenAI</strong>: 엔터프라이즈 배포용</li>
+<li>
+<strong>Ollama</strong>: 로컬 LLM 실행</li>
+<li>
+<strong>Groq</strong>: 초고속 추론</li>
+<li>
+<strong>Mistral AI</strong>, <strong>DeepSeek</strong>, <strong>Perplexity</strong> 등</li>
+</ul>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">노트</span>조직 내부 정책과 ellmer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>기업 환경에서는 보안 정책상 특정 클라우드 제공자만 사용 가능할 수 있다. ellmer는 AWS, Azure, Google Cloud, Databricks, Snowflake 등 주요 엔터프라이즈 플랫폼을 모두 지원하므로, 조직의 정책에 맞는 제공자를 선택할 수 있다.</p>
+</div>
+</div>
+</section><section id="설치-및-설정" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="설치-및-설정">
+<span class="header-section-number">11.2.2</span> 설치 및 설정</h3>
+<p>ellmer는 CRAN에 등록되어 있어 표준 방식으로 설치할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ellmer"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>대부분의 LLM 제공자는 API 키가 필요하다. 환경 변수로 설정하는 것이 일반적이다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># .Renviron 파일에 추가</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html">edit_r_environ</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 예시: OpenAI API 키</span></span>
+<span><span class="co"># OPENAI_API_KEY=your_api_key_here</span></span>
+<span></span>
+<span><span class="co"># Anthropic API 키</span></span>
+<span><span class="co"># ANTHROPIC_API_KEY=your_api_key_here</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>AWS, Azure, Databricks, Snowflake는 OAuth나 IAM 인증을 지원하며, Posit Workbench와 Posit Connect에서 관리하는 인증 정보도 자동으로 감지한다.</p>
+</section><section id="기본-사용법" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="기본-사용법">
+<span class="header-section-number">11.2.3</span> 기본 사용법</h3>
+<p>ellmer의 핵심은 채팅 객체(chat object)다. 상태를 유지하는 R6 객체로, 대화의 맥락을 기억한다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># OpenAI GPT-4o-mini 채팅 객체 생성</span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span></span>
+<span>  system_prompt <span class="op">=</span> <span class="st">"간결하게 답변하세요"</span>,</span>
+<span>  model <span class="op">=</span> <span class="st">"gpt-4o-mini"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 질문하기</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"R에서 데이터프레임 생성 방법은?"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>채팅 객체는 대화 히스토리를 유지하므로 후속 질문이 자연스럽게 이어진다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 이전 답변을 기억하고 있음</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"예제 코드를 보여줘"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="다양한-사용-모드" class="level3" data-number="11.2.4"><h3 data-number="11.2.4" class="anchored" data-anchor-id="다양한-사용-모드">
+<span class="header-section-number">11.2.4</span> 다양한 사용 모드</h3>
+<p>ellmer는 세 가지 사용 모드를 제공한다.</p>
+<section id="라이브-콘솔-모드" class="level4"><h4 class="anchored" data-anchor-id="라이브-콘솔-모드">1. 라이브 콘솔 모드</h4>
+<p>가장 대화형인 방식으로, 터미널에서 LLM과 실시간 대화를 나눌 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span><span class="st">"간결하게 답변"</span>, model <span class="op">=</span> <span class="st">"gpt-4o-mini"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 대화형 콘솔 시작</span></span>
+<span><span class="fu"><a href="https://ellmer.tidyverse.org/reference/live_console.html">live_console</a></span><span class="op">(</span><span class="va">chat</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>콘솔에서 자유롭게 질문하고 답변을 받을 수 있다. 종료하려면 <code>exit</code> 또는 <code>quit</code>를 입력한다.</p>
+<p>브라우저 기반 인터페이스를 원한다면 <code><a href="https://ellmer.tidyverse.org/reference/live_console.html">live_browser()</a></code>를 사용한다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ellmer.tidyverse.org/reference/live_console.html">live_browser</a></span><span class="op">(</span><span class="va">chat</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="메서드-호출-모드" class="level4"><h4 class="anchored" data-anchor-id="메서드-호출-모드">2. 메서드 호출 모드</h4>
+<p>프로그래밍 방식으로 LLM을 호출할 때 유용하다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 단일 질문</span></span>
+<span><span class="va">answer</span> <span class="op">&lt;-</span> <span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"R에서 결측값 처리 방법은?"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># echo = "none"으로 출력 억제하고 결과만 받기</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span></span>
+<span>  <span class="st">"mtcars 데이터셋의 평균 연비는?"</span>,</span>
+<span>  echo <span class="op">=</span> <span class="st">"none"</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="스트리밍-출력" class="level4"><h4 class="anchored" data-anchor-id="스트리밍-출력">3. 스트리밍 출력</h4>
+<p>기본적으로 ellmer는 스트리밍 방식으로 응답을 출력한다. 긴 답변도 생성되는 대로 즉시 볼 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"dplyr 패키지의 주요 함수 5가지를 설명해줘"</span><span class="op">)</span></span>
+<span><span class="co"># 답변이 생성되는 대로 실시간으로 표시됨</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section><section id="구조화된-데이터-추출" class="level3" data-number="11.2.5"><h3 data-number="11.2.5" class="anchored" data-anchor-id="구조화된-데이터-추출">
+<span class="header-section-number">11.2.5</span> 구조화된 데이터 추출</h3>
+<p>ellmer의 강력한 기능 중 하나는 LLM 응답을 구조화된 데이터로 받을 수 있다는 점이다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 데이터프레임으로 결과 받기</span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"gpt-4o"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">chat</span><span class="op">$</span><span class="fu">extract_data</span><span class="op">(</span></span>
+<span>  <span class="st">"다음 텍스트에서 인물 정보를 추출해줘:</span></span>
+<span><span class="st">  김철수는 35세 데이터 과학자이고,</span></span>
+<span><span class="st">  이영희는 28세 소프트웨어 엔지니어다."</span>,</span>
+<span>  schema <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"character"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"numeric"</span>,</span>
+<span>    job <span class="op">=</span> <span class="st">"character"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># result는 데이터프레임</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
+<span><span class="co">#   name age              job</span></span>
+<span><span class="co"># 1 김철수  35 데이터 과학자</span></span>
+<span><span class="co"># 2 이영희  28 소프트웨어 엔지니어</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="도구-호출-tool-calling" class="level3" data-number="11.2.6"><h3 data-number="11.2.6" class="anchored" data-anchor-id="도구-호출-tool-calling">
+<span class="header-section-number">11.2.6</span> 도구 호출 (Tool Calling)</h3>
+<p>LLM이 R 함수를 직접 호출하도록 할 수 있다. 이를 통해 LLM이 실시간 데이터에 접근하거나 계산을 수행할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 날씨 정보를 가져오는 함수 정의</span></span>
+<span><span class="va">get_weather</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">city</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># 실제로는 API 호출</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"현재"</span>, <span class="va">city</span>, <span class="st">"의 날씨는 맑음, 기온 22도입니다."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># 채팅 객체에 도구 등록</span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span></span>
+<span>  model <span class="op">=</span> <span class="st">"gpt-4o"</span>,</span>
+<span>  tools <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">get_weather</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># LLM이 필요시 함수를 호출함</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"서울의 날씨 알려줘"</span><span class="op">)</span></span>
+<span><span class="co"># LLM이 get_weather("서울")을 호출하고 결과를 바탕으로 답변</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="이미지-입력" class="level3" data-number="11.2.7"><h3 data-number="11.2.7" class="anchored" data-anchor-id="이미지-입력">
+<span class="header-section-number">11.2.7</span> 이미지 입력</h3>
+<p>멀티모달 모델(GPT-4o, Claude 3.5 Sonnet, Gemini Pro Vision 등)을 사용할 때 이미지를 입력할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"gpt-4o"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 로컬 이미지 파일</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ellmer.tidyverse.org/reference/content_image_url.html">content_image_file</a></span><span class="op">(</span><span class="st">"plot.png"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"이 그래프에서 어떤 패턴이 보이나요?"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># URL 이미지</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ellmer.tidyverse.org/reference/content_image_url.html">content_image_url</a></span><span class="op">(</span><span class="st">"https://example.com/chart.png"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"이 차트를 요약해주세요"</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="비동기-api" class="level3" data-number="11.2.8"><h3 data-number="11.2.8" class="anchored" data-anchor-id="비동기-api">
+<span class="header-section-number">11.2.8</span> 비동기 API</h3>
+<p>대량의 요청을 병렬로 처리할 때 비동기 API를 사용하면 효율적이다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/promises/">promises</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 여러 질문을 동시에 처리</span></span>
+<span><span class="va">questions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"R이란 무엇인가?"</span>,</span>
+<span>  <span class="st">"Python이란 무엇인가?"</span>,</span>
+<span>  <span class="st">"Julia란 무엇인가?"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 비동기 호출</span></span>
+<span><span class="va">promises</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">questions</span>, <span class="kw">function</span><span class="op">(</span><span class="va">q</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">chat</span><span class="op">$</span><span class="fu">chat_async</span><span class="op">(</span><span class="va">q</span>, echo <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 모든 응답 대기</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">promises</span>, <span class="va">promise_value</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section><section id="sec-gpt-posit-ai-chattr" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="sec-gpt-posit-ai-chattr">
+<span class="header-section-number">11.3</span> chattr: RStudio 통합 AI 채팅</h2>
+<p>chattr는 ellmer를 기반으로 RStudio IDE에 통합된 대화형 AI 채팅 인터페이스를 제공한다. 코드 편집 중 즉시 AI에게 질문하고, 생성된 코드를 클립보드나 스크립트에 바로 삽입할 수 있다.</p>
+<section id="설치-및-설정-1" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="설치-및-설정-1">
+<span class="header-section-number">11.3.1</span> 설치 및 설정</h3>
+<p>chattr도 CRAN에서 설치할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"chattr"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>또는 최신 개발 버전:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"mlverse/chattr"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="지원-모델" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="지원-모델">
+<span class="header-section-number">11.3.2</span> 지원 모델</h3>
+<p>chattr는 2025년 8월 기준으로 다음 모델을 미리 정의된 옵션으로 제공한다.</p>
+<p><strong>Databricks:</strong> - <code>databricks-dbrx</code> - <code>databricks-meta-llama31-70b</code> - <code>databricks-mixtral8x7b</code></p>
+<p><strong>OpenAI:</strong> - <code>gpt41-nano</code> - <code>gpt41-mini</code> - <code>gpt41</code> - <code>gpt4o</code></p>
+<p><strong>Ollama:</strong> - <code>ollama</code> (로컬 Llama 3.2)</p>
+<p>ellmer와 통합하여 사용하면 Anthropic Claude, Google Gemini, AWS Bedrock 등 20개 이상의 제공자를 모두 사용할 수 있다.</p>
+</section><section id="rstudio-addin-사용법" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="rstudio-addin-사용법">
+<span class="header-section-number">11.3.3</span> RStudio Addin 사용법</h3>
+<p>chattr의 가장 편리한 사용 방식은 RStudio Addin이다.</p>
+<section id="키보드-단축키-설정" class="level4"><h4 class="anchored" data-anchor-id="키보드-단축키-설정">키보드 단축키 설정</h4>
+<ol type="1">
+<li>RStudio 메뉴: <strong>Tools &gt; Modify Keyboard Shortcuts</strong>
+</li>
+<li>“Open Chat” 검색</li>
+<li>원하는 단축키 할당 (예: <code>Ctrl+Shift+C</code> 또는 <code>Cmd+Shift+C</code>)</li>
+</ol>
+<p>이제 단축키를 누르면 Shiny Gadget 앱이 RStudio Viewer 창에 열린다.</p>
+</section><section id="shiny-gadget-인터페이스" class="level4"><h4 class="anchored" data-anchor-id="shiny-gadget-인터페이스">Shiny Gadget 인터페이스</h4>
+<p>chattr 앱은 Shiny 기반으로 다음 기능을 제공한다.</p>
+<ul>
+<li>
+<strong>채팅 입력창</strong>: 자연어로 질문 입력</li>
+<li>
+<strong>답변 표시 영역</strong>: 마크다운 형식의 답변과 코드 블록</li>
+<li>
+<strong>코드 액션 버튼</strong>:
+<ul>
+<li>
+<strong>Copy to Clipboard</strong>: 코드 복사</li>
+<li>
+<strong>Insert to Script</strong>: 현재 활성 스크립트에 삽입</li>
+<li>
+<strong>New Script</strong>: 새 스크립트 파일 생성</li>
+</ul>
+</li>
+<li>
+<strong>채팅 히스토리</strong>: 이전 대화 내용 확인</li>
+<li>
+<strong>설정 패널</strong>: 프롬프트 커스터마이징, 모델 파라미터 조정</li>
+</ul></section></section><section id="모델-선택-및-전환" class="level3" data-number="11.3.4"><h3 data-number="11.3.4" class="anchored" data-anchor-id="모델-선택-및-전환">
+<span class="header-section-number">11.3.4</span> 모델 선택 및 전환</h3>
+<p>chattr는 다섯 가지 방식으로 모델을 설정할 수 있다.</p>
+<section id="rprofile에-미리-설정" class="level4"><h4 class="anchored" data-anchor-id="rprofile에-미리-설정">1. <code>.Rprofile</code>에 미리 설정</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># .Rprofile 파일 열기</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html">edit_r_profile</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 다음 줄 추가</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>chattr.model <span class="op">=</span> <span class="st">"gpt4o"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>R 재시작 후 <code>chattr_app()</code>을 실행하면 자동으로 GPT-4o를 사용한다.</p>
+</section><section id="ellmer-채팅-객체-직접-전달" class="level4"><h4 class="anchored" data-anchor-id="ellmer-채팅-객체-직접-전달">2. ellmer 채팅 객체 직접 전달</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlverse/chattr">chattr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Claude 3.5 Sonnet 사용</span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_anthropic.html">chat_anthropic</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"claude-3-5-sonnet-20241022"</span><span class="op">)</span></span>
+<span><span class="fu">chattr_use</span><span class="op">(</span><span class="va">chat</span><span class="op">)</span></span>
+<span><span class="fu">chattr_app</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="모델-이름-사용" class="level4"><h4 class="anchored" data-anchor-id="모델-이름-사용">3. 모델 이름 사용</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">chattr_use</span><span class="op">(</span><span class="st">"gpt41-nano"</span><span class="op">)</span></span>
+<span><span class="fu">chattr_app</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="대화형-메뉴" class="level4"><h4 class="anchored" data-anchor-id="대화형-메뉴">4. 대화형 메뉴</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">chattr_use</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># 사용 가능한 모델 목록이 표시되고 선택 가능</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="앱-실행-시-지정" class="level4"><h4 class="anchored" data-anchor-id="앱-실행-시-지정">5. 앱 실행 시 지정</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">chattr_app</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"gpt4o"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section><section id="컨텍스트-자동-추가" class="level3" data-number="11.3.5"><h3 data-number="11.3.5" class="anchored" data-anchor-id="컨텍스트-자동-추가">
+<span class="header-section-number">11.3.5</span> 컨텍스트 자동 추가</h3>
+<p>chattr의 강력한 기능은 사용자 요청에 자동으로 컨텍스트 정보를 추가한다는 점이다.</p>
+<p><strong>자동 추가되는 정보:</strong></p>
+<ul>
+<li>
+<strong>데이터프레임 구조</strong>: 현재 환경의 데이터프레임 이름, 열 이름, 데이터 타입</li>
+<li>
+<strong>파일 경로</strong>: 작업 디렉토리의 데이터 파일 목록</li>
+<li>
+<strong>채팅 히스토리</strong>: 이전 대화 내용 (모델이 지원하는 경우)</li>
+<li>
+<strong>커스텀 프롬프트</strong>: 설정에서 추가한 지시사항</li>
+</ul>
+<p>예를 들어, 사용자가 “mtcars 데이터로 산점도 그려줘”라고 입력하면 chattr는 다음과 같이 프롬프트를 확장한다.</p>
+<pre><code>[시스템 프롬프트]
+당신은 R 프로그래밍 전문가입니다. 간결하고 실행 가능한 코드를 제공하세요.
+
+[환경 정보]
+사용 가능한 데이터프레임:
+- mtcars: 32 rows, 11 columns (mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb)
+
+[사용자 요청]
+mtcars 데이터로 산점도 그려줘</code></pre>
+<p>이를 통해 LLM은 환경을 인식하고 더 정확한 코드를 생성할 수 있다.</p>
+</section><section id="프롬프트-미리보기" class="level3" data-number="11.3.6"><h3 data-number="11.3.6" class="anchored" data-anchor-id="프롬프트-미리보기">
+<span class="header-section-number">11.3.6</span> 프롬프트 미리보기</h3>
+<p>실제로 LLM에게 전송되는 프롬프트를 확인할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 프롬프트 미리보기 활성화</span></span>
+<span><span class="fu">chattr_defaults</span><span class="op">(</span>preview <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">chattr</span><span class="op">(</span><span class="st">"dplyr로 데이터 필터링하는 방법"</span><span class="op">)</span></span>
+<span><span class="co"># 전송 전 프롬프트 내용이 표시됨</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="함수-형태로-사용" class="level3" data-number="11.3.7"><h3 data-number="11.3.7" class="anchored" data-anchor-id="함수-형태로-사용">
+<span class="header-section-number">11.3.7</span> 함수 형태로 사용</h3>
+<p>RStudio 밖에서 터미널이나 스크립트에서 사용할 때는 <code>chattr()</code> 함수를 직접 호출한다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlverse/chattr">chattr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 모델 설정</span></span>
+<span><span class="fu">chattr_use</span><span class="op">(</span><span class="st">"gpt4o"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 질문</span></span>
+<span><span class="fu">chattr</span><span class="op">(</span><span class="st">"R에서 결측값 처리하는 3가지 방법"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 후속 질문</span></span>
+<span><span class="fu">chattr</span><span class="op">(</span><span class="st">"예제 코드를 보여줘"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="채팅-히스토리-관리" class="level3" data-number="11.3.8"><h3 data-number="11.3.8" class="anchored" data-anchor-id="채팅-히스토리-관리">
+<span class="header-section-number">11.3.8</span> 채팅 히스토리 관리</h3>
+<p>chattr는 대화 내용을 저장하고 불러올 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 현재 채팅 히스토리 저장</span></span>
+<span><span class="fu">chattr_save</span><span class="op">(</span><span class="st">"my_chat_session.rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 나중에 불러오기</span></span>
+<span><span class="fu">chattr_load</span><span class="op">(</span><span class="st">"my_chat_session.rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 히스토리 초기화</span></span>
+<span><span class="fu">chattr_clear</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="커스텀-백엔드-확장" class="level3" data-number="11.3.9"><h3 data-number="11.3.9" class="anchored" data-anchor-id="커스텀-백엔드-확장">
+<span class="header-section-number">11.3.9</span> 커스텀 백엔드 확장</h3>
+<p>개발자는 <code>ch_submit()</code> 메서드를 정의하여 chattr에 새로운 LLM 백엔드를 추가할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 커스텀 제공자를 위한 메서드 정의</span></span>
+<span><span class="va">ch_submit.my_custom_llm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">defaults</span>, <span class="va">prompt</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># API 호출 로직</span></span>
+<span>  <span class="co"># ...</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">response</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>이를 통해 커뮤니티는 새로운 LLM 서비스가 나올 때마다 chattr를 확장할 수 있다.</p>
+</section></section><section id="sec-gpt-posit-ai-ecosystem" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="sec-gpt-posit-ai-ecosystem">
+<span class="header-section-number">11.4</span> Posit AI 생태계의 다른 도구들</h2>
+<section id="chatlas-python" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="chatlas-python">
+<span class="header-section-number">11.4.1</span> chatlas (Python)</h3>
+<p>ellmer의 Python 버전으로, Python 사용자도 동일한 인터페이스로 LLM을 사용할 수 있다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatOpenAI</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatOpenAI(model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"Pandas DataFrame 생성 방법은?"</span>)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</section><section id="ragnar-rag" class="level3" data-number="11.4.2"><h3 data-number="11.4.2" class="anchored" data-anchor-id="ragnar-rag">
+<span class="header-section-number">11.4.2</span> ragnar (RAG)</h3>
+<p>Retrieval-Augmented Generation을 구현하는 패키지다. 문서를 벡터화하고 검색하여 LLM에게 컨텍스트로 제공한다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ragnar.tidyverse.org/">ragnar</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 문서 로드 및 임베딩</span></span>
+<span><span class="va">docs</span> <span class="op">&lt;-</span> <span class="fu">load_documents</span><span class="op">(</span><span class="st">"docs/"</span><span class="op">)</span></span>
+<span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu">create_index</span><span class="op">(</span><span class="va">docs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># RAG 기반 질문 답변</span></span>
+<span><span class="va">answer</span> <span class="op">&lt;-</span> <span class="fu">rag_chat</span><span class="op">(</span></span>
+<span>  query <span class="op">=</span> <span class="st">"데이터 정제 방법은?"</span>,</span>
+<span>  index <span class="op">=</span> <span class="va">index</span>,</span>
+<span>  chat <span class="op">=</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="shinychat-shiny-채팅봇" class="level3" data-number="11.4.3"><h3 data-number="11.4.3" class="anchored" data-anchor-id="shinychat-shiny-채팅봇">
+<span class="header-section-number">11.4.3</span> shinychat (Shiny 채팅봇)</h3>
+<p>Shiny 앱에 채팅 인터페이스를 추가하는 패키지다. 사용자와 대화하는 AI 챗봇을 웹 앱에 통합할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/posit-dev/shinychat">shinychat</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shinychat/man/chat_ui.html">chat_ui</a></span><span class="op">(</span><span class="st">"my_chat"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"gpt-4o-mini"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">chat_server</span><span class="op">(</span><span class="st">"my_chat"</span>, <span class="va">chat</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="vitals-평가" class="level3" data-number="11.4.4"><h3 data-number="11.4.4" class="anchored" data-anchor-id="vitals-평가">
+<span class="header-section-number">11.4.4</span> vitals (평가)</h3>
+<p>LLM 응답 품질을 평가하는 프레임워크다. 정확성, 관련성, 일관성 등을 측정할 수 있다.</p>
+</section><section id="mcptools-mcp" class="level3" data-number="11.4.5"><h3 data-number="11.4.5" class="anchored" data-anchor-id="mcptools-mcp">
+<span class="header-section-number">11.4.5</span> mcptools (MCP)</h3>
+<p>Model Context Protocol을 통해 LLM이 외부 도구와 통신할 수 있도록 한다.</p>
+</section></section><section id="sec-gpt-posit-ai-comparison" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="sec-gpt-posit-ai-comparison">
+<span class="header-section-number">11.5</span> ellmer vs.&nbsp;chattr 비교</h2>
+<table class="table">
+<thead><tr class="header">
+<th>특성</th>
+<th>ellmer</th>
+<th>chattr</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>목적</strong></td>
+<td>LLM API 호출 라이브러리</td>
+<td>RStudio 통합 채팅 UI</td>
+</tr>
+<tr class="even">
+<td><strong>사용 방식</strong></td>
+<td>R 코드, 스크립트</td>
+<td>Shiny Gadget, Addin</td>
+</tr>
+<tr class="odd">
+<td><strong>대상 사용자</strong></td>
+<td>개발자, 프로그래머</td>
+<td>대화형 분석가</td>
+</tr>
+<tr class="even">
+<td><strong>제공자 수</strong></td>
+<td>20+</td>
+<td>기본 8개 + ellmer 통합 시 20+</td>
+</tr>
+<tr class="odd">
+<td><strong>컨텍스트 추가</strong></td>
+<td>수동</td>
+<td>자동 (환경, 데이터프레임)</td>
+</tr>
+<tr class="even">
+<td><strong>코드 삽입</strong></td>
+<td>수동 복사</td>
+<td>버튼 클릭 삽입</td>
+</tr>
+<tr class="odd">
+<td><strong>히스토리 관리</strong></td>
+<td>R6 객체 상태</td>
+<td>저장/불러오기 지원</td>
+</tr>
+<tr class="even">
+<td><strong>확장성</strong></td>
+<td>기반 패키지</td>
+<td>ellmer 기반</td>
+</tr>
+</tbody>
+</table>
+<p><strong>선택 가이드:</strong></p>
+<ul>
+<li>
+<strong>프로그래밍 방식으로 LLM 호출</strong>: ellmer 사용</li>
+<li>
+<strong>RStudio에서 대화형 작업</strong>: chattr 사용</li>
+<li>
+<strong>Shiny 앱 통합</strong>: shinychat + ellmer</li>
+<li>
+<strong>RAG 구현</strong>: ragnar + ellmer</li>
+<li>
+<strong>Python 사용자</strong>: chatlas</li>
+</ul></section><section id="sec-gpt-posit-ai-usecase" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="sec-gpt-posit-ai-usecase">
+<span class="header-section-number">11.6</span> 실전 활용 사례</h2>
+<section id="탐색적-데이터-분석-가속화" class="level3" data-number="11.6.1"><h3 data-number="11.6.1" class="anchored" data-anchor-id="탐색적-데이터-분석-가속화">
+<span class="header-section-number">11.6.1</span> 탐색적 데이터 분석 가속화</h3>
+<p>chattr를 사용하여 빠르게 데이터 탐색 코드를 생성할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlverse/chattr">chattr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># chattr 앱 열기 (Ctrl+Shift+C)</span></span>
+<span><span class="fu">chattr_app</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>사용자:</strong> “penguins 데이터셋의 종별 평균 체중을 막대 그래프로 보여줘”</p>
+<p>chattr는 환경에서 penguins 데이터프레임을 감지하고 다음 코드를 생성한다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">mean_weight</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"종별 평균 체중"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"종"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"평균 체중 (g)"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>“Insert to Script” 버튼을 클릭하면 현재 스크립트에 코드가 삽입된다.</p>
+</section><section id="대량-텍스트-분석" class="level3" data-number="11.6.2"><h3 data-number="11.6.2" class="anchored" data-anchor-id="대량-텍스트-분석">
+<span class="header-section-number">11.6.2</span> 대량 텍스트 분석</h3>
+<p>ellmer의 비동기 API를 사용하여 대량 텍스트를 병렬 처리할 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 리뷰 데이터</span></span>
+<span><span class="va">reviews</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,</span>
+<span>  text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"정말 좋은 제품입니다!"</span>, <span class="st">"별로였어요..."</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 감성 분석용 채팅 객체</span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span></span>
+<span>  model <span class="op">=</span> <span class="st">"gpt-4o-mini"</span>,</span>
+<span>  system_prompt <span class="op">=</span> <span class="st">"다음 리뷰의 감성을 '긍정', '부정', '중립'으로 분류하세요."</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 비동기 처리</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">reviews</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    sentiment <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">text</span>, <span class="op">~</span><span class="op">{</span></span>
+<span>      <span class="va">response</span> <span class="op">&lt;-</span> <span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="va">.x</span>, echo <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span>      <span class="fu">str_trim</span><span class="op">(</span><span class="va">response</span><span class="op">)</span></span>
+<span>    <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="구조화된-데이터-추출-1" class="level3" data-number="11.6.3"><h3 data-number="11.6.3" class="anchored" data-anchor-id="구조화된-데이터-추출-1">
+<span class="header-section-number">11.6.3</span> 구조화된 데이터 추출</h3>
+<p>뉴스 기사에서 인물, 조직, 날짜 등을 추출하여 데이터프레임으로 만들 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">news_text</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">2025년 1월 7일, 삼성전자 이재용 회장은</span></span>
+<span><span class="st">미국 실리콘밸리에서 구글 CEO 순다르 피차이와 만나</span></span>
+<span><span class="st">AI 협력 방안을 논의했다.</span></span>
+<span><span class="st">"</span></span>
+<span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"gpt-4o"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">chat</span><span class="op">$</span><span class="fu">extract_data</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"다음 기사에서 정보를 추출하세요:"</span>, <span class="va">news_text</span><span class="op">)</span>,</span>
+<span>  schema <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    date <span class="op">=</span> <span class="st">"character"</span>,</span>
+<span>    person <span class="op">=</span> <span class="st">"character"</span>,</span>
+<span>    organization <span class="op">=</span> <span class="st">"character"</span>,</span>
+<span>    location <span class="op">=</span> <span class="st">"character"</span>,</span>
+<span>    topic <span class="op">=</span> <span class="st">"character"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
+<span><span class="co">#        date   person organization      location  topic</span></span>
+<span><span class="co"># 1 2025-01-07 이재용   삼성전자 실리콘밸리 AI 협력</span></span>
+<span><span class="co"># 2 2025-01-07 순다르 피차이        구글 실리콘밸리 AI 협력</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="rag-기반-문서-질의응답" class="level3" data-number="11.6.4"><h3 data-number="11.6.4" class="anchored" data-anchor-id="rag-기반-문서-질의응답">
+<span class="header-section-number">11.6.4</span> RAG 기반 문서 질의응답</h3>
+<p>ragnar를 사용하여 프로젝트 문서에 대한 AI 어시스턴트를 만들 수 있다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ragnar.tidyverse.org/">ragnar</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 프로젝트 문서 로드</span></span>
+<span><span class="va">docs</span> <span class="op">&lt;-</span> <span class="fu">load_documents</span><span class="op">(</span><span class="st">"project_docs/"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 벡터 인덱스 생성</span></span>
+<span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu">create_index</span><span class="op">(</span><span class="va">docs</span>, embedding_model <span class="op">=</span> <span class="st">"text-embedding-3-small"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># RAG 채팅</span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"gpt-4o"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">answer</span> <span class="op">&lt;-</span> <span class="fu">rag_chat</span><span class="op">(</span></span>
+<span>  query <span class="op">=</span> <span class="st">"데이터 파이프라인 아키텍처는?"</span>,</span>
+<span>  index <span class="op">=</span> <span class="va">index</span>,</span>
+<span>  chat <span class="op">=</span> <span class="va">chat</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>LLM은 문서에서 관련 부분을 검색하여 정확한 답변을 제공한다.</p>
+</section></section><section id="sec-gpt-posit-ai-limitations" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="sec-gpt-posit-ai-limitations">
+<span class="header-section-number">11.7</span> 제약 사항 및 고려 사항</h2>
+<section id="api-비용" class="level3" data-number="11.7.1"><h3 data-number="11.7.1" class="anchored" data-anchor-id="api-비용">
+<span class="header-section-number">11.7.1</span> API 비용</h3>
+<p>모든 LLM 호출은 제공자에게 비용을 지불한다. 대량 요청 시 비용이 빠르게 증가할 수 있으므로 주의가 필요하다.</p>
+<p><strong>비용 절감 팁:</strong></p>
+<ul>
+<li>작은 모델 사용 (GPT-4o-mini, Claude 3 Haiku)</li>
+<li>캐싱 활용</li>
+<li>불필요한 컨텍스트 제거</li>
+<li>로컬 모델 (Ollama) 활용</li>
+</ul></section><section id="데이터-프라이버시" class="level3" data-number="11.7.2"><h3 data-number="11.7.2" class="anchored" data-anchor-id="데이터-프라이버시">
+<span class="header-section-number">11.7.2</span> 데이터 프라이버시</h3>
+<p>LLM API에 전송하는 데이터는 제공자의 서버를 거친다. 민감한 데이터는 절대 전송하지 말아야 한다.</p>
+<p><strong>보안 대책:</strong></p>
+<ul>
+<li>로컬 Ollama 모델 사용</li>
+<li>엔터프라이즈 계약 (Azure OpenAI, AWS Bedrock)</li>
+<li>데이터 익명화 후 전송</li>
+<li>조직 정책 준수</li>
+</ul></section><section id="응답-일관성" class="level3" data-number="11.7.3"><h3 data-number="11.7.3" class="anchored" data-anchor-id="응답-일관성">
+<span class="header-section-number">11.7.3</span> 응답 일관성</h3>
+<p>LLM 응답은 확률적이므로 동일한 입력에 다른 출력이 나올 수 있다. 재현 가능성이 중요한 경우 <code>temperature = 0</code>으로 설정한다.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_openai.html">chat_openai</a></span><span class="op">(</span></span>
+<span>  model <span class="op">=</span> <span class="st">"gpt-4o"</span>,</span>
+<span>  temperature <span class="op">=</span> <span class="fl">0</span>  <span class="co"># 결정적 출력</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="코드-검증-필요" class="level3" data-number="11.7.4"><h3 data-number="11.7.4" class="anchored" data-anchor-id="코드-검증-필요">
+<span class="header-section-number">11.7.4</span> 코드 검증 필요</h3>
+<p>AI가 생성한 코드는 항상 검증해야 한다. 잘못된 로직, 보안 취약점, 성능 문제가 있을 수 있다.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">경고</span>AI 생성 코드 실행 주의
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>AI가 생성한 코드를 맹목적으로 실행하지 말 것. 특히 파일 시스템 조작, 네트워크 요청, 데이터베이스 쿼리는 반드시 검토 후 실행한다.</p>
+</div>
+</div>
+</section></section><section id="sec-gpt-posit-ai-thoughts" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="sec-gpt-posit-ai-thoughts">
+<span class="header-section-number">11.8</span> 생각해볼 점</h2>
+<p>Posit AI 생태계는 R 사용자가 LLM을 자연스럽게 워크플로우에 통합할 수 있도록 설계되었다. ellmer가 강력한 기반 라이브러리를 제공하고, chattr가 친숙한 RStudio 인터페이스를 제공하며, ragnar, shinychat, vitals가 특화된 기능을 더한다. 이는 단순히 “AI를 사용할 수 있게 한다”를 넘어, “AI와 함께 R로 일하는 방식”을 재정의한다.</p>
+<p>ellmer의 통일된 인터페이스는 특히 가치 있다. 20개 이상의 제공자를 지원하면서도 일관된 API를 유지하여, 사용자는 코드를 거의 변경하지 않고 모델을 전환할 수 있다. 조직 정책이 바뀌거나 새로운 모델이 출시되어도 코드를 다시 작성할 필요가 없다.</p>
+<p>chattr는 탐색적 데이터 분석 단계에서 생산성을 크게 향상시킨다. 데이터를 처음 접했을 때 “어떻게 시작할까?”라는 고민을 AI와 대화하며 해결하고, 생성된 코드를 클릭 한 번으로 스크립트에 추가할 수 있다. 숙련된 분석가도 반복적인 코드 작성 시간을 줄이고 분석 논리에 더 집중할 수 있다.</p>
+<p>Posit AI 도구들의 오픈소스 철학도 중요하다. GitHub에 공개된 소스 코드를 통해 내부 작동 방식을 이해하고, 필요시 커스터마이징할 수 있다. 커뮤니티는 새로운 LLM 백엔드를 추가하거나 기능을 확장하여 생태계를 풍부하게 만들 수 있다.</p>
+<p>하지만 AI 도구를 사용할 때는 비판적 사고를 유지해야 한다. AI가 생성한 코드나 답변이 항상 정확하거나 최선인 것은 아니다. 통계적 가정, 데이터 품질, 보안 취약점 등을 항상 검토해야 한다. AI는 강력한 부조종사지만, 최종 판단과 책임은 데이터 과학자 본인에게 있다.</p>
+<p>앞으로 Posit AI 생태계는 더욱 발전할 것이다. Positron IDE의 통합 강화, 새로운 LLM 제공자 지원, 평가 및 모니터링 도구 개선 등이 예상된다. R 사용자는 이러한 도구들을 활용하여 AI 네이티브 데이터 과학자로 성장할 수 있는 기회를 얻었다. 중요한 것은 도구를 아는 것이 아니라, 도구를 통해 더 나은 질문을 하고 더 깊은 통찰을 얻는 것이다.</p>
+<hr>
+<p><strong>Sources:</strong> - <a href="https://ellmer.tidyverse.org/">ellmer: Chat with Large Language Models</a> - <a href="https://github.com/tidyverse/ellmer">GitHub - tidyverse/ellmer</a> - <a href="https://mlverse.github.io/chattr/">chattr: Interact with Large Language Models in RStudio</a> - <a href="https://blogs.rstudio.com/tensorflow/posts/2024-04-04-chat-with-llms-using-chattr/">Posit AI Blog: Chat with AI in RStudio</a> - <a href="https://cran.r-project.org/package=chattr">CRAN: Package chattr</a></p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./gpt_databot.html" class="pagination-link" aria-label="Databot">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Databot</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data_structure.html" class="pagination-link" aria-label="자료구조">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">자료구조</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>챗GPT 데이터 과학 책은 소프트웨어 카펜트리 “R for Reproducible Scientific Analysis”를 번역한 것이 포함되어 있습니다.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/bit2r/gpt-ds/edit/main/gpt_posit_ai.qmd" class="toc-action"><i class="bi bi-github"></i>편집</a></li><li><a href="https://github.com/bit2r/gpt-ds/issues/new" class="toc-action"><i class="bi empty"></i>이슈 보고</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>순수하게 <a href="https://quarto.org/">쿼토(Quarto)</a>로 제작되었습니다.</p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

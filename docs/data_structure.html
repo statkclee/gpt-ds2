@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.8.18">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<title>챗GPT 데이터 과학 - 4&nbsp; 자료구조</title>
+<title>4&nbsp; 자료구조 – 챗GPT 데이터 과학</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,8 +19,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -63,16 +64,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./dataframe.html" rel="next">
 <link href="./intro_penguins.html" rel="prev">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<link href="./images/logo_old.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-180a25e629ca4b8367e4de4be7b566fe.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-5acb6d418f07ca0ca914d4ea7cec5f20.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -275,7 +278,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats_orig <- data.frame(coat = factor(c(\"calico\", \"black\", \"tabby\")),\n                   weight = c(2.1, 5.0, 3.2),\n                   likes_string = c(1, 0, 1))\ncats_bad <- data.frame(coat = factor(c(\"calico\", \"black\", \"tabby\", \"tabby\")),\n                   weight = factor(c(2.1, 5.0, 3.2, '2.3 or 2.4')),\n                   likes_string = c(1, 0, 1, 1))\ncats <- cats_orig"},{"id":2,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-write","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats <- data.frame(coat = c(\"calico\", \"black\", \"tabby\"), \n                    weight = c(2.1, 5.0,3.2), \n                    likes_string = c(1, 0, 1))\n# write.csv(x = cats, file = \"data/feline-data.csv\", row.names = FALSE) # 로컬 실습\nwrite.csv(x = cats, file = \"feline-data.csv\", row.names = FALSE) # webr 실습"},{"id":3,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-import","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"# cats <- read.csv(file = \"data/feline-data.csv\") # 로컬 실습\ncats <- read.csv(file = \"feline-data.csv\") # webr 사용\ncats\n#>     coat weight likes_string\n#> 1 calico    2.1            1\n#> 2  black    5.0            0\n#> 3  tabby    3.2            1"},{"id":4,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-extract","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats$weight\n#> [1] 2.1 5.0 3.2\ncats$coat\n#> [1] \"calico\" \"black\"  \"tabby\" "},{"id":5,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-operations","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"## 내 고양이 몸무게가 2 kg 불었다고 다음과 같이 표현할 수 있다:\ncats$weight + 2\n#> [1] 4.1 7.0 5.2\npaste(\"고양이 무게: \", cats$coat)\n#> [1] \"고양이 무게:  calico\" \"고양이 무게:  black\"  \"고양이 무게:  tabby\""},{"id":6,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-operations-error","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats$weight + cats$coat\n#> Error: non-numeric argument to binary operator"},{"id":7,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-types","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"typeof(cats$weight)\n#> [1] \"double\""},{"id":8,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-types-all","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"typeof(3.14)\n#> [1] \"double\"\ntypeof(1L) # 기본적으로 R은 부동 소수점을 사용하므로 L 접미사를 사용하면 숫자가 정수로 강제 지정된다.\n#> [1] \"integer\"\ntypeof(1+1i)\n#> [1] \"complex\"\ntypeof(TRUE)\n#> [1] \"logical\"\ntypeof('banana')\n#> [1] \"character\""},{"id":9,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-import-v2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats <- read.csv(file=\"data/feline-data-v2.csv\")\ntypeof(cats$weight)\n#> [1] \"character\""},{"id":10,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-operations-v2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats$weight + 2\n#> cats$weight + 2에서 다음과 같은 에러가 발생했습니다:이항연산자에 수치가 아닌 인수입니다"},{"id":11,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-class","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"class(cats)\n#> [1] \"data.frame\""},{"id":12,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-cats-import2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"# cats <- read.csv(file=\"data/feline-data.csv\")\ncats <- read.csv(file=\"feline-data.csv\")\n\ncats <- cats_orig"},{"id":13,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"my_vector <- vector(length = 3)\nmy_vector\n#> [1] FALSE FALSE FALSE"},{"id":14,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-character","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"another_vector <- vector(mode='character', length=3)\n\nanother_vector\n#> [1] \"\" \"\" \"\"\nstr(another_vector)\n#> chr [1:3] \"\" \"\" \"\""},{"id":15,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-numericstr(cats$weight)","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"#> num [1:3] 2.1 5 3.2"},{"id":16,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-combine","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"combine_vector <- c(2,6,3)\ncombine_vector\n#> [1] 2 6 3"},{"id":17,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-coercion","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"quiz_vector <- c(2,6,'3')"},{"id":18,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-coercion2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"coercion_vector <- c('a', TRUE)\ncoercion_vector\n#> [1] \"a\"    \"TRUE\"\nanother_coercion_vector <- c(0, TRUE)\nanother_coercion_vector\n#> [1] 0 1"},{"id":19,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-coercion3","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"character_vector_example <- c('0','2','4')\ncharacter_vector_example\n#> [1] \"0\" \"2\" \"4\"\ncharacter_coerced_to_numeric <- as.numeric(character_vector_example)\ncharacter_coerced_to_numeric\n#> [1] 0 2 4\nnumeric_coerced_to_logical <- as.logical(character_coerced_to_numeric)\nnumeric_coerced_to_logical\n#> [1] FALSE  TRUE  TRUE"},{"id":20,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-coercion4","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats$likes_string\n#> [1] 1 0 1\ncats$likes_string <- as.logical(cats$likes_string)\ncats$likes_string\n#> [1]  TRUE FALSE  TRUE"},{"id":21,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-combine2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"ab_vector <- c('a', 'b')\nab_vector\n#> [1] \"a\" \"b\"\ncombine_example <- c(ab_vector, 'SWC')\ncombine_example\n#> [1] \"a\"   \"b\"   \"SWC\""},{"id":22,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-sequence","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"mySeries <- 1:10\nmySeries\n#>  [1]  1  2  3  4  5  6  7  8  9 10\nseq(10)\n#>  [1]  1  2  3  4  5  6  7  8  9 10\nseq(1,2, by=0.1)\n#>  [1] 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0"},{"id":23,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-questions","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"sequence_example <- seq(10)\nhead(sequence_example, n=2)\n#> [1] 1 2\ntail(sequence_example, n=4)\n#> [1]  7  8  9 10\nlength(sequence_example)\n#> 10\nclass(sequence_example)\n#> [1] \"integer\"\ntypeof(sequence_example)\n#> [1] \"integer\""},{"id":24,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-naming","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"my_example <- 5:8\nnames(my_example) <- c(\"a\", \"b\", \"c\", \"d\")\nmy_example\n#> a b c d \n#> 5 6 7 8 \nnames(my_example)\n#> [1] \"a\" \"b\" \"c\" \"d\""},{"id":25,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-vector-challenge","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"x <- 1:26\nx <- x * 2\nnames(x) <- LETTERS"},{"id":26,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-data-frame","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"str(cats$weight)\n#> num [1:3] 2.1 5 3.2\nstr(cats$likes_string)\n#> logi [1:3] TRUE FALSE TRUE"},{"id":27,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-data-frame2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"str(cats$coat)\n#>  chr [1:3] \"calico\" \"black\" \"tabby\""},{"id":28,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-factor","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"coats <- c('tabby', 'tortoiseshell', 'tortoiseshell', 'black', 'tabby')\ncoats\n#> [1] \"tabby\" \"tortoiseshell\" \"tortoiseshell\" \"black\"  \"tabby\"   \nstr(coats)\n#> chr [1:5] \"tabby\" \"tortoiseshell\" \"tortoiseshell\" \"black\" \"tabby\""},{"id":29,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-factor2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"CATegories <- factor(coats)\nclass(CATegories)\n#> [1] \"factor\"\nstr(CATegories)\n#> Factor w/ 3 levels \"black\",\"tabby\",..: 2 3 3 1 2"},{"id":30,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-factor3","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"typeof(coats)\n#> [1] \"character\"\ntypeof(CATegories)\n#> [1] \"integer\""},{"id":31,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-factor-challenge","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats <- read.csv(file=\"data/feline-data.csv\", stringsAsFactors=FALSE)\nstr(cats$coat)"},{"id":32,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-factor-challenge2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"# cats <- read.csv(file=\"data/feline-data.csv\", colClasses=c(NA, NA, \"character\"))\ncats <- read.csv(file=\"feline-data.csv\", colClasses=c(NA, NA, \"character\"))\nstr(cats$coat)"},{"id":33,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-factor-ordering","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"mydata <- c(\"case\", \"control\", \"control\", \"case\")\nfactor_ordering_example <- factor(mydata, levels = c(\"control\", \"case\"))\nstr(factor_ordering_example)\n#> Factor w/ 2 levels \"control\",\"case\": 2 1 1 2"},{"id":34,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"list_example <- list(1, \"a\", TRUE, 1+4i)\nlist_example\n#> [[1]]\n#> [1] 1\n#> \n#> [[2]]\n#> [1] \"a\"\n#> \n#> [[3]]\n#> [1] TRUE\n#> \n#> [[4]]\n#> [1] 1+4i\nanother_list <- list(title = \"Numbers\", numbers = 1:10, data = TRUE )\nanother_list\n#> $title\n#> [1] \"Numbers\"\n#> \n#> $numbers\n#>  [1]  1  2  3  4  5  6  7  8  9 10\n#> \n#> $data\n#> [1] TRUE"},{"id":35,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-type","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"typeof(cats)\n#> [1] \"list\""},{"id":36,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-subsetting","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats$coat\n#> [1] \"calico\" \"black\"  \"tabby\" \ncats[,1]\n#> [1] \"calico\" \"black\"  \"tabby\" \ntypeof(cats[,1])\n#> [1] \"character\"\nstr(cats[,1])\n#>  chr [1:3] \"calico\" \"black\" \"tabby\""},{"id":37,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-subsetting2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[1,]\n#>     coat weight likes_string\n#> 1 calico    2.1         TRUE\ntypeof(cats[1,])\n#> [1] \"list\"\nstr(cats[1,])\n#> 'data.frame':    1 obs. of  3 variables:\n#>  $ coat        : chr \"calico\"\n#>  $ weight      : num 2.1\n#>  $ likes_string: logi TRUE"},{"id":38,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge1","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[1]"},{"id":39,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge2","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[[1]]"},{"id":40,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge3","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats$coat"},{"id":41,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge4","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[\"coat\"]"},{"id":42,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge5","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[1, 1]"},{"id":43,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge6","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[, 1]"},{"id":44,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge7","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"cats[1, ]"},{"id":45,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-matrix","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"matrix_example <- matrix(0, ncol=6, nrow=3)\nmatrix_example\n#>      [,1] [,2] [,3] [,4] [,5] [,6]\n#> [1,]    0    0    0    0    0    0\n#> [2,]    0    0    0    0    0    0\n#> [3,]    0    0    0    0    0    0"},{"id":46,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-matrix-questions","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"class(matrix_example)\n#> [1] \"matrix\" \"array\" \ntypeof(matrix_example)\n#> [1] \"double\"\nstr(matrix_example)\n#>  num [1:3, 1:6] 0 0 0 0 0 0 0 0 0 0 ...\ndim(matrix_example)\n#> [1] 3 6\nnrow(matrix_example)\n#> [1] 3\nncol(matrix_example)\n#> [1] 6"},{"id":47,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-matrix-challenge-answer","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"matrix_example <- matrix(0, ncol=6, nrow=3)\nlength(matrix_example)"},{"id":48,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-matrix-challenge-answer5","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"x <- matrix(1:50, ncol=5, nrow=10)\nx <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row"},{"id":49,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-list-challenge-answer6","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')\ndataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')\nanswer <- list(dataTypes, dataStructures)"},{"id":50,"options":{"fig-height":5,"out-width":"700px","fig-width":7,"warning":"true","comment":"","autorun":"false","output":"true","out-height":"","dpi":72,"read-only":"false","context":"interactive","label":"data-structure-matrix-challenge-answer7","classes":"","results":"markup","fig-cap":"","message":"true"},"code":"matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)"}];
+globalThis.qwebrCellDetails = [{"code":"cats_orig <- data.frame(coat = factor(c(\"calico\", \"black\", \"tabby\")),\n                   weight = c(2.1, 5.0, 3.2),\n                   likes_string = c(1, 0, 1))\ncats_bad <- data.frame(coat = factor(c(\"calico\", \"black\", \"tabby\", \"tabby\")),\n                   weight = factor(c(2.1, 5.0, 3.2, '2.3 or 2.4')),\n                   likes_string = c(1, 0, 1, 1))\ncats <- cats_orig","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats <- data.frame(coat = c(\"calico\", \"black\", \"tabby\"), \n                    weight = c(2.1, 5.0,3.2), \n                    likes_string = c(1, 0, 1))\n# write.csv(x = cats, file = \"data/feline-data.csv\", row.names = FALSE) # 로컬 실습\nwrite.csv(x = cats, file = \"feline-data.csv\", row.names = FALSE) # webr 실습","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-write","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# cats <- read.csv(file = \"data/feline-data.csv\") # 로컬 실습\ncats <- read.csv(file = \"feline-data.csv\") # webr 사용\ncats\n#>     coat weight likes_string\n#> 1 calico    2.1            1\n#> 2  black    5.0            0\n#> 3  tabby    3.2            1","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-import","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats$weight\n#> [1] 2.1 5.0 3.2\ncats$coat\n#> [1] \"calico\" \"black\"  \"tabby\" ","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-extract","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"## 내 고양이 몸무게가 2 kg 불었다고 다음과 같이 표현할 수 있다:\ncats$weight + 2\n#> [1] 4.1 7.0 5.2\npaste(\"고양이 무게: \", cats$coat)\n#> [1] \"고양이 무게:  calico\" \"고양이 무게:  black\"  \"고양이 무게:  tabby\"","id":5,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-operations","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats$weight + cats$coat\n#> Error: non-numeric argument to binary operator","id":6,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-operations-error","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"typeof(cats$weight)\n#> [1] \"double\"","id":7,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-types","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"typeof(3.14)\n#> [1] \"double\"\ntypeof(1L) # 기본적으로 R은 부동 소수점을 사용하므로 L 접미사를 사용하면 숫자가 정수로 강제 지정된다.\n#> [1] \"integer\"\ntypeof(1+1i)\n#> [1] \"complex\"\ntypeof(TRUE)\n#> [1] \"logical\"\ntypeof('banana')\n#> [1] \"character\"","id":8,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-types-all","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats <- read.csv(file=\"data/feline-data-v2.csv\")\ntypeof(cats$weight)\n#> [1] \"character\"","id":9,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-import-v2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats$weight + 2\n#> cats$weight + 2에서 다음과 같은 에러가 발생했습니다:이항연산자에 수치가 아닌 인수입니다","id":10,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-operations-v2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"class(cats)\n#> [1] \"data.frame\"","id":11,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-class","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# cats <- read.csv(file=\"data/feline-data.csv\")\ncats <- read.csv(file=\"feline-data.csv\")\n\ncats <- cats_orig","id":12,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-cats-import2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_vector <- vector(length = 3)\nmy_vector\n#> [1] FALSE FALSE FALSE","id":13,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"another_vector <- vector(mode='character', length=3)\n\nanother_vector\n#> [1] \"\" \"\" \"\"\nstr(another_vector)\n#> chr [1:3] \"\" \"\" \"\"","id":14,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-character","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"#> num [1:3] 2.1 5 3.2","id":15,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-numericstr(cats$weight)","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"combine_vector <- c(2,6,3)\ncombine_vector\n#> [1] 2 6 3","id":16,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-combine","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"quiz_vector <- c(2,6,'3')","id":17,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-coercion","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"coercion_vector <- c('a', TRUE)\ncoercion_vector\n#> [1] \"a\"    \"TRUE\"\nanother_coercion_vector <- c(0, TRUE)\nanother_coercion_vector\n#> [1] 0 1","id":18,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-coercion2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"character_vector_example <- c('0','2','4')\ncharacter_vector_example\n#> [1] \"0\" \"2\" \"4\"\ncharacter_coerced_to_numeric <- as.numeric(character_vector_example)\ncharacter_coerced_to_numeric\n#> [1] 0 2 4\nnumeric_coerced_to_logical <- as.logical(character_coerced_to_numeric)\nnumeric_coerced_to_logical\n#> [1] FALSE  TRUE  TRUE","id":19,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-coercion3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats$likes_string\n#> [1] 1 0 1\ncats$likes_string <- as.logical(cats$likes_string)\ncats$likes_string\n#> [1]  TRUE FALSE  TRUE","id":20,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-coercion4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"ab_vector <- c('a', 'b')\nab_vector\n#> [1] \"a\" \"b\"\ncombine_example <- c(ab_vector, 'SWC')\ncombine_example\n#> [1] \"a\"   \"b\"   \"SWC\"","id":21,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-combine2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"mySeries <- 1:10\nmySeries\n#>  [1]  1  2  3  4  5  6  7  8  9 10\nseq(10)\n#>  [1]  1  2  3  4  5  6  7  8  9 10\nseq(1,2, by=0.1)\n#>  [1] 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0","id":22,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-sequence","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"sequence_example <- seq(10)\nhead(sequence_example, n=2)\n#> [1] 1 2\ntail(sequence_example, n=4)\n#> [1]  7  8  9 10\nlength(sequence_example)\n#> 10\nclass(sequence_example)\n#> [1] \"integer\"\ntypeof(sequence_example)\n#> [1] \"integer\"","id":23,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-questions","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_example <- 5:8\nnames(my_example) <- c(\"a\", \"b\", \"c\", \"d\")\nmy_example\n#> a b c d \n#> 5 6 7 8 \nnames(my_example)\n#> [1] \"a\" \"b\" \"c\" \"d\"","id":24,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-naming","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x <- 1:26\nx <- x * 2\nnames(x) <- LETTERS","id":25,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-vector-challenge","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"str(cats$weight)\n#> num [1:3] 2.1 5 3.2\nstr(cats$likes_string)\n#> logi [1:3] TRUE FALSE TRUE","id":26,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-data-frame","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"str(cats$coat)\n#>  chr [1:3] \"calico\" \"black\" \"tabby\"","id":27,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-data-frame2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"coats <- c('tabby', 'tortoiseshell', 'tortoiseshell', 'black', 'tabby')\ncoats\n#> [1] \"tabby\" \"tortoiseshell\" \"tortoiseshell\" \"black\"  \"tabby\"   \nstr(coats)\n#> chr [1:5] \"tabby\" \"tortoiseshell\" \"tortoiseshell\" \"black\" \"tabby\"","id":28,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-factor","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"CATegories <- factor(coats)\nclass(CATegories)\n#> [1] \"factor\"\nstr(CATegories)\n#> Factor w/ 3 levels \"black\",\"tabby\",..: 2 3 3 1 2","id":29,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-factor2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"typeof(coats)\n#> [1] \"character\"\ntypeof(CATegories)\n#> [1] \"integer\"","id":30,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-factor3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats <- read.csv(file=\"data/feline-data.csv\", stringsAsFactors=FALSE)\nstr(cats$coat)","id":31,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-factor-challenge","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# cats <- read.csv(file=\"data/feline-data.csv\", colClasses=c(NA, NA, \"character\"))\ncats <- read.csv(file=\"feline-data.csv\", colClasses=c(NA, NA, \"character\"))\nstr(cats$coat)","id":32,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-factor-challenge2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"mydata <- c(\"case\", \"control\", \"control\", \"case\")\nfactor_ordering_example <- factor(mydata, levels = c(\"control\", \"case\"))\nstr(factor_ordering_example)\n#> Factor w/ 2 levels \"control\",\"case\": 2 1 1 2","id":33,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-factor-ordering","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"list_example <- list(1, \"a\", TRUE, 1+4i)\nlist_example\n#> [[1]]\n#> [1] 1\n#> \n#> [[2]]\n#> [1] \"a\"\n#> \n#> [[3]]\n#> [1] TRUE\n#> \n#> [[4]]\n#> [1] 1+4i\nanother_list <- list(title = \"Numbers\", numbers = 1:10, data = TRUE )\nanother_list\n#> $title\n#> [1] \"Numbers\"\n#> \n#> $numbers\n#>  [1]  1  2  3  4  5  6  7  8  9 10\n#> \n#> $data\n#> [1] TRUE","id":34,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"typeof(cats)\n#> [1] \"list\"","id":35,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-type","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats$coat\n#> [1] \"calico\" \"black\"  \"tabby\" \ncats[,1]\n#> [1] \"calico\" \"black\"  \"tabby\" \ntypeof(cats[,1])\n#> [1] \"character\"\nstr(cats[,1])\n#>  chr [1:3] \"calico\" \"black\" \"tabby\"","id":36,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-subsetting","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[1,]\n#>     coat weight likes_string\n#> 1 calico    2.1         TRUE\ntypeof(cats[1,])\n#> [1] \"list\"\nstr(cats[1,])\n#> 'data.frame':    1 obs. of  3 variables:\n#>  $ coat        : chr \"calico\"\n#>  $ weight      : num 2.1\n#>  $ likes_string: logi TRUE","id":37,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-subsetting2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[1]","id":38,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[[1]]","id":39,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats$coat","id":40,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[\"coat\"]","id":41,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[1, 1]","id":42,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[, 1]","id":43,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"cats[1, ]","id":44,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"matrix_example <- matrix(0, ncol=6, nrow=3)\nmatrix_example\n#>      [,1] [,2] [,3] [,4] [,5] [,6]\n#> [1,]    0    0    0    0    0    0\n#> [2,]    0    0    0    0    0    0\n#> [3,]    0    0    0    0    0    0","id":45,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-matrix","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"class(matrix_example)\n#> [1] \"matrix\" \"array\" \ntypeof(matrix_example)\n#> [1] \"double\"\nstr(matrix_example)\n#>  num [1:3, 1:6] 0 0 0 0 0 0 0 0 0 0 ...\ndim(matrix_example)\n#> [1] 3 6\nnrow(matrix_example)\n#> [1] 3\nncol(matrix_example)\n#> [1] 6","id":46,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-matrix-questions","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"matrix_example <- matrix(0, ncol=6, nrow=3)\nlength(matrix_example)","id":47,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-matrix-challenge-answer","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x <- matrix(1:50, ncol=5, nrow=10)\nx <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row","id":48,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-matrix-challenge-answer5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')\ndataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')\nanswer <- list(dataTypes, dataStructures)","id":49,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-list-challenge-answer6","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)","id":50,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"data-structure-matrix-challenge-answer7","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 </script><script type="module">
 // Declare startupMessageQWebR globally
@@ -988,23 +991,25 @@ globalThis.qwebrExecuteCode = async function (
 
 </script>
 </head>
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_structure.html"><strong>2부</strong> 데이터 다루기</a></li><li class="breadcrumb-item"><a href="./data_structure.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">자료구조</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="검색" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">챗GPT 데이터 과학</a> 
         <div class="sidebar-tools-main">
@@ -1032,9 +1037,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>1부</strong> 들어가며</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1061,9 +1066,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>2부</strong> 데이터 다루기</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1096,9 +1101,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>3부</strong> 시각화</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1125,9 +1130,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>4부</strong> 모형</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1160,9 +1165,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>5부</strong> 프로그래밍</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1195,9 +1200,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>6부</strong> 커뮤니케이션</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1230,9 +1235,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>7부</strong> 가져오기</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1265,9 +1270,9 @@ globalThis.qwebrExecuteCode = async function (
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>8부</strong> 챗GPT</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -1516,17 +1521,17 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>새로 생성한 <code>feline-data.csv</code> 파일 내부는 다음과 같다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coat,weight,likes_string</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coat,weight,likes_string</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">calico,2.1,1</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">black,5.0,0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,3.2,1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,3.2,1</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-R에서 텍스트 파일 편집
+<span class="screen-reader-only">힌트</span>R에서 텍스트 파일 편집
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1559,14 +1564,14 @@ R에서 텍스트 파일 편집
 <p>분석이 얼마나 복잡해지냐에 관계없이, R에서 모든 데이터는 이러한 기본 자료형 중 하나로 해석된다. 이러한 엄격함이 정말로 중요한 결과를 낳게 된다.</p>
 <p>사용자가 또 다른 고양이에 대한 상세 내용을 추가했고, 추가 정보는 <code>data/feline-data_v2.csv</code> 파일에 저장되어 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># file.show("data/feline-data-v2.csv")</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/file.show.html">file.show</a></span><span class="op">(</span><span class="st">"feline-data-v2.csv"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># file.show("data/feline-data-v2.csv")</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/file.show.html">file.show</a></span><span class="op">(</span><span class="st">"feline-data-v2.csv"</span><span class="op">)</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coat,weight,likes_string</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coat,weight,likes_string</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">calico,2.1,1</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">black,5.0,0</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,3.2,1</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,2.3</span> or 2.4,1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,2.3</span> or 2.4,1</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <p>앞서와 마찬가지로 새로운 고양이 데이터를 불러와서 <code>weight</code> 칼럼의 데이터 자료형이 무엇인지 확인한다.</p>
 <div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1579,10 +1584,10 @@ R에서 텍스트 파일 편집
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>R에서 데이터를 성공적으로 사용하려면 기본 자료구조가 무엇이고 어떻게 동작하는지 이해할 필요가 있다. 지금으로서는 추가된 마지막 줄을 제거하고 좀 더 살펴보도록 하자:</p>
 <p><code>feline-data.csv</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coat,weight,likes_string</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">coat,weight,likes_string</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">calico,2.1,1</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">black,5.0,0</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,3.2,1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tabby,3.2,1</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <p>RStudio로 다시 돌아와서,</p>
 <div id="qwebr-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
@@ -1605,18 +1610,18 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-토론 주제
+<span class="screen-reader-only">노트</span>토론 주제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>왜 R에서는 데이터 칼럼에 무엇을 넣는지에 대해서 고집스럽게 주장할까? 이러한 점은 어떻게 우리에게 도움이 될까?</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-토론 정리
+<span class="screen-reader-only">주의</span>토론 정리
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1662,18 +1667,18 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>1부터 26까지의 숫자를 갖는 벡터를 생성하면서 시작해 보자. 생성한 벡터에 2를 곱해서 다시 자신에게 할당한다. 벡터에 A부터 Z까지 이름을 부여한다. (힌트: <code>LETTERS</code>라는 내장벡터가 있다.)</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1713,18 +1718,18 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><code>cats</code> 데이터프레임에 요인형 칼럼이 있나요? 요인형 칼럼의 이름은 무엇인가요? <code><a href="https://rdrr.io/r/utils/read.table.html">?read.csv</a></code> 명령어를 사용해서 텍스트 칼럼을 요인형 대신에 문자형으로 그대로 유지시키는 방법을 찾아본다. 그리고 나서 <code>cats</code> 데이터프레임의 요인이 실제로 문자벡터임을 확인하는 명령문을 작성하시오.</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1768,19 +1773,19 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>데이터프레임에서 변수와 관측점과 원소를 호출하는 미묘하지만 다른 방식이 존재한다. - <code>cats[1]</code> - <code>cats[[1]]</code> - <code>cats$coat</code> - <code>cats["coat"]</code> - <code>cats[1, 1]</code> - <code>cats[, 1]</code> - <code>cats[1, ]</code></p>
 <p>상기 예제를 시도해보고, 각각이 반환하는 것을 설명해 본다. <em>힌트:</em> <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> 함수를 사용해서 각각의 경우에 반환되는 것을 꼼꼼히 살펴본다.</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1827,18 +1832,18 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><code>length(matrix_example)</code> 실행결과는 어떻게 나올까? 시도해보자. 생각한 것과 일치하는가? 왜 그런가/ 왜 그렇지 않는가?</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1858,18 +1863,18 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>또 다른 행렬을 만들어 보자. 이번에는 1:50 숫자를 담고 있는 칼럼이 5, 행이 10인 행렬이다. <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> 함수로 칼럼 기준으로 혹은 행 기준으로 채울 수 있나요? 행과 열을 바꿔 변경할 수 있는 방법을 찾아보자. (힌트: <code>matrix</code> 도움말 문서를 참조한다!)</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1888,7 +1893,7 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1899,12 +1904,12 @@ R에서 텍스트 파일 편집
 </ul>
 <p>지금까지 살펴본 자료형과 자료구조를 명칭으로 갖는 문자 벡터를 채워 넣는다.</p>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1923,15 +1928,15 @@ R에서 텍스트 파일 편집
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-도전과제
+<span class="screen-reader-only">힌트</span>도전과제
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>아래 행렬의 출력 결과를 생각해보자:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>     <span class="ex">[,1]</span> <span class="pp">[</span><span class="ss">,2</span><span class="pp">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>     <span class="ex">[,1]</span> <span class="pp">[</span><span class="ss">,2</span><span class="pp">]</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[1,]</span>    4    1</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[2,]</span>    9    5</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[3,]</span>   10    7</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[3,]</span>   10    7</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 <p>이 행렬을 작성하는 올바른 명령어는 다음 중 무엇일까? 직접 타이핑하기 전에 각 명령어를 살펴보고, 정답을 생각해보자. 다른 명령어는 어떤 행렬을 만들어낼지도 생각해보자.</p>
 <ol type="1">
 <li><code>matrix(c(4, 1, 9, 5, 10, 7), nrow = 3)</code></li>
@@ -1940,12 +1945,12 @@ R에서 텍스트 파일 편집
 <li><code>matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)</code></li>
 </ol>
 <div class="callout callout-style-simple callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-해답
+<span class="screen-reader-only">주의</span>해답
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1968,228 +1973,242 @@ R에서 텍스트 파일 편집
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "복사완료!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "복사완료!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/r2bit\.com\/gpt-ds\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2197,224 +2216,200 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
-            unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
-            }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./intro_penguins.html" class="pagination-link" aria-label="펭귄 데이터셋">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">펭귄 데이터셋</span></span>
       </a>          

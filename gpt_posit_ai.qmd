@@ -1,0 +1,740 @@
+---
+engine: knitr
+---
+
+# Posit AI 도구 {#sec-gpt-posit-ai}
+\index{Posit AI} \index{ellmer} \index{chattr} \index{LLM API}
+
+## Posit AI 생태계 소개 {#sec-gpt-posit-ai-intro}
+
+\index{Posit}Posit(구 RStudio)는 R과 Python 사용자가 대형 언어 모델(LLM)을 쉽게 활용할 수 있도록 일련의 오픈소스 패키지를 개발하고 있다. 2024년부터 본격적으로 공개된 Posit AI 생태계는 ellmer, chattr를 중심으로 LLM API 호출부터 대화형 인터페이스, RAG(Retrieval-Augmented Generation), 평가 도구까지 포괄한다.
+
+Posit AI 도구들의 공통 철학은 데이터 과학자의 워크플로우를 방해하지 않고 자연스럽게 통합되는 것이다. RStudio나 Positron IDE 안에서 코드를 작성하다가 필요할 때 AI 도움을 받고, 다시 코드 작성으로 돌아오는 흐름을 지원한다.
+
+### Posit AI 핵심 패키지
+
+| 패키지 | 역할 | 언어 |
+|--------|------|------|
+| ellmer | LLM API 호출 기반 패키지 | R |
+| chatlas | ellmer의 Python 버전 | Python |
+| chattr | RStudio 통합 채팅 인터페이스 | R |
+| ragnar | RAG 기능 구현 | R |
+| shinychat | Shiny 채팅봇 UI | R |
+| vitals | LLM 평가 프레임워크 | R |
+| mcptools | Model Context Protocol 통합 | R |
+
+이 장에서는 R 사용자에게 가장 중요한 ellmer와 chattr를 중점적으로 다룬다.
+
+## ellmer: LLM API 호출의 중심 {#sec-gpt-posit-ai-ellmer}
+
+\index{ellmer}ellmer는 Posit AI 생태계의 핵심 패키지로, 다양한 LLM 제공자의 API를 통일된 인터페이스로 호출할 수 있게 한다. "ellmer makes it easy to use large language models from R"라는 모토처럼, 복잡한 API 호출을 단순화하고 일관된 방식으로 여러 모델을 사용할 수 있다.
+
+### 지원하는 LLM 제공자
+
+ellmer는 2025년 현재 20개 이상의 LLM 제공자를 지원한다.
+
+**주요 제공자:**
+
+- \index{OpenAI}**OpenAI**: GPT-4o, GPT-4, GPT-3.5
+- \index{Anthropic}**Anthropic**: Claude 3.5 Sonnet, Claude 3 Opus/Haiku
+- \index{Google Gemini}**Google**: Gemini Pro, Gemini Flash, Vertex AI
+- \index{AWS Bedrock}**AWS Bedrock**: Claude, Llama, Mistral 등
+- \index{Azure OpenAI}**Azure OpenAI**: 엔터프라이즈 배포용
+- **Ollama**: 로컬 LLM 실행
+- **Groq**: 초고속 추론
+- **Mistral AI**, **DeepSeek**, **Perplexity** 등
+
+:::{.callout-note}
+## 조직 내부 정책과 ellmer
+
+기업 환경에서는 보안 정책상 특정 클라우드 제공자만 사용 가능할 수 있다. ellmer는 AWS, Azure, Google Cloud, Databricks, Snowflake 등 주요 엔터프라이즈 플랫폼을 모두 지원하므로, 조직의 정책에 맞는 제공자를 선택할 수 있다.
+:::
+
+### 설치 및 설정
+
+ellmer는 CRAN에 등록되어 있어 표준 방식으로 설치할 수 있다.
+
+```{r}
+#| eval: false
+install.packages("ellmer")
+```
+
+대부분의 LLM 제공자는 \index{API 키}API 키가 필요하다. 환경 변수로 설정하는 것이 일반적이다.
+
+```{r}
+#| eval: false
+# .Renviron 파일에 추가
+usethis::edit_r_environ()
+
+# 예시: OpenAI API 키
+# OPENAI_API_KEY=your_api_key_here
+
+# Anthropic API 키
+# ANTHROPIC_API_KEY=your_api_key_here
+```
+
+AWS, Azure, Databricks, Snowflake는 OAuth나 IAM 인증을 지원하며, Posit Workbench와 Posit Connect에서 관리하는 인증 정보도 자동으로 감지한다.
+
+### 기본 사용법
+
+ellmer의 핵심은 \index{채팅 객체}채팅 객체(chat object)다. 상태를 유지하는 \index{R6 객체}R6 객체로, 대화의 맥락을 기억한다.
+
+```{r}
+#| eval: false
+library(ellmer)
+
+# OpenAI GPT-4o-mini 채팅 객체 생성
+chat <- chat_openai(
+  system_prompt = "간결하게 답변하세요",
+  model = "gpt-4o-mini"
+)
+
+# 질문하기
+chat$chat("R에서 데이터프레임 생성 방법은?")
+```
+
+채팅 객체는 대화 히스토리를 유지하므로 후속 질문이 자연스럽게 이어진다.
+
+```{r}
+#| eval: false
+# 이전 답변을 기억하고 있음
+chat$chat("예제 코드를 보여줘")
+```
+
+### 다양한 사용 모드
+
+ellmer는 세 가지 사용 모드를 제공한다.
+
+#### 1. 라이브 콘솔 모드
+
+\index{live_console()}가장 대화형인 방식으로, 터미널에서 LLM과 실시간 대화를 나눌 수 있다.
+
+```{r}
+#| eval: false
+chat <- chat_openai("간결하게 답변", model = "gpt-4o-mini")
+
+# 대화형 콘솔 시작
+live_console(chat)
+```
+
+콘솔에서 자유롭게 질문하고 답변을 받을 수 있다. 종료하려면 `exit` 또는 `quit`를 입력한다.
+
+브라우저 기반 인터페이스를 원한다면 \index{live_browser()}`live_browser()`를 사용한다.
+
+```{r}
+#| eval: false
+live_browser(chat)
+```
+
+#### 2. 메서드 호출 모드
+
+프로그래밍 방식으로 LLM을 호출할 때 유용하다.
+
+```{r}
+#| eval: false
+# 단일 질문
+answer <- chat$chat("R에서 결측값 처리 방법은?")
+
+# echo = "none"으로 출력 억제하고 결과만 받기
+result <- chat$chat(
+  "mtcars 데이터셋의 평균 연비는?",
+  echo = "none"
+)
+```
+
+#### 3. 스트리밍 출력
+
+기본적으로 ellmer는 스트리밍 방식으로 응답을 출력한다. 긴 답변도 생성되는 대로 즉시 볼 수 있다.
+
+```{r}
+#| eval: false
+chat$chat("dplyr 패키지의 주요 함수 5가지를 설명해줘")
+# 답변이 생성되는 대로 실시간으로 표시됨
+```
+
+### 구조화된 데이터 추출
+
+\index{구조화된 데이터}ellmer의 강력한 기능 중 하나는 LLM 응답을 구조화된 데이터로 받을 수 있다는 점이다.
+
+```{r}
+#| eval: false
+# 데이터프레임으로 결과 받기
+chat <- chat_openai(model = "gpt-4o")
+
+result <- chat$extract_data(
+  "다음 텍스트에서 인물 정보를 추출해줘:
+  김철수는 35세 데이터 과학자이고,
+  이영희는 28세 소프트웨어 엔지니어다.",
+  schema = list(
+    name = "character",
+    age = "numeric",
+    job = "character"
+  )
+)
+
+# result는 데이터프레임
+print(result)
+#   name age              job
+# 1 김철수  35 데이터 과학자
+# 2 이영희  28 소프트웨어 엔지니어
+```
+
+### 도구 호출 (Tool Calling)
+
+\index{도구 호출}LLM이 R 함수를 직접 호출하도록 할 수 있다. 이를 통해 LLM이 실시간 데이터에 접근하거나 계산을 수행할 수 있다.
+
+```{r}
+#| eval: false
+# 날씨 정보를 가져오는 함수 정의
+get_weather <- function(city) {
+  # 실제로는 API 호출
+  paste("현재", city, "의 날씨는 맑음, 기온 22도입니다.")
+}
+
+# 채팅 객체에 도구 등록
+chat <- chat_openai(
+  model = "gpt-4o",
+  tools = list(get_weather)
+)
+
+# LLM이 필요시 함수를 호출함
+chat$chat("서울의 날씨 알려줘")
+# LLM이 get_weather("서울")을 호출하고 결과를 바탕으로 답변
+```
+
+### 이미지 입력
+
+\index{멀티모달}멀티모달 모델(GPT-4o, Claude 3.5 Sonnet, Gemini Pro Vision 등)을 사용할 때 이미지를 입력할 수 있다.
+
+```{r}
+#| eval: false
+chat <- chat_openai(model = "gpt-4o")
+
+# 로컬 이미지 파일
+chat$chat(
+  content_image_file("plot.png"),
+  "이 그래프에서 어떤 패턴이 보이나요?"
+)
+
+# URL 이미지
+chat$chat(
+  content_image_url("https://example.com/chart.png"),
+  "이 차트를 요약해주세요"
+)
+```
+
+### 비동기 API
+
+\index{비동기 처리}대량의 요청을 병렬로 처리할 때 비동기 API를 사용하면 효율적이다.
+
+```{r}
+#| eval: false
+library(promises)
+
+# 여러 질문을 동시에 처리
+questions <- c(
+  "R이란 무엇인가?",
+  "Python이란 무엇인가?",
+  "Julia란 무엇인가?"
+)
+
+# 비동기 호출
+promises <- lapply(questions, function(q) {
+  chat$chat_async(q, echo = "none")
+})
+
+# 모든 응답 대기
+results <- lapply(promises, promise_value)
+```
+
+## chattr: RStudio 통합 AI 채팅 {#sec-gpt-posit-ai-chattr}
+
+\index{chattr}chattr는 ellmer를 기반으로 RStudio IDE에 통합된 대화형 AI 채팅 인터페이스를 제공한다. 코드 편집 중 즉시 AI에게 질문하고, 생성된 코드를 클립보드나 스크립트에 바로 삽입할 수 있다.
+
+### 설치 및 설정
+
+chattr도 CRAN에서 설치할 수 있다.
+
+```{r}
+#| eval: false
+install.packages("chattr")
+```
+
+또는 최신 개발 버전:
+
+```{r}
+#| eval: false
+pak::pak("mlverse/chattr")
+```
+
+### 지원 모델
+
+chattr는 2025년 8월 기준으로 다음 모델을 미리 정의된 옵션으로 제공한다.
+
+**Databricks:**
+- `databricks-dbrx`
+- `databricks-meta-llama31-70b`
+- `databricks-mixtral8x7b`
+
+**OpenAI:**
+- `gpt41-nano`
+- `gpt41-mini`
+- `gpt41`
+- `gpt4o`
+
+**Ollama:**
+- `ollama` (로컬 Llama 3.2)
+
+ellmer와 통합하여 사용하면 Anthropic Claude, Google Gemini, AWS Bedrock 등 20개 이상의 제공자를 모두 사용할 수 있다.
+
+### RStudio Addin 사용법
+
+chattr의 가장 편리한 사용 방식은 RStudio Addin이다.
+
+#### 키보드 단축키 설정
+
+1. RStudio 메뉴: **Tools > Modify Keyboard Shortcuts**
+2. "Open Chat" 검색
+3. 원하는 단축키 할당 (예: `Ctrl+Shift+C` 또는 `Cmd+Shift+C`)
+
+이제 단축키를 누르면 Shiny Gadget 앱이 RStudio Viewer 창에 열린다.
+
+#### Shiny Gadget 인터페이스
+
+\index{Shiny Gadget}chattr 앱은 Shiny 기반으로 다음 기능을 제공한다.
+
+- **채팅 입력창**: 자연어로 질문 입력
+- **답변 표시 영역**: 마크다운 형식의 답변과 코드 블록
+- **코드 액션 버튼**:
+  - **Copy to Clipboard**: 코드 복사
+  - **Insert to Script**: 현재 활성 스크립트에 삽입
+  - **New Script**: 새 스크립트 파일 생성
+- **채팅 히스토리**: 이전 대화 내용 확인
+- **설정 패널**: 프롬프트 커스터마이징, 모델 파라미터 조정
+
+### 모델 선택 및 전환
+
+chattr는 다섯 가지 방식으로 모델을 설정할 수 있다.
+
+#### 1. `.Rprofile`에 미리 설정
+
+```{r}
+#| eval: false
+# .Rprofile 파일 열기
+usethis::edit_r_profile()
+
+# 다음 줄 추가
+options(chattr.model = "gpt4o")
+```
+
+R 재시작 후 `chattr_app()`을 실행하면 자동으로 GPT-4o를 사용한다.
+
+#### 2. ellmer 채팅 객체 직접 전달
+
+```{r}
+#| eval: false
+library(chattr)
+library(ellmer)
+
+# Claude 3.5 Sonnet 사용
+chat <- chat_anthropic(model = "claude-3-5-sonnet-20241022")
+chattr_use(chat)
+chattr_app()
+```
+
+#### 3. 모델 이름 사용
+
+```{r}
+#| eval: false
+chattr_use("gpt41-nano")
+chattr_app()
+```
+
+#### 4. 대화형 메뉴
+
+```{r}
+#| eval: false
+chattr_use()
+# 사용 가능한 모델 목록이 표시되고 선택 가능
+```
+
+#### 5. 앱 실행 시 지정
+
+```{r}
+#| eval: false
+chattr_app(model = "gpt4o")
+```
+
+### 컨텍스트 자동 추가
+
+\index{컨텍스트 인식}chattr의 강력한 기능은 사용자 요청에 자동으로 컨텍스트 정보를 추가한다는 점이다.
+
+**자동 추가되는 정보:**
+
+- **데이터프레임 구조**: 현재 환경의 데이터프레임 이름, 열 이름, 데이터 타입
+- **파일 경로**: 작업 디렉토리의 데이터 파일 목록
+- **채팅 히스토리**: 이전 대화 내용 (모델이 지원하는 경우)
+- **커스텀 프롬프트**: 설정에서 추가한 지시사항
+
+예를 들어, 사용자가 "mtcars 데이터로 산점도 그려줘"라고 입력하면 chattr는 다음과 같이 프롬프트를 확장한다.
+
+```
+[시스템 프롬프트]
+당신은 R 프로그래밍 전문가입니다. 간결하고 실행 가능한 코드를 제공하세요.
+
+[환경 정보]
+사용 가능한 데이터프레임:
+- mtcars: 32 rows, 11 columns (mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb)
+
+[사용자 요청]
+mtcars 데이터로 산점도 그려줘
+```
+
+이를 통해 LLM은 환경을 인식하고 더 정확한 코드를 생성할 수 있다.
+
+### 프롬프트 미리보기
+
+\index{프롬프트 미리보기}실제로 LLM에게 전송되는 프롬프트를 확인할 수 있다.
+
+```{r}
+#| eval: false
+# 프롬프트 미리보기 활성화
+chattr_defaults(preview = TRUE)
+
+chattr("dplyr로 데이터 필터링하는 방법")
+# 전송 전 프롬프트 내용이 표시됨
+```
+
+### 함수 형태로 사용
+
+RStudio 밖에서 터미널이나 스크립트에서 사용할 때는 `chattr()` 함수를 직접 호출한다.
+
+```{r}
+#| eval: false
+library(chattr)
+
+# 모델 설정
+chattr_use("gpt4o")
+
+# 질문
+chattr("R에서 결측값 처리하는 3가지 방법")
+
+# 후속 질문
+chattr("예제 코드를 보여줘")
+```
+
+### 채팅 히스토리 관리
+
+chattr는 대화 내용을 저장하고 불러올 수 있다.
+
+```{r}
+#| eval: false
+# 현재 채팅 히스토리 저장
+chattr_save("my_chat_session.rds")
+
+# 나중에 불러오기
+chattr_load("my_chat_session.rds")
+
+# 히스토리 초기화
+chattr_clear()
+```
+
+### 커스텀 백엔드 확장
+
+\index{패키지 확장}개발자는 `ch_submit()` 메서드를 정의하여 chattr에 새로운 LLM 백엔드를 추가할 수 있다.
+
+```{r}
+#| eval: false
+# 커스텀 제공자를 위한 메서드 정의
+ch_submit.my_custom_llm <- function(defaults, prompt, ...) {
+  # API 호출 로직
+  # ...
+  return(response)
+}
+```
+
+이를 통해 커뮤니티는 새로운 LLM 서비스가 나올 때마다 chattr를 확장할 수 있다.
+
+## Posit AI 생태계의 다른 도구들 {#sec-gpt-posit-ai-ecosystem}
+
+### chatlas (Python)
+
+\index{chatlas}ellmer의 Python 버전으로, Python 사용자도 동일한 인터페이스로 LLM을 사용할 수 있다.
+
+```python
+from chatlas import ChatOpenAI
+
+chat = ChatOpenAI(model="gpt-4o-mini")
+chat.chat("Pandas DataFrame 생성 방법은?")
+```
+
+### ragnar (RAG)
+
+\index{ragnar}\index{RAG}Retrieval-Augmented Generation을 구현하는 패키지다. 문서를 벡터화하고 검색하여 LLM에게 컨텍스트로 제공한다.
+
+```{r}
+#| eval: false
+library(ragnar)
+
+# 문서 로드 및 임베딩
+docs <- load_documents("docs/")
+index <- create_index(docs)
+
+# RAG 기반 질문 답변
+answer <- rag_chat(
+  query = "데이터 정제 방법은?",
+  index = index,
+  chat = chat_openai()
+)
+```
+
+### shinychat (Shiny 채팅봇)
+
+\index{shinychat}Shiny 앱에 채팅 인터페이스를 추가하는 패키지다. 사용자와 대화하는 AI 챗봇을 웹 앱에 통합할 수 있다.
+
+```{r}
+#| eval: false
+library(shiny)
+library(shinychat)
+library(ellmer)
+
+ui <- fluidPage(
+  chat_ui("my_chat")
+)
+
+server <- function(input, output, session) {
+  chat <- chat_openai(model = "gpt-4o-mini")
+
+  chat_server("my_chat", chat)
+}
+
+shinyApp(ui, server)
+```
+
+### vitals (평가)
+
+\index{vitals}LLM 응답 품질을 평가하는 프레임워크다. 정확성, 관련성, 일관성 등을 측정할 수 있다.
+
+### mcptools (MCP)
+
+\index{mcptools}\index{Model Context Protocol}Model Context Protocol을 통해 LLM이 외부 도구와 통신할 수 있도록 한다.
+
+## ellmer vs. chattr 비교 {#sec-gpt-posit-ai-comparison}
+
+| 특성 | ellmer | chattr |
+|------|--------|--------|
+| **목적** | LLM API 호출 라이브러리 | RStudio 통합 채팅 UI |
+| **사용 방식** | R 코드, 스크립트 | Shiny Gadget, Addin |
+| **대상 사용자** | 개발자, 프로그래머 | 대화형 분석가 |
+| **제공자 수** | 20+ | 기본 8개 + ellmer 통합 시 20+ |
+| **컨텍스트 추가** | 수동 | 자동 (환경, 데이터프레임) |
+| **코드 삽입** | 수동 복사 | 버튼 클릭 삽입 |
+| **히스토리 관리** | R6 객체 상태 | 저장/불러오기 지원 |
+| **확장성** | 기반 패키지 | ellmer 기반 |
+
+**선택 가이드:**
+
+- **프로그래밍 방식으로 LLM 호출**: ellmer 사용
+- **RStudio에서 대화형 작업**: chattr 사용
+- **Shiny 앱 통합**: shinychat + ellmer
+- **RAG 구현**: ragnar + ellmer
+- **Python 사용자**: chatlas
+
+## 실전 활용 사례 {#sec-gpt-posit-ai-usecase}
+
+### 탐색적 데이터 분석 가속화
+
+chattr를 사용하여 빠르게 데이터 탐색 코드를 생성할 수 있다.
+
+```{r}
+#| eval: false
+library(chattr)
+library(palmerpenguins)
+
+data(penguins)
+
+# chattr 앱 열기 (Ctrl+Shift+C)
+chattr_app()
+```
+
+**사용자:** "penguins 데이터셋의 종별 평균 체중을 막대 그래프로 보여줘"
+
+chattr는 환경에서 penguins 데이터프레임을 감지하고 다음 코드를 생성한다.
+
+```{r}
+#| eval: false
+library(dplyr)
+library(ggplot2)
+
+penguins %>%
+  group_by(species) %>%
+  summarise(mean_weight = mean(body_mass_g, na.rm = TRUE)) %>%
+  ggplot(aes(x = species, y = mean_weight, fill = species)) +
+  geom_col() +
+  labs(
+    title = "종별 평균 체중",
+    x = "종",
+    y = "평균 체중 (g)"
+  ) +
+  theme_minimal()
+```
+
+"Insert to Script" 버튼을 클릭하면 현재 스크립트에 코드가 삽입된다.
+
+### 대량 텍스트 분석
+
+ellmer의 비동기 API를 사용하여 대량 텍스트를 병렬 처리할 수 있다.
+
+```{r}
+#| eval: false
+library(ellmer)
+library(dplyr)
+
+# 리뷰 데이터
+reviews <- tibble(
+  id = 1:100,
+  text = c("정말 좋은 제품입니다!", "별로였어요...", ...)
+)
+
+# 감성 분석용 채팅 객체
+chat <- chat_openai(
+  model = "gpt-4o-mini",
+  system_prompt = "다음 리뷰의 감성을 '긍정', '부정', '중립'으로 분류하세요."
+)
+
+# 비동기 처리
+results <- reviews %>%
+  mutate(
+    sentiment = map_chr(text, ~{
+      response <- chat$chat(.x, echo = "none")
+      str_trim(response)
+    })
+  )
+```
+
+### 구조화된 데이터 추출
+
+뉴스 기사에서 인물, 조직, 날짜 등을 추출하여 데이터프레임으로 만들 수 있다.
+
+```{r}
+#| eval: false
+news_text <- "
+2025년 1월 7일, 삼성전자 이재용 회장은
+미국 실리콘밸리에서 구글 CEO 순다르 피차이와 만나
+AI 협력 방안을 논의했다.
+"
+
+chat <- chat_openai(model = "gpt-4o")
+
+result <- chat$extract_data(
+  paste("다음 기사에서 정보를 추출하세요:", news_text),
+  schema = list(
+    date = "character",
+    person = "character",
+    organization = "character",
+    location = "character",
+    topic = "character"
+  )
+)
+
+print(result)
+#        date   person organization      location  topic
+# 1 2025-01-07 이재용   삼성전자 실리콘밸리 AI 협력
+# 2 2025-01-07 순다르 피차이        구글 실리콘밸리 AI 협력
+```
+
+### RAG 기반 문서 질의응답
+
+ragnar를 사용하여 프로젝트 문서에 대한 AI 어시스턴트를 만들 수 있다.
+
+```{r}
+#| eval: false
+library(ragnar)
+library(ellmer)
+
+# 프로젝트 문서 로드
+docs <- load_documents("project_docs/")
+
+# 벡터 인덱스 생성
+index <- create_index(docs, embedding_model = "text-embedding-3-small")
+
+# RAG 채팅
+chat <- chat_openai(model = "gpt-4o")
+
+answer <- rag_chat(
+  query = "데이터 파이프라인 아키텍처는?",
+  index = index,
+  chat = chat
+)
+```
+
+LLM은 문서에서 관련 부분을 검색하여 정확한 답변을 제공한다.
+
+## 제약 사항 및 고려 사항 {#sec-gpt-posit-ai-limitations}
+
+### API 비용
+
+모든 LLM 호출은 제공자에게 비용을 지불한다. 대량 요청 시 비용이 빠르게 증가할 수 있으므로 주의가 필요하다.
+
+**비용 절감 팁:**
+
+- 작은 모델 사용 (GPT-4o-mini, Claude 3 Haiku)
+- 캐싱 활용
+- 불필요한 컨텍스트 제거
+- 로컬 모델 (Ollama) 활용
+
+### 데이터 프라이버시
+
+\index{데이터 프라이버시}LLM API에 전송하는 데이터는 제공자의 서버를 거친다. 민감한 데이터는 절대 전송하지 말아야 한다.
+
+**보안 대책:**
+
+- 로컬 Ollama 모델 사용
+- 엔터프라이즈 계약 (Azure OpenAI, AWS Bedrock)
+- 데이터 익명화 후 전송
+- 조직 정책 준수
+
+### 응답 일관성
+
+LLM 응답은 확률적이므로 동일한 입력에 다른 출력이 나올 수 있다. 재현 가능성이 중요한 경우 `temperature = 0`으로 설정한다.
+
+```{r}
+#| eval: false
+chat <- chat_openai(
+  model = "gpt-4o",
+  temperature = 0  # 결정적 출력
+)
+```
+
+### 코드 검증 필요
+
+\index{AI 생성 코드!검증}AI가 생성한 코드는 항상 검증해야 한다. 잘못된 로직, 보안 취약점, 성능 문제가 있을 수 있다.
+
+:::{.callout-warning}
+## AI 생성 코드 실행 주의
+
+AI가 생성한 코드를 맹목적으로 실행하지 말 것. 특히 파일 시스템 조작, 네트워크 요청, 데이터베이스 쿼리는 반드시 검토 후 실행한다.
+:::
+
+## 생각해볼 점 {#sec-gpt-posit-ai-thoughts}
+
+Posit AI 생태계는 R 사용자가 LLM을 자연스럽게 워크플로우에 통합할 수 있도록 설계되었다. ellmer가 강력한 기반 라이브러리를 제공하고, chattr가 친숙한 RStudio 인터페이스를 제공하며, ragnar, shinychat, vitals가 특화된 기능을 더한다. 이는 단순히 "AI를 사용할 수 있게 한다"를 넘어, "AI와 함께 R로 일하는 방식"을 재정의한다.
+
+ellmer의 통일된 인터페이스는 특히 가치 있다. 20개 이상의 제공자를 지원하면서도 일관된 API를 유지하여, 사용자는 코드를 거의 변경하지 않고 모델을 전환할 수 있다. 조직 정책이 바뀌거나 새로운 모델이 출시되어도 코드를 다시 작성할 필요가 없다.
+
+chattr는 탐색적 데이터 분석 단계에서 생산성을 크게 향상시킨다. 데이터를 처음 접했을 때 "어떻게 시작할까?"라는 고민을 AI와 대화하며 해결하고, 생성된 코드를 클릭 한 번으로 스크립트에 추가할 수 있다. 숙련된 분석가도 반복적인 코드 작성 시간을 줄이고 분석 논리에 더 집중할 수 있다.
+
+Posit AI 도구들의 오픈소스 철학도 중요하다. GitHub에 공개된 소스 코드를 통해 내부 작동 방식을 이해하고, 필요시 커스터마이징할 수 있다. 커뮤니티는 새로운 LLM 백엔드를 추가하거나 기능을 확장하여 생태계를 풍부하게 만들 수 있다.
+
+하지만 AI 도구를 사용할 때는 비판적 사고를 유지해야 한다. AI가 생성한 코드나 답변이 항상 정확하거나 최선인 것은 아니다. 통계적 가정, 데이터 품질, 보안 취약점 등을 항상 검토해야 한다. AI는 강력한 부조종사지만, 최종 판단과 책임은 데이터 과학자 본인에게 있다.
+
+앞으로 Posit AI 생태계는 더욱 발전할 것이다. Positron IDE의 통합 강화, 새로운 LLM 제공자 지원, 평가 및 모니터링 도구 개선 등이 예상된다. R 사용자는 이러한 도구들을 활용하여 AI 네이티브 데이터 과학자로 성장할 수 있는 기회를 얻었다. 중요한 것은 도구를 아는 것이 아니라, 도구를 통해 더 나은 질문을 하고 더 깊은 통찰을 얻는 것이다.
+
+---
+
+**Sources:**
+- [ellmer: Chat with Large Language Models](https://ellmer.tidyverse.org/)
+- [GitHub - tidyverse/ellmer](https://github.com/tidyverse/ellmer)
+- [chattr: Interact with Large Language Models in RStudio](https://mlverse.github.io/chattr/)
+- [Posit AI Blog: Chat with AI in RStudio](https://blogs.rstudio.com/tensorflow/posts/2024-04-04-chat-with-llms-using-chattr/)
+- [CRAN: Package chattr](https://cran.r-project.org/package=chattr)
